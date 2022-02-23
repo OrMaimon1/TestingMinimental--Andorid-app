@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="MMSE App"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:textAlignment="center"
         android:layout_margin="20dp" />
 
@@ -32,7 +32,7 @@
         app:boxBackgroundColor="#501967"
         app:counterEnabled="true"
         app:counterMaxLength="20"
-        app:counterTextColor="@color/white"
+        app:counterTextColor="@color/black"
         android:hint="@string/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,11 +43,12 @@
             android:layout_height="51dp"
             android:maxLength="21"
             android:maxLines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputEdit" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
 

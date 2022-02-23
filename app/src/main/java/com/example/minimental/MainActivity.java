@@ -18,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolBar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolBar);
+        //toolbar.setTitle("");
+        //setSupportActionBar(toolbar);
 
-        ViewPager2 questionsPager = findViewById(R.id.questionsViewPager);
-        QuestionAdapter questionAdapter = new QuestionAdapter(getSupportFragmentManager() , this.getLifecycle());
-        questionsPager.setAdapter(questionAdapter);
+        //ViewPager2 questionsPager = findViewById(R.id.questionsViewPager);
+        //QuestionAdapter questionAdapter = new QuestionAdapter(getSupportFragmentManager() , this.getLifecycle());
+        //questionsPager.setAdapter(questionAdapter);
     }
 
     private class QuestionAdapter extends FragmentStateAdapter

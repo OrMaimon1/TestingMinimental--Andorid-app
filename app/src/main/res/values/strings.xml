@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">minimental</string>
+    <string name="user_name">Enter UserName</string>
 </resources>
