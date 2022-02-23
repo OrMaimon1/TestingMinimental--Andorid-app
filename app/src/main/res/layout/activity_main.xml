@@ -101,7 +101,7 @@
                         android:id="@+id/input_phoneET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
+                        android:inputType="textPassword"
                         android:maxLength="13"
                         android:maxLines="1"
                         android:paddingStart="16dp"
