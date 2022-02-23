@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">minimental</string>
-    <string name="user_name">Enter UserName</string>
+    <string name="app_name">Minimental</string>
+    <string name="user_name">Enter Name</string>
+    <string name="title_name">Minimental Test</string>
+    <string name="button_next">Next</string>
+    <string name="user_password">Enter password</string>
+    <string name="required">Required</string>
 </resources>

@@ -2,4 +2,8 @@
 <resources>
     <string name="app_name">minimental</string>
     <string name="user_name">הכנס שם משתמש</string>
+    <string name="title_name">מבחן מינימנטל</string>
+    <string name="button_next">המשך</string>
+    <string name="user_password">הכנס ססמא</string>
+    <string name="required">חובה</string>
 </resources>
