@@ -13,4 +13,19 @@
     <string name="address">address</string>
     <string name="floor">floor</string>
     <string name="area">area</string>
+    <string name="title_question_title_name">Short term memory</string>
+    <string name="second_question_textview_name">Click the button when you are ready, try to remember the 3 objects</string>
+    <string name="second_question_textview2_name">Please read out loud the three objects together</string>
+    <string name="choose_third_question_title">Choose third question</string>
+    <string name="choose_third_question_textview_name">Now a simple and complete thinking exercise is done and you can do arithmetic You can also do a spelling exercise, please click on your choose</string>
+    <string name="math_version_name">Math version</string>
+    <string name="answer_math_voice">click on the microphone for answer</string>
+    <string name="Button_finish_answer_text">Click here when finished answer</string>
+    <string name="textView_math_version">100</string>
+    <string name="textView_spellig_version_word">Table</string>
+    <string name="textView_spellig_version_textView2">Press on the microphne to start spelling</string>
+    <string name="spelling_version_name">Spelling Version</string>
+    <string name="repeat_sentence_string_title">Repeat sentence</string>
+    <string name="textView_repeat_sentence_string">A random sentence need to repeat</string>
+    <string name="textView2_repeat_sentence_string">Click on the microphone to repeat the sentence</string>
 </resources>

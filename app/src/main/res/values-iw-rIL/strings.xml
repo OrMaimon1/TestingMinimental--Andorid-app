@@ -12,4 +12,6 @@
     <string name="address">רחוב</string>
     <string name="floor">קומה</string>
     <string name="area">אזור</string>
+    <string name="title_question_title_name">זיכרון לטווח קצר</string>
+    <string name="second_question_textview_name">לחץ על הכפתור כאשר אתה מוכן</string>
 </resources>

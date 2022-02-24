@@ -4,10 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/round_border.xml" value="0.242" />
-        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/choose_third_question.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/collect_missingdetails.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/information_fragment.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/math_version.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/repeat_sentence.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/second_quesstion.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/second_question.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/spelling_version.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/OR/AndroidStudioProjects/minimental/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
-        <entry key="..\:/Users/OR/AndroidStudioProjects/minimental/app/src/main/res/layout/collect_missingdata.xml" value="0.358695652173913" />
         <entry key="..\:/Users/OR/AndroidStudioProjects/minimental/app/src/main/res/layout/information_fragment.xml" value="0.358695652173913" />
       </map>
     </option>

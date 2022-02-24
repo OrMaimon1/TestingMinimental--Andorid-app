@@ -17,12 +17,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/repeat_sentence"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:gravity="center"
-                android:text="@string/title_name"
+                android:text="@string/repeat_sentence_string_title"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
@@ -37,36 +37,44 @@
                 android:orientation="horizontal">
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_name"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/spelling_version_textview"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
+                    android:layout_margin="20dp"
                     android:gravity="center"
-                    android:hint="@string/user_name"
-                    android:textSize="20sp"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="20"
-                    app:endIconMode="clear_text"
-                    app:helperText="@string/required"
-                    app:helperTextTextColor="@color/Red"
-                    app:startIconDrawable="@drawable/ic_baseline_person_24">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_nameET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLength="21"
-                        android:maxLines="1"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
+                    android:drawableEnd="@drawable/ic_baseline_volume_up_24"
+                    android:text="@string/textView_repeat_sentence_string"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="40dp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <ImageButton
+                    android:id="@+id/image_of_microphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_baseline_mic_24"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,40 +84,19 @@
                 android:orientation="horizontal">
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_password"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/repeat_sentence_textView2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
+                    android:layout_margin="20dp"
                     android:gravity="center"
-                    android:hint="@string/user_password"
+                    android:text="@string/textView2_repeat_sentence_string"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="20sp"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="12"
-                    app:endIconMode="custom"
-                    app:errorEnabled="true"
-                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                    app:helperText="@string/required"
-                    app:helperTextTextColor="@color/Red"
-                    app:startIconDrawable="@drawable/ic_baseline_lock_24">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_phoneET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:maxLength="13"
-                        android:maxLines="1"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
+                    android:textStyle="bold" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
