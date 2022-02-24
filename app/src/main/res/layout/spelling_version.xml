@@ -67,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:gravity="center"
+                    android:minHeight="48dp"
                     android:src="@drawable/ic_baseline_mic_24"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
