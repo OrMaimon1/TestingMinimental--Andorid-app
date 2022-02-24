@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
     android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/title1"
             android:layout_width="match_parent"
@@ -23,15 +22,16 @@
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title1">
             <TextView
                 android:id="@+id/missingcountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
                 android:layout_weight="1"
+                android:layout_below="@+id/Tv_country"
+                android:layout_margin="20dp"
                 android:text="@string/country"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -45,14 +45,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:text="@string/country"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="15sp" />
+                android:text="@string/country"/>
 
         </LinearLayout>
-
-    </ScrollView>
 
 
 </RelativeLayout>
