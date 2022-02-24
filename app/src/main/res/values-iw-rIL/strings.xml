@@ -6,4 +6,10 @@
     <string name="button_next">המשך</string>
     <string name="user_password">הכנס ססמא</string>
     <string name="required">חובה</string>
+    <string name="missingdetails">מילוי פרטים</string>
+    <string name="country">ארץ</string>
+    <string name="city">עיר</string>
+    <string name="address">רחוב</string>
+    <string name="floor">קומה</string>
+    <string name="area">אזור</string>
 </resources>
