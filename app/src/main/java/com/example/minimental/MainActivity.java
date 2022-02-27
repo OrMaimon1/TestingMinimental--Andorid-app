@@ -10,6 +10,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -17,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout textInputUsername;
     private TextInputLayout textInputPassword;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Button Nextbtn = findViewById(R.id.next_Btn);
         textInputUsername = findViewById(R.id.input_name);
         textInputPassword = findViewById(R.id.input_password);
         //Toolbar toolbar = findViewById(R.id.toolBar);

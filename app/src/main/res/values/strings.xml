@@ -6,10 +6,8 @@
     <string name="user_password">Enter password</string>
     <string name="required">Required</string>
     <string name="missingdetails">Missing Details</string>
-    <string name="missingdetails">Missing Details</string>
     <string name="country">country</string>
     <string name="city">city</string>
-    <string name="address">address</string>
     <string name="address">address</string>
     <string name="floor">floor</string>
     <string name="area">area</string>
@@ -28,4 +26,8 @@
     <string name="repeat_sentence_string_title">Repeat sentence</string>
     <string name="textView_repeat_sentence_string">A random sentence need to repeat</string>
     <string name="textView2_repeat_sentence_string">Click on the microphone to repeat the sentence</string>
+    <string name="title_question_title_name4">Fourth Question</string>
+    <string name="fourth_question_textview_name">please repeat the 3 object from seacund question</string>
+    <string name="fifth_question_name">Fifth Question</string>
+    <string name="textView_fifth_question">please write what you see in the picture</string>
 </resources>
