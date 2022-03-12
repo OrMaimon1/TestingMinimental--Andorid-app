@@ -34,16 +34,16 @@ class MyLifecycleObserver implements DefaultLifecycleObserver {
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
-                        if(result.getResultCode() == Result_OK){
+                      //  if(result.getResultCode() == Result_OK){
                             Intent data =result.getData();
                             ArrayList<String> results =data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                            sb = new StringBuffer();
-                            for (String result: results)
-                            {
-                                sb.append(result +",");
-                            }
+                           // sb = new StringBuffer();
+                            //for (String result: results)
+                         //   {
+                               // sb.append(result +",");
+                          //  }
 
-                        }
+                        //}
                     }
 
                 });
@@ -51,7 +51,7 @@ class MyLifecycleObserver implements DefaultLifecycleObserver {
 
     public void Speech_Recqniton() {
         // Open the activity to select an image
-        mSpeechRecogntionResult.launch("");
+        //mSpeechRecogntionResult.launch("");
     }
 
 }

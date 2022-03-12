@@ -1,4 +1,4 @@
-package com.example.minimental;
+package com.example.minimental.fragments;
 
 
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.minimental.Question;
+import com.example.minimental.R;
 
 public class  InformationFragment extends Fragment {
 
