@@ -12,12 +12,16 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class FifthQuestion extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fifth_question,container,false);
+
+        TextInputLayout textInputUsername = rootView.findViewById(R.id.input_name);
+        TextInputLayout textInputPassword = rootView.findViewById(R.id.input_name);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override

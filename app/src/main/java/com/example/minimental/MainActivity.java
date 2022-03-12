@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     /*final String REGISTER_FRAGMNET_TAG = "register_fragment";
     private TextInputLayout textInputUsername;
     private TextInputLayout textInputPassword;

@@ -18,7 +18,8 @@ public class SecondQuestion extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.second_question,container,false);
-        //return super.onCreateView(inflater, container, savedInstanceState);
+
+
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
