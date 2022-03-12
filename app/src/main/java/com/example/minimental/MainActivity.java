@@ -1,5 +1,6 @@
 package com.example.minimental;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -7,6 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.os.Bundle;
@@ -18,8 +21,17 @@ import com.example.minimental.fragments.SecondQuestion;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-    final String REGISTER_FRAGMNET_TAG = "register_fragment";
+        //NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
+
+    }
+
+
+    /*final String REGISTER_FRAGMNET_TAG = "register_fragment";
     private TextInputLayout textInputUsername;
     private TextInputLayout textInputPassword;
     MainActivityViewModel viewModel;
@@ -68,5 +80,5 @@ public class MainActivity extends AppCompatActivity {
         public int getItemCount() {
             return Question.values().length;
         }
-    }
+    }*/
 }

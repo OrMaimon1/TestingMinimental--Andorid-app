@@ -11,16 +11,7 @@
         android:label="CollectMissingDetails"
         tools:layout="@layout/collect_missingdetails">
         <action
-            android:id="@+id/action_collectMissingDetails_to_informationFragment"
-            app:destination="@id/informationFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/informationFragment"
-        android:name="com.example.minimental.fragments.InformationFragment"
-        android:label="InformationFragment"
-        tools:layout="@layout/information_fragment">
-        <action
-            android:id="@+id/action_informationFragment_to_secondQuestion"
+            android:id="@+id/action_collectMissingDetails_to_secondQuestion"
             app:destination="@id/secondQuestion" />
     </fragment>
     <fragment

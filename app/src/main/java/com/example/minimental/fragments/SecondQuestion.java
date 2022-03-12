@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 
@@ -23,6 +24,7 @@ public class SecondQuestion extends Fragment {
             @Override
             public void onClick(View view) {
 
+                Navigation.findNavController(view).navigate(R.id.action_secondQuestion_to_chooseThirdQuestion);
             }
         });
         return rootView;
