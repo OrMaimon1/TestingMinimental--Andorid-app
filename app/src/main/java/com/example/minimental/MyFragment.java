@@ -15,7 +15,7 @@ class MyFragment extends Fragment {
     final int SPEECH_RECQGNITON_RESULT = 3;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        //super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
         mObserver = new MyLifecycleObserver(requireActivity().getActivityResultRegistry());
         getLifecycle().addObserver(mObserver);
     }
@@ -32,13 +32,13 @@ class MyFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button selectButton = view.findViewById(R.id.select_button);
-        selectButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mObserver.Speech_Recqniton();
-            }
-        });
+        //Button selectButton = view.findViewById(R.id.select_button);
+        //selectButton.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+          //  public void onClick(View view) {
+           //     mObserver.Speech_Recqniton();
+           // }
+       // });
     }
 
     //  @Override

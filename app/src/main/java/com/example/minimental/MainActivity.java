@@ -21,11 +21,15 @@ import com.example.minimental.fragments.SecondQuestion;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    //private MainActivityViewModel viewModel;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        //viewModel.getUserName().observe(this,);
+        //viewModel.getMissingDetail().observe(this,missingDetail -> );
         //NavController navController = Navigation.findNavController(this,R.id.nav_host_fragment);
 
     }
