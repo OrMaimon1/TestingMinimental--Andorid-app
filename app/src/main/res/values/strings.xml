@@ -30,4 +30,9 @@
     <string name="fourth_question_textview_name">please repeat the 3 object from seacund question</string>
     <string name="fifth_question_name">Fifth Question</string>
     <string name="textView_fifth_question">please write what you see in the picture</string>
+    <string name="title_question_title_name6">Sixth question</string >
+    <string name="sixth_question_textview_name">An example of sentence that appears here</string>
+    <string name="six_question_textview2_name">Repeate the sentence</string>
+    <string name="eighth_question_title">Drag And Drop</string>
+    <string name="eighth_question_instructions">Put the black circle in the red square</string>/>
 </resources>

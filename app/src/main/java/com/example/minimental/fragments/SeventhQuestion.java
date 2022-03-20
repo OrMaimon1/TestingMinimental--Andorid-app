@@ -27,6 +27,7 @@ public class SeventhQuestion extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_SeventhQuestion_to_eighthQuestion);
             }
         });
-        return rootView ;
+
+        return rootView;
     }
 }
