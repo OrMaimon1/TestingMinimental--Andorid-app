@@ -11,25 +11,26 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.example.minimental.MainActivityViewModel;
 import com.example.minimental.R;
-import com.google.android.material.textfield.TextInputLayout;
 
-public class FifthQuestion extends Fragment {
+public class Sixth_question extends Fragment {
+
+    private MainActivityViewModel viewModel;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fifth_question,container,false);
-
-        TextInputLayout textInputUsername = rootView.findViewById(R.id.input_name);
-        TextInputLayout textInputPassword = rootView.findViewById(R.id.input_name);
+        View rootView = inflater.inflate(R.layout.sixth_question,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Navigation.findNavController(view).navigate(R.id.action_fifthQuestion_to_sixth_question);
+                Navigation.findNavController(view).navigate(R.id.action_sixth_question_to_seventhquestion);
             }
         });
         return rootView;
+
+
     }
 }

@@ -57,7 +57,11 @@
         android:id="@+id/fifthQuestion"
         android:name="com.example.minimental.fragments.FifthQuestion"
         android:label="FifthQuestion"
-        tools:layout="@layout/fifth_question"/>
+        tools:layout="@layout/fifth_question">
+        <action
+            android:id="@+id/action_fifthQuestion_to_sixth_question"
+            app:destination="@id/sixth_question" />
+    </fragment>
     <fragment
         android:id="@+id/fourthQuestion"
         android:name="com.example.minimental.fragments.FourthQuestion"
@@ -76,4 +80,40 @@
             android:id="@+id/action_login_fragment_to_collectMissingDetails"
             app:destination="@id/collectMissingDetails" />
     </fragment>
+    <fragment
+        android:id="@+id/sixth_question"
+        android:name="com.example.minimental.fragments.Sixth_question"
+        android:label="Sixth_question" >
+        <action
+            android:id="@+id/action_sixth_question_to_seventhquestion"
+            app:destination="@id/SeventhQuestion" />
+    </fragment>
+    <fragment
+        android:id="@+id/SeventhQuestion"
+        android:name="com.example.minimental.fragments.SeventhQuestion"
+        android:label="Seventhquestion" >
+        <action
+            android:id="@+id/action_SeventhQuestion_to_eighthQuestion"
+            app:destination="@id/eighthQuestion" />
+    </fragment>
+    <fragment
+        android:id="@+id/eighthQuestion"
+        android:name="com.example.minimental.fragments.EighthQuestion"
+        android:label="EighthQuestion" >
+        <action
+            android:id="@+id/action_eighthQuestion_to_ninthQuestion"
+            app:destination="@id/ninthQuestion" />
+    </fragment>
+    <fragment
+        android:id="@+id/ninthQuestion"
+        android:name="com.example.minimental.fragments.NinthQuestion"
+        android:label="NinthQuestion" >
+        <action
+            android:id="@+id/action_ninthQuestion_to_tenthQuestion"
+            app:destination="@id/tenthQuestion" />
+    </fragment>
+    <fragment
+        android:id="@+id/tenthQuestion"
+        android:name="com.example.minimental.fragments.TenthQuestion"
+        android:label="TenthQuestion" />
 </navigation>
