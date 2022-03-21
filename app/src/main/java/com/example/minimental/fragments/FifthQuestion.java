@@ -20,8 +20,8 @@ public class FifthQuestion extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fifth_question,container,false);
 
-        TextInputLayout textInputUsername = rootView.findViewById(R.id.input_name);
-        TextInputLayout textInputPassword = rootView.findViewById(R.id.input_name);
+        //TextInputLayout textInputUsername = rootView.findViewById(R.id.input_name);
+        //TextInputLayout textInputPassword = rootView.findViewById(R.id.input_name);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -85,8 +85,8 @@
         android:name="com.example.minimental.fragments.Sixth_question"
         android:label="Sixth_question" >
         <action
-            android:id="@+id/action_sixth_question_to_seventhquestion"
-            app:destination="@id/SeventhQuestion" />
+            android:id="@+id/action_sixth_question_to_eighthQuestion"
+            app:destination="@id/eighthQuestion" />
     </fragment>
     <fragment
         android:id="@+id/SeventhQuestion"
