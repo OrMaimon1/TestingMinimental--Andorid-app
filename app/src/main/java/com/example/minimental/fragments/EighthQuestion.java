@@ -26,8 +26,7 @@ import com.example.minimental.R;
 public class EighthQuestion extends Fragment {
     
     View blackCircle, yellowCircle, redSquare, blueCircle;
-    float x,y;
-    float dx , dy;
+    float x = 0, y = 0;
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Nullable
     @Override
@@ -70,22 +69,26 @@ public class EighthQuestion extends Fragment {
 
     final class MyTouchListener implements View.OnTouchListener{
         @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                x = motionEvent.getX();
-                y = motionEvent.getY();
-            }
-            if (motionEvent.getAction() == MotionEvent.ACTION_MOVE)
-            {
-                dx = motionEvent.getX() - x;
-                dy = motionEvent.getY() - y;
+        public boolean onTouch(View view, MotionEvent event) {
+            switch (event.getActionMasked()){
+                case MotionEvent.ACTION_DOWN:
+                    x = event.getX();
+                    y = event.getY();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                   float movedX, movedY;
+                   movedX = event.getX();
+                   movedY = event.getY();
 
-                view.setX(view.getX() + dx);
-                view.setY(view.getY() + dy);
+                   float distanceX = movedX - x;
+                   float distanceY = movedY - y;
 
-                x = motionEvent.getX();
-                y = motionEvent.getY();
+                   view.setX(view.getX()+distanceX);
+                   view.setY(view.getY()+distanceY);
+
+                   break;
             }
+
             return true;
         }
     }
