@@ -34,5 +34,6 @@
     <string name="sixth_question_textview_name">An example of sentence that appears here</string>
     <string name="six_question_textview2_name">Repeate the sentence</string>
     <string name="eighth_question_title">Drag And Drop</string>
-    <string name="eighth_question_instructions">Put the black circle in the red square</string>/>
+    <string name="eighth_question_instructions">Put the black circle in the red square</string>
+    <string name="seventh_question_title_string">Seventh Question</string>/>
 </resources>
