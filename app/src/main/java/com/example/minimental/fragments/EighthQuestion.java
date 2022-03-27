@@ -51,16 +51,16 @@ public class EighthQuestion extends Fragment {
 
 
 
-       // nxtBtn.setOnClickListener(new View.OnClickListener() {
+       nxtBtn.setOnClickListener(new View.OnClickListener() {
 
-         //   @Override
-           // public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 
-             //   Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_ninthQuestion);
+                Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_tenthQuestion);
 
-            //}
+            }
 
-        //});
+        });
 
         return rootView ;
 
