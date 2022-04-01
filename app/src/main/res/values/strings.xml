@@ -35,5 +35,18 @@
     <string name="six_question_textview2_name">Repeate the sentence</string>
     <string name="eighth_question_title">Drag And Drop</string>
     <string name="eighth_question_instructions">Put the black circle in the red square</string>
-    <string name="seventh_question_title_string">Seventh Question</string>/>
+    <string name="seventh_question_title_string">Seventh Question</string>
+    <string name="choose_information_question_title">User Details</string>
+    <string name="choose_first_question_title">Time and Place</string>
+    <string name="enter_currentDay">What is the current day?</string>
+    <string name="enter_answer">Enter answer</string>
+    <string name="enter_currentMonth">What is the current month?</string>
+    <string name="enter_currentDate">What is the current date?</string>
+    <string name="enter_currentYear">What is the current year?</string>
+    <string name="enter_currentSeason">What is the current season?</string>
+    <string name="enter_currentCountry">In what country do you live?</string>
+    <string name="enter_currentCity">In what city do you live?</string>
+    <string name="enter_currentStreet">In which street do you live?</string>
+    <string name="enter_currentFloor">On what floor do you live?</string>
+    <string name="enter_currentArea">In what area do you live?</string>/>
 </resources>
