@@ -27,7 +27,7 @@ public class Sixth_question extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Navigation.findNavController(view).navigate(R.id.action_sixth_question_to_eighthQuestion);
+                Navigation.findNavController(view).navigate(R.id.action_sixth_question_to_SeventhQuestion);
             }
         });
 

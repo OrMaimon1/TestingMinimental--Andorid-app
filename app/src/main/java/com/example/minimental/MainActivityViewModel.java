@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 public class MainActivityViewModel extends ViewModel {
 
+
     private MutableLiveData<CharSequence> userName = new MutableLiveData<>();
     private MutableLiveData<CharSequence> password = new MutableLiveData<>();
     private MutableLiveData<MissingDetail> missingDetail = new MutableLiveData<>();

@@ -30,30 +30,16 @@ public class  InformationFragment extends Fragment {
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
 
-        View informationView = inflater.inflate(R.layout.information_fragment , container , false);
-
-        TextView questionTextView = informationView.findViewById(R.id.informationTV);
-        EditText answerEditText = informationView.findViewById(R.id.informationET);
-        Question question = Question.values()[getArguments().getInt("questionNumber")];
-        switch(question)
-        {
-            case Day:
-                questionTextView.setText("What day is it today?");
-                break;
-            case Month:
-                questionTextView.setText("What month is it now?");
-                break;
-        }
-        View rootView = inflater.inflate(R.layout.login_fragment,container,false);
+        View rootView = inflater.inflate(R.layout.information_fragment,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Navigation.findNavController(view).navigate(R.id.action_login_fragment_to_collectMissingDetails);
+                Navigation.findNavController(view).navigate(R.id.action_informationFragment_to_secondQuestion);
             }
         });
-        return informationView;
+        return rootView;
     }
 }
 
