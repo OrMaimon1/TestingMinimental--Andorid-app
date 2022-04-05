@@ -2,8 +2,8 @@ package com.example.minimental.ViewModels;
 
 import androidx.fragment.app.Fragment;
 
-public interface IFragment {
+public interface IResultHandler {
 
-    void setSpeechRecognizerData(String result);
+    void handleResult(String result);
 
 }

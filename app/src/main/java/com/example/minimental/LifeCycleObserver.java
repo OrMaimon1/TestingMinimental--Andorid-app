@@ -1,8 +1,6 @@
 package com.example.minimental;
 import android.content.Intent;
-import android.net.Uri;
 import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -10,11 +8,10 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.ActivityResultRegistry;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.example.minimental.ViewModels.IFragment;
+import com.example.minimental.ViewModels.IResultHandler;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 import java.util.ArrayList;
@@ -22,8 +19,7 @@ import java.util.ArrayList;
 public class LifeCycleObserver implements DefaultLifecycleObserver {
     private final ActivityResultRegistry myRegistry;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
-    private StringBuffer speechResult = new StringBuffer();
-    private SharedViewModel fragmentToObserve;
+    private LifecycleOwner lifecycleOwner;
 
 
     public LifeCycleObserver(ActivityResultRegistry registry)
@@ -37,31 +33,36 @@ public class LifeCycleObserver implements DefaultLifecycleObserver {
             @Override
             public void onActivityResult(ActivityResult activityResult) {
                 Intent data = activityResult.getData();
+                StringBuffer speechResult = new StringBuffer();
                 ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 for(String r:results)
                 {
                     speechResult.append(r);
                 }
+                lifecycleOwner = owner;
                 String result = speechResult.toString();
-                fragmentToObserve.setAnswerGiven(result);
+                ((IResultHandler)lifecycleOwner).handleResult(result);
+
+                //myFragmentViewModel.setSpeechRecognizerData(result);
             }
         });
     }
 
-    public void setMyFragmentViewModel(SharedViewModel fragment)
-    {
-        fragmentToObserve = fragment;
+    @Override
+    public void onResume(@NonNull LifecycleOwner owner) {
+        lifecycleOwner = owner;
     }
+
+    /*public void setMyFragmentViewModel(FragmentOneViewModel fragment)
+    {
+        myFragmentViewModel = fragment;
+    }*/
 
     public void activateSpeechRecognition()
     {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 5);
+        speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE , "en");
         speechRecognizerLauncher.launch(speechIntent);
-    }
-    public StringBuffer getSpeechResult()
-    {
-        return speechResult;
     }
 }

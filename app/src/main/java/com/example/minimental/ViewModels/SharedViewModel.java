@@ -5,6 +5,17 @@ import androidx.lifecycle.ViewModel;
 
 public class SharedViewModel extends ViewModel {
 
+    //region Information Question Data Members
+    private MutableLiveData<String> dayAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> monthAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> yearAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> dateAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> seasonAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> countryAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> cityAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> streetAnswer = new MutableLiveData<>();
+    //endregion
+
     //region Second Question Data Members
     private MutableLiveData<String> repeatedWords = new MutableLiveData<>();
     private String firstWord = "";
@@ -33,6 +44,74 @@ public class SharedViewModel extends ViewModel {
 
     //region Sixth Question Data member
     private MutableLiveData<String> repeatedSentence = new MutableLiveData<>();
+    //endregion
+
+
+    //region Information Question Methods
+    public void setDayAnswer(String value)
+    {
+        dayAnswer.setValue(value);
+    }
+    public void setMonthAnswer(String value)
+    {
+        monthAnswer.setValue(value);
+    }
+    public void setYearAnswerAnswer(String value)
+    {
+        yearAnswer.setValue(value);
+    }
+    public void setDateAnswer(String value)
+    {
+        dateAnswer.setValue(value);
+    }
+    public void setSeasonAnswer(String value)
+    {
+        seasonAnswer.setValue(value);
+    }
+    public void setCountryAnswer(String value)
+    {
+        countryAnswer.setValue(value);
+    }
+    public void setCityAnswer(String value)
+    {
+        cityAnswer.setValue(value);
+    }
+    public void setStreetAnswer(String value)
+    {
+        streetAnswer.setValue(value);
+    }
+
+    public MutableLiveData<String> getDayAnswer() {
+        return dayAnswer;
+    }
+
+    public MutableLiveData<String> getMonthAnswer() {
+        return monthAnswer;
+    }
+
+    public MutableLiveData<String> getYearAnswer() {
+        return yearAnswer;
+    }
+
+    public MutableLiveData<String> getDateAnswer() {
+        return dateAnswer;
+    }
+
+    public MutableLiveData<String> getSeasonAnswer() {
+        return seasonAnswer;
+    }
+
+    public MutableLiveData<String> getCountryAnswer() {
+        return countryAnswer;
+    }
+
+    public MutableLiveData<String> getCityAnswer() {
+        return cityAnswer;
+    }
+
+    public MutableLiveData<String> getStreetAnswer() {
+        return streetAnswer;
+    }
     //endregion
 
     //region Second Question Methods

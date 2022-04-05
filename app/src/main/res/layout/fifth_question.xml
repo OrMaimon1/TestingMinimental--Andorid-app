@@ -28,6 +28,20 @@
                 android:textColorHint="@color/white"
                 android:textSize="40sp"
                 android:textStyle="bold" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_mic_24"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/fifth_question_mic_btn"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="check"
+                android:textSize="40sp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/fifth_txt_check"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
