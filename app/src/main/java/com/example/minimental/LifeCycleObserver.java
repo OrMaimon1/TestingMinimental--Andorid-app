@@ -1,6 +1,7 @@
 package com.example.minimental;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -9,6 +10,7 @@ import androidx.activity.result.ActivityResultRegistry;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.example.minimental.ViewModels.IResultHandler;
@@ -19,7 +21,9 @@ import java.util.ArrayList;
 public class LifeCycleObserver implements DefaultLifecycleObserver {
     private final ActivityResultRegistry myRegistry;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
-    private LifecycleOwner lifecycleOwner;
+
+
+    final String TAG = "lifeCycleOwner";
 
 
     public LifeCycleObserver(ActivityResultRegistry registry)
@@ -29,7 +33,7 @@ public class LifeCycleObserver implements DefaultLifecycleObserver {
 
     @Override
     public void onCreate(@NonNull LifecycleOwner owner) {
-        speechRecognizerLauncher = myRegistry.register("speechRecognitionAvtivity", owner, new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        speechRecognizerLauncher = myRegistry.register("speechRecognitionActivity", owner, new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult activityResult) {
                 Intent data = activityResult.getData();
@@ -39,19 +43,20 @@ public class LifeCycleObserver implements DefaultLifecycleObserver {
                 {
                     speechResult.append(r);
                 }
-                lifecycleOwner = owner;
                 String result = speechResult.toString();
-                ((IResultHandler)lifecycleOwner).handleResult(result);
+                ((IResultHandler)owner).handleResult(result);
+
 
                 //myFragmentViewModel.setSpeechRecognizerData(result);
             }
         });
     }
 
-    @Override
+
+    /*@Override
     public void onResume(@NonNull LifecycleOwner owner) {
         lifecycleOwner = owner;
-    }
+    }*/
 
     /*public void setMyFragmentViewModel(FragmentOneViewModel fragment)
     {

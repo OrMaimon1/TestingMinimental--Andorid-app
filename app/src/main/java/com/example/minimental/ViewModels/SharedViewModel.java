@@ -46,6 +46,13 @@ public class SharedViewModel extends ViewModel {
     private MutableLiveData<String> repeatedSentence = new MutableLiveData<>();
     //endregion
 
+    //region Eight Question Data Member
+    private MutableLiveData<Float> blackBallLocationX = new MutableLiveData<>();
+    private MutableLiveData<Float> blackBallLocationY = new MutableLiveData<>();
+    private MutableLiveData<Float> yellowBallLocationX = new MutableLiveData<>();
+    private MutableLiveData<Float> yellowBallLocationY = new MutableLiveData<>();
+    //endregion
+
 
     //region Information Question Methods
     public void setDayAnswer(String value)
@@ -215,6 +222,41 @@ public class SharedViewModel extends ViewModel {
 
     public MutableLiveData<String> getRepeatedSentence() {
         return repeatedSentence;
+    }
+    //endregion
+
+    //region Eight Question Methods
+    public void setBlackBallLocationX(Float value)
+    {
+        blackBallLocationX.setValue(value);
+    }
+    public void setBlackBallLocationY(Float value)
+    {
+        blackBallLocationY.setValue(value);
+    }
+    public void setYellowBallLocationX(Float value)
+    {
+        yellowBallLocationX.setValue(value);
+    }
+    public void setYellowBallLocationY(Float value)
+    {
+        yellowBallLocationX.setValue(value);
+    }
+
+    public MutableLiveData<Float> getBlackBallLocationX() {
+        return blackBallLocationX;
+    }
+
+    public MutableLiveData<Float> getBlackBallLocationY() {
+        return blackBallLocationY;
+    }
+
+    public MutableLiveData<Float> getYellowBallLocationX() {
+        return yellowBallLocationX;
+    }
+
+    public MutableLiveData<Float> getYellowBallLocationY() {
+        return yellowBallLocationY;
     }
     //endregion
 }

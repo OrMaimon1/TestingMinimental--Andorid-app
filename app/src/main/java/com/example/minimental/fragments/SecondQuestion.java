@@ -26,7 +26,7 @@ public class SecondQuestion extends Fragment implements IResultHandler {
     private Observer<String> getSpeechRecognistionDataResultObserver;
     private TextView resultText;
 
-    @Override
+   /* @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         speechRecognitionObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
@@ -40,12 +40,25 @@ public class SecondQuestion extends Fragment implements IResultHandler {
         };
         sharedViewModel.getRepeatedWords().observe(this,getSpeechRecognistionDataResultObserver);
         //speechRecognitionObserver.setMyFragmentViewModel(sharedViewModel);
-    }
+    }*/
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.second_question,container,false);
+
+        speechRecognitionObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
+        getLifecycle().addObserver(speechRecognitionObserver);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        getSpeechRecognistionDataResultObserver = new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                resultText.setText(s);
+            }
+        };
+        sharedViewModel.getRepeatedWords().observe(getViewLifecycleOwner(),getSpeechRecognistionDataResultObserver);
+
+
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton speechBtn = rootView.findViewById(R.id.image_of_microphone);
         resultText = rootView.findViewById(R.id.check_txt);
@@ -62,14 +75,6 @@ public class SecondQuestion extends Fragment implements IResultHandler {
             }
         });
         return rootView;
-    }
-
-    public static SecondQuestion newInstance(String username){
-       SecondQuestion secondQuestion = new SecondQuestion();
-       Bundle bundle = new Bundle();
-       bundle.putString("username",username);
-       secondQuestion.setArguments(bundle);
-       return secondQuestion;
     }
 
     @Override

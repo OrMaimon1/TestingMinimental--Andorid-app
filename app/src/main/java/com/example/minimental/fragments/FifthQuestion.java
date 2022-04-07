@@ -27,7 +27,7 @@ public class FifthQuestion extends Fragment implements IResultHandler {
     private LifeCycleObserver lifeCycleObserver;
     private Observer<String> getFirstItemDescription;
     private TextView text;
-    @Override
+   /* @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
@@ -40,10 +40,7 @@ public class FifthQuestion extends Fragment implements IResultHandler {
             }
         };
         sharedViewModel.getFirstItemDescription().observe(this,getFirstItemDescription);
-    }
-
-
-
+    }*/
 
 
     @Nullable
@@ -51,11 +48,22 @@ public class FifthQuestion extends Fragment implements IResultHandler {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fifth_question,container,false);
 
-        //TextInputLayout textInputUsername = rootView.findViewById(R.id.input_name);
-        //TextInputLayout textInputPassword = rootView.findViewById(R.id.input_name);
+        text = rootView.findViewById(R.id.fifth_txt_check);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        lifeCycleObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
+        getLifecycle().addObserver(lifeCycleObserver);
+        getFirstItemDescription = new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                text.setText(s);
+            }
+        };
+        sharedViewModel.getFirstItemDescription().observe(getViewLifecycleOwner(),getFirstItemDescription);
+
+
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton recordBtn = rootView.findViewById(R.id.fifth_question_mic_btn);
-        text = rootView.findViewById(R.id.fifth_txt_check);
+
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +78,21 @@ public class FifthQuestion extends Fragment implements IResultHandler {
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        lifeCycleObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
+        getLifecycle().addObserver(lifeCycleObserver);
+        getFirstItemDescription = new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                text.setText(s);
+            }
+        };
+        sharedViewModel.getFirstItemDescription().observe(getViewLifecycleOwner(),getFirstItemDescription);
     }
 
     @Override
