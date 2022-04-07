@@ -7,9 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TableLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -19,6 +22,7 @@ public class SeventhQuestion extends Fragment {
 
     ImageView milk;
     float x = 0, y = 0;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,8 +44,10 @@ public class SeventhQuestion extends Fragment {
     }
 
     final class MyTouchListener implements View.OnTouchListener{
+
         @Override
         public boolean onTouch(View view, MotionEvent event) {
+
             switch (event.getActionMasked()){
                 case MotionEvent.ACTION_DOWN:
                     x = event.getX();
@@ -59,10 +65,9 @@ public class SeventhQuestion extends Fragment {
                     view.setY(view.getY()+distanceY);
 
                     break;
-            }
+                }
 
             return true;
         }
     }
-
 }

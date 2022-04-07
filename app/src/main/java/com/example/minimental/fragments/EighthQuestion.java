@@ -27,6 +27,7 @@ public class EighthQuestion extends Fragment {
     
     View blackCircle, yellowCircle, redSquare, blueCircle;
     float x = 0, y = 0;
+
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Nullable
     @Override
@@ -70,22 +71,23 @@ public class EighthQuestion extends Fragment {
     final class MyTouchListener implements View.OnTouchListener{
         @Override
         public boolean onTouch(View view, MotionEvent event) {
+
             switch (event.getActionMasked()){
                 case MotionEvent.ACTION_DOWN:
                     x = event.getX();
                     y = event.getY();
                     break;
                 case MotionEvent.ACTION_MOVE:
-                   float movedX, movedY;
-                   movedX = event.getX();
-                   movedY = event.getY();
+                    ConstraintLayout.LayoutParams layout =  (ConstraintLayout.LayoutParams) view.getLayoutParams();
+                    float movedX, movedY;
+                    movedX = event.getX();
+                    movedY = event.getY();
 
-                   float distanceX = movedX - x;
-                   float distanceY = movedY - y;
-
-                   view.setX(view.getX()+distanceX);
-                   view.setY(view.getY()+distanceY);
-
+                    float distanceX = movedX - x;
+                    float distanceY = movedY - y;
+                    view.setX(view.getX()+distanceX);
+                    view.setY(view.getY()+distanceY);
+                    view.setLayoutParams(layout);
                    break;
             }
 
