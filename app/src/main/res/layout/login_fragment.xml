@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@color/white"
     android:orientation="vertical"
     android:id="@+id/root_container"
     tools:ignore="ExtraText">
@@ -24,9 +24,7 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="@string/title_name"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 

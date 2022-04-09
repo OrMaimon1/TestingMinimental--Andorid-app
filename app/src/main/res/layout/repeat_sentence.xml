@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
@@ -23,9 +23,8 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="@string/repeat_sentence_string_title"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
@@ -45,8 +44,8 @@
                     android:gravity="center"
                     android:drawableEnd="@drawable/ic_baseline_volume_up_24"
                     android:text="@string/textView_repeat_sentence_string"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="40dp"
                     android:textStyle="bold" />
 
@@ -91,8 +90,8 @@
                     android:layout_margin="20dp"
                     android:gravity="center"
                     android:text="@string/textView2_repeat_sentence_string"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 

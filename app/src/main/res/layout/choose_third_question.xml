@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
@@ -23,8 +23,7 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="@string/choose_third_question_title"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textColorHint="@color/white"
                 android:textSize="40sp"
                 android:textStyle="bold" />
@@ -44,7 +43,7 @@
                     android:layout_margin="20dp"
                     android:gravity="center"
                     android:text="@string/choose_third_question_textview_name"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -61,16 +60,19 @@
 
                 <Button
                     android:id="@+id/button_of_mathQuestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:gravity="center"
-                    android:background="@drawable/round_border"
                     android:text="Answer math question"
-                    android:textColor="@color/white"
+                    android:autoSizeTextType="uniform"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
+                    android:gravity="center"
+                    android:padding="10dp"
                     android:textColorHint="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    app:backgroundTint="#50C1B6" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -84,16 +86,18 @@
 
                 <Button
                     android:id="@+id/button_of_spellingQuestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:gravity="center"
-                    android:background="@drawable/round_border"
                     android:text="Answer spelling question"
-                    android:textColor="@color/white"
+                    android:autoSizeTextType="uniform"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
+                    android:gravity="center"
+                    android:padding="10dp"
                     android:textColorHint="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp"
+                    app:backgroundTint="#50C1B6" />
             </LinearLayout>
 
         </LinearLayout>

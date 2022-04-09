@@ -1,5 +1,6 @@
 package com.example.minimental.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,6 +77,7 @@ public class SecondQuestion extends Fragment implements IResultHandler {
         });
         return rootView;
     }
+
 
     @Override
     public void handleResult(String result) {

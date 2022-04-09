@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
@@ -23,9 +23,8 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="@string/title_question_title_name6"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="40sp"
                 android:textStyle="bold" />
 
@@ -44,8 +43,8 @@
                     android:layout_margin="20dp"
                     android:gravity="center"
                     android:text="@string/sixth_question_textview_name"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="30sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -88,8 +87,8 @@
                     android:layout_margin="20dp"
                     android:gravity="center"
                     android:text="@string/six_question_textview2_name"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>

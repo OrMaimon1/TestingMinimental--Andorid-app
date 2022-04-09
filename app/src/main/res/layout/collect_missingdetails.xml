@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@color/white"
     android:orientation="vertical">
 
 
@@ -15,8 +15,7 @@
             android:layout_margin="20dp"
             android:gravity="center"
             android:text="@string/missingdetails"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textColorHint="@color/white"
             android:textSize="40sp" />
 
@@ -31,8 +30,8 @@
                 android:layout_margin="20dp"
                 android:text="@string/country"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -57,8 +56,8 @@
             android:layout_margin="20dp"
             android:text="@string/city"
             android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -82,8 +81,8 @@
             android:layout_margin="20dp"
             android:text="@string/address"
             android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -107,7 +106,7 @@
             android:layout_margin="20dp"
             android:text="@string/floor"
             android:textAllCaps="true"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textColorHint="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -132,7 +131,7 @@
             android:layout_margin="20dp"
             android:text="@string/area"
             android:textAllCaps="true"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textColorHint="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />

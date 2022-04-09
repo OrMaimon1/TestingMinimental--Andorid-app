@@ -95,6 +95,7 @@ public class FifthQuestion extends Fragment implements IResultHandler {
         sharedViewModel.getFirstItemDescription().observe(getViewLifecycleOwner(),getFirstItemDescription);
     }
 
+    
     @Override
     public void handleResult(String result) {
         sharedViewModel.setFirstItemDescription(result);
