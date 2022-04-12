@@ -65,7 +65,7 @@
                     android:id="@+id/image_of_microphone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_margin="25dp"
                     android:gravity="center"
                     android:src="@drawable/ic_baseline_mic_24"
                     android:textColor="@color/white"
@@ -87,12 +87,12 @@
                     android:id="@+id/repeat_sentence_textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_margin="35dp"
                     android:gravity="center"
                     android:text="@string/textView2_repeat_sentence_string"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
