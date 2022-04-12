@@ -20,7 +20,7 @@
                 android:id="@+id/choose_third_question_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="25dp"
                 android:gravity="center"
                 android:text="@string/choose_third_question_title"
                 android:textColor="@color/black"
@@ -40,12 +40,12 @@
                     android:id="@+id/choose_third_question_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_margin="25dp"
                     android:gravity="center"
                     android:text="@string/choose_third_question_textview_name"
                     android:textColor="@color/black"
                     android:textColorHint="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
