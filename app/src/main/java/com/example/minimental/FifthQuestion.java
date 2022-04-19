@@ -7,6 +7,7 @@ public class FifthQuestion {
     private Bitmap firstpic;
     private Bitmap secoundpic;
 
+    public FifthQuestion() {}
 
     public FifthQuestion(Bitmap firstpic, Bitmap secoundpic) {
         this.firstpic = firstpic;

@@ -9,6 +9,8 @@ public class EightQuestion {
     private Bitmap shape1;
     private Bitmap shape2;
 
+    public EightQuestion() {}
+
     public EightQuestion(Bitmap image1, Bitmap image2, Bitmap shape1, Bitmap shape2) {
         this.image1 = image1;
         this.image2 = image2;

@@ -4,6 +4,8 @@ public class SixthQuestion {
 
     private String sentence;
 
+    public SixthQuestion(){}
+
     public SixthQuestion(String sentence) {
         this.sentence = sentence;
     }

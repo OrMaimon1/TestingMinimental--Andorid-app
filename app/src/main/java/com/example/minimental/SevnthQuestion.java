@@ -9,6 +9,8 @@ public class SevnthQuestion {
     private Bitmap object3;
     private String action;
 
+    public SevnthQuestion() {}
+
     public SevnthQuestion(Bitmap object1, Bitmap object2, Bitmap object3, String action) {
         this.object1 = object1;
         this.object2 = object2;

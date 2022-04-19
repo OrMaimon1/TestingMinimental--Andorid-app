@@ -6,6 +6,8 @@ public class secoundQuestion {
     private String object2;
     private String object3;
 
+    public secoundQuestion(){}
+
     public secoundQuestion(String object1, String object2, String object3) {
         this.object1 = object1;
         this.object2 = object2;

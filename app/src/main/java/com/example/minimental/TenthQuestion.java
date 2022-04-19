@@ -6,6 +6,8 @@ public class TenthQuestion {
 
     private Bitmap picToCopy;
 
+    public TenthQuestion() {}
+
     public TenthQuestion(Bitmap picToCopy) {
         this.picToCopy = picToCopy;
     }

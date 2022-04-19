@@ -6,6 +6,8 @@ public class ThirdQuestion {
     private int divder;
     private String objectforspelling;
 
+    public ThirdQuestion() {}
+
     public ThirdQuestion(int number, int divder, String objectforspelling) {
         this.number = number;
         this.divder = divder;

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "778689918436",
+    "firebase_url": "https://minimental-hit-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "minimental-hit",
+    "storage_bucket": "minimental-hit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778689918436:android:b8dc605ed6e25b1db3c3f1",
+        "android_client_info": {
+          "package_name": "com.example.minimental"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778689918436-r8bvpu0n5rmm4hd95e71hssvhjt13bni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfeH_zfMdQ_Hq9UF7ZfrPzmzjA3oppyPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778689918436-r8bvpu0n5rmm4hd95e71hssvhjt13bni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

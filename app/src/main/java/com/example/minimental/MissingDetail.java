@@ -8,6 +8,8 @@ public class MissingDetail {
     private String floor;
     private String area;
 
+    public MissingDetail() {}
+
     public MissingDetail(String country, String city, String address, String floor, String area) {
         this.country = country;
         this.city = city;
