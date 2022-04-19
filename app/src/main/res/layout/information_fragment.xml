@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/sand"
     tools:ignore="ExtraText">
 
     <ScrollView
@@ -375,7 +376,7 @@
                     android:padding="10dp"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:backgroundTint="#50C1B6" />
+                    app:backgroundTint="@color/midnighit_blue" />
 
             </LinearLayout>
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/sand"
     android:orientation="vertical"
     android:id="@+id/root_container"
     tools:ignore="ExtraText">
@@ -21,12 +21,28 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
                 android:gravity="center"
                 android:text="@string/title_name"
                 android:textColor="@color/black"
                 android:textSize="40sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="20dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/user_login_image"
+                    android:src="@drawable/user_login">
+                </ImageView>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,11 +142,11 @@
                     android:layout_margin="10dp"
                     android:background="@drawable/round_border"
                     android:gravity="center"
-                    android:hint="@string/button_next"
+                    android:hint="@string/login"
                     android:padding="10dp"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:backgroundTint="#50C1B6" />
+                    app:backgroundTint="@color/midnighit_blue" />
 
 
             </LinearLayout>

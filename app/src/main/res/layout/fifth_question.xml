@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/sand"
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
@@ -16,17 +16,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/fifth_question_title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:gravity="center"
-                android:text="@string/fifth_question_name"
-                android:textColor="@color/black"
-                android:textColorHint="@color/white"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fifth_question_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:text="@string/fifth_question_name"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/white"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -194,7 +200,7 @@
                     android:padding="10dp"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:backgroundTint="#50C1B6" />
+                    app:backgroundTint="@color/midnighit_blue" />
 
 
             </LinearLayout>
@@ -219,7 +225,7 @@
                     android:padding="10dp"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:backgroundTint="#50C1B6" />
+                    app:backgroundTint="@color/midnighit_blue" />
 
 
             </LinearLayout>
