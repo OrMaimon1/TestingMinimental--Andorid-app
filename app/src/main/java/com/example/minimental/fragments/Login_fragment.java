@@ -79,12 +79,12 @@ public class Login_fragment extends Fragment {
             }
         });
 
-       // authStateListener = new FirebaseAuth.AuthStateListener() {
-        //    @Override
-       //     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-         //   }
-       // };
+            }
+        };
 
         return rootView;
     }
