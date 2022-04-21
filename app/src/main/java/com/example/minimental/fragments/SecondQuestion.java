@@ -1,6 +1,5 @@
 package com.example.minimental.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +23,7 @@ import com.example.minimental.ViewModels.SharedViewModel;
 public class SecondQuestion extends Fragment implements IResultHandler {
     private SharedViewModel sharedViewModel;
     private LifeCycleObserver speechRecognitionObserver;
+    //private SpeechRecognizer speechRecognizer;
     private Observer<String> getSpeechRecognistionDataResultObserver;
     private TextView resultText;
 
@@ -43,13 +43,29 @@ public class SecondQuestion extends Fragment implements IResultHandler {
         //speechRecognitionObserver.setMyFragmentViewModel(sharedViewModel);
     }*/
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        getLifecycle().removeObserver(speechRecognitionObserver);
+        speechRecognitionObserver = null;
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.second_question,container,false);
 
-        speechRecognitionObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
-        getLifecycle().addObserver(speechRecognitionObserver);
+//        speechRecognitionObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
+//        getLifecycle().addObserver(speechRecognitionObserver);
+
+        //speechRecognizer = new SpeechRecognizer(this,requireActivity().getActivityResultRegistry());
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         getSpeechRecognistionDataResultObserver = new Observer<String>() {
             @Override
@@ -59,22 +75,29 @@ public class SecondQuestion extends Fragment implements IResultHandler {
         };
         sharedViewModel.getRepeatedWords().observe(getViewLifecycleOwner(),getSpeechRecognistionDataResultObserver);
 
-
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton speechBtn = rootView.findViewById(R.id.image_of_microphone);
         resultText = rootView.findViewById(R.id.check_txt);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Navigation.findNavController(view).popBackStack(R.id.login_fragment , false);
                 Navigation.findNavController(view).navigate(R.id.action_secondQuestion_to_chooseThirdQuestion);
             }
         });
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                speechRecognitionObserver.activateSpeechRecognition();
+                //speechRecognizer.activateSpeechRecognition();
+                //speechRecognitionObserver.activateSpeechRecognition();
             }
         });
+        /*FragmentManager manager = getParentFragmentManager();
+        int currentIndex = manager.getBackStackEntryCount()-1;
+        FragmentTransaction transaction = manager.beginTransaction();
+        int id = manager.getBackStackEntryAt(currentIndex - 1).getId();
+        Fragment prevFragment = (Fragment) manager.getBackStackEntryAt(currentIndex-1);
+        transaction.remove(prevFragment);*/
         return rootView;
     }
 

@@ -29,7 +29,7 @@ public class MathVersion extends Fragment implements IResultHandler {
     private Observer<String> getAnswerObserver;
     private TextView resultText;
 
-    @Override
+    /*@Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
@@ -43,7 +43,7 @@ public class MathVersion extends Fragment implements IResultHandler {
             }
         };
         sharedViewModel.getAnswerGiven().observe(this , getAnswerObserver);
-    }
+    }*/
 
     @Nullable
     @Override

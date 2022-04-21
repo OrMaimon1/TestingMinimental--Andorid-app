@@ -15,12 +15,14 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.example.minimental.ViewModels.IResultHandler;
 import com.example.minimental.ViewModels.SharedViewModel;
+import com.example.minimental.fragments.FifthQuestion;
 
 import java.util.ArrayList;
 
 public class LifeCycleObserver implements DefaultLifecycleObserver {
     private final ActivityResultRegistry myRegistry;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
+
 
 
     final String TAG = "lifeCycleOwner";
@@ -33,6 +35,7 @@ public class LifeCycleObserver implements DefaultLifecycleObserver {
 
     @Override
     public void onCreate(@NonNull LifecycleOwner owner) {
+        LifecycleOwner lifecycleOwner = owner;
         speechRecognizerLauncher = myRegistry.register("speechRecognitionActivity", owner, new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult activityResult) {
@@ -45,7 +48,6 @@ public class LifeCycleObserver implements DefaultLifecycleObserver {
                 }
                 String result = speechResult.toString();
                 ((IResultHandler)owner).handleResult(result);
-
 
                 //myFragmentViewModel.setSpeechRecognizerData(result);
             }

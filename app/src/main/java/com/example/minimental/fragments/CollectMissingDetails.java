@@ -45,8 +45,10 @@ public class CollectMissingDetails extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Navigation.findNavController(view).popBackStack(R.id.login_fragment , false);
                 //viewModel.setMissingDetail(country.getText().toString());
                 Navigation.findNavController(view).navigate(R.id.action_collectMissingDetails_to_informationFragment);
+
             }
         });
         return rootView;

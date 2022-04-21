@@ -1,6 +1,5 @@
 package com.example.minimental.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +19,11 @@ import com.example.minimental.LifeCycleObserver;
 import com.example.minimental.R;
 import com.example.minimental.ViewModels.IResultHandler;
 import com.example.minimental.ViewModels.SharedViewModel;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class FifthQuestion extends Fragment implements IResultHandler {
-    private SharedViewModel sharedViewModel;
+    public SharedViewModel sharedViewModel;
     private LifeCycleObserver lifeCycleObserver;
+    //private SpeechRecognizer speechRecognizer;
     private Observer<String> getFirstItemDescription;
     private TextView text;
    /* @Override
@@ -50,8 +49,9 @@ public class FifthQuestion extends Fragment implements IResultHandler {
 
         text = rootView.findViewById(R.id.fifth_txt_check);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        lifeCycleObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
-        getLifecycle().addObserver(lifeCycleObserver);
+       /* lifeCycleObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
+        getLifecycle().addObserver(lifeCycleObserver);*/
+        //speechRecognizer = new SpeechRecognizer(this , requireActivity().getActivityResultRegistry());
         getFirstItemDescription = new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -74,26 +74,13 @@ public class FifthQuestion extends Fragment implements IResultHandler {
         recordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                lifeCycleObserver.activateSpeechRecognition();
+                //speechRecognizer.activateSpeechRecognition();
+                //lifeCycleObserver.activateSpeechRecognition();
             }
         });
         return rootView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        lifeCycleObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
-        getLifecycle().addObserver(lifeCycleObserver);
-        getFirstItemDescription = new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                text.setText(s);
-            }
-        };
-        sharedViewModel.getFirstItemDescription().observe(getViewLifecycleOwner(),getFirstItemDescription);
-    }
 
     
     @Override

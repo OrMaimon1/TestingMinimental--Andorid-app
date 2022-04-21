@@ -9,11 +9,17 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 
 public class ChooseThirdQuestion extends Fragment {
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
 
     @Nullable
     @Override
@@ -32,9 +38,14 @@ public class ChooseThirdQuestion extends Fragment {
             @Override
             public void onClick(View view) {
 
+                //Navigation.findNavController(view).popBackStack(R.id.login_fragment , false);
                 Navigation.findNavController(view).navigate(R.id.action_chooseThirdQuestion_to_spellingVersion);
             }
         });
+        /*FragmentManager manager = getParentFragmentManager();
+        int currentIndex = manager.getBackStackEntryCount()-1;
+        int id = manager.getBackStackEntryAt(currentIndex - 1).getId();
+        manager.popBackStack(id , 0);*/
         return rootView;
     }
 }

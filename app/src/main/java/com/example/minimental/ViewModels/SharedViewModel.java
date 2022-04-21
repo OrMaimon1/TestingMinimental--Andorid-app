@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class SharedViewModel extends ViewModel {
 
+
     //region Information Question Data Members
     private MutableLiveData<String> dayAnswer = new MutableLiveData<>();
     private MutableLiveData<String> monthAnswer = new MutableLiveData<>();
