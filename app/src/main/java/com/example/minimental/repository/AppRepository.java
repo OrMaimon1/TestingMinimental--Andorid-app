@@ -26,12 +26,12 @@ public class AppRepository {
     private MutableLiveData<informationQuestion> infoLiveData;
     private MutableLiveData<Boolean> loggedOutLiveData;
 
-    //public AppRepository getFirestoreLiveData() {
-
-       // firebaseFirestore = FirebaseFirestore.getInstance();
-       // this.infoLiveData = new MutableLiveData<>();
-
-    //}
+//    public AppRepository getFirestoreLiveData() {
+//
+//        firebaseFirestore = FirebaseFirestore.getInstance();
+//        this.infoLiveData = new MutableLiveData<>();
+//
+//    }
 
 
 

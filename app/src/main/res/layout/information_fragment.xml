@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/sand"
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
@@ -32,48 +33,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_day"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:maxLines="1"
-                    android:autoSizeTextType="uniform"
-                    android:textSize="16sp"
-                    android:text="@string/enter_currentDay"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/day_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentDay"
+                    android:textSize="20sp"
+                    app:endIconMode="clear_text"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentDay"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:textSize="16sp"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/day_mic_ImageView"
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_dayET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
 
@@ -83,48 +66,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_month"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="10dp"
-                    android:autoSizeTextType="uniform"
-                    android:text="@string/enter_currentMonth"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/month_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentMonth"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentMonth"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:autoSizeTextType="uniform"
-                        android:textSize="16sp"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/month_mic_image_view"
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_monthET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -133,48 +97,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_date"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:autoSizeTextType="uniform"
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:text="@string/enter_currentDate"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/date_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentDate"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentDate"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:textSize="16sp"
-                        android:autoSizeTextType="uniform"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/date_mic_image_view"
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_dateET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -183,48 +128,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_year"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="@string/enter_currentYear"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/year_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentYear"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentYear"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:autoSizeTextType="uniform"
-                        android:textSize="16sp"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/year_mic_image_view"
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_yearET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -233,47 +159,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_season"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="@string/enter_currentSeason"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/season_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentSeason"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentSeason"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:textSize="16sp"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/season_mic_image_view"
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_seasonET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -282,47 +190,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_country"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="@string/enter_currentCountry"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/country_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentCountry"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentCountry"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:textSize="16sp"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/country_mic_image_view"
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_countryET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -331,48 +221,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_street"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="@string/enter_currentCity"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/city_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentCity"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentCity"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:autoSizeTextType="uniform"
-                        android:textSize="16sp"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/city_mic_image_view"
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_cityET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -380,48 +251,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_street"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="@string/enter_currentStreet"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/street_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentStreet"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentStreet"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:textSize="16sp"
-                        android:autoSizeTextType="uniform"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:id="@+id/street_mic_image_view"
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_streetET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -429,47 +281,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_floor"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="@string/enter_currentFloor"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/floor_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentFloor"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentFloor"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:autoSizeTextType="uniform"
-                        android:textSize="16sp"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_floorET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
@@ -477,47 +311,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/information_area"
-                    android:background="@drawable/shape_edit_text"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_width="match_parent"
-                    android:textSize="16sp"
-                    android:autoSizeTextType="uniform"
-                    android:text="@string/enter_currentArea"
-                    android:textColor="@color/black"
-                    android:paddingStart="10dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/area_quetion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp">
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:hint="@string/enter_currentArea"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
 
-                    <EditText
-                        android:id="@+id/answer_edit_text_currentArea"
-                        android:background="@drawable/shape_edit_text"
-                        android:layout_width="170dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:hint="@string/enter_answer"
-                        android:textSize="16sp"
-                        android:autoSizeTextType="uniform"
-                        android:inputType="text"
-                        android:paddingStart="10dp"
-                        android:layout_weight="1" />
-
-                    <ImageView
-                        android:src="@drawable/ic_baseline_mic_24"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_areaET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center|end"
-                        android:paddingEnd="10dp"
-                        android:contentDescription="TODO" />
-                </FrameLayout>
+                        android:maxLength="21"
+                        android:maxLines="1"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -540,7 +356,7 @@
                     android:padding="10dp"
                     android:textColorHint="@color/white"
                     android:textSize="16sp"
-                    app:backgroundTint="#50C1B6" />
+                    app:backgroundTint="@color/midnighit_blue" />
 
             </LinearLayout>
 

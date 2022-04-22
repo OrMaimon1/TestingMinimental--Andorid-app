@@ -1,6 +1,7 @@
 package com.example.minimental.ViewModels;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,6 +11,7 @@ import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
 import com.example.minimental.ThirdQuestion;
+import com.example.minimental.informationQuestion;
 import com.example.minimental.secoundQuestion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,11 +25,21 @@ public class SharedViewModel extends ViewModel {
 
 
     //region Information Question Data Members
+//    MutableLiveData<informationQuestion> informationLiveData = new MutableLiveData<>();
+//    public void setInformationLiveData(informationQuestion value)
+//    {
+//            informationLiveData.setValue(value);
+//    }
+//    public MutableLiveData<informationQuestion> getInformationLiveData()
+//    {
+//        return informationLiveData;
+//    }
+
     private MutableLiveData<String> dayAnswer = new MutableLiveData<>();
-    private MutableLiveData<String> monthAnswer = new MutableLiveData<>();
-    private MutableLiveData<String> yearAnswer = new MutableLiveData<>();
     private MutableLiveData<String> dateAnswer = new MutableLiveData<>();
     private MutableLiveData<String> seasonAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> monthAnswer = new MutableLiveData<>();
+    private MutableLiveData<String> yearAnswer = new MutableLiveData<>();
     private MutableLiveData<String> countryAnswer = new MutableLiveData<>();
     private MutableLiveData<String> cityAnswer = new MutableLiveData<>();
     private MutableLiveData<String> streetAnswer = new MutableLiveData<>();
