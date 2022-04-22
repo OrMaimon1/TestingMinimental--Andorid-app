@@ -38,7 +38,9 @@ public class  InformationFragment extends Fragment {
     EditText currentSeasonAnswerET;
     EditText currentCountryAnswerET;
     EditText currentCityAnswerET;
-    Question currentQuestion;
+    ImageView currentQuestionAnswered;
+
+    //Question currentQuestion;
 
 
     @Override
@@ -55,7 +57,7 @@ public class  InformationFragment extends Fragment {
                     speechResult.append(r);
                 }
                 String result = speechResult.toString();
-                updateAnswer(currentQuestion , result);
+                updateAnswer(result);
             }
         });
 
@@ -84,14 +86,14 @@ public class  InformationFragment extends Fragment {
         ImageView cityMicImageView = rootView.findViewById(R.id.city_mic_image_view);
         ImageView streetMicImageView = rootView.findViewById(R.id.street_mic_image_view);
 
-        dayMicImageView.setOnClickListener(new informationAnswerSpeechClickListner(Question.Day));
-        monthMicImageView.setOnClickListener(new informationAnswerSpeechClickListner(Question.Month));
-        dateMicImageView.setOnClickListener(new informationAnswerSpeechClickListner(Question.Date));
-        yearMicImageView.setOnClickListener(new informationAnswerSpeechClickListner(Question.Year));
-        seasonMicImageView.setOnClickListener(new informationAnswerSpeechClickListner(Question.Season));
-        countryMicImageView.setOnClickListener(new informationAnswerSpeechClickListner(Question.Country));
-        cityMicImageView.setOnClickListener(new informationAnswerSpeechClickListner(Question.City));
-        streetMicImageView.setOnClickListener(new informationAnswerSpeechClickListner(Question.Street));
+        dayMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        monthMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        dateMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        yearMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        seasonMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        countryMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        cityMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        streetMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,12 +110,9 @@ public class  InformationFragment extends Fragment {
      */
     private class informationAnswerSpeechClickListner implements View.OnClickListener
     {
-        private informationAnswerSpeechClickListner(Question question)
-        {
-            currentQuestion = question;
-        }
         @Override
         public void onClick(View view) {
+            currentQuestionAnswered = (ImageView) view;
             startSpeechRecognition();
         }
     }
@@ -125,32 +124,32 @@ public class  InformationFragment extends Fragment {
         speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE , "en");
         speechRecognizerLauncher.launch(speechIntent);
     }
-    private void updateAnswer(Question question , String result)
+    private void updateAnswer(String result)
     {
-        switch(question)
+        switch(currentQuestionAnswered.getId())
         {
-            case Day:
+            case R.id.day_mic_ImageView:
                 currentDayAnswerET.setText(result);
                 break;
-            case Month:
+            case R.id.month_mic_image_view:
                 currentMonthAnswerET.setText(result);
                 break;
-            case Date:
+            case R.id.date_mic_image_view:
                 currentDateAnswerET.setText(result);
                 break;
-            case Year:
+            case R.id.year_mic_image_view:
                 currentYearAnswerET.setText(result);
                 break;
-            case Season:
+            case R.id.season_mic_image_view:
                 currentSeasonAnswerET.setText(result);
                 break;
-            case Country:
+            case R.id.country_mic_image_view:
                 currentSeasonAnswerET.setText(result);
                 break;
-            case City:
+            case R.id.city_mic_image_view:
                 currentCityAnswerET.setText(result);
                 break;
-            case Street:
+            case R.id.street_mic_image_view:
                 currentStreetAnswerET.setText(result);
                 break;
         }

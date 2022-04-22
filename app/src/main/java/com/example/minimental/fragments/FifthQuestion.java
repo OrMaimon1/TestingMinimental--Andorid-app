@@ -23,7 +23,6 @@ import com.example.minimental.ViewModels.SharedViewModel;
 public class FifthQuestion extends Fragment implements IResultHandler {
     public SharedViewModel sharedViewModel;
     private LifeCycleObserver lifeCycleObserver;
-    //private SpeechRecognizer speechRecognizer;
     private Observer<String> getFirstItemDescription;
     private TextView text;
    /* @Override
@@ -49,9 +48,8 @@ public class FifthQuestion extends Fragment implements IResultHandler {
 
         text = rootView.findViewById(R.id.fifth_txt_check);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-       /* lifeCycleObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
-        getLifecycle().addObserver(lifeCycleObserver);*/
-        //speechRecognizer = new SpeechRecognizer(this , requireActivity().getActivityResultRegistry());
+        lifeCycleObserver = new LifeCycleObserver(requireActivity().getActivityResultRegistry());
+        getLifecycle().addObserver(lifeCycleObserver);
         getFirstItemDescription = new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -74,8 +72,7 @@ public class FifthQuestion extends Fragment implements IResultHandler {
         recordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //speechRecognizer.activateSpeechRecognition();
-                //lifeCycleObserver.activateSpeechRecognition();
+                lifeCycleObserver.activateSpeechRecognition();
             }
         });
         return rootView;
@@ -85,6 +82,8 @@ public class FifthQuestion extends Fragment implements IResultHandler {
     
     @Override
     public void handleResult(String result) {
+
+        text.setText(result);
         sharedViewModel.setFirstItemDescription(result);
     }
 }

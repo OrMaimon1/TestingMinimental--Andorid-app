@@ -21,19 +21,38 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class SharedViewModel extends ViewModel {
 
+    //region New View-Model For Second Fragment
+    private secoundQuestion secondQuestion = new secoundQuestion();
+    private MutableLiveData<secoundQuestion> secondQuestionLiveData = new MutableLiveData<>();
+    public void setSecondQuestionLiveData()
+    {
+        secondQuestionLiveData.setValue(secondQuestion);
+    }
+    public MutableLiveData<ArrayList<String>> getRepeatedWordsResponse()
+    {
+        MutableLiveData<ArrayList<String>> repeatedWords = new MutableLiveData<>();
+        ArrayList<String> wordsList = new ArrayList<>();
+        wordsList.set(0 , secondQuestionLiveData.getValue().getObject1());
+        wordsList.set(1 , secondQuestionLiveData.getValue().getObject2());
+        wordsList.set(2 , secondQuestionLiveData.getValue().getObject3());
+        repeatedWords.setValue(wordsList);
+        return repeatedWords;
+    }
+    public void setRepeatedWordsResponse(String value)
+    {
+        String[] seperatedSentence;
+        seperatedSentence = value.split(" " , 3);
+        secondQuestionLiveData.getValue().setObject1(seperatedSentence[0]);
+        secondQuestionLiveData.getValue().setObject2(seperatedSentence[1]);
+        secondQuestionLiveData.getValue().setObject3(seperatedSentence[2]);
+    }
+    //endregion
 
-    //region Information Question Data Members
-//    MutableLiveData<informationQuestion> informationLiveData = new MutableLiveData<>();
-//    public void setInformationLiveData(informationQuestion value)
-//    {
-//            informationLiveData.setValue(value);
-//    }
-//    public MutableLiveData<informationQuestion> getInformationLiveData()
-//    {
-//        return informationLiveData;
-//    }
+
 
     private MutableLiveData<String> dayAnswer = new MutableLiveData<>();
     private MutableLiveData<String> dateAnswer = new MutableLiveData<>();
