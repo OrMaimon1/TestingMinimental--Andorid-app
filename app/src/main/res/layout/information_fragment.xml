@@ -31,7 +31,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/day_quetion"
@@ -43,9 +43,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentDay"
-                    android:textSize="20sp"
-                    app:endIconMode="clear_text"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_dayET"
@@ -57,6 +55,16 @@
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageButton
+                    android:id="@+id/day_mic_ImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
+
             </LinearLayout>
 
 
@@ -64,7 +72,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/month_quetion"
@@ -76,8 +84,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentMonth"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_monthET"
@@ -88,6 +95,15 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/month_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
 
             </LinearLayout>
 
@@ -95,7 +111,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/date_quetion"
@@ -107,8 +123,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentDate"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_dateET"
@@ -119,14 +134,22 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
+                <ImageButton
+                    android:id="@+id/date_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/year_quetion"
@@ -138,8 +161,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentYear"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_yearET"
@@ -150,6 +172,15 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/year_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
 
             </LinearLayout>
 
@@ -157,7 +188,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/season_quetion"
@@ -169,8 +200,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentSeason"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_seasonET"
@@ -181,6 +211,15 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/season_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
 
             </LinearLayout>
 
@@ -188,7 +227,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/country_quetion"
@@ -200,8 +239,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentCountry"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_countryET"
@@ -212,6 +250,15 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/country_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
 
             </LinearLayout>
 
@@ -219,7 +266,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/city_quetion"
@@ -231,8 +278,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentCity"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_cityET"
@@ -243,13 +289,22 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/city_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
 
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/street_quetion"
@@ -261,8 +316,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentStreet"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_streetET"
@@ -273,13 +327,22 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/street_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
 
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/floor_quetion"
@@ -291,8 +354,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentFloor"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_floorET"
@@ -303,13 +365,22 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/floor_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
 
             </LinearLayout>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="50dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/area_quetion"
@@ -321,8 +392,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/enter_currentArea"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_mic_24">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_areaET"
@@ -333,6 +403,15 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <ImageButton
+                    android:id="@+id/area_mic_ImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_baseline_mic_24">
+                </ImageButton>
 
             </LinearLayout>
 

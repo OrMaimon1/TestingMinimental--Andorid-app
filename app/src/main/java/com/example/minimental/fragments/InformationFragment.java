@@ -66,14 +66,14 @@ public class  InformationFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.information_fragment,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        currentStreetAnswerET = rootView.findViewById(R.id.answer_edit_text_currentStreet);
-        currentDayAnswerET = rootView.findViewById(R.id.answer_edit_text_currentDay);
-        currentMonthAnswerET = rootView.findViewById(R.id.answer_edit_text_currentMonth);
-        currentDateAnswerET = rootView.findViewById(R.id.answer_edit_text_currentDate);
-        currentYearAnswerET = rootView.findViewById(R.id.answer_edit_text_currentYear);
-        currentSeasonAnswerET = rootView.findViewById(R.id.answer_edit_text_currentSeason);
-        currentCountryAnswerET = rootView.findViewById(R.id.answer_edit_text_currentCountry);
-        currentCityAnswerET = rootView.findViewById(R.id.answer_edit_text_currentCity);
+        currentStreetAnswerET = rootView.findViewById(R.id.input_streetET);
+        currentDayAnswerET = rootView.findViewById(R.id.input_dayET);
+        currentMonthAnswerET = rootView.findViewById(R.id.input_monthET);
+        currentDateAnswerET = rootView.findViewById(R.id.input_dateET);
+        currentYearAnswerET = rootView.findViewById(R.id.input_yearET);
+        currentSeasonAnswerET = rootView.findViewById(R.id.input_seasonET);
+        currentCountryAnswerET = rootView.findViewById(R.id.input_countryET);
+        currentCityAnswerET = rootView.findViewById(R.id.input_cityET);
 
         ImageView dayMicImageView = rootView.findViewById(R.id.day_mic_ImageView);
         ImageView monthMicImageView = rootView.findViewById(R.id.month_mic_image_view);
