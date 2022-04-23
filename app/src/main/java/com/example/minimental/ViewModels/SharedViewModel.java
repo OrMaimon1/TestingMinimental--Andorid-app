@@ -1,7 +1,6 @@
 package com.example.minimental.ViewModels;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -11,10 +10,8 @@ import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
 import com.example.minimental.ThirdQuestion;
-import com.example.minimental.informationQuestion;
 import com.example.minimental.secoundQuestion;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +23,7 @@ import java.util.ArrayList;
 public class SharedViewModel extends ViewModel {
 
     //region New View-Model For Second Fragment
-    private secoundQuestion secondQuestion = new secoundQuestion();
+    private secoundQuestion secondQuestion = new secoundQuestion("" , "" , "");
     private MutableLiveData<secoundQuestion> secondQuestionLiveData = new MutableLiveData<>();
     public void setSecondQuestionLiveData()
     {
@@ -35,7 +32,7 @@ public class SharedViewModel extends ViewModel {
     public MutableLiveData<ArrayList<String>> getRepeatedWordsResponse()
     {
         MutableLiveData<ArrayList<String>> repeatedWords = new MutableLiveData<>();
-        ArrayList<String> wordsList = new ArrayList<>();
+        ArrayList<String> wordsList = new ArrayList<>(3);
         wordsList.set(0 , secondQuestionLiveData.getValue().getObject1());
         wordsList.set(1 , secondQuestionLiveData.getValue().getObject2());
         wordsList.set(2 , secondQuestionLiveData.getValue().getObject3());
@@ -44,7 +41,7 @@ public class SharedViewModel extends ViewModel {
     }
     public void setRepeatedWordsResponse(String value)
     {
-        String[] seperatedSentence;
+        String[] seperatedSentence = new String[3];
         seperatedSentence = value.split(" " , 3);
         secondQuestionLiveData.getValue().setObject1(seperatedSentence[0]);
         secondQuestionLiveData.getValue().setObject2(seperatedSentence[1]);
@@ -65,14 +62,14 @@ public class SharedViewModel extends ViewModel {
     //endregion
 
     //region Second Question Data Members
-    private MutableLiveData<String> repeatedWords = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<String>> repeatedWordsLiveData = new MutableLiveData<>();
     private String firstWord = "";
     private String secondWord = "";
     private String thirdWord = "";
     //endregion
 
     //region Third Question Math Version Data Member
-    private MutableLiveData<String> answerGiven = new MutableLiveData<>();
+    private MutableLiveData<String> mathAnswerGiven = new MutableLiveData<>();
     //endregion
 
     //region Third Question spelling Version Data Member
@@ -170,31 +167,31 @@ public class SharedViewModel extends ViewModel {
     //endregion
 
     //region Second Question Methods
-    public void setRepeatedWords(String value)
+    public void setRepeatedWords(ArrayList<String> value)
     {
-        repeatedWords.setValue(value);
+        repeatedWordsLiveData.setValue(value);
     }
 
-    public MutableLiveData<String> getRepeatedWords()
+    public MutableLiveData<ArrayList<String>> getRepeatedWords()
     {
-        return repeatedWords;
+        return repeatedWordsLiveData;
     }
 
     private void seperateSentenceToWords()
     {
         String[] seperatedSentence;
-        seperatedSentence = repeatedWords.toString().split(" " , 3);
+        //seperatedSentence = repeatedWordsLiveData.getValue().split(" " , 3);
     }
     //endregion
 
     //region Third Question Math Version Methods
-    public void setAnswerGiven(String value)
+    public void setMathAnswerGiven(String value)
     {
-        answerGiven.setValue(value);
+        mathAnswerGiven.setValue(value);
     }
-    public MutableLiveData<String> getAnswerGiven()
+    public MutableLiveData<String> getMathAnswerGiven()
     {
-        return answerGiven;
+        return mathAnswerGiven;
     }
     //endregion
 

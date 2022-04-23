@@ -49,19 +49,23 @@ public class SecondQuestion extends Fragment {
                     speechResult.append(r);
                 }
                 String result = speechResult.toString();
-                resultText.setText(result);
-                sharedViewModel.setRepeatedWordsResponse(result);
+                updateAnswer(result);
             }
         });
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        sharedViewModel.setSecondQuestionLiveData();
-        /*getSpeechRecognistionDataResultObserver = new Observer<String>() {
+        //sharedViewModel.setSecondQuestionLiveData();
+        getSpeechRecognistionDataResultObserver = new Observer<ArrayList<String>>() {
             @Override
-            public void onChanged(String s) {
-                resultText.setText(s);
+            public void onChanged(ArrayList<String> strings) {
+                StringBuffer sb = new StringBuffer();
+                for(String result:strings)
+                {
+                    sb.append(result + ",");
+                }
+                resultText.setText(sb);
             }
-        };*/
-        sharedViewModel.getRepeatedWordsResponse().observe(this,getSpeechRecognistionDataResultObserver);
+        };
+
     }
 
     @Nullable
@@ -83,6 +87,7 @@ public class SecondQuestion extends Fragment {
                 startSpeechRecognition();
             }
         });
+        sharedViewModel.getRepeatedWords().observe(getViewLifecycleOwner(),getSpeechRecognistionDataResultObserver);
         return rootView;
     }
     private void startSpeechRecognition()
@@ -91,5 +96,16 @@ public class SecondQuestion extends Fragment {
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE , "en");
         speechRecognizerLauncher.launch(speechIntent);
+    }
+    private void updateAnswer(String answer)
+    {
+        resultText.setText(answer);
+        String[] spereatedWords = answer.split(" " , 3);
+        ArrayList<String> listOfWords = new ArrayList<>(3);
+        listOfWords.ensureCapacity(3);
+        listOfWords.add(0 , spereatedWords[0]);
+        listOfWords.add(1 , spereatedWords[1]);
+        listOfWords.add(2 , spereatedWords[2]);
+        sharedViewModel.setRepeatedWords(listOfWords);
     }
 }
