@@ -7,3 +7,4 @@ public interface IResultHandler {
     void handleResult(String result);
 
 }
+

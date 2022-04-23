@@ -1,5 +1,7 @@
 package com.example.minimental;
 
+import androidx.lifecycle.LiveData;
+
 public class informationQuestion {
 
     private String day;
@@ -11,6 +13,7 @@ public class informationQuestion {
     private String address;
     private String floor;
     private String area;
+
 
     public informationQuestion(String day, String month, String date, String year, String country, String city, String address, String floor, String area) {
         this.day = day;
