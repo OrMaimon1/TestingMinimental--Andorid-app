@@ -25,6 +25,7 @@
 
         <ImageView
             android:id="@+id/tenth_question_ImageView"
+            android:layout_gravity="center"
             android:layout_width="194dp"
             android:layout_height="197dp"
             android:src="@drawable/tenth_question"
