@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/sand"
+    android:background="@drawable/background_gradient"
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
@@ -44,8 +44,6 @@
                     android:gravity="center"
                     android:drawableEnd="@drawable/ic_baseline_volume_up_24"
                     android:text="@string/textView_repeat_sentence_string"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
                     android:textSize="40dp"
                     android:textStyle="bold" />
 
@@ -63,15 +61,13 @@
 
                 <ImageButton
                     android:id="@+id/image_of_microphone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="25dp"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:gravity="center"
-                    android:src="@drawable/ic_baseline_mic_24"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:src="@drawable/ic_mic_white"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
 
@@ -90,8 +86,6 @@
                     android:layout_margin="35dp"
                     android:gravity="center"
                     android:text="@string/textView2_repeat_sentence_string"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -116,8 +110,7 @@
                     android:hint="@string/button_next"
                     android:padding="10dp"
                     android:textColorHint="@color/white"
-                    android:textSize="16sp"
-                    app:backgroundTint="@color/midnighit_blue" />
+                    android:textSize="16sp" />
 
 
             </LinearLayout>

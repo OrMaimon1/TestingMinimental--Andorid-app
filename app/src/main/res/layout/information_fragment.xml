@@ -15,11 +15,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                >
+                android:layout_marginBottom="40dp">
 
                 <TextView
                     android:id="@+id/choose_first_question_title"
@@ -35,10 +35,10 @@
 
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/day_quetion"
@@ -67,20 +67,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
 
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/month_quetion"
@@ -103,24 +102,24 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/month_mic_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/date_quetion"
@@ -143,23 +142,23 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/date_mic_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/year_quetion"
@@ -182,24 +181,24 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/year_mic_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/season_quetion"
@@ -222,24 +221,24 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/season_mic_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/country_quetion"
@@ -262,24 +261,24 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/country_mic_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/city_quetion"
@@ -302,23 +301,24 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/city_mic_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/street_quetion"
@@ -341,23 +341,24 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/street_mic_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/floor_quetion"
@@ -380,23 +381,24 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/floor_mic_image_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
+
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/area_quetion"
@@ -419,16 +421,16 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <ImageButton
                     android:id="@+id/area_mic_ImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/round_border"
                     android:layout_margin="10dp"
+                    android:background="@drawable/round_border"
                     android:padding="10dp"
-                    android:src="@drawable/ic_mic_white">
-                </ImageButton>
+                    android:src="@drawable/ic_mic_white"></ImageButton>
 
             </LinearLayout>
 

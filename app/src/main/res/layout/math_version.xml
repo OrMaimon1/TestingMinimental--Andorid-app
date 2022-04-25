@@ -106,7 +106,6 @@
                 <ImageButton
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-
                     android:layout_gravity="center"
                     android:layout_margin="15dp"
                     android:background="@drawable/round_border"
