@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,7 @@ import com.example.minimental.ViewModels.SharedViewModel;
 public class EighthQuestion extends Fragment {
     
     View blackCircle, yellowCircle, redSquare, blueCircle;
-    private ConstraintLayout dragLayout;
+    private RelativeLayout dragLayout;
     private float x = 0, y = 0;
     private SharedViewModel viewModel;
     private float blueCircleCenterX;
@@ -97,64 +98,17 @@ public class EighthQuestion extends Fragment {
                     y = event.getY();
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    ConstraintLayout.LayoutParams layout =  (ConstraintLayout.LayoutParams) view.getLayoutParams();
-                    ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(dragLayout.getLayoutParams());
-
-
                     float movedX, movedY;
                     movedX = event.getX();
                     movedY = event.getY();
 
-                    boolean inBounds = true;
-                    if(movedX < layoutParams.LEFT)
-                    {
-                        inBounds = false;
-                    }
-                    else if(movedX < layoutParams.RIGHT)
-                    {
-                        inBounds = false;
-                    }
-                    else if(movedY < layoutParams.TOP)
-                    {
-                        inBounds = false;
-                    }
-                    else if( movedY < layoutParams.BOTTOM)
-                    {
-                        inBounds = false;
-                    }
+                    float distanceX = movedX - x;
+                    float distanceY = movedY - y;
 
-                    if( inBounds )
-                    {
-                        float distanceX = movedX - x;
-                        float distanceY = movedY - y;
-                        view.setX(view.getX() + distanceX);
-                        view.setY(view.getY() + distanceY);
-                        view.setLayoutParams(layout);
-                    }
+                    view.setX(view.getX()+distanceX);
+                    view.setY(view.getY()+distanceY);
 
-                    if(blackCirecleInPlace(blackCircle.getX() , blackCircle.getY()))
-                    {
-                        //Toast.makeText(getActivity(), "balck circle in place", Toast.LENGTH_SHORT).show();
-                        System.out.println("success");
-                    }
-
-
-                   break;
-                case MotionEvent.ACTION_UP:
-                    viewModel.setBlackBallLocationX(blackCircle.getX());
-                    viewModel.setBlackBallLocationY(blackCircle.getY());
-                    viewModel.setYellowBallLocationX(blackCircle.getX());
-                    viewModel.setYellowBallLocationX(blackCircle.getY());
-
-                    if(blackCirecleInPlace(blackCircle.getX() , blackCircle.getY()))
-                    {
-                        //Toast.makeText(getActivity(), "balck circle in place", Toast.LENGTH_SHORT).show();
-                        System.out.println("success");
-                    }
-                   /* if(yellowCircleInPlace())
-                    {
-
-                    }*/
+                    break;
             }
             return true;
         }
