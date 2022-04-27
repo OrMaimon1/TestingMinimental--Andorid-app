@@ -1,7 +1,9 @@
 package com.example.minimental.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,14 +26,21 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.minimental.CustomView.BallsDragView;
 import com.example.minimental.EightQuestion;
 import com.example.minimental.R;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 public class EighthQuestion extends Fragment {
     
-    View blackCircle, yellowCircle, redSquare, blueCircle;
+    //View blackCircle, yellowCircle, redSquare, blueCircle;
     private RelativeLayout dragLayout;
+    private BallsDragView ballsDragView;
+    private BallsDragView.Circle yellowBall;
+    private BallsDragView.Circle blackBall;
+    private BallsDragView.Circle currentBallTouched;
+    private RectF blueRect;
+    private RectF redRect;
     private float x = 0, y = 0;
     private SharedViewModel viewModel;
     private float blueCircleCenterX;
@@ -40,58 +49,96 @@ public class EighthQuestion extends Fragment {
     private float redSquareCenterY;
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.eighth_question,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        dragLayout = rootView.findViewById(R.id.eight_drag_layout);
+        ballsDragView = rootView.findViewById(R.id.ball_drag_view);
+        yellowBall = ballsDragView.getYellowBall();
+        blackBall = ballsDragView.getBlackBall();
+        blueRect = ballsDragView.getBlueRect();
+        redRect = ballsDragView.getRedRect();
+        //dragLayout = rootView.findViewById(R.id.eight_drag_layout);
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
 
-
-        blackCircle = (View) rootView.findViewById(R.id.viewblackcircle);
+        /*blackCircle = (View) rootView.findViewById(R.id.viewblackcircle);
         yellowCircle = (View) rootView.findViewById(R.id.viewYellowCircle);
         redSquare = (View) rootView.findViewById(R.id.square_view);
-        blueCircle = (View) rootView.findViewById(R.id.circle_view);
+        blueCircle = (View) rootView.findViewById(R.id.circle_view);*/
 
-        redSquareCenterX = redSquare.getX();
+       /* redSquareCenterX = redSquare.getX();
         redSquareCenterY = redSquare.getY();
         blueCircleCenterX = blueCircle.getX();
         blueCircleCenterY = blueCircle.getY();
 
         blackCircle.setOnTouchListener(new MyTouchListener());
-        yellowCircle.setOnTouchListener(new MyTouchListener());
+        yellowCircle.setOnTouchListener(new MyTouchListener());*/
 
        // redSquare.setOnDragListener(new MyDragListener());
         //blueCircle.setOnDragListener(new MyDragListener());
 
 
+        ballsDragView.setOnTouchListener(new ballsDragTouchListner());
 
 
 
 
        nxtBtn.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-
                 Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_tenthQuestion);
-
             }
-
         });
 
         return rootView ;
 
     }
 
+    private class ballsDragTouchListner implements View.OnTouchListener
+    {
+        @Override
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            float x = motionEvent.getX();
+            float y = motionEvent.getY();
+            if(yellowBall.envelopsPoint(x,y))
+            {
+                currentBallTouched = yellowBall;
+            }
+            else if(blackBall.envelopsPoint(x,y))
+            {
+                currentBallTouched = blackBall;
+            }
+            if(currentBallTouched != null) {
+                switch (motionEvent.getActionMasked()) {
+                    case MotionEvent.ACTION_MOVE:
+                        if(!currentBallTouched.touchesBorder()) {
+                            ballsDragView.moveCurrentBall(currentBallTouched, x, y);
+                        }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        if(ballsDragView.SquareSuroundsCircle(redRect , blackBall))
+                        {
+                            blackBall.changeColor();
+                        }
+                        if(ballsDragView.SquareSuroundsCircle(blueRect , yellowBall))
+                        {
+                            yellowBall.changeColor();
+                        }
+                        currentBallTouched = null;
+                        break;
+                }
+            }
+            return true;
+        }
+    }
 
-    final class MyTouchListener implements View.OnTouchListener{
+   /* final class MyTouchListener implements View.OnTouchListener{
         @Override
         public boolean onTouch(View view, MotionEvent event) {
-
             switch (event.getActionMasked()){
                 case MotionEvent.ACTION_DOWN:
                     x = event.getX();
@@ -112,9 +159,9 @@ public class EighthQuestion extends Fragment {
             }
             return true;
         }
-    }
+    }*/
 
-    public boolean blackCirecleInPlace(float locationX , float locationY)
+    /*public boolean blackCirecleInPlace(float locationX , float locationY)
     {
         boolean inPlace = true;
         int[] location = new int[2];
@@ -132,7 +179,7 @@ public class EighthQuestion extends Fragment {
             inPlace = false;
         }
         return inPlace;
-    }
+    }*/
 
     /*class MyDragListener implements View.OnDragListener {
         //Drawable enterShape = getResources().getDrawable(R.drawable.square_shape);

@@ -38,6 +38,8 @@ public class  InformationFragment extends Fragment {
     EditText currentSeasonAnswerET;
     EditText currentCountryAnswerET;
     EditText currentCityAnswerET;
+    EditText currentFloorAnswerET;
+    EditText currentAreaAnswerET;
     ImageView currentQuestionAnswered;
 
     //Question currentQuestion;
@@ -76,6 +78,8 @@ public class  InformationFragment extends Fragment {
         currentSeasonAnswerET = rootView.findViewById(R.id.input_seasonET);
         currentCountryAnswerET = rootView.findViewById(R.id.input_countryET);
         currentCityAnswerET = rootView.findViewById(R.id.input_cityET);
+        currentFloorAnswerET = rootView.findViewById(R.id.input_floorET);
+        currentAreaAnswerET = rootView.findViewById(R.id.input_areaET);
 
         ImageView dayMicImageView = rootView.findViewById(R.id.day_mic_ImageView);
         ImageView monthMicImageView = rootView.findViewById(R.id.month_mic_image_view);
@@ -85,6 +89,8 @@ public class  InformationFragment extends Fragment {
         ImageView countryMicImageView = rootView.findViewById(R.id.country_mic_image_view);
         ImageView cityMicImageView = rootView.findViewById(R.id.city_mic_image_view);
         ImageView streetMicImageView = rootView.findViewById(R.id.street_mic_image_view);
+        ImageView floormicImageView = rootView.findViewById(R.id.floor_mic_image_view);
+        ImageView areaMicImageView = rootView.findViewById(R.id.area_mic_ImageView);
 
         dayMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         monthMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
@@ -94,6 +100,8 @@ public class  InformationFragment extends Fragment {
         countryMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         cityMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         streetMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        floormicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
+        areaMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,10 +160,13 @@ public class  InformationFragment extends Fragment {
             case R.id.street_mic_image_view:
                 currentStreetAnswerET.setText(result);
                 break;
+            case R.id.floor_mic_image_view:
+                currentFloorAnswerET.setText(result);
+                break;
         }
     }
 
-    enum Question
+    /*enum Question
     {
         Day,
         Month,
@@ -165,7 +176,7 @@ public class  InformationFragment extends Fragment {
         Country,
         City,
         Street
-    }
+    }*/
 
 }
 

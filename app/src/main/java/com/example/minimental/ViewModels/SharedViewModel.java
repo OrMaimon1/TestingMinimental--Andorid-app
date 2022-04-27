@@ -10,6 +10,7 @@ import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
 import com.example.minimental.ThirdQuestion;
+import com.example.minimental.informationQuestion;
 import com.example.minimental.secoundQuestion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,8 @@ public class SharedViewModel extends ViewModel {
         repeatedWords.setValue(wordsList);
         return repeatedWords;
     }
+
+
     public void setRepeatedWordsResponse(String value)
     {
         String[] seperatedSentence = new String[3];

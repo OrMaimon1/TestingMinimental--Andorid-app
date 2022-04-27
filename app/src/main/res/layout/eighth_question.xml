@@ -34,7 +34,13 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.444" />
 
-    <LinearLayout
+    <com.example.minimental.CustomView.BallsDragView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/ball_drag_view"
+        android:background="@color/white"
+        />
+    <!--<LinearLayout
         android:id="@+id/dragLinearout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +78,7 @@
                     android:layout_centerHorizontal="false"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/circle_shape" />
+                    android:background="@drawable/circle_shape"/>
 
                 <View
                     android:id="@+id/viewYellowCircle"
@@ -94,7 +100,7 @@
                     android:backgroundTint="@color/black" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-    </LinearLayout>
+    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
