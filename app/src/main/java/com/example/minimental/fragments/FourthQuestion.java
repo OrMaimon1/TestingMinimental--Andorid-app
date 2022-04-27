@@ -107,7 +107,6 @@ public class FourthQuestion extends Fragment {
     {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
-        speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE , "en");
         speechRecognizerLauncher.launch(speechIntent);
     }
 }
