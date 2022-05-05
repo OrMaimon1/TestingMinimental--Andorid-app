@@ -27,11 +27,11 @@ public class CollectMissingDetails extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.collect_missingdetails,container,false);
 
-        EditText country = rootView.findViewById(R.id.Et_country);
-        EditText city = rootView.findViewById(R.id.Et_city);
-        EditText address = rootView.findViewById(R.id.Et_address);
-        EditText floor = rootView.findViewById(R.id.Et_floor);
-        EditText area = rootView.findViewById(R.id.Et_area);
+        EditText country = rootView.findViewById(R.id.input_country_missing_ET);
+        EditText city = rootView.findViewById(R.id.input_city_missing_ET);
+        EditText address = rootView.findViewById(R.id.input_address_missing_ET);
+        EditText floor = rootView.findViewById(R.id.input_floor_misssingET);
+        EditText area = rootView.findViewById(R.id.input_area_missing_ET);
         viewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
         viewModel.getMissingDetail().observe(getViewLifecycleOwner(), new Observer<MissingDetail>() {
             @Override
