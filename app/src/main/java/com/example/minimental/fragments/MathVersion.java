@@ -30,6 +30,7 @@ public class MathVersion extends Fragment  {
     private SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private Observer<String> getAnswerObserver;
+    private int numberOfAnswersGiven = 0;
     private TextView resultText;
 
     @Override
@@ -41,13 +42,14 @@ public class MathVersion extends Fragment  {
             public void onActivityResult(ActivityResult activityResult) {
                 Intent data = activityResult.getData();
                 StringBuffer speechResult = new StringBuffer();
-                ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                for(String r:results)
-                {
-                    speechResult.append(r);
+                if (data != null) {
+                    ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    for (String r : results) {
+                        speechResult.append(r);
+                    }
+                    String result = speechResult.toString();
+                    sharedViewModel.setMathAnswerGiven(result);
                 }
-                String result = speechResult.toString();
-                sharedViewModel.setMathAnswerGiven(result);
             }
         });
         getAnswerObserver = new Observer<String>() {
@@ -65,6 +67,23 @@ public class MathVersion extends Fragment  {
         View rootView = inflater.inflate(R.layout.math_version,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton speechBtn = rootView.findViewById(R.id.mic_image_btn);
+        nxtBtn.setEnabled(false);
+        Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
+        confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numberOfAnswersGiven++;
+                if(numberOfAnswersGiven == 5)
+                {
+                    nxtBtn.setEnabled(true);
+                    //confirmAnswerbutton.setEnabled(false);
+                    confirmAnswerbutton.setAlpha(0.3f);
+                    speechBtn.setEnabled(false);
+                    speechBtn.setAlpha(0.3f);
+                    speechBtn.setImageAlpha(30);
+                }
+            }
+        });
         resultText = rootView.findViewById(R.id.math_version_question_textview);
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
