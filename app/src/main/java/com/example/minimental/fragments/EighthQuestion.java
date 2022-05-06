@@ -104,6 +104,7 @@ public class EighthQuestion extends Fragment {
         public boolean onTouch(View view, MotionEvent motionEvent) {
             float x = motionEvent.getX();
             float y = motionEvent.getY();
+
             if(yellowBall.envelopsPoint(x,y))
             {
                 currentBallTouched = yellowBall;
@@ -128,9 +129,16 @@ public class EighthQuestion extends Fragment {
                         {
                             yellowBall.changeColor();
                         }
-                        currentBallTouched = null;
+                        if(currentBallTouched.touchesBorder()) {
+                            ballsDragView.moveCurrentBall(currentBallTouched, currentBallTouched.getCenterX(), currentBallTouched.getCenterY());
+                        }
                         break;
                 }
+                if(currentBallTouched.touchesBorder())
+                {
+                    currentBallTouched.moveInside();
+                }
+                currentBallTouched = null;
             }
             return true;
         }

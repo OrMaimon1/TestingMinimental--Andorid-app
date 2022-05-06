@@ -25,6 +25,11 @@ public class BallsDragView extends View {
     RectF rightBorder;
     RectF topBorder;
     RectF bottomBorder;
+    int currentBorderID;
+    final int leftBorderID = 0;
+    final int rightBorderID = 1;
+    final int bottomBorderID = 2;
+    final int topBorderID = 3;
     private Canvas thisCanvas;
     float scale = getResources().getDisplayMetrics().density;
     private float width = this.getWidth();
@@ -120,6 +125,8 @@ public class BallsDragView extends View {
     {
         private float centerX;
         private float centerY;
+        final private float initialCenterX;
+        final private float initialCenterY;
         private float radius;
 
         private Circle(float x , float y , float r)
@@ -127,6 +134,8 @@ public class BallsDragView extends View {
             centerX = x;
             centerY = y;
             radius = r;
+            initialCenterX = x;
+            initialCenterY = y;
         }
         public void setCenterX(float centerX) {
             this.centerX = centerX;
@@ -167,29 +176,57 @@ public class BallsDragView extends View {
         public boolean touchesBorder()
         {
             boolean touches = false;
-            float moveBackGap = 3f * scale;
+            float moveBackGap = 6f * scale;
             if(centerX - radius <= leftBorder.right)
             {
                 centerX += moveBackGap;
+                currentBorderID = leftBorderID;
                 touches = true;
             }
             if(centerX + radius >= rightBorder.left)
             {
                 centerX -= moveBackGap;
+                currentBorderID = rightBorderID;
                 touches = true;
             }
             if(centerY + radius >= bottomBorder.top)
             {
                 centerY -= moveBackGap;
+                currentBorderID = bottomBorderID;
                 touches = true;
             }
             if(centerY - radius <= topBorder.bottom)
             {
                 centerY += moveBackGap;
+                currentBorderID = topBorderID;
                 touches = true;
             }
             invalidate();
             return touches;
+        }
+        public void resetPosition()
+        {
+            setCenterX(initialCenterX);
+            setCenterY(initialCenterY);
+        }
+        public void moveInside()
+        {
+            float moveBackGap = 6f * scale;
+            switch(currentBorderID)
+            {
+                case leftBorderID:
+                    centerX += moveBackGap;
+                    break;
+                case rightBorderID:
+                    centerX -= moveBackGap;
+                    break;
+                case bottomBorderID:
+                    centerY -= moveBackGap;
+                    break;
+                case topBorderID:
+                    centerY += moveBackGap;
+                    break;
+            }
         }
         public void changeColor()
         {
