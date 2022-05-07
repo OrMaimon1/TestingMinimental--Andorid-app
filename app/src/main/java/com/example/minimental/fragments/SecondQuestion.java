@@ -25,15 +25,17 @@ import com.example.minimental.LifeCycleObserver;
 import com.example.minimental.R;
 import com.example.minimental.ViewModels.IResultHandler;
 import com.example.minimental.ViewModels.SharedViewModel;
+import com.example.minimental.secoundQuestion;
 
 import java.util.ArrayList;
 
 public class SecondQuestion extends Fragment {
     private SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
-    private LifeCycleObserver speechRecognitionObserver;
+    //private LifeCycleObserver speechRecognitionObserver;
     private Observer<ArrayList<String>> getSpeechRecognistionDataResultObserver;
     private TextView resultText;
+    private secoundQuestion secoundQuestion = new secoundQuestion();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,8 +54,6 @@ public class SecondQuestion extends Fragment {
                 updateAnswer(result);
             }
         });
-        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        //sharedViewModel.setSecondQuestionLiveData();
         getSpeechRecognistionDataResultObserver = new Observer<ArrayList<String>>() {
             @Override
             public void onChanged(ArrayList<String> strings) {
@@ -72,6 +72,7 @@ public class SecondQuestion extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.second_question,container,false);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton speechBtn = rootView.findViewById(R.id.image_of_microphone);
         resultText = rootView.findViewById(R.id.check_txt);
@@ -87,7 +88,7 @@ public class SecondQuestion extends Fragment {
                 startSpeechRecognition();
             }
         });
-        sharedViewModel.getRepeatedWords().observe(getViewLifecycleOwner(),getSpeechRecognistionDataResultObserver);
+        //sharedViewModel.getRepeatedWords().observe(getViewLifecycleOwner(),getSpeechRecognistionDataResultObserver);
         return rootView;
     }
     private void startSpeechRecognition()
@@ -99,12 +100,16 @@ public class SecondQuestion extends Fragment {
     private void updateAnswer(String answer)
     {
         resultText.setText(answer);
+        String adder;
         String[] spereatedWords = answer.split(" " , 3);
         ArrayList<String> listOfWords = new ArrayList<>(3);
         listOfWords.ensureCapacity(3);
         listOfWords.add(0 , spereatedWords[0]);
         listOfWords.add(1 , spereatedWords[1]);
         listOfWords.add(2 , spereatedWords[2]);
-        sharedViewModel.setRepeatedWords(listOfWords);
+        secoundQuestion.setObject1(listOfWords.get(0));
+        secoundQuestion.setObject2(listOfWords.get(1));
+        secoundQuestion.setObject3(listOfWords.get(2));
+        sharedViewModel.setObjectData(secoundQuestion);
     }
 }

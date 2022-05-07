@@ -8,18 +8,22 @@ public class informationQuestion {
     private String month;
     private String date;
     private String year;
+    private String season;
     private String country;
     private String city;
     private String address;
     private String floor;
     private String area;
 
+    public informationQuestion() {
+    }
 
-    public informationQuestion(String day, String month, String date, String year, String country, String city, String address, String floor, String area) {
+    public informationQuestion(String day, String month, String date, String year, String season, String country, String city, String address, String floor, String area) {
         this.day = day;
         this.month = month;
         this.date = date;
         this.year = year;
+        this.season = season;
         this.country = country;
         this.city = city;
         this.address = address;
@@ -57,6 +61,14 @@ public class informationQuestion {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
     }
 
     public String getCountry() {

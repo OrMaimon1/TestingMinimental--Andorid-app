@@ -41,7 +41,7 @@ public class FourthQuestion extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-        wordsToRemember = sharedViewModel.getRepeatedWords().getValue();
+        //wordsToRemember = sharedViewModel.getRepeatedWords().getValue();
         speechRecognizerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult activityResult) {

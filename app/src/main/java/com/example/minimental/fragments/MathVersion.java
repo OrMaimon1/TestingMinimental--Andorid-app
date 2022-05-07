@@ -47,21 +47,21 @@ public class MathVersion extends Fragment  {
                 StringBuffer speechResult = new StringBuffer();
                 if (data != null) {
                     ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    for (String r : results) {
+                    /*for (String r : results) {
                         speechResult.append(r);
                     }
-                    String result = speechResult.toString();
-                    sharedViewModel.setMathAnswerGiven(result);
+                    String result = speechResult.toString();*/
+                    sharedViewModel.setMathAnswerGiven(results);
                 }
             }
         });
-        getAnswerObserver = new Observer<String>() {
+/*        getAnswerObserver = new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 resultText.setText(s);
             }
         };
-        sharedViewModel.getMathAnswerGiven().observe(this , getAnswerObserver);
+        sharedViewModel.getMathAnswerGiven().observe(this , getAnswerObserver);*/
     }
 
     @Nullable

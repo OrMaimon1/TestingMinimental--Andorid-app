@@ -41,11 +41,11 @@ public class SpellingVersion extends Fragment {
                 StringBuffer speechResult = new StringBuffer();
                 if (data != null) {
                     ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    for (String r : results) {
+/*                    for (String r : results) {
                         speechResult.append(r);
                     }
-                    String result = speechResult.toString();
-                    sharedViewModel.setSpelledWord(result);
+                    String result = speechResult.toString();*/
+                    sharedViewModel.setSpelledWord(results);
                 }
             }
         });

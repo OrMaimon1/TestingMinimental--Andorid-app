@@ -22,27 +22,35 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.Question;
 import com.example.minimental.R;
+import com.example.minimental.ViewModels.SharedViewModel;
+import com.example.minimental.informationQuestion;
 
 import java.util.ArrayList;
 
 public class  InformationFragment extends Fragment {
 
+    private SharedViewModel sharedViewModel;
     ActivityResultLauncher<Intent> speechRecognizerLauncher;
-    EditText currentStreetAnswerET;
-    EditText currentDayAnswerET;
-    EditText currentMonthAnswerET;
-    EditText currentDateAnswerET;
-    EditText currentYearAnswerET;
-    EditText currentSeasonAnswerET;
-    EditText currentCountryAnswerET;
-    EditText currentCityAnswerET;
-    EditText currentFloorAnswerET;
-    EditText currentAreaAnswerET;
-    ImageView currentQuestionAnswered;
+    private EditText currentStreetAnswerET;
+    private EditText currentDayAnswerET;
+    private EditText currentMonthAnswerET;
+    private EditText currentDateAnswerET;
+    private EditText currentYearAnswerET;
+    private EditText currentSeasonAnswerET;
+    private EditText currentCountryAnswerET;
+    private EditText currentCityAnswerET;
+    private EditText currentFloorAnswerET;
+    private EditText currentAreaAnswerET;
+    private ImageView currentQuestionAnswered;
+    private informationQuestion informationQuestion = new informationQuestion();
+
 
     //Question currentQuestion;
 
@@ -71,6 +79,7 @@ public class  InformationFragment extends Fragment {
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.information_fragment,container,false);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         currentStreetAnswerET = rootView.findViewById(R.id.input_streetET);
         currentDayAnswerET = rootView.findViewById(R.id.input_dayET);
@@ -105,9 +114,32 @@ public class  InformationFragment extends Fragment {
         floormicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         areaMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
 
+
+        sharedViewModel.getInfoLiveData().observe(getViewLifecycleOwner(), new Observer<informationQuestion>() {
+            @Override
+            public void onChanged(informationQuestion informationQuestion) {
+                //currentDayAnswerET.getText(informationQuestion.getDay().toString());
+                //textInputUsername.getEditText().setText(s);
+            }
+        });
+
+
+
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                informationQuestion.setDay(currentDayAnswerET.getText().toString());
+                informationQuestion.setMonth(currentMonthAnswerET.getText().toString());
+                informationQuestion.setDate(currentDateAnswerET.getText().toString());
+                informationQuestion.setYear(currentYearAnswerET.getText().toString());
+                informationQuestion.setSeason(currentSeasonAnswerET.getText().toString());
+                informationQuestion.setCountry(currentCountryAnswerET.getText().toString());
+                informationQuestion.setCity(currentCityAnswerET.getText().toString());
+                informationQuestion.setAddress(currentStreetAnswerET.getText().toString());
+                informationQuestion.setFloor(currentFloorAnswerET.getText().toString());
+                informationQuestion.setArea(currentAreaAnswerET.getText().toString());
+                sharedViewModel.setInfoLiveData(informationQuestion);
+
                 Navigation.findNavController(view).navigate(R.id.action_informationFragment_to_secondQuestion);
             }
         });
@@ -153,7 +185,7 @@ public class  InformationFragment extends Fragment {
                 currentSeasonAnswerET.setText(result);
                 break;
             case R.id.country_mic_image_view:
-                currentSeasonAnswerET.setText(result);
+                currentCountryAnswerET.setText(result);
                 break;
             case R.id.city_mic_image_view:
                 currentCityAnswerET.setText(result);
@@ -163,6 +195,9 @@ public class  InformationFragment extends Fragment {
                 break;
             case R.id.floor_mic_image_view:
                 currentFloorAnswerET.setText(result);
+                break;
+            case R.id.area_mic_ImageView:
+                currentAreaAnswerET.setText(result);
                 break;
         }
     }
