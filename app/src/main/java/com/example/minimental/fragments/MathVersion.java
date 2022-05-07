@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.ViewModels.SharedViewModel;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -76,6 +79,8 @@ public class MathVersion extends Fragment  {
                 if(numberOfAnswersGiven == 5)
                 {
                     nxtBtn.setEnabled(true);
+                    Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                    nxtBtn.startAnimation(animation);
                     //confirmAnswerbutton.setEnabled(false);
                     confirmAnswerbutton.setAlpha(0.3f);
                     speechBtn.setEnabled(false);

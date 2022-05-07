@@ -72,8 +72,8 @@
         android:layout_below="@+id/painter_viewLayout"
         android:layout_margin="10dp"
         android:orientation="vertical"
-        android:paddingStart="100dp"
-        android:paddingEnd="100dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <Button
             android:id="@+id/next_Btn"
