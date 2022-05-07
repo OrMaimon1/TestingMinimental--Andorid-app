@@ -5,8 +5,18 @@
       <map>
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/background_gradient.xml" value="0.123" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/circle_shape.xml" value="0.2465" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_baseline_circle_24.xml" value="0.1885" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_baseline_mic_24.xml" value="0.2805" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2055" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_blue_milk.xml" value="0.1885" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_dresser.xml" value="0.1885" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_fridge_open.xml" value="0.1885" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_microphone.xml" value="0.192" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_microphone2.xml" value="0.192" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_pencil.xml" value="0.363" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_plate.xml" value="0.2055" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_ruler.xml" value="0.363" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/ic_speaker.xml" value="0.192" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/round_border.xml" value="0.242" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/shape_edit_text.xml" value="0.189" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/drawable/square.xml" value="0.2465" />
@@ -16,7 +26,7 @@
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/choose_third_question.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/collect_missingdetails.xml" value="0.3125" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/eighth_question.xml" value="0.3125" />
-        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/fifth_question.xml" value="0.20606884057971014" />
+        <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/fifth_question.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/fourth_question.xml" value="0.3125" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/information_fragment.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProjects/TestingMinimental/app/src/main/res/layout/login_fragment.xml" value="0.33" />
@@ -69,7 +79,7 @@
         <entry key="..\:/Users/david/AndroidProjectsDev/TestingMinimental/app/src/main/res/layout/eighth_question.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/david/AndroidProjectsDev/TestingMinimental/app/src/main/res/layout/fifth_question.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/david/AndroidProjectsDev/TestingMinimental/app/src/main/res/layout/fourth_question.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/david/AndroidProjectsDev/TestingMinimental/app/src/main/res/layout/information_fragment.xml" value="0.17587939698492464" />
+        <entry key="..\:/Users/david/AndroidProjectsDev/TestingMinimental/app/src/main/res/layout/information_fragment.xml" value="0.18432971014492755" />
         <entry key="..\:/Users/david/AndroidProjectsDev/TestingMinimental/app/src/main/res/layout/math_version.xml" value="0.264" />
         <entry key="..\:/Users/david/AndroidProjectsDev/TestingMinimental/app/src/main/res/layout/repeat_sentence.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/david/AndroidProjectsDev/TestingMinimental/app/src/main/res/layout/second_question.xml" value="0.22826086956521738" />
@@ -78,7 +88,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

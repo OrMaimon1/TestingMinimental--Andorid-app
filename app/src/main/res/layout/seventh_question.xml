@@ -59,6 +59,7 @@
             android:id="@+id/seventh_question_ImageView1"
             android:layout_width="150dp"
             android:layout_height="200dp"
+            android:layout_marginStart="8dp"
             android:src="@drawable/ic_dresser"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
@@ -67,12 +68,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/seventh_question_ImageView2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.735" />
+            app:layout_constraintVertical_bias="0.78" />
 
         <ImageView
             android:id="@+id/seventh_question_ImageView2"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="218dp"
+            android:layout_height="343dp"
             android:src="@drawable/ic_fridge_open"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,16 +96,16 @@
 
         <ImageView
             android:id="@+id/seventh_question_ImageView4"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/napkins"
+            android:layout_width="57dp"
+            android:layout_height="53dp"
+            android:src="@drawable/ic_plate"
             android:textColorHint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.957"
+            app:layout_constraintHorizontal_bias="0.952"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421" />
+            app:layout_constraintVertical_bias="0.449" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

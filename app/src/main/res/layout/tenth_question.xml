@@ -50,7 +50,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:id="@+id/painter_viewLayout"
         android:layout_below="@+id/pic_10layout">
 
@@ -63,7 +63,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:background="@color/white"
-            android:elevation="10dp"/>
+            android:elevation="10dp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -89,6 +89,4 @@
             android:textSize="16sp" />
 
     </LinearLayout>
-
-
 </RelativeLayout>
