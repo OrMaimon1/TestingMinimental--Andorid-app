@@ -1,7 +1,6 @@
 package com.example.minimental;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
-import android.util.Log;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -10,12 +9,9 @@ import androidx.activity.result.ActivityResultRegistry;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.example.minimental.ViewModels.IResultHandler;
-import com.example.minimental.ViewModels.SharedViewModel;
-import com.example.minimental.fragments.FifthQuestion;
 
 import java.util.ArrayList;
 

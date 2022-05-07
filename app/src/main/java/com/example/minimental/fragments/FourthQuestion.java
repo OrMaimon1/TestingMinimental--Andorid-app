@@ -24,6 +24,7 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.ViewModels.SharedViewModel;
+import com.example.minimental.secoundQuestion;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,8 @@ public class FourthQuestion extends Fragment {
     private int currentwordIndex = 0;
     private EditText resultText;
     private TextView feedBack;
+    private secoundQuestion fourthQuestion = new secoundQuestion();
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +56,7 @@ public class FourthQuestion extends Fragment {
                     speechResult.append(r);
                 }
                 String result = speechResult.toString();
-                resultText.setText(result);
-                sharedViewModel.setFirstWordInFourthQuestion(result);
+                updateAnswer(result);
             }
         });
     }
@@ -108,5 +110,22 @@ public class FourthQuestion extends Fragment {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
+    }
+
+
+    private void updateAnswer(String answer)
+    {
+        resultText.setText(answer);
+        String adder;
+        String[] spereatedWords = answer.split(" " , 3);
+        ArrayList<String> listOfWords = new ArrayList<>(3);
+        listOfWords.ensureCapacity(3);
+        listOfWords.add(0 , spereatedWords[0]);
+        listOfWords.add(1 , spereatedWords[1]);
+        listOfWords.add(2 , spereatedWords[2]);
+        fourthQuestion.setObject1(listOfWords.get(0));
+        fourthQuestion.setObject2(listOfWords.get(1));
+        fourthQuestion.setObject3(listOfWords.get(2));
+        sharedViewModel.setObjectData(fourthQuestion);
     }
 }

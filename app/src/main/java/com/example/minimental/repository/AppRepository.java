@@ -1,13 +1,9 @@
 package com.example.minimental.repository;
-import static com.squareup.okhttp.internal.Internal.instance;
 
-import android.app.Application;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.minimental.ViewModels.IResultHandler;
-import com.example.minimental.fragments.InformationFragment;
+import com.example.minimental.FifthQuestion;
 import com.example.minimental.informationQuestion;
 import com.example.minimental.secoundQuestion;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +28,7 @@ public class AppRepository {
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<informationQuestion> infoLiveData = new MutableLiveData<>();
     private MutableLiveData<secoundQuestion> objectLiveData = new MutableLiveData<>();
+    private MutableLiveData<FifthQuestion> FifthLiveData = new MutableLiveData<>();
     private MutableLiveData<ArrayList<String>> mathWordLiveData = new MutableLiveData<>();
     private MutableLiveData<ArrayList<String>> spellWordLiveData = new MutableLiveData<>();
 
@@ -45,19 +42,20 @@ public class AppRepository {
     }
 
     //informationQuestion get and set
-    public MutableLiveData<informationQuestion>getInformationData(){
+    public MutableLiveData<informationQuestion> getInformationData() {
 
         //loadInformationData();
         MutableLiveData<informationQuestion> data = new MutableLiveData<>();
         return data;
     }
-    public void setinfo(MutableLiveData<informationQuestion> info){
+
+    public void setinfo(MutableLiveData<informationQuestion> info) {
         infoLiveData.setValue(info.getValue());
         database = FirebaseDatabase.getInstance().getReference().child("Test");
         database.push().setValue(infoLiveData);
     }
 
-    private void loadInformationData(){
+    private void loadInformationData() {
 
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("test");
         database = FirebaseDatabase.getInstance().getReference().child("Test");
@@ -65,7 +63,7 @@ public class AppRepository {
     }
 
     //object get and set for 2 ,4 ,6 question
-    public MutableLiveData<secoundQuestion>get3ObjectData(){
+    public MutableLiveData<secoundQuestion> get3ObjectData() {
 
         //loadInformationData();
         MutableLiveData<secoundQuestion> data = new MutableLiveData<>();
@@ -73,20 +71,20 @@ public class AppRepository {
     }
 
 
-    public void setObject(MutableLiveData<secoundQuestion> info){
+    public void setObject(MutableLiveData<secoundQuestion> info) {
         objectLiveData.setValue(info.getValue());
         database = FirebaseDatabase.getInstance().getReference().child("Test");
         database.push().setValue(objectLiveData);
     }
 
-    private void loadObjectData(){
+    private void loadObjectData() {
 
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("test");
         database = FirebaseDatabase.getInstance().getReference().child("Test");
         database.push().setValue(objectLiveData);
     }
 
-    public MutableLiveData<ArrayList<String>>getSpellAnswer(){
+    public MutableLiveData<ArrayList<String>> getSpellAnswer() {
 
         //loadInformationData();
         MutableLiveData<ArrayList<String>> data = new MutableLiveData<>();
@@ -94,20 +92,20 @@ public class AppRepository {
     }
 
 
-    public void setSpellAnswer(MutableLiveData<ArrayList<String>> Math){
-        mathWordLiveData.setValue(Math.getValue());
+    public void setSpellAnswer(MutableLiveData<ArrayList<String>> Spell) {
+        spellWordLiveData.setValue(Spell.getValue());
         database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(mathWordLiveData);
+        database.push().setValue(spellWordLiveData);
     }
 
-    private void loadMathData(){
+    private void loadMathData() {
 
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("test");
         database = FirebaseDatabase.getInstance().getReference().child("Test");
         database.push().setValue(mathWordLiveData);
     }
 
-    public MutableLiveData<ArrayList<String>>getMathAnswer(){
+    public MutableLiveData<ArrayList<String>> getMathAnswer() {
 
         //loadInformationData();
         MutableLiveData<ArrayList<String>> data = new MutableLiveData<>();
@@ -115,10 +113,27 @@ public class AppRepository {
     }
 
 
-    public void setMathAnswer(MutableLiveData<ArrayList<String>> Word){
-        spellWordLiveData.setValue(Word.getValue());
+    public void setMathAnswer(MutableLiveData<ArrayList<String>> Math) {
+        mathWordLiveData.setValue(Math.getValue());
         database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(spellWordLiveData);
+        database.push().setValue(mathWordLiveData);
     }
+
+
+    public MutableLiveData<FifthQuestion> getPicDescription() {
+
+        //loadInformationData();
+        MutableLiveData<FifthQuestion> data = new MutableLiveData<>();
+        return data;
+    }
+
+
+    public void setPicDescription(MutableLiveData<FifthQuestion> info) {
+        FifthLiveData.setValue(info.getValue());
+        database = FirebaseDatabase.getInstance().getReference().child("Test");
+        database.push().setValue(FifthLiveData);
+    }
+
 }
+
 

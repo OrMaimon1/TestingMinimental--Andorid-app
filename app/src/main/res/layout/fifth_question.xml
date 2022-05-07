@@ -116,7 +116,7 @@
                     app:counterEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_nameET"
+                        android:id="@+id/input_FirstPicET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLength="21"
@@ -169,7 +169,7 @@
                     app:counterEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_nameET"
+                        android:id="@+id/input_SecondPicET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLength="21"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -21,18 +22,21 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.minimental.LifeCycleObserver;
+import com.example.minimental.FifthQuestion;
 import com.example.minimental.R;
-import com.example.minimental.ViewModels.IResultHandler;
 import com.example.minimental.ViewModels.SharedViewModel;
+
 
 import java.util.ArrayList;
 
-public class FifthQuestion extends Fragment {
+public class FifthFragment extends Fragment {
     public SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private Observer<String> getFirstItemDescription;
     private TextView text;
+    private EditText currentFirstPicET;
+    private EditText currentSecondPicET;
+    private FifthQuestion fifthQuestion = new FifthQuestion();
 
 
     @Override
@@ -50,7 +54,7 @@ public class FifthQuestion extends Fragment {
                         speechResult.append(r);
                     }
                     String result = speechResult.toString();
-                    sharedViewModel.setFirstItemDescription(result);
+                    //sharedViewModel.setFirstItemDescription(result);
                 }
             }
         });
@@ -68,16 +72,18 @@ public class FifthQuestion extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fifth_question,container,false);
 
+        currentFirstPicET = rootView.findViewById(R.id.input_FirstPicET);
+        currentSecondPicET = rootView.findViewById(R.id.input_SecondPicET);
         text = rootView.findViewById(R.id.fifth_txt_check);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
-        getFirstItemDescription = new Observer<String>() {
+/*        getFirstItemDescription = new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 text.setText(s);
             }
         };
-        sharedViewModel.getFirstItemDescription().observe(getViewLifecycleOwner(),getFirstItemDescription);
+        sharedViewModel.getFirstItemDescription().observe(getViewLifecycleOwner(),getFirstItemDescription);*/
 
 
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
@@ -86,7 +92,9 @@ public class FifthQuestion extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                fifthQuestion.setFirstpic(currentFirstPicET.getText().toString());
+                fifthQuestion.setSecoundpic(currentSecondPicET.getText().toString());
+                sharedViewModel.setFifthQuestionLiveData(fifthQuestion);
                 Navigation.findNavController(view).navigate(R.id.action_fifthQuestion_to_sixth_question);
             }
         });
@@ -104,4 +112,5 @@ public class FifthQuestion extends Fragment {
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
     }
+
 }

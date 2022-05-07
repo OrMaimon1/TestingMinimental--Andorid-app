@@ -4,29 +4,29 @@ import android.graphics.Bitmap;
 
 public class FifthQuestion {
 
-    private Bitmap firstpic;
-    private Bitmap secoundpic;
+    private String firstpic;
+    private String secoundpic;
 
     public FifthQuestion() {}
 
-    public FifthQuestion(Bitmap firstpic, Bitmap secoundpic) {
+    public FifthQuestion(String firstpic, String secoundpic) {
         this.firstpic = firstpic;
         this.secoundpic = secoundpic;
     }
 
-    public Bitmap getFirstpic() {
+    public String getFirstpic() {
         return firstpic;
     }
 
-    public void setFirstpic(Bitmap firstpic) {
+    public void setFirstpic(String firstpic) {
         this.firstpic = firstpic;
     }
 
-    public Bitmap getSecoundpic() {
+    public String getSecoundpic() {
         return secoundpic;
     }
 
-    public void setSecoundpic(Bitmap secoundpic) {
+    public void setSecoundpic(String secoundpic) {
         this.secoundpic = secoundpic;
     }
 }

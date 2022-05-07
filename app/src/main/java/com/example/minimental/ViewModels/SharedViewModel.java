@@ -87,15 +87,37 @@ public class SharedViewModel extends ViewModel {
 
 
     //region Fourth Question Data Members
-    private MutableLiveData<String> firstWordInFourthQuestion = new MutableLiveData<>();
-    private MutableLiveData<String> secondWordInFourthQuestion = new MutableLiveData<>();
-    private MutableLiveData<String> thirdWordInFourthQuestion = new MutableLiveData<>();
-    //endregion
+    private MutableLiveData<secoundQuestion> fourthQuestionLiveData = new MutableLiveData<>();
+
+    public MutableLiveData<secoundQuestion> getFourthQuestionLiveData(){
+
+        fourthQuestionLiveData = repository.get3ObjectData();
+        return fourthQuestionLiveData;
+    }
+    public void setFourthQuestionLiveData(secoundQuestion secoundQuestion){
+
+        fourthQuestionLiveData.setValue(secoundQuestion);
+        repository.setObject(fourthQuestionLiveData);
+    }
+
+
+
+
 
     //region Fifth Question Data Members
-    private MutableLiveData<String> firstItemDescription = new MutableLiveData<>();
-    private MutableLiveData<String> secondItemDescription = new MutableLiveData<>();
-    //endregion
+    private MutableLiveData<FifthQuestion> PicItemDescription = new MutableLiveData<>();
+
+
+    public MutableLiveData<FifthQuestion> getFifthQuestionLiveData(){
+
+        PicItemDescription = repository.getPicDescription();
+        return PicItemDescription;
+    }
+    public void setFifthQuestionLiveData(FifthQuestion itemDescription){
+
+        PicItemDescription.setValue(itemDescription);
+        repository.setPicDescription(PicItemDescription);
+    }
 
     //region Sixth Question Data member
     private MutableLiveData<String> repeatedSentence = new MutableLiveData<>();
@@ -109,54 +131,6 @@ public class SharedViewModel extends ViewModel {
     //endregion
 
 
-
-
-    //region Fourth Question Methods
-    public void setFirstWordInFourthQuestion(String value)
-    {
-        firstWordInFourthQuestion.setValue(value);
-    }
-
-    public void setSecondWordInFourthQuestion(String value)
-    {
-        secondWordInFourthQuestion.setValue(value);
-    }
-    public void setThirdWordInFourthQuestion(String value)
-    {
-        thirdWordInFourthQuestion.setValue(value);
-    }
-    public MutableLiveData<String> getFirstWordInFourthQuestion()
-    {
-        return firstWordInFourthQuestion;
-    }
-    public MutableLiveData<String> getSecondWordInFourthQuestion()
-    {
-        return secondWordInFourthQuestion;
-    }
-    public MutableLiveData<String> getThirdWordInFourthQuestion()
-    {
-        return thirdWordInFourthQuestion;
-    }
-    //endregion
-
-    //region Fifth Question Methods
-    public void setFirstItemDescription(String value)
-    {
-        firstItemDescription.setValue(value);
-    }
-    public void setSecondItemDescription(String value)
-    {
-        secondWordInFourthQuestion.setValue(value);
-    }
-
-    public MutableLiveData<String> getFirstItemDescription() {
-        return firstItemDescription;
-    }
-
-    public MutableLiveData<String> getSecondItemDescription() {
-        return secondItemDescription;
-    }
-    //endregion
 
     //region Sixth Question Methods
     public void setRepeatedSentence(String value)
