@@ -46,7 +46,7 @@
                     android:layout_margin="30dp"
                     android:gravity="center"
                     android:text="enter a sentence"
-                    android:drawableStart="@drawable/ic_baseline_volume_up_24"
+                    android:drawableStart="@drawable/ic_speaker"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -100,8 +100,8 @@
                     android:layout_height="75dp"
                     android:layout_gravity="center"
                     android:layout_margin="15dp"
-                    android:background="@drawable/round_border"
-                    android:src="@drawable/ic_mic_white" />
+                    android:background="@null"
+                    android:src="@drawable/ic_microphone2" />
 
 
             </LinearLayout>

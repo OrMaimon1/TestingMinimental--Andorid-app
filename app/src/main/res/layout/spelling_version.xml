@@ -63,10 +63,10 @@
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:layout_margin="20dp"
-                    android:background="@drawable/round_border"
+                    android:background="@null"
                     android:gravity="center"
                     android:minHeight="48dp"
-                    android:src="@drawable/ic_mic_white" />
+                    android:src="@drawable/ic_microphone2" />
             </LinearLayout>
 
 
