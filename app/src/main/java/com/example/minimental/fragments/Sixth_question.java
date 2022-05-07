@@ -30,7 +30,6 @@ public class Sixth_question extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_sixth_question_to_SeventhQuestion);
             }
         });
-
         return rootView;
 
     }

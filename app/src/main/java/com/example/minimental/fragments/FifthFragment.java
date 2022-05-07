@@ -1,6 +1,8 @@
 package com.example.minimental.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
@@ -27,6 +30,8 @@ import com.example.minimental.R;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class FifthFragment extends Fragment {
@@ -36,12 +41,28 @@ public class FifthFragment extends Fragment {
     private TextView text;
     private EditText currentFirstPicET;
     private EditText currentSecondPicET;
+    private ImageView firstImage;
+    private Bitmap firstImageBitmap;
     private FifthQuestion fifthQuestion = new FifthQuestion();
+    private Thread imageProcessThread;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        imageProcessThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL("https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Minimental%20test%20image%201.jpg?alt=media&token=df0aa36e-4b89-4914-ac9e-e236dcd9a91a");
+                    firstImageBitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                }catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+        imageProcessThread.start();
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         speechRecognizerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -74,6 +95,13 @@ public class FifthFragment extends Fragment {
 
         currentFirstPicET = rootView.findViewById(R.id.input_FirstPicET);
         currentSecondPicET = rootView.findViewById(R.id.input_SecondPicET);
+        firstImage = rootView.findViewById(R.id.first_Image);
+        try {
+            imageProcessThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        firstImage.setImageBitmap(firstImageBitmap);
         text = rootView.findViewById(R.id.fifth_txt_check);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 

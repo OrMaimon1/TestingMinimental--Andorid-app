@@ -29,7 +29,7 @@ public class SeventhQuestion extends Fragment {
         View rootView = inflater.inflate(R.layout.seventh_question,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
 
-        milk = (ImageView) rootView.findViewById(R.id.seventh_question_ImageView_milk);
+        milk = rootView.findViewById(R.id.seventh_question_ImageView_milk);
         milk.setOnTouchListener(new MyTouchListener());
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {

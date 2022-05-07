@@ -40,6 +40,16 @@
                 android:layout_marginBottom="50dp"
                 android:orientation="horizontal">
 
+                <ImageButton
+                    android:id="@+id/audio_test_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_speaker"></ImageButton>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/day_quetion"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

@@ -1,8 +1,10 @@
 package com.example.minimental.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +22,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -27,8 +31,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import com.example.minimental.MainActivity;
 import com.example.minimental.Question;
 import com.example.minimental.R;
+import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.informationQuestion;
 
@@ -50,10 +56,17 @@ public class  InformationFragment extends Fragment {
     private EditText currentAreaAnswerET;
     private ImageView currentQuestionAnswered;
     private informationQuestion informationQuestion = new informationQuestion();
+    Context mainActivity;
 
 
     //Question currentQuestion;
 
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mainActivity = context;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,6 +127,17 @@ public class  InformationFragment extends Fragment {
         floormicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         areaMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
 
+
+        ImageButton speakerBtn = rootView.findViewById(R.id.audio_test_btn);
+        speakerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Minimental%20test%20recording.mp4?alt=media&token=6f60dae1-3eff-42bb-9203-08e240e89c20";
+                Intent intent = new Intent(getContext(), MediaPlayerService.class);
+                intent.putExtra("Link" , link);
+                getActivity().startService(intent);
+            }
+        });
 
         sharedViewModel.getInfoLiveData().observe(getViewLifecycleOwner(), new Observer<informationQuestion>() {
             @Override
