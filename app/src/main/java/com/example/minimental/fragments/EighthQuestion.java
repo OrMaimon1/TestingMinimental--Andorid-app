@@ -94,8 +94,8 @@ public class EighthQuestion extends Fragment {
        nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharedViewModel.setCurrectOrderSeventh(eigthCurrectOrder);
-                Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_tenthQuestion);
+                sharedViewModel.setCurrectPicOrderEighth(eigthCurrectOrder);
+                Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_ninthQuestion);
             }
         });
 

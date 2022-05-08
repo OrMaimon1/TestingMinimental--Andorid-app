@@ -218,7 +218,11 @@ public class AppRepository {
     public MutableLiveData<SixthQuestion> getSentenceForNinth() {
 
         //loadInformationData();
+        SixthQuestion buffer = new SixthQuestion();
         MutableLiveData<SixthQuestion> data = new MutableLiveData<>();
+        buffer.setSentence(FirebaseDatabase.getInstance().getReference().child("Patients").child(userId.getValue()).child("next test").child("sixthQuestion").getKey());
+        data.setValue(buffer);
+
         return data;
     }
 
