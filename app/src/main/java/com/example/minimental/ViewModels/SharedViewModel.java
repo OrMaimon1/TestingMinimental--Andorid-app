@@ -10,6 +10,7 @@ import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
 import com.example.minimental.ThirdQuestion;
+import com.example.minimental.fragments.NinthQuestion;
 import com.example.minimental.fragments.SecondQuestion;
 import com.example.minimental.informationQuestion;
 import com.example.minimental.repository.AppRepository;
@@ -28,8 +29,20 @@ public class SharedViewModel extends ViewModel {
 
     //region New View-Model For Second Fragment
     private AppRepository repository = new AppRepository();
+    private MutableLiveData<String> username = new MutableLiveData<>();
+    private MutableLiveData<String> userId = new MutableLiveData<>();
 
+    public void setUserId(String userId1){
 
+        userId.setValue(userId1);
+        repository.setUserId(userId);
+    }
+
+    public void setUserName(String userName){
+
+        username.setValue(userName);
+        repository.setUserName(username);
+    }
     //informationQuestion
     private MutableLiveData<informationQuestion> infoLiveData = new MutableLiveData<>();
     public MutableLiveData<informationQuestion> getInfoLiveData(){
@@ -120,10 +133,84 @@ public class SharedViewModel extends ViewModel {
     }
 
     //region Sixth Question Data member
-    private MutableLiveData<String> repeatedSentence = new MutableLiveData<>();
-    //endregion
+    private MutableLiveData<SixthQuestion> repeatedSentence = new MutableLiveData<>();
+
+    public MutableLiveData<SixthQuestion> getRepeatedSentence(){
+
+        repeatedSentence = repository.getSentence();
+        return repeatedSentence;
+    }
+
+    public void setRepeatedSentence(SixthQuestion value)
+    {
+        repeatedSentence.setValue(value);
+        repository.setSentence(repeatedSentence);
+    }
+    //region Sevnth Question Data Member
+    private MutableLiveData<Boolean> currectOrderSeventh = new MutableLiveData<>();
+    private MutableLiveData<SevnthQuestion> picForSeventhQuestion = new MutableLiveData<>();
+
+    public MutableLiveData<SevnthQuestion> getPicSeventhQuestion(){
+
+        picForSeventhQuestion = repository.getPicForSeventhQuestion();
+        return picForSeventhQuestion;
+    }
+
+    public void setCurrectOrderSeventh(Boolean value)
+    {
+        currectOrderSeventh.setValue(value);
+        repository.setCurrectPicOrder(currectOrderSeventh);
+    }
 
     //region Eight Question Data Member
+    private MutableLiveData<Boolean> currectOrderEighth = new MutableLiveData<>();
+    private MutableLiveData<EightQuestion> picForEighthQuestion = new MutableLiveData<>();
+
+    public MutableLiveData<EightQuestion> getPicEighthQuestion(){
+
+        picForEighthQuestion = repository.getPicForEighthQuestion();
+        return picForEighthQuestion;
+    }
+
+    public void setCurrectPicOrderEighth(Boolean value)
+    {
+        currectOrderEighth.setValue(value);
+        repository.setCurrectPicOrderEighth(currectOrderEighth);
+    }
+
+    //region Ninth Question Data Member
+    private MutableLiveData<SixthQuestion> sentenceForNinth = new MutableLiveData<>();
+
+    public MutableLiveData<SixthQuestion> getSentenceNinthQuestion(){
+
+        sentenceForNinth = repository.getSentenceForNinth();
+        return sentenceForNinth;
+    }
+
+    public void setSentenceNinthQuestion(SixthQuestion sentenceNinthQuestion)
+    {
+        sentenceForNinth.setValue(sentenceNinthQuestion);
+        repository.setSentenceForNinth(sentenceForNinth);
+    }
+
+    //region Tenth Question
+    private MutableLiveData<TenthQuestion> picForTenth = new MutableLiveData<>();
+
+    public MutableLiveData<TenthQuestion> getpicForTenthQuestion(){
+
+        picForTenth = repository.getpicForTenth();
+        return picForTenth;
+    }
+
+    public void setpicForTenthQuestion(TenthQuestion sentencepicForTenth)
+    {
+        picForTenth.setValue(sentencepicForTenth);
+        repository.setpicForTenth(picForTenth);
+    }
+
+
+
+/*    //region Eight Question Data Member
     private MutableLiveData<Float> blackBallLocationX = new MutableLiveData<>();
     private MutableLiveData<Float> blackBallLocationY = new MutableLiveData<>();
     private MutableLiveData<Float> yellowBallLocationX = new MutableLiveData<>();
@@ -132,16 +219,6 @@ public class SharedViewModel extends ViewModel {
 
 
 
-    //region Sixth Question Methods
-    public void setRepeatedSentence(String value)
-    {
-        repeatedSentence.setValue(value);
-    }
-
-    public MutableLiveData<String> getRepeatedSentence() {
-        return repeatedSentence;
-    }
-    //endregion
 
     //region Eight Question Methods
     public void setBlackBallLocationX(Float value)
@@ -176,9 +253,9 @@ public class SharedViewModel extends ViewModel {
     public MutableLiveData<Float> getYellowBallLocationY() {
         return yellowBallLocationY;
     }
-    //endregion
+    //endregion*/
 
-
+/*
     //firebase database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference users = database.getReference("users");
@@ -206,6 +283,6 @@ public class SharedViewModel extends ViewModel {
 
             }
         });
-    }
+    }*/
 
 }

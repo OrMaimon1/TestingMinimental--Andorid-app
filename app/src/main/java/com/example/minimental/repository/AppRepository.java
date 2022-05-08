@@ -3,7 +3,12 @@ package com.example.minimental.repository;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.minimental.EightQuestion;
 import com.example.minimental.FifthQuestion;
+import com.example.minimental.SevnthQuestion;
+import com.example.minimental.SixthQuestion;
+import com.example.minimental.TenthQuestion;
+import com.example.minimental.fragments.NinthQuestion;
 import com.example.minimental.informationQuestion;
 import com.example.minimental.secoundQuestion;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,11 +33,31 @@ public class AppRepository {
     private FirebaseAuth firebaseAuth;
     private MutableLiveData<informationQuestion> infoLiveData = new MutableLiveData<>();
     private MutableLiveData<secoundQuestion> objectLiveData = new MutableLiveData<>();
+    private MutableLiveData<secoundQuestion> objectForthLiveData = new MutableLiveData<>();
     private MutableLiveData<FifthQuestion> FifthLiveData = new MutableLiveData<>();
     private MutableLiveData<ArrayList<String>> mathWordLiveData = new MutableLiveData<>();
     private MutableLiveData<ArrayList<String>> spellWordLiveData = new MutableLiveData<>();
+    private MutableLiveData<SixthQuestion> sentenceLiveData = new MutableLiveData<>();
+    private MutableLiveData<Boolean> currectOrderSeventh = new MutableLiveData<>();
+    private MutableLiveData<Boolean> currectOrderEight = new MutableLiveData<>();
+    private MutableLiveData<SevnthQuestion> PicForSeventhQuestion = new MutableLiveData<>();
+    private MutableLiveData<EightQuestion> eightQuestionMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<SixthQuestion> ninthQuestionMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<TenthQuestion> tenthQuestionMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<String> username = new MutableLiveData<>();
+    private MutableLiveData<String> userId = new MutableLiveData<>();
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    //private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+    public void setUserName(MutableLiveData<String> userName) {
+        username.setValue(userName.getValue());
+    }
+
+    public void setUserId(MutableLiveData<String> userId1) {
+        userId.setValue(userId1.getValue());
+    }
+
 
     public static AppRepository getInstance(Context context) {
         if (instance == null) {
@@ -51,15 +76,15 @@ public class AppRepository {
 
     public void setinfo(MutableLiveData<informationQuestion> info) {
         infoLiveData.setValue(info.getValue());
-        database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(infoLiveData);
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("FirstQuestion");
+        database.setValue(infoLiveData);
     }
 
     private void loadInformationData() {
 
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("test");
-        database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(infoLiveData);
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("FirstQuestion");
+        database.setValue(infoLiveData);
     }
 
     //object get and set for 2 ,4 ,6 question
@@ -73,15 +98,15 @@ public class AppRepository {
 
     public void setObject(MutableLiveData<secoundQuestion> info) {
         objectLiveData.setValue(info.getValue());
-        database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(objectLiveData);
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SecondQuestion");
+        database.setValue(objectLiveData);
     }
 
     private void loadObjectData() {
 
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("test");
-        database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(objectLiveData);
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SecondQuestion");
+        database.setValue(objectLiveData);
     }
 
     public MutableLiveData<ArrayList<String>> getSpellAnswer() {
@@ -94,15 +119,15 @@ public class AppRepository {
 
     public void setSpellAnswer(MutableLiveData<ArrayList<String>> Spell) {
         spellWordLiveData.setValue(Spell.getValue());
-        database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(spellWordLiveData);
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SpellQuestion");
+        database.setValue(spellWordLiveData);
     }
 
     private void loadMathData() {
 
         //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("test");
-        database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(mathWordLiveData);
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("MathQuestion");
+        database.setValue(mathWordLiveData);
     }
 
     public MutableLiveData<ArrayList<String>> getMathAnswer() {
@@ -115,10 +140,24 @@ public class AppRepository {
 
     public void setMathAnswer(MutableLiveData<ArrayList<String>> Math) {
         mathWordLiveData.setValue(Math.getValue());
-        database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(mathWordLiveData);
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("MathQuestion");
+        database.setValue(mathWordLiveData);
     }
 
+
+    public MutableLiveData<secoundQuestion> getObjectForthLiveData() {
+
+        //loadInformationData();
+        MutableLiveData<secoundQuestion> data = new MutableLiveData<>();
+        return data;
+    }
+
+
+    public void setObjectForthLiveData(MutableLiveData<secoundQuestion> info) {
+        objectForthLiveData.setValue(info.getValue());
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("ForthQuestion");
+        database.setValue(objectForthLiveData);
+    }
 
     public MutableLiveData<FifthQuestion> getPicDescription() {
 
@@ -130,8 +169,77 @@ public class AppRepository {
 
     public void setPicDescription(MutableLiveData<FifthQuestion> info) {
         FifthLiveData.setValue(info.getValue());
-        database = FirebaseDatabase.getInstance().getReference().child("Test");
-        database.push().setValue(FifthLiveData);
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("FifthQuestion");
+        database.setValue(FifthLiveData);
+    }
+
+    public MutableLiveData<SixthQuestion> getSentence() {
+
+        //loadInformationData();
+        MutableLiveData<SixthQuestion> data = new MutableLiveData<>();
+        return data;
+    }
+
+
+    public void setSentence(MutableLiveData<SixthQuestion> info) {
+        sentenceLiveData.setValue(info.getValue());
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SixthQuestion");
+        database.setValue(sentenceLiveData);
+    }
+
+    public MutableLiveData<SevnthQuestion> getPicForSeventhQuestion() {
+
+        //loadInformationData();
+        MutableLiveData<SevnthQuestion> data = new MutableLiveData<>();
+        return data;
+    }
+
+
+    public void setCurrectPicOrder(MutableLiveData<Boolean> currectPicOrder) {
+        currectOrderSeventh.setValue(currectPicOrder.getValue());
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SeventhQuestion");
+        database.setValue(currectOrderSeventh);
+    }
+
+    public MutableLiveData<EightQuestion> getPicForEighthQuestion() {
+
+        //loadInformationData();
+        MutableLiveData<EightQuestion> data = new MutableLiveData<>();
+        return data;
+    }
+
+
+    public void setCurrectPicOrderEighth(MutableLiveData<Boolean> currectPicOrder) {
+        currectOrderEight.setValue(currectPicOrder.getValue());
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("EigthQuestion");
+        database.setValue(currectOrderEight);
+    }
+
+    public MutableLiveData<SixthQuestion> getSentenceForNinth() {
+
+        //loadInformationData();
+        MutableLiveData<SixthQuestion> data = new MutableLiveData<>();
+        return data;
+    }
+
+    public void setSentenceForNinth(MutableLiveData<SixthQuestion> sentence) {
+        ninthQuestionMutableLiveData.setValue(sentence.getValue());
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("NineQuestion");
+        database.setValue(ninthQuestionMutableLiveData);
+    }
+
+    public MutableLiveData<TenthQuestion> getpicForTenth() {
+
+        //loadInformationData();
+        MutableLiveData<TenthQuestion> data = new MutableLiveData<>();
+        return data;
+    }
+
+
+    public void setpicForTenth(MutableLiveData<TenthQuestion> url) {
+        tenthQuestionMutableLiveData.setValue(url.getValue());
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("TenthQuestion");
+        database.setValue(tenthQuestionMutableLiveData);
     }
 
 }

@@ -35,11 +35,11 @@ public class MathVersion extends Fragment  {
     private Observer<String> getAnswerObserver;
     private int numberOfAnswersGiven = 0;
     private TextView resultText;
+    private ArrayList<String> FinalResult = new ArrayList<>();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         speechRecognizerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult activityResult) {
@@ -47,11 +47,13 @@ public class MathVersion extends Fragment  {
                 StringBuffer speechResult = new StringBuffer();
                 if (data != null) {
                     ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    /*for (String r : results) {
+                    for (String r : results) {
                         speechResult.append(r);
                     }
-                    String result = speechResult.toString();*/
-                    sharedViewModel.setMathAnswerGiven(results);
+                    String result = speechResult.toString();
+                    FinalResult.add(result);
+                    //updateAnswer(result);
+                    //sharedViewModel.setMathAnswerGiven(results);
                 }
             }
         });
@@ -68,6 +70,7 @@ public class MathVersion extends Fragment  {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.math_version,container,false);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton speechBtn = rootView.findViewById(R.id.mic_image_btn);
         nxtBtn.setEnabled(false);
@@ -100,6 +103,7 @@ public class MathVersion extends Fragment  {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sharedViewModel.setMathAnswerGiven(FinalResult);
                 Navigation.findNavController(view).navigate(R.id.action_mathVersion_to_fourthQuestion);
             }
         });
@@ -111,4 +115,19 @@ public class MathVersion extends Fragment  {
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
     }
+
+/*    private void updateAnswer(String answer)
+    {
+        resultText.setText(answer);
+        String adder;
+        String[] spereatedWords = answer.split(" " , 5);
+        ArrayList<String> listOfWords = new ArrayList<>(5);
+        listOfWords.ensureCapacity(5);
+        listOfWords.add(0 , spereatedWords[0]);
+        listOfWords.add(1 , spereatedWords[1]);
+        listOfWords.add(2 , spereatedWords[2]);
+        listOfWords.add(3 , spereatedWords[3]);
+        listOfWords.add(4 , spereatedWords[4]);
+        sharedViewModel.setMathAnswerGiven(listOfWords);
+    }*/
 }
