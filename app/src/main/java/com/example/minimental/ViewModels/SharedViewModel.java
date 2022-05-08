@@ -104,13 +104,13 @@ public class SharedViewModel extends ViewModel {
 
     public MutableLiveData<secoundQuestion> getFourthQuestionLiveData(){
 
-        fourthQuestionLiveData = repository.get3ObjectData();
+        fourthQuestionLiveData = repository.getObjectForthLiveData();
         return fourthQuestionLiveData;
     }
     public void setFourthQuestionLiveData(secoundQuestion secoundQuestion){
 
         fourthQuestionLiveData.setValue(secoundQuestion);
-        repository.setObject(fourthQuestionLiveData);
+        repository.setObjectForthLiveData(fourthQuestionLiveData);
     }
 
 
