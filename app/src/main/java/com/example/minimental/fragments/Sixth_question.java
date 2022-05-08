@@ -48,7 +48,7 @@ public class Sixth_question extends Fragment {
                             speechResult.append(r);
                         }
                         String result = speechResult.toString();
-                        //sharedViewModel.setRepeatedSentence(result);
+                        //sharedViewModel.setRepeatedSentence(result);////////
                     }
                 }
             }
