@@ -34,21 +34,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/fifth_question_mic_btn"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@null"
-                android:src="@drawable/ic_microphone2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="check"
-                android:textSize="40sp"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/fifth_txt_check"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,8 +80,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:baselineAligned="false"
+                android:layout_marginBottom="50dp"
                 android:orientation="horizontal">
 
 
@@ -110,18 +94,28 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/answer_math_voice"
-                    android:textSize="20sp"
-                    app:counterEnabled="true">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_FirstPicET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:maxLength="21"
                         android:maxLines="1"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/month_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_microphone"></ImageButton>
 
             </LinearLayout>
 
@@ -146,8 +140,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:baselineAligned="false"
+                android:layout_marginBottom="50dp"
                 android:orientation="horizontal">
 
 
@@ -161,8 +154,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="@string/answer_math_voice"
-                    android:textSize="20sp"
-                    app:counterEnabled="true">
+                    android:textSize="20sp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_SecondPicET"
@@ -173,6 +165,16 @@
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/month_mic_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_microphone"></ImageButton>
 
             </LinearLayout>
 

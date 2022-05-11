@@ -221,7 +221,7 @@
                     android:gravity="center"
                     android:hint="@string/enter_currentSeason"
                     android:textSize="20sp">
-
+w
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/input_seasonET"
                         android:layout_width="match_parent"
