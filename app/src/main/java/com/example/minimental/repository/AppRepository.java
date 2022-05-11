@@ -1,6 +1,8 @@
 package com.example.minimental.repository;
 
 
+import android.graphics.Bitmap;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.minimental.EightQuestion;
@@ -21,16 +23,21 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Context;
 import com.google.firebase.database.core.Repo;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.okhttp.internal.Internal;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 
 public class AppRepository {
 
+
     private static AppRepository instance;
     private DatabaseReference database;
-    private FirebaseAuth firebaseAuth;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
     private MutableLiveData<informationQuestion> infoLiveData = new MutableLiveData<>();
     private MutableLiveData<secoundQuestion> objectLiveData = new MutableLiveData<>();
     private MutableLiveData<secoundQuestion> objectForthLiveData = new MutableLiveData<>();
@@ -240,10 +247,29 @@ public class AppRepository {
     }
 
 
-    public void setpicForTenth(MutableLiveData<TenthQuestion> url) {
-        tenthQuestionMutableLiveData.setValue(url.getValue());
-        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("TenthQuestion");
-        database.setValue(tenthQuestionMutableLiveData);
+    public void setpicForTenth(MutableLiveData<TenthQuestion> pic) {
+        tenthQuestionMutableLiveData.setValue(pic.getValue());
+        StorageReference TenthRef = storage.getReference().child("TenthQuestion Pic").child(userId.getValue()).child("test").child("drawImage.jpg");
+        // Get the data from an ImageView as bytes
+        Bitmap bitmap = pic.getValue().getPicToCopy();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+        UploadTask uploadTask = TenthRef.putBytes(data);
+        /*uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                // ...
+            }
+        });*/
+        //database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("TenthQuestion");
+        //database.setValue(tenthQuestionMutableLiveData);
     }
 
 }

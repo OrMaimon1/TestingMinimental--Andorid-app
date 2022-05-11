@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 public class Painter extends View {
 
+    
     public int BRUSH_SIZE = 10;
     public static final int COLOR_PEN = Color.RED;
     public static final int COLOR_ERASER = Color.WHITE;
