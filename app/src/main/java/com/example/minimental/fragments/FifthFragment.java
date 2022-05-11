@@ -102,7 +102,7 @@ public class FifthFragment extends Fragment {
             e.printStackTrace();
         }
         firstImage.setImageBitmap(firstImageBitmap);
-        text = rootView.findViewById(R.id.fifth_txt_check);
+        text = rootView.findViewById(R.id.input_FirstPicET);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 
 /*        getFirstItemDescription = new Observer<String>() {
@@ -115,7 +115,7 @@ public class FifthFragment extends Fragment {
 
 
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        ImageButton recordBtn = rootView.findViewById(R.id.fifth_question_mic_btn);
+        ImageButton recordBtn = rootView.findViewById(R.id.pict1_mic_image_view);
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
