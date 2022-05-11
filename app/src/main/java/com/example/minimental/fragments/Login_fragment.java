@@ -19,6 +19,7 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.MainActivityViewModel;
 import com.example.minimental.R;
+import com.example.minimental.ViewModels.SharedViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -30,11 +31,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Login_fragment extends Fragment {
 
-    private MainActivityViewModel viewModel;
+    private SharedViewModel viewModel;
     private TextInputLayout textInputUsername;
     private TextInputLayout textInputPassword;
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseAuth.AuthStateListener authStateListener;
+    private String userId;
 
 
     @Nullable
@@ -44,21 +46,16 @@ public class Login_fragment extends Fragment {
         //where to put the viewmodel of the fragment
         textInputUsername = rootView.findViewById(R.id.input_name);
         textInputPassword = rootView.findViewById(R.id.input_password);
-        viewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
-        viewModel.getUserName().observe(getViewLifecycleOwner(), new Observer<CharSequence>() {
-            @Override
-            public void onChanged(CharSequence s) {
-                textInputUsername.getEditText().setText(s);
-            }
-        });
+        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 String username = textInputUsername.getEditText().getText().toString();
                 String password = textInputPassword.getEditText().getText().toString();
                 viewModel.setUserName(textInputUsername.getEditText().getText().toString());
-                viewModel.setPassword(textInputPassword.getEditText().getText().toString());
+                viewModel.setUserId(userId);
                 if (username.length() > 0 && password.length() > 0) {
                     firebaseAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override

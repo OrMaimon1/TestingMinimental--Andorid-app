@@ -126,6 +126,6 @@ public class FourthQuestion extends Fragment {
         fourthQuestion.setObject1(listOfWords.get(0));
         fourthQuestion.setObject2(listOfWords.get(1));
         fourthQuestion.setObject3(listOfWords.get(2));
-        sharedViewModel.setObjectData(fourthQuestion);
+        sharedViewModel.setFourthQuestionLiveData(fourthQuestion);
     }
 }

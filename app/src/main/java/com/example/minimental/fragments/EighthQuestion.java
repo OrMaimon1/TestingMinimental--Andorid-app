@@ -34,6 +34,9 @@ import com.example.minimental.ViewModels.SharedViewModel;
 public class EighthQuestion extends Fragment {
     
     //View blackCircle, yellowCircle, redSquare, blueCircle;
+    private SharedViewModel sharedViewModel;
+    private EightQuestion eightQuestion = new EightQuestion();
+    private Boolean eigthCurrectOrder = false;
     private RelativeLayout dragLayout;
     private BallsDragView ballsDragView;
     private BallsDragView.Circle yellowBall;
@@ -55,6 +58,7 @@ public class EighthQuestion extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.eighth_question,container,false);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ballsDragView = rootView.findViewById(R.id.ball_drag_view);
         yellowBall = ballsDragView.getYellowBall();
@@ -90,7 +94,8 @@ public class EighthQuestion extends Fragment {
        nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_tenthQuestion);
+                sharedViewModel.setCurrectPicOrderEighth(eigthCurrectOrder);
+                Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_ninthQuestion);
             }
         });
 

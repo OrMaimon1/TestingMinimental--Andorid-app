@@ -14,28 +14,34 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
+import com.example.minimental.SevnthQuestion;
+import com.example.minimental.ViewModels.SharedViewModel;
 
 public class SeventhQuestion extends Fragment {
 
     ImageView milk;
     float x = 0, y = 0;
+    private SharedViewModel sharedViewModel;
+    private SevnthQuestion sevnthQuestion = new SevnthQuestion();
+    private Boolean sevnthCurrectOrder = false;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.seventh_question,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         milk = rootView.findViewById(R.id.seventh_question_ImageView_milk);
         milk.setOnTouchListener(new MyTouchListener());
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                sharedViewModel.setCurrectOrderSeventh(sevnthCurrectOrder);
                 Navigation.findNavController(view).navigate(R.id.action_SeventhQuestion_to_eighthQuestion);
             }
         });

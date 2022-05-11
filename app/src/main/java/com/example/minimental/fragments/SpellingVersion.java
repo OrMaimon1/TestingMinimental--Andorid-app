@@ -29,6 +29,8 @@ public class SpellingVersion extends Fragment {
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private Observer<String> getSpelledWordObserver;
     private SharedViewModel sharedViewModel;
+    private ArrayList<String> FinalResult = new ArrayList<>();
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,11 +43,12 @@ public class SpellingVersion extends Fragment {
                 StringBuffer speechResult = new StringBuffer();
                 if (data != null) {
                     ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-/*                    for (String r : results) {
+                    for (String r : results) {
                         speechResult.append(r);
                     }
-                    String result = speechResult.toString();*/
-                    sharedViewModel.setSpelledWord(results);
+                    String result = speechResult.toString();
+                    //updateAnswer(result);
+                    FinalResult.add(result);
                 }
             }
         });
@@ -72,7 +75,7 @@ public class SpellingVersion extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                sharedViewModel.setSpelledWord(FinalResult);
                 Navigation.findNavController(view).navigate(R.id.action_spellingVersion_to_fourthQuestion);
             }
         });
@@ -83,5 +86,19 @@ public class SpellingVersion extends Fragment {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
+    }
+
+    private void updateAnswer(String answer)
+    {
+        //resultText.setText(answer);
+        String adder;
+        String[] spereatedWords = answer.split(" " , 5);
+        ArrayList<String> listOfWords = new ArrayList<>(5);
+        listOfWords.ensureCapacity(5);
+        listOfWords.add(0 , spereatedWords[0]);
+        listOfWords.add(1 , spereatedWords[1]);
+        listOfWords.add(2 , spereatedWords[2]);
+        listOfWords.add(3 , spereatedWords[3]);
+        listOfWords.add(4 , spereatedWords[4]);
     }
 }

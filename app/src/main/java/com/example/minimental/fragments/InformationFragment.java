@@ -163,7 +163,6 @@ public class  InformationFragment extends Fragment {
                 informationQuestion.setFloor(currentFloorAnswerET.getText().toString());
                 informationQuestion.setArea(currentAreaAnswerET.getText().toString());
                 sharedViewModel.setInfoLiveData(informationQuestion);
-
                 Navigation.findNavController(view).navigate(R.id.action_informationFragment_to_secondQuestion);
             }
         });
