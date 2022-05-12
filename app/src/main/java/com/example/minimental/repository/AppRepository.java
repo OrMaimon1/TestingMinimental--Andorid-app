@@ -10,23 +10,14 @@ import com.example.minimental.FifthQuestion;
 import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
-import com.example.minimental.fragments.NinthQuestion;
 import com.example.minimental.informationQuestion;
 import com.example.minimental.secoundQuestion;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.core.Context;
-import com.google.firebase.database.core.Repo;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.okhttp.internal.Internal;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -53,8 +44,6 @@ public class AppRepository {
     private MutableLiveData<TenthQuestion> tenthQuestionMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<String> username = new MutableLiveData<>();
     private MutableLiveData<String> userId = new MutableLiveData<>();
-
-    //private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     public void setUserName(MutableLiveData<String> userName) {

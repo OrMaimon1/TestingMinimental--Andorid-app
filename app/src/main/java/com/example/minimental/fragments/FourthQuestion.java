@@ -50,13 +50,14 @@ public class FourthQuestion extends Fragment {
             public void onActivityResult(ActivityResult activityResult) {
                 Intent data = activityResult.getData();
                 StringBuffer speechResult = new StringBuffer();
-                ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                for(String r:results)
-                {
-                    speechResult.append(r);
+                if (data != null) {
+                    ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    for (String r : results) {
+                        speechResult.append(r);
+                    }
+                    String result = speechResult.toString();
+                    updateAnswer(result);
                 }
-                String result = speechResult.toString();
-                updateAnswer(result);
             }
         });
     }
