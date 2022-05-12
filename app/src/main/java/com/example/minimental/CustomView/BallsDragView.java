@@ -129,7 +129,7 @@ public class BallsDragView extends View {
         final private float initialCenterY;
         private float radius;
 
-        private Circle(float x , float y , float r)
+        public Circle(float x , float y , float r)
         {
             centerX = x;
             centerY = y;
@@ -160,6 +160,7 @@ public class BallsDragView extends View {
         public float getRadius() {
             return radius;
         }
+
         public boolean envelopsPoint(float x , float y)
         {
             boolean ballTouched = false;
