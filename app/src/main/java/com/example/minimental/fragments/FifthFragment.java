@@ -39,12 +39,13 @@ public class FifthFragment extends Fragment {
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private Observer<String> getFirstItemDescription;
     private TextView text;
-    private EditText currentFirstPicET;
-    private EditText currentSecondPicET;
+    private EditText firstPicET;
+    private EditText secondPicET;
     private ImageView firstImage;
     private Bitmap firstImageBitmap;
     private FifthQuestion fifthQuestion = new FifthQuestion();
     private Thread imageProcessThread;
+    private EditText currentPictureDescribedEditText;
 
 
     @Override
@@ -75,6 +76,7 @@ public class FifthFragment extends Fragment {
                         speechResult.append(r);
                     }
                     String result = speechResult.toString();
+                    currentPictureDescribedEditText.setText(result);
                     //sharedViewModel.setFirstItemDescription(result);
                 }
             }
@@ -93,8 +95,8 @@ public class FifthFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fifth_question,container,false);
 
-        currentFirstPicET = rootView.findViewById(R.id.input_FirstPicET);
-        currentSecondPicET = rootView.findViewById(R.id.input_SecondPicET);
+        firstPicET = rootView.findViewById(R.id.input_FirstPicET);
+        secondPicET = rootView.findViewById(R.id.input_SecondPicET);
         firstImage = rootView.findViewById(R.id.first_Image);
         try {
             imageProcessThread.join();
@@ -115,20 +117,29 @@ public class FifthFragment extends Fragment {
 
 
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        ImageButton recordBtn = rootView.findViewById(R.id.pict1_mic_image_view);
+        ImageButton recordBtnForImageOne = rootView.findViewById(R.id.pict1_mic_image_view);
+        ImageButton recordButtonForImageTwo = rootView.findViewById(R.id.pict2_mic_image_view);
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fifthQuestion.setFirstpic(currentFirstPicET.getText().toString());
-                fifthQuestion.setSecoundpic(currentSecondPicET.getText().toString());
+                fifthQuestion.setFirstpic(firstPicET.getText().toString());
+                fifthQuestion.setSecoundpic(secondPicET.getText().toString());
                 sharedViewModel.setFifthQuestionLiveData(fifthQuestion);
                 Navigation.findNavController(view).navigate(R.id.action_fifthQuestion_to_sixth_question);
             }
         });
-        recordBtn.setOnClickListener(new View.OnClickListener() {
+        recordBtnForImageOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                currentPictureDescribedEditText = firstPicET;
+                startSpeechRecognition();
+            }
+        });
+        recordButtonForImageTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currentPictureDescribedEditText = secondPicET;
                 startSpeechRecognition();
             }
         });

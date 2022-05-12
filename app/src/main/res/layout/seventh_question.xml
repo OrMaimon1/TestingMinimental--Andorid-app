@@ -55,7 +55,12 @@
         android:layout_margin="10dp"
         android:layout_height="400dp">
 
-        <ImageView
+        <com.example.minimental.CustomView.MilkDragView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+       <!-- <ImageView
             android:id="@+id/seventh_question_ImageView1"
             android:layout_width="150dp"
             android:layout_height="200dp"
@@ -107,7 +112,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.449" />
 
-        <View
+        &lt;!&ndash;<View
             android:id="@+id/blank_square_view"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -116,7 +121,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.928"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />&ndash;&gt;-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

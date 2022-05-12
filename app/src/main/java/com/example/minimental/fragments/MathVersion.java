@@ -51,6 +51,7 @@ public class MathVersion extends Fragment  {
                         speechResult.append(r);
                     }
                     String result = speechResult.toString();
+                    resultText.setText(result);
                     FinalResult.add(result);
                     //updateAnswer(result);
                     //sharedViewModel.setMathAnswerGiven(results);
