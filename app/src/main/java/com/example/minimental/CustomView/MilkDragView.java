@@ -16,6 +16,7 @@ import com.example.minimental.R;
 public class MilkDragView extends View {
 
     private Paint yellow = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint transperent = new Paint(Paint.ANTI_ALIAS_FLAG);
     Rect r = new Rect(10 , 100 , 40 , 200);
 
     private Drawable tableDrawable;
@@ -33,6 +34,7 @@ public class MilkDragView extends View {
         yellow.setColor(Color.YELLOW);
         yellow.setStyle(Paint.Style.STROKE);
         yellow.setStrokeWidth(5f);
+        transperent.setColor(Color.TRANSPARENT);
         milkDrawable = getResources().getDrawable(R.drawable.ic_blue_milk);
         fridgeDrawable = getResources().getDrawable(R.drawable.ic_fridge_open);
         tableDrawable = getResources().getDrawable(R.drawable.ic_dresser);
@@ -48,7 +50,7 @@ public class MilkDragView extends View {
         canvasWidth = this.getWidth();
         canvasHeight = this.getHeight();
         initializeCanvasObjects();
-        canvas.drawRect(milkBorderRect, yellow);
+        canvas.drawRect(milkBorderRect, transperent);
         canvas.drawRect(positionBorderRect , yellow);
         milkDrawableProxy.getDrawableItem().draw(canvas);
         fridgeDrawable.draw(canvas);
@@ -81,8 +83,8 @@ public class MilkDragView extends View {
     {
         fridgeDrawable.setBounds(0 , canvasHeight/3 , canvasWidth/2 , canvasHeight);
         tableDrawable.setBounds(canvasWidth*2/3 , canvasHeight/2 , canvasWidth , canvasHeight);
-        positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top - (90*scale),
-                tableDrawable.getBounds().left + (60*scale) , tableDrawable.getBounds().top+(10*scale));
+        positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top - (41*scale),
+                tableDrawable.getBounds().left + (60*scale) , tableDrawable.getBounds().top+(40*scale));
     }
     public DrawableProxy getMilkDrawable()
     {
