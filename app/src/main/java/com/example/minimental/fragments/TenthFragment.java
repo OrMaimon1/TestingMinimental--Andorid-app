@@ -28,6 +28,8 @@ import com.example.minimental.R;
 import com.example.minimental.TenthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.UUID;
 
 public class TenthFragment extends Fragment {
@@ -58,6 +60,10 @@ public class TenthFragment extends Fragment {
                 tenthQuestion.setPicToCopy(img);
                 //tenthQuestion.setPicToCopy(currentSentence.getText().toString());
                 sharedViewModel.setpicForTenthQuestion(tenthQuestion);
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss aa");
+                String datetime = dateformat.format(c.getTime());
+                sharedViewModel.setDatelast(datetime);
                 //imageView.setImageBitmap(img);
                 Navigation.findNavController(view).navigate(R.id.action_tenthQuestion_to_login_fragment);
             }

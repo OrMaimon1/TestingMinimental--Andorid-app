@@ -52,8 +52,8 @@ public class MilkDragView extends View {
         initializeCanvasObjects();
         canvas.drawRect(milkBorderRect, transperent);
         canvas.drawRect(positionBorderRect , yellow);
-        milkDrawableProxy.getDrawableItem().draw(canvas);
         fridgeDrawable.draw(canvas);
+        milkDrawableProxy.getDrawableItem().draw(canvas);
         tableDrawable.draw(canvas);
     }
 

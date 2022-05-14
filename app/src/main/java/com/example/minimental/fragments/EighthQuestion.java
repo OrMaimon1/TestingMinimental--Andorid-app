@@ -50,6 +50,7 @@ public class EighthQuestion extends Fragment {
     private float blueCircleCenterY;
     private float redSquareCenterX;
     private float redSquareCenterY;
+    private boolean ball1 = false ,ball2 = false;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -94,6 +95,10 @@ public class EighthQuestion extends Fragment {
        nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (ball1 == true && ball2 == true)
+                {
+                    eigthCurrectOrder = true;
+                }
                 sharedViewModel.setCurrectPicOrderEighth(eigthCurrectOrder);
                 Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_ninthQuestion);
             }
@@ -129,10 +134,18 @@ public class EighthQuestion extends Fragment {
                         if(ballsDragView.SquareSuroundsCircle(redRect , blackBall))
                         {
                             blackBall.changeColor();
+                            ball1 = true;
+                        }
+                        else {
+                            ball1 = false;
                         }
                         if(ballsDragView.SquareSuroundsCircle(blueRect , yellowBall))
                         {
                             yellowBall.changeColor();
+                            ball2 = true;
+                        }
+                        else {
+                            ball2 = false;
                         }
                         if(currentBallTouched.touchesBorder()) {
                             ballsDragView.moveCurrentBall(currentBallTouched, currentBallTouched.getCenterX(), currentBallTouched.getCenterY());

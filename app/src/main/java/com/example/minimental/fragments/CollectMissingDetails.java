@@ -17,36 +17,37 @@ import androidx.navigation.Navigation;
 import com.example.minimental.MainActivityViewModel;
 import com.example.minimental.MissingDetail;
 import com.example.minimental.R;
+import com.example.minimental.ViewModels.SharedViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class CollectMissingDetails extends Fragment {
 
-    private MainActivityViewModel viewModel;
+    private SharedViewModel sharedViewModel;
+    private MissingDetail missingDetail = new MissingDetail();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.collect_missingdetails,container,false);
-
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         EditText country = rootView.findViewById(R.id.input_country_missing_ET);
         EditText city = rootView.findViewById(R.id.input_city_missing_ET);
         EditText address = rootView.findViewById(R.id.input_address_missing_ET);
         EditText floor = rootView.findViewById(R.id.input_floor_misssingET);
         EditText area = rootView.findViewById(R.id.input_area_missing_ET);
-        viewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
-        viewModel.getMissingDetail().observe(getViewLifecycleOwner(), new Observer<MissingDetail>() {
-            @Override
-            public void onChanged(MissingDetail missingDetail) {
 
-            }
-        });
 //country.getText().toString(),city.getText().toString(),address.getText().toString(),
 //                        floor.getText().toString(),area.getText().toString()
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Navigation.findNavController(view).popBackStack(R.id.login_fragment , false);
-                //viewModel.setMissingDetail(country.getText().toString());
+                missingDetail.setCountry(country.getText().toString());
+                missingDetail.setCity(city.getText().toString());
+                missingDetail.setAddress(address.getText().toString());
+                missingDetail.setFloor(floor.getText().toString());
+                missingDetail.setArea(area.getText().toString());
+
+                //sharedViewModel.setMissingDetailMutableLiveData(missingDetail);
                 Navigation.findNavController(view).navigate(R.id.action_collectMissingDetails_to_informationFragment);
 
             }

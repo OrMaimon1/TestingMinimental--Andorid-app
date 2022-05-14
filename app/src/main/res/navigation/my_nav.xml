@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_login_fragment_to_collectMissingDetails"
             app:destination="@id/collectMissingDetails" />
+        <action
+            android:id="@+id/action_login_fragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
     <fragment
         android:id="@+id/sixth_question"

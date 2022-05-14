@@ -65,7 +65,7 @@
                     android:layout_margin="25dp"
                     android:drawableEnd="@drawable/ic_speaker"
                     android:gravity="center"
-                    android:text="listen"
+                    android:text="@string/listen"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="15sp"

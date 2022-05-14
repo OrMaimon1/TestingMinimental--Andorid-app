@@ -49,5 +49,6 @@
     <string name="enter_currentStreet">In which street do you live?</string>
     <string name="enter_currentFloor">On what floor do you live?</string>
     <string name="enter_currentArea">In what area do you live?</string>
-    <string name="login">LOGIN</string>/>
+    <string name="login">LOGIN</string>
+    <string name="listen">listen</string>/>
 </resources>

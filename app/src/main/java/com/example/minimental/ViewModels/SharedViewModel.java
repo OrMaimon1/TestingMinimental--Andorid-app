@@ -1,11 +1,13 @@
 package com.example.minimental.ViewModels;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.minimental.EightQuestion;
 import com.example.minimental.FifthQuestion;
+import com.example.minimental.MissingDetail;
 import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
@@ -14,6 +16,7 @@ import com.example.minimental.fragments.NinthQuestion;
 import com.example.minimental.fragments.SecondQuestion;
 import com.example.minimental.informationQuestion;
 import com.example.minimental.repository.AppRepository;
+import com.example.minimental.repository.FireBaseCallBack;
 import com.example.minimental.secoundQuestion;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.type.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +32,15 @@ import java.util.List;
 public class SharedViewModel extends ViewModel {
 
     //region New View-Model For Second Fragment
-    private AppRepository repository = new AppRepository();
+    private AppRepository repository;
     private MutableLiveData<String> username = new MutableLiveData<>();
     private MutableLiveData<String> userId = new MutableLiveData<>();
+    private MutableLiveData<String> dateTimeLiveData = new MutableLiveData<>();
+
+
+    public SharedViewModel() {
+        repository = new AppRepository();
+    }
 
     public void setUserId(String userId1){
 
@@ -38,11 +48,43 @@ public class SharedViewModel extends ViewModel {
         repository.setUserId(userId);
     }
 
+    public  void setDateFirst(String dateTime){
+        dateTimeLiveData.setValue(dateTime);
+        repository.setDataTimeFirst(dateTimeLiveData);
+    }
+    public  void setDatelast(String dateTime){
+        dateTimeLiveData.setValue(dateTime);
+        repository.setDataTimeLast(dateTimeLiveData);
+    }
+
     public void setUserName(String userName){
 
         username.setValue(userName);
         repository.setUserName(username);
     }
+
+    //missing details
+    private MutableLiveData<MissingDetail> missingDetailMutableLiveData = new MutableLiveData<>();
+
+    public LiveData<MissingDetail> getMissingDetailMutableLiveData(){
+
+        repository.load();
+        missingDetailMutableLiveData = repository.getMissingDetail();
+        return missingDetailMutableLiveData;
+    }
+
+    public void getMissingDetailCallback(FireBaseCallBack callBack){
+
+        repository.loadMissingDetail(callBack);
+    }
+
+    public void setMissingDetailMutableLiveData(MissingDetail missingDetail){
+
+        missingDetailMutableLiveData.setValue(missingDetail);
+        repository.setMissingDetail(missingDetailMutableLiveData);
+    }
+
+
     //informationQuestion
     private MutableLiveData<informationQuestion> infoLiveData = new MutableLiveData<>();
     public MutableLiveData<informationQuestion> getInfoLiveData(){

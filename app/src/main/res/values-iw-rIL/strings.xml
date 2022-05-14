@@ -32,7 +32,7 @@
     <string name="eighth_question_instructions">שים את העיגול השחור בתוך הריבוע האדום</string>
     <string name="eighth_question_title">גרור ושחרר</string>
     <string name="six_question_textview2_name">חזור על המשפט</string>
-    <string name="sixth_question_textview_name">דוגמא לשמפט שצריך להופיע כאן</string>
+    <string name="sixth_question_textview_name">דוגמא למשפט שצריך להופיע כאן</string>
     <string name="title_question_title_name6">שאלה שישית</string>
     <string name="textView_fifth_question">בבקשה תרשום את מה שאתה רואה בתמונה</string>
     <string name="fifth_question_name">שאלה חמישית</string>
@@ -50,4 +50,5 @@
     <string name="choose_third_question_textview_name">כעת נעשה תרגיל חשיבה פשוט ומלא ותוכלו לעשות חשבון ניתן גם לעשות תרגיל איות, אנא הקליקו על בחירתכם</string>
     <string name="choose_third_question_title">שאלה שלישית - בחירה</string>
     <string name="second_question_textview2_name">בבקשה תקרא בקול את שלושת האובייקטים ביחד</string>
+    <string name="listen">הקשב</string>
 </resources>

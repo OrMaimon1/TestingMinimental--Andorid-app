@@ -96,7 +96,7 @@ public class FourthQuestion extends Fragment {
     }
     private void checkIfWordIsCorrect()
     {
-        if(wordsToRemember.get(currentwordIndex).equals(resultText.getText().toString()))
+        /*if(wordsToRemember.get(currentwordIndex).equals(resultText.getText().toString()))
         {
             currentwordIndex++;
             feedBack.setText("Correct");
@@ -104,8 +104,11 @@ public class FourthQuestion extends Fragment {
         else
         {
             feedBack.setText("InCorrect");
-        }
+        }*/
     }
+
+
+
     private void startSpeechRecognition()
     {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);

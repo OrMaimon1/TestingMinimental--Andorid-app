@@ -37,8 +37,11 @@ import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.informationQuestion;
+import com.google.type.DateTime;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class  InformationFragment extends Fragment {
 
@@ -56,6 +59,7 @@ public class  InformationFragment extends Fragment {
     private EditText currentAreaAnswerET;
     private ImageView currentQuestionAnswered;
     private informationQuestion informationQuestion = new informationQuestion();
+    private DateTime dateTime;
     Context mainActivity;
 
 
@@ -164,6 +168,10 @@ public class  InformationFragment extends Fragment {
                 informationQuestion.setFloor(currentFloorAnswerET.getText().toString());
                 informationQuestion.setArea(currentAreaAnswerET.getText().toString());
                 sharedViewModel.setInfoLiveData(informationQuestion);
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss aa");
+                String datetime = dateformat.format(c.getTime());
+                sharedViewModel.setDateFirst(datetime);
                 Navigation.findNavController(view).navigate(R.id.action_informationFragment_to_secondQuestion);
             }
         });
