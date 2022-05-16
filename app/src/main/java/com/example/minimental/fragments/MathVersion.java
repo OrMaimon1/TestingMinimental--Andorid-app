@@ -25,7 +25,6 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.ViewModels.SharedViewModel;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -53,8 +52,7 @@ public class MathVersion extends Fragment  {
                     String result = speechResult.toString();
                     resultText.setText(result);
                     FinalResult.add(result);
-                    //updateAnswer(result);
-                    //sharedViewModel.setMathAnswerGiven(results);
+
                 }
             }
         });

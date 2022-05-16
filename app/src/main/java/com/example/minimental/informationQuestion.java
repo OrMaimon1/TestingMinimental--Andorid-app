@@ -1,6 +1,5 @@
 package com.example.minimental;
 
-import androidx.lifecycle.LiveData;
 
 public class informationQuestion {
 

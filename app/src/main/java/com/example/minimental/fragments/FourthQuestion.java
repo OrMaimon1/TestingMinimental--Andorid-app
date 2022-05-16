@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -38,6 +39,8 @@ public class FourthQuestion extends Fragment {
     private EditText resultText;
     private TextView feedBack;
     private secoundQuestion fourthQuestion = new secoundQuestion();
+    private secoundQuestion secoundQuestion = new secoundQuestion();
+    private String word1;
 
 
     @Override
@@ -70,6 +73,9 @@ public class FourthQuestion extends Fragment {
         Button confirmWordButton = rootView.findViewById(R.id.confirm_word_btn);
         resultText = rootView.findViewById(R.id.word_spoken_ET);
         feedBack = rootView.findViewById(R.id.feedback_text);
+        secoundQuestion.setObject1(sharedViewModel.objectLoad().getValue().getObject1());
+        secoundQuestion.setObject2(sharedViewModel.objectLoad().getValue().getObject2());
+        secoundQuestion.setObject3(sharedViewModel.objectLoad().getValue().getObject3());
         ImageButton recordButton = rootView.findViewById(R.id.fourth_question_mic);
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,15 +102,19 @@ public class FourthQuestion extends Fragment {
     }
     private void checkIfWordIsCorrect()
     {
-        /*if(wordsToRemember.get(currentwordIndex).equals(resultText.getText().toString()))
+        if (secoundQuestion.getObject1() == null)
         {
-            currentwordIndex++;
-            feedBack.setText("Correct");
+            feedBack.setText("Enter a object");
+
         }
-        else
-        {
-            feedBack.setText("InCorrect");
-        }*/
+        else {
+            if (secoundQuestion.getObject1().equals(word1)) {
+                currentwordIndex++;
+                feedBack.setText("Correct");
+            } else {
+                feedBack.setText("InCorrect");
+            }
+        }
     }
 
 
@@ -123,13 +133,21 @@ public class FourthQuestion extends Fragment {
         String adder;
         String[] spereatedWords = answer.split(" " , 3);
         ArrayList<String> listOfWords = new ArrayList<>(3);
-        listOfWords.ensureCapacity(3);
-        listOfWords.add(0 , spereatedWords[0]);
-        listOfWords.add(1 , spereatedWords[1]);
-        listOfWords.add(2 , spereatedWords[2]);
-        fourthQuestion.setObject1(listOfWords.get(0));
-        fourthQuestion.setObject2(listOfWords.get(1));
-        fourthQuestion.setObject3(listOfWords.get(2));
-        sharedViewModel.setFourthQuestionLiveData(fourthQuestion);
+        if (spereatedWords.length < 3)
+        {
+            Toast.makeText(getContext(), "please enter 3 word!!", Toast.LENGTH_LONG).show();
+
+        }
+        else {
+            listOfWords.ensureCapacity(3);
+            listOfWords.add(0, spereatedWords[0]);
+            listOfWords.add(1, spereatedWords[1]);
+            listOfWords.add(2, spereatedWords[2]);
+            word1 = listOfWords.get(0);
+            fourthQuestion.setObject1(listOfWords.get(0));
+            fourthQuestion.setObject2(listOfWords.get(1));
+            fourthQuestion.setObject3(listOfWords.get(2));
+            sharedViewModel.setFourthQuestionLiveData(fourthQuestion);
+        }
     }
 }

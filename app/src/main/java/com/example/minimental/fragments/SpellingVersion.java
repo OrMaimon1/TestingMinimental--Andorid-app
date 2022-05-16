@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -29,6 +31,7 @@ public class SpellingVersion extends Fragment {
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private Observer<String> getSpelledWordObserver;
     private SharedViewModel sharedViewModel;
+    private int numberOfAnswersGiven = 0;
     private ArrayList<String> FinalResult = new ArrayList<>();
 
 
@@ -66,6 +69,25 @@ public class SpellingVersion extends Fragment {
         View rootView = inflater.inflate(R.layout.spelling_version,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
+        nxtBtn.setEnabled(false);
+        confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                numberOfAnswersGiven++;
+                if(numberOfAnswersGiven == 5)
+                {
+                    nxtBtn.setEnabled(true);
+                    Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                    nxtBtn.startAnimation(animation);
+                    //confirmAnswerbutton.setEnabled(false);
+                    confirmAnswerbutton.setAlpha(0.3f);
+                    speechBtn.setEnabled(false);
+                    speechBtn.setAlpha(0.3f);
+                    speechBtn.setImageAlpha(30);
+                }
+            }
+        });
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

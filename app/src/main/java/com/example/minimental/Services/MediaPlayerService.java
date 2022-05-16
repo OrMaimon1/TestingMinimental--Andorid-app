@@ -8,7 +8,6 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 
 import java.io.IOException;
-import java.security.Provider;
 
 public class MediaPlayerService extends Service implements MediaPlayer.OnCompletionListener , MediaPlayer.OnPreparedListener {
     MediaPlayer mediaPlayer = new MediaPlayer();

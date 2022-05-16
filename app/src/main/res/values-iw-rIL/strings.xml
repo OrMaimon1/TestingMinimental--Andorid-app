@@ -51,4 +51,5 @@
     <string name="choose_third_question_title">שאלה שלישית - בחירה</string>
     <string name="second_question_textview2_name">בבקשה תקרא בקול את שלושת האובייקטים ביחד</string>
     <string name="listen">הקשב</string>
+    <string name="textView_math_version">100</string>
 </resources>

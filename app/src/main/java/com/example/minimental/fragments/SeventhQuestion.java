@@ -23,7 +23,6 @@ import com.example.minimental.ViewModels.SharedViewModel;
 public class SeventhQuestion extends Fragment {
 
     ImageView milk;
-    float x = 0, y = 0;
     private SharedViewModel sharedViewModel;
     private SevnthQuestion sevnthQuestion = new SevnthQuestion();
     private Boolean sevnthCurrectOrder = false;

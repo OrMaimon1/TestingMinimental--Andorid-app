@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -23,7 +24,6 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.LifeCycleObserver;
 import com.example.minimental.R;
-import com.example.minimental.ViewModels.IResultHandler;
 import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.secoundQuestion;
 
@@ -45,13 +45,14 @@ public class SecondQuestion extends Fragment {
             public void onActivityResult(ActivityResult activityResult) {
                 Intent data = activityResult.getData();
                 StringBuffer speechResult = new StringBuffer();
-                ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                for(String r:results)
-                {
-                    speechResult.append(r);
+                if (data != null) {
+                    ArrayList<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    for (String r : results) {
+                        speechResult.append(r);
+                    }
+                    String result = speechResult.toString();
+                    updateAnswer(result);
                 }
-                String result = speechResult.toString();
-                updateAnswer(result);
             }
         });
         getSpeechRecognistionDataResultObserver = new Observer<ArrayList<String>>() {
@@ -76,6 +77,10 @@ public class SecondQuestion extends Fragment {
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton speechBtn = rootView.findViewById(R.id.image_of_microphone);
         resultText = rootView.findViewById(R.id.check_txt);
+
+
+
+
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,13 +108,22 @@ public class SecondQuestion extends Fragment {
         String adder;
         String[] spereatedWords = answer.split(" " , 3);
         ArrayList<String> listOfWords = new ArrayList<>(3);
-        listOfWords.ensureCapacity(3);
-        listOfWords.add(0 , spereatedWords[0]);
-        listOfWords.add(1 , spereatedWords[1]);
-        listOfWords.add(2 , spereatedWords[2]);
-        secoundQuestion.setObject1(listOfWords.get(0));
-        secoundQuestion.setObject2(listOfWords.get(1));
-        secoundQuestion.setObject3(listOfWords.get(2));
-        sharedViewModel.setObjectData(secoundQuestion);
+        if (spereatedWords.length < 3)
+        {
+            Toast.makeText(getContext(), "please enter 3 word!!", Toast.LENGTH_LONG).show();
+
+        }
+        else{
+            listOfWords.ensureCapacity(3);
+            listOfWords.add(0 , spereatedWords[0]);
+            listOfWords.add(1 , spereatedWords[1]);
+            listOfWords.add(2 , spereatedWords[2]);
+            secoundQuestion.setObject1(listOfWords.get(0));
+            secoundQuestion.setObject2(listOfWords.get(1));
+            secoundQuestion.setObject3(listOfWords.get(2));
+            sharedViewModel.setObjectData(secoundQuestion);
+        }
+
+
     }
 }

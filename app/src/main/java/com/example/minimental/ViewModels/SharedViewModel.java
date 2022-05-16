@@ -1,6 +1,5 @@
 package com.example.minimental.ViewModels;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,23 +10,12 @@ import com.example.minimental.MissingDetail;
 import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
-import com.example.minimental.ThirdQuestion;
-import com.example.minimental.fragments.NinthQuestion;
-import com.example.minimental.fragments.SecondQuestion;
 import com.example.minimental.informationQuestion;
 import com.example.minimental.repository.AppRepository;
 import com.example.minimental.repository.FireBaseCallBack;
 import com.example.minimental.secoundQuestion;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.type.DateTime;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SharedViewModel extends ViewModel {
 
@@ -104,6 +92,9 @@ public class SharedViewModel extends ViewModel {
 
         secondQuestionLiveData = repository.get3ObjectData();
         return secondQuestionLiveData;
+    }
+    public MutableLiveData<secoundQuestion> objectLoad(){
+        return repository.getObjectLoad();
     }
     public void setObjectData(secoundQuestion secoundQuestion){
 

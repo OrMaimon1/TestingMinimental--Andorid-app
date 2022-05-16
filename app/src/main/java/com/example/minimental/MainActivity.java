@@ -2,23 +2,9 @@ package com.example.minimental;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
-import com.example.minimental.fragments.InformationFragment;
-import com.example.minimental.fragments.SecondQuestion;
-import com.google.android.material.textfield.TextInputLayout;
 
 public class MainActivity extends AppCompatActivity {
 
