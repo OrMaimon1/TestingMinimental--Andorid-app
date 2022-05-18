@@ -76,7 +76,7 @@ public class FourthQuestion extends Fragment {
         secoundQuestion.setObject1(sharedViewModel.objectLoad().getValue().getObject1());
         secoundQuestion.setObject2(sharedViewModel.objectLoad().getValue().getObject2());
         secoundQuestion.setObject3(sharedViewModel.objectLoad().getValue().getObject3());
-        ImageButton recordButton = rootView.findViewById(R.id.fourth_question_mic);
+        Button recordButton = rootView.findViewById(R.id.fourth_question_mic);
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

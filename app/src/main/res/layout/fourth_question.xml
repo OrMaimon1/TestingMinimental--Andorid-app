@@ -111,9 +111,8 @@
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp" />
 
-                @+id/fourth_question_mic
 
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/fourth_question_mic"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
