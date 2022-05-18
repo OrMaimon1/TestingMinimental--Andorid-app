@@ -22,7 +22,7 @@
     <string name="enter_currentSeason">באיזו עונה אנחנו נמצאים?</string>
     <string name="enter_currentCountry">באיזו מדינה אתה גר?</string>
     <string name="enter_currentYear">באיזו שנה אנחנו נמצאים?</string>
-    <string name="enter_currentDate">מה התאריך היום?</string>
+    <string name="enter_currentDate">איזה יום בחודש אנחנו נמצאים?</string>
     <string name="enter_currentMonth">באיזה חודש אנחנו נמצאים?</string>
     <string name="enter_answer">הכנס תשובה</string>
     <string name="enter_currentDay">איזה יום היום?</string>
@@ -49,7 +49,14 @@
     <string name="math_version_name">מתמטיקה</string>
     <string name="choose_third_question_textview_name">כעת נעשה תרגיל חשיבה פשוט ומלא ותוכלו לעשות חשבון ניתן גם לעשות תרגיל איות, אנא הקליקו על בחירתכם</string>
     <string name="choose_third_question_title">שאלה שלישית - בחירה</string>
-    <string name="second_question_textview2_name">בבקשה תקרא בקול את שלושת האובייקטים ביחד</string>
+    <string name="second_question_textview2_name">לחץ על המיקרופון וחזור על האובייקט ששמעת בטקסט</string>
     <string name="listen">הקשב</string>
     <string name="textView_math_version">100</string>
+    <string name="center">מרכז</string>
+    <string name="south">דרום</string>
+    <string name="west">מערב</string>
+    <string name="north">צפון</string>
+    <string name="speak">דבר</string>
+    <string name="enter_a_sentence">כתוב משפט בן שלוש מילים לפחות</string>
+    <string name="write_the_sentence_here">כתוב את המשפט כאן</string>
 </resources>

@@ -11,9 +11,13 @@
     <string name="address">address</string>
     <string name="floor">floor</string>
     <string name="area">area</string>
+    <string name="center">Center</string>
+    <string name="south">South</string>
+    <string name="west">West</string>
+    <string name="north">North</string>
     <string name="title_question_title_name">Short term memory</string>
     <string name="second_question_textview_name">Click the button when you are ready, try to remember the 3 objects</string>
-    <string name="second_question_textview2_name">Please read out loud the three objects together</string>
+    <string name="second_question_textview2_name">Click on the microphone and repeat the object you heard in the text</string>
     <string name="choose_third_question_title">Choose third question</string>
     <string name="choose_third_question_textview_name">Now a simple and complete thinking exercise is done and you can do arithmetic You can also do a spelling exercise, please click on your choose</string>
     <string name="math_version_name">Math version</string>
@@ -41,7 +45,7 @@
     <string name="enter_currentDay">What is the current day?</string>
     <string name="enter_answer">Enter answer</string>
     <string name="enter_currentMonth">What is the current month?</string>
-    <string name="enter_currentDate">What is the current date?</string>
+    <string name="enter_currentDate">What day of the month are we?</string>
     <string name="enter_currentYear">What is the current year?</string>
     <string name="enter_currentSeason">What is the current season?</string>
     <string name="enter_currentCountry">In what country do you live?</string>
@@ -50,5 +54,8 @@
     <string name="enter_currentFloor">On what floor do you live?</string>
     <string name="enter_currentArea">In what area do you live?</string>
     <string name="login">LOGIN</string>
-    <string name="listen">listen</string>/>
+    <string name="listen">listen</string>
+    <string name="speak">SPEAK</string>
+    <string name="enter_a_sentence">Write a sentence of at least three words</string>
+    <string name="write_the_sentence_here">Write the sentence here</string>/>
 </resources>

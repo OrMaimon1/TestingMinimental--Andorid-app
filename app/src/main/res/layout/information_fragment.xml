@@ -40,15 +40,7 @@
                 android:layout_marginBottom="50dp"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/audio_test_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@null"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_speaker"></ImageButton>
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/day_quetion"
@@ -412,22 +404,23 @@ w
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/area_quetion"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    app:helperText="click on the row for choices"
                     android:gravity="center"
                     android:hint="@string/enter_currentArea"
                     android:textSize="20sp">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
                         android:id="@+id/input_areaET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLength="21"
-                        android:maxLines="1"
+                        android:enabled="false"
+                        android:inputType="none"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>

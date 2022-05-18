@@ -8,10 +8,14 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -38,10 +42,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+
 public class  InformationFragment extends Fragment {
 
     private SharedViewModel sharedViewModel;
     ActivityResultLauncher<Intent> speechRecognizerLauncher;
+    AutoCompleteTextView autoCompleteTextView;
     private EditText currentStreetAnswerET;
     private EditText currentDayAnswerET;
     private EditText currentMonthAnswerET;
@@ -56,6 +62,13 @@ public class  InformationFragment extends Fragment {
     private informationQuestion informationQuestion = new informationQuestion();
     private DateTime dateTime;
     Context mainActivity;
+
+
+
+
+
+
+
 
 
     //Question currentQuestion;
@@ -88,6 +101,9 @@ public class  InformationFragment extends Fragment {
 
     }
 
+
+
+
     @Override
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
 
@@ -104,6 +120,7 @@ public class  InformationFragment extends Fragment {
         currentCityAnswerET = rootView.findViewById(R.id.input_cityET);
         currentFloorAnswerET = rootView.findViewById(R.id.input_floorET);
         currentAreaAnswerET = rootView.findViewById(R.id.input_areaET);
+
 
         ImageView dayMicImageView = rootView.findViewById(R.id.day_mic_ImageView);
         ImageView monthMicImageView = rootView.findViewById(R.id.month_mic_image_view);
@@ -128,7 +145,28 @@ public class  InformationFragment extends Fragment {
         areaMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
 
 
-        ImageButton speakerBtn = rootView.findViewById(R.id.audio_test_btn);
+        //number 1 -dropdown
+        autoCompleteTextView = rootView.findViewById(R.id.input_areaET);
+        ArrayList<String> Areas = new ArrayList<String>();
+        Areas.add(getString(R.string.center));
+        Areas.add(getString(R.string.north));
+        Areas.add(getString(R.string.south));
+        Areas.add(getString(R.string.west));
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), R.layout.location_item, Areas);
+        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+        autoCompleteTextView.setAdapter(arrayAdapter);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String area = adapterView.getItemAtPosition(position).toString();
+                Toast.makeText(getContext(), " " + area, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*ImageButton speakerBtn = rootView.findViewById(R.id.audio_test_btn);
         speakerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,7 +175,7 @@ public class  InformationFragment extends Fragment {
                 intent.putExtra("Link" , link);
                 getActivity().startService(intent);
             }
-        });
+        });*/
 
         sharedViewModel.getInfoLiveData().observe(getViewLifecycleOwner(), new Observer<informationQuestion>() {
             @Override

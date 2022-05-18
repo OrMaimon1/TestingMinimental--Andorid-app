@@ -45,8 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="30dp"
                     android:gravity="center"
-                    android:text="enter a sentence"
-                    android:drawableStart="@drawable/ic_speaker"
+                    android:text="@string/enter_a_sentence"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -70,7 +69,7 @@
                     android:layout_margin="30dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:hint="@string/answer_math_voice"
+                    android:hint="@string/write_the_sentence_here"
                     android:textSize="20sp"
                     app:counterEnabled="true">
 
@@ -85,27 +84,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:baselineAligned="false"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/ninth_question_mic_image"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="15dp"
-                    android:background="@null"
-                    android:src="@drawable/ic_microphone2" />
-
-
-            </LinearLayout>
-
 
 
             <LinearLayout
@@ -135,7 +113,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginTop="100dp"
                 android:orientation="vertical"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp">
