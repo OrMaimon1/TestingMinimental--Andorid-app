@@ -38,8 +38,8 @@ public class MilkDragView extends View {
         milkDrawable = getResources().getDrawable(R.drawable.ic_blue_milk);
         fridgeDrawable = getResources().getDrawable(R.drawable.ic_fridge_open);
         tableDrawable = getResources().getDrawable(R.drawable.ic_dresser);
-        milkDrawableProxy = new DrawableProxy(milkDrawable , 60*scale , 60*scale , 40*scale , 70*scale);
-        milkBorderRect = new Rect(50 * scale , 50*scale , 101 * scale , 131 * scale);
+        milkDrawableProxy = new DrawableProxy(milkDrawable , 60*scale , 350*scale , 40*scale , 70*scale);
+        milkBorderRect = new Rect(50 * scale , 345*scale , 101 * scale , 416 * scale);
 
     }
 
