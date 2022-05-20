@@ -56,8 +56,8 @@
                 android:orientation="horizontal">
 
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/image_of_speaker"
+                <Button
+                    android:id="@+id/listen_btn_speaker"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_margin="25dp"
@@ -109,14 +109,17 @@
 
 
 
-                <ImageButton
+                <Button
                     android:id="@+id/image_of_microphone"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_microphone2"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="25dp"
+                    android:drawableEnd="@drawable/ic_microphone"
                     android:gravity="center"
-                    android:background="@null"
+                    android:text="@string/speak"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
             </LinearLayout>
 

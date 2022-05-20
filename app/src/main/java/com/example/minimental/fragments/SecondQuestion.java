@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -75,9 +77,21 @@ public class SecondQuestion extends Fragment {
         View rootView = inflater.inflate(R.layout.second_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        ImageButton speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        Button listenBtn = rootView.findViewById(R.id.listen_btn_speaker);
+        Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
         resultText = rootView.findViewById(R.id.check_txt);
 
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        listenBtn.startAnimation(animation);
+
+        listenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listenBtn.clearAnimation();
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+                speechBtn.startAnimation(animation);
+            }
+        });
 
 
 
@@ -91,6 +105,7 @@ public class SecondQuestion extends Fragment {
             @Override
             public void onClick(View view) {
                 startSpeechRecognition();
+                speechBtn.clearAnimation();
             }
         });
         //sharedViewModel.getRepeatedWords().observe(getViewLifecycleOwner(),getSpeechRecognistionDataResultObserver);
