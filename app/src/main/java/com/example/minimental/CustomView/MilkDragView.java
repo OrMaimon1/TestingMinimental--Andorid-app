@@ -28,6 +28,8 @@ public class MilkDragView extends View {
     int canvasHeight;
     private Rect milkBorderRect;
     private Rect positionBorderRect;
+    private boolean fridgeIsOpen= false;
+
 
     public MilkDragView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -36,7 +38,7 @@ public class MilkDragView extends View {
         yellow.setStrokeWidth(5f);
         transperent.setColor(Color.TRANSPARENT);
         milkDrawable = getResources().getDrawable(R.drawable.ic_blue_milk);
-        fridgeDrawable = getResources().getDrawable(R.drawable.ic_fridge_open);
+        fridgeDrawable = getResources().getDrawable(R.drawable.ic_closefridge);
         tableDrawable = getResources().getDrawable(R.drawable.ic_dresser);
         milkDrawableProxy = new DrawableProxy(milkDrawable , 60*scale , 350*scale , 40*scale , 70*scale);
         milkBorderRect = new Rect(50 * scale , 345*scale , 101 * scale , 416 * scale);
@@ -53,9 +55,40 @@ public class MilkDragView extends View {
         canvas.drawRect(milkBorderRect, transperent);
         canvas.drawRect(positionBorderRect , yellow);
         fridgeDrawable.draw(canvas);
-        milkDrawableProxy.getDrawableItem().draw(canvas);
+        if(fridgeIsOpen)
+        {
+//            fridgeDrawable = getResources().getDrawable(R.drawable.ic_fridge_open);
+            fridgeDrawable.draw(canvas);
+            milkDrawableProxy.getDrawableItem().draw(canvas);
+        }
         tableDrawable.draw(canvas);
     }
+
+    public Drawable getFridgeDrawble()
+    {
+        return fridgeDrawable;
+    }
+
+    public void setFridgeState(boolean state)
+    {
+        fridgeIsOpen = state;
+        invalidate();
+    }
+
+    public boolean isClickOnFridge(int x, int y)
+    {
+        boolean isClick = false;
+        if(fridgeDrawable.getBounds().left <= x && fridgeDrawable.getBounds().right>= x) {
+
+            if (fridgeDrawable.getBounds().bottom >= y && fridgeDrawable.getBounds().top <= y) {
+                fridgeDrawable = getResources().getDrawable(R.drawable.ic_fridge_open);
+                isClick = true;
+            }
+        }
+        return isClick;
+    }
+
+
 
     public Rect getMilkBorderRect()
     {
@@ -83,8 +116,8 @@ public class MilkDragView extends View {
     {
         fridgeDrawable.setBounds(0 , canvasHeight/3 , canvasWidth/2 , canvasHeight);
         tableDrawable.setBounds(canvasWidth*2/3 , canvasHeight/2 , canvasWidth , canvasHeight);
-        positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top - (41*scale),
-                tableDrawable.getBounds().left + (60*scale) , tableDrawable.getBounds().top+(40*scale));
+        positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top - (29*scale),
+                tableDrawable.getBounds().right , tableDrawable.getBounds().top+(60*scale));
     }
     public DrawableProxy getMilkDrawable()
     {

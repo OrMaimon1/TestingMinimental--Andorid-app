@@ -57,5 +57,6 @@
     <string name="listen">listen</string>
     <string name="speak">SPEAK</string>
     <string name="enter_a_sentence">Write a sentence of at least three words</string>
-    <string name="write_the_sentence_here">Write the sentence here</string>/>
+    <string name="write_the_sentence_here">Write the sentence here</string>
+    <string name="explain_math_text_view">Make a subtraction of 7 at a time</string>/>
 </resources>

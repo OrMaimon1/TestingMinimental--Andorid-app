@@ -16,9 +16,12 @@ public class BallsDragView extends View {
     Paint blackPaint;
     Paint redPaint;
     Paint bluePaint;
+    Paint greenPaint;
     Paint transperentPaint;
     Circle yellowBall;
     Circle blackBall;
+    Circle blueBall;
+    Circle greenBall;
     RectF blueRect;
     RectF redRect;
     RectF leftBorder;
@@ -52,14 +55,19 @@ public class BallsDragView extends View {
         redPaint.setStyle(Paint.Style.STROKE);
         bluePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         bluePaint.setColor(Color.BLUE);
-        bluePaint.setStrokeWidth(10f*scale);
-        bluePaint.setStyle(Paint.Style.STROKE);
+        bluePaint.setStyle(Paint.Style.FILL);
+        greenPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        greenPaint.setColor(Color.GREEN);
+        greenPaint.setStyle(Paint.Style.FILL);
         transperentPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         transperentPaint.setColor(Color.TRANSPARENT);
-        yellowBall = new Circle(200f*scale , 30f*scale , 20f*scale);
-        blackBall = new Circle(200f*scale , 250 * scale , 20f*scale);
-        blueRect = new RectF(30f*scale ,200f*scale , 130f*scale , 300f*scale);
-        redRect = new RectF(270f*scale ,200f*scale , 370f*scale , 300f*scale);
+        yellowBall = new Circle(100f*scale , 80f*scale , 20f*scale);
+        blackBall = new Circle(300f*scale , 80f * scale , 20f*scale);
+        greenBall = new Circle(100f*scale , 300f * scale , 20f*scale);
+        blueBall = new Circle(300f*scale , 300f * scale , 20f*scale);
+
+        //blueRect = new RectF(30f*scale ,200f*scale , 130f*scale , 300f*scale);
+        redRect = new RectF(150f*scale ,150f*scale , 250f*scale , 250f*scale);
     }
 
     private void initializeBorders()
@@ -79,7 +87,9 @@ public class BallsDragView extends View {
 
         canvas.drawCircle(yellowBall.getCenterX() , yellowBall.getCenterY() , yellowBall.getRadius() , yellowPaint);
         canvas.drawCircle(blackBall.getCenterX() , blackBall.getCenterY() , blackBall.getRadius() , blackPaint);
-        canvas.drawRect(blueRect , bluePaint);
+        canvas.drawCircle(blueBall.getCenterX() , blueBall.getCenterY() , blueBall.getRadius() , bluePaint);
+        canvas.drawCircle(greenBall.getCenterX() , greenBall.getCenterY() , greenBall.getRadius() , greenPaint);
+        //canvas.drawRect(blueRect , bluePaint);
         canvas.drawRect(redRect , redPaint);
         canvas.drawRect(bottomBorder , transperentPaint);
         canvas.drawRect(topBorder , transperentPaint);
@@ -99,6 +109,8 @@ public class BallsDragView extends View {
     public Circle getBlackBall(){
         return blackBall;
     }
+    public Circle getBlueBall() { return blueBall; }
+    public Circle getGreenBall() { return greenBall; }
     public boolean SquareSuroundsCircle(RectF rect , Circle ball)
     {
         boolean squareSurounds = false;

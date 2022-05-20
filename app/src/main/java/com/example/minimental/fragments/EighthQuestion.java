@@ -33,6 +33,8 @@ public class EighthQuestion extends Fragment {
     private BallsDragView ballsDragView;
     private BallsDragView.Circle yellowBall;
     private BallsDragView.Circle blackBall;
+    private BallsDragView.Circle blueBall;
+    private BallsDragView.Circle greenBall;
     private BallsDragView.Circle currentBallTouched;
     private RectF blueRect;
     private RectF redRect;
@@ -56,7 +58,9 @@ public class EighthQuestion extends Fragment {
         ballsDragView = rootView.findViewById(R.id.ball_drag_view);
         yellowBall = ballsDragView.getYellowBall();
         blackBall = ballsDragView.getBlackBall();
-        blueRect = ballsDragView.getBlueRect();
+        blueBall = ballsDragView.getBlueBall();
+        greenBall = ballsDragView.getGreenBall();
+        //blueRect = ballsDragView.getBlueRect();
         redRect = ballsDragView.getRedRect();
         //dragLayout = rootView.findViewById(R.id.eight_drag_layout);
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
@@ -115,6 +119,14 @@ public class EighthQuestion extends Fragment {
             {
                 currentBallTouched = blackBall;
             }
+            else if(blueBall.envelopsPoint(x,y))
+            {
+                currentBallTouched = blueBall;
+            }
+            else if(greenBall.envelopsPoint(x,y))
+            {
+                currentBallTouched = greenBall;
+            }
             if(currentBallTouched != null) {
                 switch (motionEvent.getActionMasked()) {
                     case MotionEvent.ACTION_MOVE:
@@ -130,14 +142,6 @@ public class EighthQuestion extends Fragment {
                         }
                         else {
                             ball1 = false;
-                        }
-                        if(ballsDragView.SquareSuroundsCircle(blueRect , yellowBall))
-                        {
-                            yellowBall.changeColor();
-                            ball2 = true;
-                        }
-                        else {
-                            ball2 = false;
                         }
                         if(currentBallTouched.touchesBorder()) {
                             ballsDragView.moveCurrentBall(currentBallTouched, currentBallTouched.getCenterX(), currentBallTouched.getCenterY());

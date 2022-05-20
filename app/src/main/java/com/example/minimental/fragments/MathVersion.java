@@ -33,6 +33,7 @@ public class MathVersion extends Fragment  {
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private Observer<String> getAnswerObserver;
     private int numberOfAnswersGiven = 0;
+    private TextView explainText;
     private TextView resultText;
     private ArrayList<String> FinalResult = new ArrayList<>();
 
@@ -71,7 +72,7 @@ public class MathVersion extends Fragment  {
         View rootView = inflater.inflate(R.layout.math_version,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        ImageButton speechBtn = rootView.findViewById(R.id.mic_image_btn);
+        Button speechBtn = rootView.findViewById(R.id.mic_image_btn);
         nxtBtn.setEnabled(false);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
         confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
@@ -87,15 +88,17 @@ public class MathVersion extends Fragment  {
                     confirmAnswerbutton.setAlpha(0.3f);
                     speechBtn.setEnabled(false);
                     speechBtn.setAlpha(0.3f);
-                    speechBtn.setImageAlpha(30);
+                    //speechBtn.setImageAlpha(30);
                 }
             }
         });
+        explainText = rootView.findViewById(R.id.explain_math);
         resultText = rootView.findViewById(R.id.math_version_question_textview);
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startSpeechRecognition();
+                explainText.setVisibility(View.GONE);
             }
         });
 
