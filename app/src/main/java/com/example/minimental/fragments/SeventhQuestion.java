@@ -79,10 +79,12 @@ public class SeventhQuestion extends Fragment {
                     }
                     break;
                 case MotionEvent.ACTION_DOWN:
-                    if(milkDragView.isClickOnFridge((int) x, (int) y))
+                    if(!(borderRect.contains((int)x , (int)y)))
                     {
-                        milkDragView.changeBorderColor();
-                        milkDragView.setFridgeState(true);
+                        if(milkDragView.isClickOnFridge((int) x, (int) y))
+                        {
+                            milkDragView.setFridgeState(true);
+                        }
                     }
                     break;
             }
