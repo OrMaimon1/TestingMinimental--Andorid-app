@@ -66,27 +66,25 @@ public class SeventhQuestion extends Fragment {
         public boolean onTouch(View view, MotionEvent motionEvent) {
             float x = motionEvent.getX();
             float y = motionEvent.getY();
-            if (borderRect.contains((int)x , (int)y)) {
-                switch (motionEvent.getActionMasked()) {
-                    case MotionEvent.ACTION_MOVE:
-
-                        milkDragView.moveBorderRect((int)x , (int)y);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        if(milkDragView.isClickOnFridge((int) x, (int) y))
-                        {
-                            milkDragView.changeBorderColor();
-                            milkDragView.setFridgeState(true);
-                        }
-                        if(milkDragView.isInPosition())
-                        {
-                            milkDragView.changeBorderColor();
-                        }
-                        break;
-                    case MotionEvent.ACTION_DOWN:
-
-                        break;
-                }
+            switch (motionEvent.getActionMasked()) {
+                case MotionEvent.ACTION_MOVE:
+                    if(borderRect.contains((int)x , (int)y)) {
+                        milkDragView.moveBorderRect((int) x, (int) y);
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if(milkDragView.isInPosition())
+                    {
+                        milkDragView.changeBorderColor();
+                    }
+                    break;
+                case MotionEvent.ACTION_DOWN:
+                    if(milkDragView.isClickOnFridge((int) x, (int) y))
+                    {
+                        milkDragView.changeBorderColor();
+                        milkDragView.setFridgeState(true);
+                    }
+                    break;
             }
                 return true;
         }
