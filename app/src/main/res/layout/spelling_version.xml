@@ -58,15 +58,18 @@
                 android:orientation="horizontal">
 
 
-                <ImageButton
+                <Button
                     android:id="@+id/image_of_microphone"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_margin="20dp"
-                    android:background="@null"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="25dp"
+                    android:drawableEnd="@drawable/ic_microphone"
                     android:gravity="center"
-                    android:minHeight="48dp"
-                    android:src="@drawable/ic_microphone2" />
+                    android:text="@string/speak"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
 

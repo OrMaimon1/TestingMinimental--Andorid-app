@@ -74,6 +74,8 @@ public class MathVersion extends Fragment  {
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.mic_image_btn);
         nxtBtn.setEnabled(false);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speechBtn.startAnimation(animation);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
         confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +99,7 @@ public class MathVersion extends Fragment  {
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speechBtn.clearAnimation();
                 startSpeechRecognition();
                 explainText.setVisibility(View.GONE);
             }

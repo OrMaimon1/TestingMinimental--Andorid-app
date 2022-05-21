@@ -68,9 +68,11 @@ public class SpellingVersion extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.spelling_version,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        ImageButton speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
         nxtBtn.setEnabled(false);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speechBtn.startAnimation(animation);
         confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,13 +86,14 @@ public class SpellingVersion extends Fragment {
                     confirmAnswerbutton.setAlpha(0.3f);
                     speechBtn.setEnabled(false);
                     speechBtn.setAlpha(0.3f);
-                    speechBtn.setImageAlpha(30);
+                    //speechBtn.setImageAlpha(30);
                 }
             }
         });
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speechBtn.clearAnimation();
                 startSpeechRecognition();
             }
         });

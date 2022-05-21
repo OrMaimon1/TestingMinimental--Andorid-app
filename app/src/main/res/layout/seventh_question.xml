@@ -35,7 +35,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/image_of_speaker"
+            android:id="@+id/listen_btn_speaker_seventh"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_margin="25dp"

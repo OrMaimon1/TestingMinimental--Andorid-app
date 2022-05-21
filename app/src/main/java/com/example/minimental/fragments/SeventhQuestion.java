@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -39,12 +41,15 @@ public class SeventhQuestion extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.seventh_question,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
+        Button listenBtn = rootView.findViewById(R.id.listen_btn_speaker_seventh);
         milkDragView = rootView.findViewById(R.id.milk_drag_view);
         milkPicture = milkDragView.getMilkDrawable();
         borderRect = milkDragView.getMilkBorderRect();
         clickOnFridge = milkDragView.getFridgeDrawble();
         milkDragView.setOnTouchListener(new milkDragTouchListener());
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        listenBtn.startAnimation(animation);
         //milk = rootView.findViewById(R.id.seventh_question_ImageView_milk);
         //milk.setOnTouchListener(new MyTouchListener());
 
@@ -53,6 +58,13 @@ public class SeventhQuestion extends Fragment {
             public void onClick(View view) {
                 sharedViewModel.setCurrectOrderSeventh(sevnthCurrectOrder);
                 Navigation.findNavController(view).navigate(R.id.action_SeventhQuestion_to_eighthQuestion);
+            }
+        });
+
+        listenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listenBtn.clearAnimation();
             }
         });
 

@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -66,10 +68,13 @@ public class Sixth_question extends Fragment {
         View rootView = inflater.inflate(R.layout.sixth_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        ImageButton speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speechBtn.startAnimation(animation);
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speechBtn.clearAnimation();
                 startSpeechRecognition();
             }
         });

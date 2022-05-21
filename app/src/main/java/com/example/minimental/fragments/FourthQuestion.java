@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -77,10 +79,14 @@ public class FourthQuestion extends Fragment {
         secoundQuestion.setObject2(sharedViewModel.objectLoad().getValue().getObject2());
         secoundQuestion.setObject3(sharedViewModel.objectLoad().getValue().getObject3());
         Button recordButton = rootView.findViewById(R.id.fourth_question_mic);
+        Button listenBtn = rootView.findViewById(R.id.listen_of_speaker);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        listenBtn.startAnimation(animation);
         recordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(currentwordIndex <=2) {
+                    recordButton.clearAnimation();
                     startSpeechRecognition();
                 }
             }
@@ -98,6 +104,16 @@ public class FourthQuestion extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_fourthQuestion_to_fifthQuestion);
             }
         });
+        listenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listenBtn.clearAnimation();
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+                recordButton.startAnimation(animation);
+            }
+        });
+
+
         return rootView;
     }
     private void checkIfWordIsCorrect()
@@ -116,6 +132,7 @@ public class FourthQuestion extends Fragment {
             }
         }
     }
+
 
 
 

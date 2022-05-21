@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Login_fragment extends Fragment {
 
     private SharedViewModel viewModel;
+    private ProgressBar progressBar;
     private TextInputLayout textInputUsername;
     private TextInputLayout textInputPassword;
     private MissingDetail missingDetail = new MissingDetail();
@@ -43,6 +45,7 @@ public class Login_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.login_fragment,container,false);
         //where to put the viewmodel of the fragment
+        progressBar = rootView.findViewById(R.id.progressBar_login);
         textInputUsername = rootView.findViewById(R.id.input_name);
         textInputPassword = rootView.findViewById(R.id.input_password);
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
@@ -53,6 +56,7 @@ public class Login_fragment extends Fragment {
                 String username = textInputUsername.getEditText().getText().toString();
                 String password = textInputPassword.getEditText().getText().toString();
                 if (username.length() > 0 && password.length() > 0) {
+                    progressBar.setVisibility(View.VISIBLE);
                     firebaseAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
