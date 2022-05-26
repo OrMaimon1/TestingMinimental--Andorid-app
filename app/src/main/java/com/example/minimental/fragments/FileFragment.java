@@ -14,8 +14,6 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class FileFragment extends Fragment {
 
@@ -28,7 +26,7 @@ public class FileFragment extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_tenthQuestion_to_fileFragment);
+                Navigation.findNavController(view).navigate(R.id.action_fileFragment_to_login_fragment);
             }
         });
         return rootView;
