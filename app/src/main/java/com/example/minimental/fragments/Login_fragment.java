@@ -34,11 +34,10 @@ public class Login_fragment extends Fragment {
     private TextInputLayout textInputUsername;
     private TextInputLayout textInputPassword;
     private MissingDetail missingDetail = new MissingDetail();
-    //private MutableLiveData<MissingDetail> missingdetail = new MutableLiveData <>();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseAuth.AuthStateListener authStateListener;
     private String userId;
-
+ ///add spinner
 
     @Nullable
     @Override
@@ -69,41 +68,9 @@ public class Login_fragment extends Fragment {
                                 {
                                     e.printStackTrace();
                                 }
-                                viewModel.setUserName(textInputUsername.getEditText().getText().toString());
                                 viewModel.setUserId(userId);
-                                Log.d("firebase",String.valueOf(viewModel.getObjectdata()));
-                                missingDetail = viewModel.getMissingDetailMutableLiveData().getValue();
-                                Log.d("firebase",String.valueOf(viewModel.getMissingDetailMutableLiveData().getValue()));
-                                Log.d("firebase","+++++++");
-                                Log.d("firebase",String.valueOf(missingDetail));
-                                Navigation.findNavController(view).navigate(R.id.action_login_fragment_to_collectMissingDetails);
-
-
-                                 //checking +++++++++++++++
-
-                                //MissingDetailCallback();
-                                /*viewModel.getMissingDetailMutableLiveData().observe(getViewLifecycleOwner(), new Observer<MissingDetail>() {
-                                    @Override
-                                    public void onChanged(MissingDetail missingDetails) {
-                                        Log.d("firebase", "HEY");
-                                        missingDetail = missingDetails;
-                                    }
-                                });*/
-
-                               /* try {
-                                    Thread.sleep(1000);
-                                }
-                                catch (InterruptedException interruptedException){
-                                    interruptedException.printStackTrace();
-                                }*/
-
-                                /*if (missingDetail.getCountry().equals("") || missingDetail.getCity().equals("") || missingDetail.getAddress().equals("") ||
-                                        missingDetail.getFloor().equals("") || missingDetail.getArea().equals("")){
-                                    Navigation.findNavController(view).navigate(R.id.action_login_fragment_to_collectMissingDetails);
-                                }
-                                else{
-                                    Navigation.findNavController(view).navigate(R.id.action_login_fragment_to_informationFragment);
-                                }*/
+                                MissingDetailCallback();
+                                viewModel.loadData();
 
                             }
                             else{
@@ -115,7 +82,6 @@ public class Login_fragment extends Fragment {
                 else   {
                     Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
                 }
-
 
             }
         });
@@ -149,7 +115,19 @@ public class Login_fragment extends Fragment {
                 missingDetail.setAddress(value.getAddress());
                 missingDetail.setFloor(value.getFloor());
                 missingDetail.setArea(value.getArea());
-                Log.d("firebase", String.valueOf(value.getCity()));
+                Log.d("firebase value", String.valueOf(value.getCity()));
+                Log.d("firebase missing", String.valueOf(missingDetail.getCity()));
+                Log.d("firebase class miss", String.valueOf(missingDetail));
+/*
+                if (missingDetail.getCountry().equals("") || missingDetail.getCity().equals("") || missingDetail.getAddress().equals("") ||
+                        missingDetail.getFloor().equals("") *//*||missingDetail.getArea().equals("")*//*){
+                    Navigation.findNavController(getView()).navigate(R.id.action_login_fragment_to_collectMissingDetails);
+                }
+                else{
+                    Navigation.findNavController(getView()).navigate(R.id.action_login_fragment_to_informationFragment);
+                }*/
+                Navigation.findNavController(getView()).navigate(R.id.action_login_fragment_to_collectMissingDetails);
+
 
             }
         });

@@ -49,6 +49,12 @@ public class SharedViewModel extends ViewModel {
 
         username.setValue(userName);
         repository.setUserName(username);
+
+    }
+
+    public void loadData()
+    {
+        repository.load();
     }
 
     //missing details
@@ -56,7 +62,6 @@ public class SharedViewModel extends ViewModel {
 
     public LiveData<MissingDetail> getMissingDetailMutableLiveData(){
 
-        repository.load();
         missingDetailMutableLiveData = repository.getMissingDetail();
         return missingDetailMutableLiveData;
     }

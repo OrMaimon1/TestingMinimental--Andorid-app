@@ -53,7 +53,7 @@ public class TenthFragment extends Fragment {
                 SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss aa");
                 String datetime = dateformat.format(c.getTime());
                 sharedViewModel.setDatelast(datetime);
-                Navigation.findNavController(view).navigate(R.id.action_tenthQuestion_to_login_fragment);
+                Navigation.findNavController(view).navigate(R.id.action_tenthQuestion_to_fileFragment);
             }
         });
 

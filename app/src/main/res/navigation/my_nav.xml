@@ -125,8 +125,8 @@
         android:label="TenthQuestion"
         tools:layout="@layout/tenth_question">
         <action
-            android:id="@+id/action_tenthQuestion_to_login_fragment"
-            app:destination="@id/login_fragment" />
+            android:id="@+id/action_tenthQuestion_to_fileFragment"
+            app:destination="@id/fileFragment" />
     </fragment>
     <fragment
         android:id="@+id/informationFragment"
@@ -136,5 +136,13 @@
         <action
             android:id="@+id/action_informationFragment_to_secondQuestion"
             app:destination="@id/secondQuestion" />
+    </fragment>
+    <fragment
+        android:id="@+id/fileFragment"
+        android:name="com.example.minimental.fragments.FileFragment"
+        android:label="FileFragment" >
+        <action
+            android:id="@+id/action_fileFragment_to_login_fragment"
+            app:destination="@id/login_fragment" />
     </fragment>
 </navigation>

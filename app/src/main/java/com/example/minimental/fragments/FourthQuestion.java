@@ -3,6 +3,7 @@ package com.example.minimental.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,7 @@ public class FourthQuestion extends Fragment {
     private EditText resultText;
     private TextView feedBack;
     private secoundQuestion fourthQuestion = new secoundQuestion();
-    private secoundQuestion secoundQuestion = new secoundQuestion();
+    private secoundQuestion secoundquestion = new secoundQuestion();
     private String word1;
 
 
@@ -75,9 +76,18 @@ public class FourthQuestion extends Fragment {
         Button confirmWordButton = rootView.findViewById(R.id.confirm_word_btn);
         resultText = rootView.findViewById(R.id.word_spoken_ET);
         feedBack = rootView.findViewById(R.id.feedback_text);
-        secoundQuestion.setObject1(sharedViewModel.objectLoad().getValue().getObject1());
-        secoundQuestion.setObject2(sharedViewModel.objectLoad().getValue().getObject2());
-        secoundQuestion.setObject3(sharedViewModel.objectLoad().getValue().getObject3());
+        secoundquestion = sharedViewModel.getObjectdata().getValue();
+       /* sharedViewModel.getObjectdata().observe(getViewLifecycleOwner(), new Observer<secoundQuestion>() {
+            @Override
+            public void onChanged(secoundQuestion secoundQuestion) {
+                secoundquestion.setObject1(secoundQuestion.getObject1());
+                secoundquestion.setObject2(secoundQuestion.getObject1());
+                secoundquestion.setObject3(secoundQuestion.getObject1());
+            }
+        });*/
+        //secoundQuestion.setObject1(sharedViewModel.objectLoad().getValue().getObject1());
+        //secoundQuestion.setObject2(sharedViewModel.objectLoad().getValue().getObject2());
+        //secoundQuestion.setObject3(sharedViewModel.objectLoad().getValue().getObject3());
         Button recordButton = rootView.findViewById(R.id.fourth_question_mic);
         Button listenBtn = rootView.findViewById(R.id.listen_of_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
@@ -95,6 +105,7 @@ public class FourthQuestion extends Fragment {
             @Override
             public void onClick(View view) {
                 checkIfWordIsCorrect();
+                Log.d("firebase", String.valueOf(secoundquestion.getObject1()));
             }
         });
 
@@ -118,13 +129,13 @@ public class FourthQuestion extends Fragment {
     }
     private void checkIfWordIsCorrect()
     {
-        if (secoundQuestion.getObject1() == null)
+        if (secoundquestion.getObject1() == null)
         {
             feedBack.setText("Enter a object");
 
         }
         else {
-            if (secoundQuestion.getObject1().equals(word1)) {
+            if (secoundquestion.getObject1().equals(word1)) {
                 currentwordIndex++;
                 feedBack.setText("Correct");
             } else {
