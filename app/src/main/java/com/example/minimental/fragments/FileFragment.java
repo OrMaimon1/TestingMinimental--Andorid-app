@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.minimental.BuildConfig;
 import com.example.minimental.R;
 
 import java.io.File;
@@ -83,7 +84,7 @@ public class FileFragment extends Fragment {
                         if(intent.resolveActivity(getActivity().getPackageManager()) != null)
                         {
                             photo = new File(Environment.getExternalStorageDirectory(), "picture" + (pictures != null ? pictures.size() : 0) + ".jpg");
-                            Uri imageUri = FileProvider.getUriForFile(rootView.getContext(),"${applicationId}.provider",photo);
+                            Uri imageUri = FileProvider.getUriForFile(rootView.getContext(), BuildConfig.APPLICATION_ID + ".provider",photo);
                             //
                             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                             activityResultLauncher.launch(intent);
