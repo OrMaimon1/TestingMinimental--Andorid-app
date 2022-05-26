@@ -60,5 +60,6 @@
     <string name="write_the_sentence_here">Write the sentence here</string>
     <string name="explain_math_text_view">Make a subtraction of 7 at a time</string>
     <string name="file_textview_name">Click on the pluse button for add picture</string>
-    <string name="title_question_fileFragment_textView">Add Pictures</string>/>
+    <string name="title_question_fileFragment_textView">Add Pictures</string>
+    <string name="take_photo">Take photo</string>/>
 </resources>

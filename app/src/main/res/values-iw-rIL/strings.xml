@@ -62,4 +62,5 @@
     <string name="explain_math_text_view">בצע חיסור ב-7 בכל פעם</string>
     <string name="file_textview_name">"לחץ על לחצן הפלוס כדי להוסיף תמונה "</string>
     <string name="title_question_fileFragment_textView">הוסף תמונות</string>
+    <string name="take_photo">צלם תמונה</string>
 </resources>
