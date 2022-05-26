@@ -60,4 +60,6 @@
     <string name="enter_a_sentence">כתוב משפט בן שלוש מילים לפחות</string>
     <string name="write_the_sentence_here">כתוב את המשפט כאן</string>
     <string name="explain_math_text_view">בצע חיסור ב-7 בכל פעם</string>
+    <string name="file_textview_name">"לחץ על לחצן הפלוס כדי להוסיף תמונה "</string>
+    <string name="title_question_fileFragment_textView">הוסף תמונות</string>
 </resources>
