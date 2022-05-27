@@ -22,8 +22,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
         this.pictures = pictures;
     }
 
-    interface PictureAdapterListener{
-        void onTakePhotoPress(int position);
+    public interface PictureAdapterListener{
+        public void onTakePhotoPress(int position);
     }
 
     PictureAdapterListener listener;
@@ -38,7 +38,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            Button takePhotoBtn = itemView.findViewById(R.id.take_photo_btn);
+            Button takePhotoBtn =(Button) itemView.findViewById(R.id.take_photo_btn);
             takePhotoBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

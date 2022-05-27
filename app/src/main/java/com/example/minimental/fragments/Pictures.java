@@ -7,9 +7,7 @@ import java.io.Serializable;
 public class Pictures implements Serializable {
     private String photoPath;
 
-    public Pictures(){
-
-    }
+    public Pictures(){ }
 
     public Pictures(String photoPath){
         this.photoPath = photoPath;
