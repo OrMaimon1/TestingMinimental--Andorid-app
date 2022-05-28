@@ -2,6 +2,7 @@ package com.example.minimental.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.SurfaceTexture;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
