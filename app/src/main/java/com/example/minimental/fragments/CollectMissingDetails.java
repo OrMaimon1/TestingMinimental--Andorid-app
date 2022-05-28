@@ -80,6 +80,12 @@ public class CollectMissingDetails extends Fragment {
         streetMicImageView.setOnClickListener(new CollectMissingDetails.MissingDetailSpeechClickListner());
         floormicImageView.setOnClickListener(new CollectMissingDetails.MissingDetailSpeechClickListner());
         areaMicImageView.setOnClickListener(new CollectMissingDetails.MissingDetailSpeechClickListner());
+        missingDetail = sharedViewModel.getMissingDetailMutableLiveData().getValue();
+        country.setText(missingDetail.getCountry());
+        city.setText(missingDetail.getCity());
+        address.setText(missingDetail.getAddress());
+        floor.setText(missingDetail.getFloor());
+        area.setText(missingDetail.getArea());
 
 
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);

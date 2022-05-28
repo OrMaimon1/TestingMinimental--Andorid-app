@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -34,6 +36,7 @@ public class Sixth_question extends Fragment {
     private SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private SixthQuestion sixthQuestion = new SixthQuestion();
+    private SixthQuestion sentence = new SixthQuestion();
     private Observer<String> getAnswerObserver;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,6 +70,9 @@ public class Sixth_question extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.sixth_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        sentence = sharedViewModel.getRepeatedSentence().getValue();
+        TextView sentenceTv = rootView.findViewById(R.id.six_question_textview1);
+        sentenceTv.setText(sentence.getSentence());
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);

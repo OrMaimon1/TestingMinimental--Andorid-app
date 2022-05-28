@@ -65,6 +65,7 @@ public class AppRepository {
 
 
 
+
     public AppRepository() {
         databasePatients = FirebaseDatabase.getInstance().getReference();
         databaseTest = FirebaseDatabase.getInstance().getReference();
@@ -128,36 +129,9 @@ public class AppRepository {
 
     //MissingDetails get and set
     public MutableLiveData<MissingDetail> getMissingDetail() {
-        //MutableLiveData<MissingDetail> data = new MutableLiveData<>();
-        databasePatients.child("patient details").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                MissingDetail missingDetail = new MissingDetail();
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    missingDetail.setCountry(task.getResult().child("country").getValue(String.class));
-                    missingDetail.setCity(task.getResult().child("city").getValue(String.class));
-                    missingDetail.setAddress(task.getResult().child("address").getValue(String.class));
-                    missingDetail.setFloor(task.getResult().child("floor").getValue(String.class));
-                    //missingDetail.setArea(task.getResult().child("area").getValue(String.class));
-                    //Log.d("firebasedb", String.valueOf(missingDetailLiveData.getValue().getCity()));
-                    Log.d("firebase1", String.valueOf(task.getResult().child("country").getValue()));
-                }
-                missingDetailLiveData.setValue(missingDetail);
-            }
-
-        });
-       /* if (missingDetailLiveData == null) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }*/
-
-        return missingDetailLiveData;
+        MutableLiveData<MissingDetail> data = new MutableLiveData<>();
+        data.setValue(missingDetailLiveData.getValue());
+        return data;
     }
 
     public void load() {
@@ -175,10 +149,11 @@ public class AppRepository {
                     threeObject.setObject2(task.getResult().child("secondQuestion").child("object2").getValue(String.class));
                     threeObject.setObject3(task.getResult().child("secondQuestion").child("object3").getValue(String.class));
                     sentence.setSentence(task.getResult().child("sixthQuestion").child("sentence").getValue(String.class));
-                    //thirdQuestion.setNumber(task.getResult().child("thirdQuestion").child("number").getValue(Integer.class));
+                    thirdQuestion.setNumber(task.getResult().child("thirdQuestion").child("number").getValue(String.class));
                     thirdQuestion.setObjectforspelling(task.getResult().child("thirdQuestion").child("word").getValue(String.class));
                     fifthQuestion.setFirstpic(task.getResult().child("fifthQuestion").child("pic1").getValue(String.class));
                     fifthQuestion.setSecoundpic(task.getResult().child("fifthQuestion").child("pic2").getValue(String.class));
+                    sentence.setSentence(task.getResult().child("sixthQuestion").child("sentence").getValue(String.class));
                     Log.d("firebase", String.valueOf(task.getResult().child("country").getValue()));
                 }
                 else {
@@ -220,6 +195,7 @@ public class AppRepository {
 
                 }
                 callBack.onCallback(missingDetail);
+                missingDetailLiveData.setValue(missingDetail);
             }
 
 
@@ -239,32 +215,9 @@ public class AppRepository {
     public MutableLiveData<secoundQuestion> get3ObjectData() {
 
         MutableLiveData<secoundQuestion> data = new MutableLiveData<>();
-        /*databasePatients.child("next test").child("secondQuestion");
-        database.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                secoundQuestion object3 = new secoundQuestion();
-                if (!task.isSuccessful()) {
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                        object3.setObject1(task.getResult().child("object1").getValue(String.class));
-                        object3.setObject2(task.getResult().child("object2").getValue(String.class));
-                        object3.setObject3(task.getResult().child("object3").getValue(String.class));
-                        data.setValue(object3);
-                        objectLiveDataLoad.setValue(object3);
-                        Log.d("firebase", String.valueOf(objectLiveDataLoad.getValue().getObject1()));
-
-                }
-
-            }
-
-
-        });*/
-
-
         return objectLiveDataLoad ;
     }
+
     public MutableLiveData<secoundQuestion> getObjectLoad(){
         MutableLiveData<secoundQuestion> data = new MutableLiveData<>();
         data.setValue(objectLiveDataLoad.getValue());
@@ -284,10 +237,11 @@ public class AppRepository {
         database.setValue(objectLiveData);
     }
 
-    public MutableLiveData<ArrayList<String>> getSpellAnswer() {
+    public MutableLiveData<ThirdQuestion> getSpellAnswer() {
 
         //loadInformationData();
-        MutableLiveData<ArrayList<String>> data = new MutableLiveData<>();
+        MutableLiveData<ThirdQuestion> data = new MutableLiveData<>();
+        data.setValue(LoadThirdQuestion.getValue());
         return data;
     }
 
@@ -298,17 +252,11 @@ public class AppRepository {
         database.setValue(spellWordLiveData);
     }
 
-    private void loadMathData() {
 
-        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("test");
-        database.child("Test").child(userId.getValue()).child("MathQuestion");
-        database.setValue(mathWordLiveData);
-    }
+    public MutableLiveData<ThirdQuestion> getMathAnswer() {
 
-    public MutableLiveData<ArrayList<String>> getMathAnswer() {
-
-        //loadInformationData();
-        MutableLiveData<ArrayList<String>> data = new MutableLiveData<>();
+        MutableLiveData<ThirdQuestion> data = new MutableLiveData<>();
+        data.setValue(LoadThirdQuestion.getValue());
         return data;
     }
 
@@ -336,7 +284,6 @@ public class AppRepository {
 
     public MutableLiveData<FifthQuestion> getPicDescription() {
 
-        //loadInformationData();
         MutableLiveData<FifthQuestion> data = new MutableLiveData<>();
         return data;
     }
@@ -350,8 +297,8 @@ public class AppRepository {
 
     public MutableLiveData<SixthQuestion> getSentence() {
 
-        //loadInformationData();
         MutableLiveData<SixthQuestion> data = new MutableLiveData<>();
+        data.setValue(LoadSentence.getValue());
         return data;
     }
 
@@ -364,7 +311,6 @@ public class AppRepository {
 
     public MutableLiveData<SevnthQuestion> getPicForSeventhQuestion() {
 
-        //loadInformationData();
         MutableLiveData<SevnthQuestion> data = new MutableLiveData<>();
         return data;
     }

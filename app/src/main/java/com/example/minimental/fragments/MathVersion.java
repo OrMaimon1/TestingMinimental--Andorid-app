@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
+import com.example.minimental.ThirdQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class MathVersion extends Fragment  {
     private TextView explainText;
     private TextView resultText;
     private ArrayList<String> FinalResult = new ArrayList<>();
+    private ThirdQuestion math = new ThirdQuestion();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class MathVersion extends Fragment  {
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speechBtn.startAnimation(animation);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
+        math = sharedViewModel.getMathAnswerGiven().getValue();
         confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +99,7 @@ public class MathVersion extends Fragment  {
         });
         explainText = rootView.findViewById(R.id.explain_math);
         resultText = rootView.findViewById(R.id.math_version_question_textview);
+        resultText.setText(math.getNumber());
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

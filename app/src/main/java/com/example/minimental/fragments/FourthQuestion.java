@@ -135,7 +135,7 @@ public class FourthQuestion extends Fragment {
 
         }
         else {
-            if (secoundquestion.getObject1().equals(word1)) {
+            if (secoundquestion.getObject1() == word1) {
                 currentwordIndex++;
                 feedBack.setText("Correct");
             } else {
