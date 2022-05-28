@@ -2,23 +2,23 @@ package com.example.minimental;
 
 public class ThirdQuestion {
 
-    private int number;
+    private String number;
     private int divder;
     private String objectforspelling;
 
     public ThirdQuestion() {}
 
-    public ThirdQuestion(int number, int divder, String objectforspelling) {
+    public ThirdQuestion(String number, int divder, String objectforspelling) {
         this.number = number;
         this.divder = divder;
         this.objectforspelling = objectforspelling;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

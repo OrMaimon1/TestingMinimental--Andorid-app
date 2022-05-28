@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -23,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
+import com.example.minimental.ThirdQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ public class SpellingVersion extends Fragment {
     private SharedViewModel sharedViewModel;
     private int numberOfAnswersGiven = 0;
     private ArrayList<String> FinalResult = new ArrayList<>();
+    private ThirdQuestion spell = new ThirdQuestion();
 
 
     @Override
@@ -70,6 +73,9 @@ public class SpellingVersion extends Fragment {
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
+        TextView spellTv = rootView.findViewById(R.id.spelling_version_textview);
+        spell = sharedViewModel.getSpelledWord().getValue();
+        spellTv.setText(spell.getObjectforspelling());
         nxtBtn.setEnabled(false);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speechBtn.startAnimation(animation);

@@ -95,6 +95,7 @@ public class FifthFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fifth_question,container,false);
 
+        //fifthQuestion = sharedViewModel.getFifthQuestionLiveData().getValue();
         firstPicET = rootView.findViewById(R.id.input_FirstPicET);
         secondPicET = rootView.findViewById(R.id.input_SecondPicET);
         firstImage = rootView.findViewById(R.id.first_Image);

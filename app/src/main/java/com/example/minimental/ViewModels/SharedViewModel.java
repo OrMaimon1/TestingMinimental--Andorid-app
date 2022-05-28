@@ -10,6 +10,7 @@ import com.example.minimental.MissingDetail;
 import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
+import com.example.minimental.ThirdQuestion;
 import com.example.minimental.informationQuestion;
 import com.example.minimental.repository.AppRepository;
 import com.example.minimental.repository.FireBaseCallBack;
@@ -111,6 +112,7 @@ public class SharedViewModel extends ViewModel {
     //region Third Question Math Version Data Member and spelling Version Data Member
     private MutableLiveData<ArrayList<String>> mathAnswerGiven = new MutableLiveData<>();
     private MutableLiveData<ArrayList<String>> spelledWord = new MutableLiveData<>();
+    private MutableLiveData<ThirdQuestion> loadMathOrSpell = new MutableLiveData<>();
 
     //region Third Question Math Version Methods
     public void setMathAnswerGiven(ArrayList<String> mathAnswer)
@@ -118,10 +120,10 @@ public class SharedViewModel extends ViewModel {
         mathAnswerGiven.setValue(mathAnswer);
         repository.setMathAnswer(mathAnswerGiven);
     }
-    public MutableLiveData<ArrayList<String>> getMathAnswerGiven()
+    public MutableLiveData<ThirdQuestion> getMathAnswerGiven()
     {
-        mathAnswerGiven = repository.getMathAnswer();
-        return mathAnswerGiven;
+        loadMathOrSpell = repository.getMathAnswer();
+        return loadMathOrSpell;
     }
 
     public void setSpelledWord(ArrayList<String> Word)
@@ -130,10 +132,10 @@ public class SharedViewModel extends ViewModel {
         repository.setSpellAnswer(spelledWord);
     }
 
-    public MutableLiveData<ArrayList<String>> getSpelledWord()
+    public MutableLiveData<ThirdQuestion> getSpelledWord()
     {
-        spelledWord = repository.getSpellAnswer();
-        return spelledWord;
+        loadMathOrSpell = repository.getSpellAnswer();
+        return loadMathOrSpell;
     }
 
 
