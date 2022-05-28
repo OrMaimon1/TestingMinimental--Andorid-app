@@ -1,6 +1,8 @@
 package com.example.minimental.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -8,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
@@ -20,6 +24,11 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
     private List<Pictures> pictures;
     public RecyclerViewAdapter(List<Pictures>pictures){
         this.pictures = pictures;
+    }
+
+    public void updateList(List<Pictures> pictures){
+        this.pictures = pictures;
+        notifyDataSetChanged();
     }
 
     public interface PictureAdapterListener{
@@ -34,10 +43,11 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
 
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{
+        ImageView imageViewTaken;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            imageViewTaken = itemView.findViewById(R.id.photo_imageView);
             Button takePhotoBtn =(Button) itemView.findViewById(R.id.take_photo_btn);
             takePhotoBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
