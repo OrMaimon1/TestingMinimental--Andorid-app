@@ -96,6 +96,7 @@ public class FileFragment extends Fragment {
 //            e.printStackTrace();
 //        }
 
+
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
@@ -117,6 +118,7 @@ public class FileFragment extends Fragment {
             public void onTakePhotoPress(int position) {
 
                 Pictures picture = pictures.get(position);
+
                 photo = new File(Environment.getExternalStorageDirectory(), "picture" + (pictures != null ? pictures.size() : 0)+".jpg");
                 Uri imageUri = getUriForFile(rootView.getContext(), BuildConfig.APPLICATION_ID + ".provider",photo);
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -166,7 +168,8 @@ public class FileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                pictures.add(new Pictures(getPhotoPath));
+                pictures.add(new Pictures());
+
                     try {
                         FileOutputStream fos = getContext().openFileOutput("pictures", Context.MODE_PRIVATE);
                         ObjectOutputStream oos = new ObjectOutputStream(fos);
