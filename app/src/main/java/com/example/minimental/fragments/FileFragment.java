@@ -76,7 +76,7 @@ public class FileFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.files_fragment,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         List<Pictures> pictures = new ArrayList<>();
         mImageView =rootView.findViewById(R.id.photo_imageView);
@@ -167,6 +167,7 @@ public class FileFragment extends Fragment {
         addRowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                 pictures.add(new Pictures());
 
