@@ -41,6 +41,9 @@ import com.google.type.DateTime;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 
 public class  InformationFragment extends Fragment {
@@ -59,9 +62,24 @@ public class  InformationFragment extends Fragment {
     private EditText currentFloorAnswerET;
     private EditText currentAreaAnswerET;
     private ImageView currentQuestionAnswered;
+    private ImageView currentQuestionHeared;
+    private MediaPlayerService mediaPlayerService = new MediaPlayerService();
+    private Hashtable speakerAndLinkMap = new Hashtable<ImageView , String>();
     private informationQuestion informationQuestion = new informationQuestion();
     private DateTime dateTime;
+    private boolean mediaIsPlaying = false;
     Context mainActivity;
+
+    ImageView daySpeakerImageView;
+    ImageView monthSpeakerImageView;
+    ImageView dateSpeakerImageView;
+    ImageView yearSpeakerImageView;
+    ImageView seasonSpeakerImageView;
+    ImageView countrySpeakerImageView;
+    ImageView citySpeakerImageView;
+    ImageView streetSpeakerImageView;
+    ImageView floorSpeakerImageView;
+    ImageView areaSpeakerImageView;
 
 
 
@@ -108,6 +126,7 @@ public class  InformationFragment extends Fragment {
     public View onCreateView( LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.information_fragment,container,false);
+
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         currentStreetAnswerET = rootView.findViewById(R.id.input_streetET);
@@ -121,7 +140,6 @@ public class  InformationFragment extends Fragment {
         currentFloorAnswerET = rootView.findViewById(R.id.input_floorET);
         currentAreaAnswerET = rootView.findViewById(R.id.input_areaET);
 
-
         ImageView dayMicImageView = rootView.findViewById(R.id.day_mic_ImageView);
         ImageView monthMicImageView = rootView.findViewById(R.id.month_mic_image_view);
         ImageView dateMicImageView = rootView.findViewById(R.id.date_mic_image_view);
@@ -132,6 +150,18 @@ public class  InformationFragment extends Fragment {
         ImageView streetMicImageView = rootView.findViewById(R.id.street_mic_image_view);
         ImageView floormicImageView = rootView.findViewById(R.id.floor_mic_image_view);
         ImageView areaMicImageView = rootView.findViewById(R.id.area_mic_ImageView);
+
+        daySpeakerImageView = rootView.findViewById(R.id.day_speaker);
+        monthSpeakerImageView = rootView.findViewById(R.id.month_speaker);
+        dateSpeakerImageView = rootView.findViewById(R.id.date_speaker);
+        yearSpeakerImageView= rootView.findViewById(R.id.year_speaker);
+        seasonSpeakerImageView = rootView.findViewById(R.id.season_speaker);
+        countrySpeakerImageView = rootView.findViewById(R.id.country_speaker);
+        citySpeakerImageView = rootView.findViewById(R.id.city_speaker);
+        streetSpeakerImageView = rootView.findViewById(R.id.street_speaker);
+        floorSpeakerImageView = rootView.findViewById(R.id.floor_speaker);
+        areaSpeakerImageView = rootView.findViewById(R.id.area_speaker);
+        initializeSpekerLink();
 
         dayMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         monthMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
@@ -144,6 +174,16 @@ public class  InformationFragment extends Fragment {
         floormicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         areaMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
 
+        daySpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        monthSpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        dateSpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        yearSpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        seasonSpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        countrySpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        citySpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        streetSpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        floorSpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
+        areaSpeakerImageView.setOnClickListener(new informationQuestionSpeakerClickListener());
 
         //number 1 -dropdown
         autoCompleteTextView = rootView.findViewById(R.id.input_areaET);
@@ -224,12 +264,47 @@ public class  InformationFragment extends Fragment {
         }
     }
 
+    private class informationQuestionSpeakerClickListener implements View.OnClickListener
+    {
+        @Override
+        public void onClick(View view) {
+            currentQuestionHeared = (ImageView) view;
+            if(!mediaIsPlaying) {
+                mediaIsPlaying = true;
+                startSpeakerService();
+                mediaIsPlaying =false;
+            }
+        }
+    }
+
     private void startSpeechRecognition()
     {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
     }
+
+    private void startSpeakerService()
+    {
+        Intent speakerServiceIntent = new Intent(getContext() , MediaPlayerService.class);
+        speakerServiceIntent.putExtra("Link" , (String)speakerAndLinkMap.get(currentQuestionHeared));
+        getContext().startService(speakerServiceIntent);
+    }
+
+    private void initializeSpekerLink()
+    {
+        speakerAndLinkMap.put( daySpeakerImageView, "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0914%D7%99%D7%95%D7%9D.mp3?alt=media&token=f45afd45-4013-4d3f-889f-8d0fb006ac3e");
+        speakerAndLinkMap.put(monthSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0915%D7%97%D7%95%D7%93%D7%A9.mp3?alt=media&token=062b1fcf-e165-4cbe-93b8-ec7b0860edc5");
+        speakerAndLinkMap.put(seasonSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0916%D7%A2%D7%95%D7%A0%D7%94.mp3?alt=media&token=ed477063-f21b-44d4-b446-1dea2f6e44a4");
+        speakerAndLinkMap.put(yearSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0916%D7%A9%D7%A0%D7%94.mp3?alt=media&token=ae1933ea-c549-44d0-a1bc-4ceb85017aba");
+        speakerAndLinkMap.put(dateSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0916%D7%AA%D7%90%D7%A8%D7%99%D7%9A.mp3?alt=media&token=47502b0b-7015-47e9-bc06-e8f68aa20e71");
+        speakerAndLinkMap.put(countrySpeakerImageView, "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0921%D7%9E%D7%93%D7%99%D7%A0%D7%94.mp3?alt=media&token=68b437d5-1c57-4aad-8f2e-ac4ef9ae8d56");
+        speakerAndLinkMap.put(citySpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0921%D7%A2%D7%99%D7%A8.mp3?alt=media&token=be0eb38d-da28-4e94-9d5b-903bb6e244bc");
+        speakerAndLinkMap.put(streetSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0922%D7%A8%D7%97%D7%95%D7%91.mp3?alt=media&token=707123e4-7049-47b9-9a8f-4ecafa2d1334");
+        speakerAndLinkMap.put(floorSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0923%D7%A7%D7%95%D7%9E%D7%94.mp3?alt=media&token=625420a0-643a-4fae-8e31-d51abfd7d946");
+        speakerAndLinkMap.put(areaSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0924%D7%90%D7%99%D7%96%D7%95%D7%A8.mp3?alt=media&token=20d9505e-cf0d-4a55-8876-d7932c2641aa");
+    }
+
     private void updateAnswer(String result)
     {
         switch(currentQuestionAnswered.getId())
