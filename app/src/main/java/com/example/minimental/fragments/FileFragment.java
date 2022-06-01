@@ -4,15 +4,12 @@ import static android.app.Activity.RESULT_OK;
 
 import static androidx.core.content.FileProvider.getUriForFile;
 
-import android.app.Activity;
-import android.app.Person;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Picture;
-import android.graphics.SurfaceTexture;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -23,15 +20,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -40,26 +37,35 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimental.BuildConfig;
 import com.example.minimental.R;
+import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import org.w3c.dom.Text;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.ref.WeakReference;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
-
-import javax.xml.transform.Result;
 
 
 public class FileFragment extends Fragment {
 
-
+    private StorageReference storageReference = null;
+    private DatabaseReference databaseReference = null;
+    List<Pictures> pictures=new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -67,8 +73,10 @@ public class FileFragment extends Fragment {
     final int CAMERA_REQUEST = 1;
     ActivityResultLauncher<Intent> activityResultLauncher;
     ImageView mImageView;
-    String getPhotoPath;
     File photo;
+    Uri imageUri;
+
+
 
     @Nullable
     @Override
@@ -78,71 +86,79 @@ public class FileFragment extends Fragment {
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        List<Pictures> pictures = new ArrayList<>();
-        mImageView =rootView.findViewById(R.id.photo_imageView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
         recyclerView.setAdapter(adapter);
 
-//        try {
-//            FileInputStream fis = getContext().openFileInput("pictures");
-//            ObjectInputStream ois = new ObjectInputStream(fis);
-//            pictures = (List<Pictures>)ois.readObject();
-//            ois.close();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }catch (ClassNotFoundException e){
-//            e.printStackTrace();
-//        }
+
+        mImageView = rootView.findViewById(R.id.test_ImageView);
+        mImageView.setVisibility(View.INVISIBLE);
+
+
+        //DataBase Storage
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        databaseReference = database.getReference().child("user_images");
+        storageReference = firebaseStorage.getReference();
+
+
+
 
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
                 if(result.getResultCode() == RESULT_OK && result.getData() != null){
+//                    Bundle bundle = result.getData().getExtras();
+//                    Bitmap bitmap = (Bitmap) bundle.get("data");
+                    Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
+                    mImageView.setImageBitmap(bitmap);
+                    //mImageView.setImageBitmap(BitmapFactory.decodeFile(photo.getAbsolutePath()));
+                    //uploadImage();
 
-                    Bundle bundle = result.getData().getExtras();
-                    Bitmap bm = (Bitmap) bundle.get("data");
-                    mImageView.setImageBitmap(bm);
-                    mImageView.setImageBitmap(BitmapFactory.decodeFile(photo.getAbsolutePath()));
+
+
+                    Pictures listpicture = new Pictures();
+                    String name = getResources().getString(R.string.name_picture);
+                    listpicture.setName(name + " " + (pictures.size() + 1));
+
+                    byte[]  imageRv=new byte[0];
+                    imageRv = conver_byte_array(mImageView);
+
+                    listpicture.setPhotoPath(imageRv);
+
+                    //imageRv = getImageUri(mImageView);
+                    pictures.add(listpicture);
                     adapter.notifyDataSetChanged();
 
 
+                    //uri.setImageBitmap(BitmapFactory.decodeFile(photo.getAbsolutePath()));
+                    //Pictures picture = new Pictures(photo.getAbsolutePath());
+//                    try {
+//                        FileOutputStream fos = getContext().openFileOutput("pictures", Context.MODE_PRIVATE);
+//                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+//                        oos.writeObject(pictures);
+//                        oos.close();
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                   // picture.setPhoto(uri.getPath());
+//
+//                    pictures.add();
+//                    adapter.updateList(pictures);
+//                    adapter.notifyDataSetChanged();
+////                    Bundle bundle = result.getData().getExtras();
+////                    Bitmap bm = (Bitmap) bundle.get("data");
+////                    uriPath.setImageBitmap(bm);
+////                    uriPath.setImageBitmap(BitmapFactory.decodeFile(photo.getAbsolutePath()));
+
+
+
+
                 }
             }
         });
-
-        adapter.setListener(new RecyclerViewAdapter.PictureAdapterListener() {
-            @Override
-            public void onTakePhotoPress(int position) {
-
-                Pictures picture = pictures.get(position);
-
-                photo = new File(Environment.getExternalStorageDirectory(), "picture" + (pictures != null ? pictures.size() : 0)+".jpg");
-                Uri imageUri = getUriForFile(rootView.getContext(), BuildConfig.APPLICATION_ID + ".provider",photo);
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                Bundle newExtras = new Bundle();
-                if (imageUri != null) {
-                    newExtras.putParcelable(MediaStore.EXTRA_OUTPUT, imageUri);
-                } else {
-                    newExtras.putBoolean("return-data", true);
-                }
-                //takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-
-                if(takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null)
-                {
-                    //mImageView.setImageBitmap(null);
-                    //adapter.notifyItemChanged(position);
-                activityResultLauncher.launch(takePictureIntent);
-
-
-                }
-
-            }
-        });
-
-
 
         ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
@@ -167,23 +183,42 @@ public class FileFragment extends Fragment {
         addRowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                photo = new File(Environment.getExternalStorageDirectory(), "picture" + (pictures != null ? pictures.size() : 0)+".png");
+                imageUri = getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",photo);
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                Bundle newExtras = new Bundle();
+                if (imageUri != null) {
+                    newExtras.putParcelable(MediaStore.EXTRA_OUTPUT, imageUri);
+                } else {
+                    newExtras.putBoolean("return-data", true);
+                }
+                //takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 
+                if(takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null)
+                {
 
-                pictures.add(new Pictures());
+                    activityResultLauncher.launch(takePictureIntent);
 
-                    try {
-                        FileOutputStream fos = getContext().openFileOutput("pictures", Context.MODE_PRIVATE);
-                        ObjectOutputStream oos = new ObjectOutputStream(fos);
-                        oos.writeObject(pictures);
-                        oos.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                //mImageView.setImageBitmap(null);
-                adapter.notifyDataSetChanged();
+                }
+
             }
+//                pictures.add(new Pictures());
+//
+//                    try {
+//                        FileOutputStream fos = getContext().openFileOutput("pictures", Context.MODE_PRIVATE);
+//                        ObjectOutputStream oos = new ObjectOutputStream(fos);
+//                        oos.writeObject(pictures);
+//                        oos.close();
+//                    } catch (FileNotFoundException e) {
+//                        e.printStackTrace();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                //mImageView.setImageBitmap(null);
+//                //adapter.notifyDataSetChanged();
+//                adapter.notifyItemInserted(pictures.size()-1);
+//                recyclerView.scrollToPosition(pictures.size()-1);
+//            }
         });
 
 
@@ -196,10 +231,50 @@ public class FileFragment extends Fragment {
         });
         return rootView;
     }
+
+    public String getImageUri(Context context, Bitmap bitmap){
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(),bitmap,"title", null);
+        return path;
+    }
+
+    public byte[] conver_byte_array(ImageView img)
+    {
+        Bitmap image = ((BitmapDrawable)img.getDrawable()).getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+        byte[] bytearr = byteArrayOutputStream.toByteArray();
+        return bytearr;
+    }
+
+
+
+    private void uploadImage(){
+        if(imageUri != null)
+        {
+            StorageReference ref = storageReference.child(photo.getAbsolutePath());
+            ref.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            databaseReference.push().setValue(uri.toString());
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(),"Image uploaded faild", Toast.LENGTH_SHORT);
+                }
+            });
+        }
+    }
+
 }
 
-//public class MyFileProvider extends FileProvider {
-//    public MyFileProvider() {
-//        super(R.xml.provider_paths);
-//    }
-//}
+
+

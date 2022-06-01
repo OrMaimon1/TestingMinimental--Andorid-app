@@ -1,20 +1,31 @@
 package com.example.minimental.fragments;
 
 import android.net.Uri;
+import android.widget.TextView;
+
+import androidx.annotation.VisibleForTesting;
 
 import java.io.Serializable;
 
 public class Pictures implements Serializable {
-    private String photoPath;
 
-    public Pictures(){ }
+     String name;
+     byte[] photoPath;
 
-    public Pictures(String photoPath){
-        this.photoPath = photoPath;
+
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getPhoto(){ return photoPath; }
+    public byte[] getPhotoPath() {
+        return photoPath;
+    }
 
-    public void setPhoto(String photo){this.photoPath = photo;}
+    public void setPhotoPath(byte[] photoPath) {
+        this.photoPath = photoPath;
+    }
 }

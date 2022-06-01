@@ -24,21 +24,20 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp" />
 
-                <Button
-                    android:id="@+id/take_photo_btn"
+                <TextView
+                    android:id="@+id/textView_picture"
                     android:layout_width="150dp"
-                    android:layout_height="70dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="10dp"
-                    android:drawableEnd="@drawable/ic_camera_svgrepo_com"
                     android:gravity="center"
-                    android:text="@string/take_photo"
-                    android:textColor="@color/white"
+                    android:text="@string/name_picture"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/white"
-                    android:textSize="15sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
