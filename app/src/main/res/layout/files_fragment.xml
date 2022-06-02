@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:ignore="ExtraText">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -37,7 +37,7 @@
 
 
                 <TextView
-                    android:id="@+id/six_question_textview1"
+                    android:id="@+id/add_pictures_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
@@ -171,6 +171,6 @@
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

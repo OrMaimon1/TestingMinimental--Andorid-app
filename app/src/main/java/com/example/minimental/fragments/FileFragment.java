@@ -56,6 +56,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -70,12 +71,12 @@ public class FileFragment extends Fragment {
     private RecyclerView recyclerViewAdapter;
     private RecyclerView.LayoutManager layoutManager;
     ImageButton addRowBtn;
-    final int CAMERA_REQUEST = 1;
     ActivityResultLauncher<Intent> activityResultLauncher;
+    TextView title;
     ImageView mImageView;
     File photo;
     Uri imageUri;
-
+    byte[] imageRv;
 
 
     @Nullable
@@ -84,14 +85,15 @@ public class FileFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.files_fragment,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
-        recyclerView.setHasFixedSize(false);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //recyclerView.setHasFixedSize(false);
+        recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
         recyclerView.setAdapter(adapter);
 
 
         mImageView = rootView.findViewById(R.id.test_ImageView);
         mImageView.setVisibility(View.INVISIBLE);
+        title = rootView.findViewById(R.id.add_pictures_title);
 
 
         //DataBase Storage
@@ -102,64 +104,33 @@ public class FileFragment extends Fragment {
 
 
 
-
-
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
-                if(result.getResultCode() == RESULT_OK && result.getData() != null){
-//                    Bundle bundle = result.getData().getExtras();
-//                    Bitmap bitmap = (Bitmap) bundle.get("data");
+                if(result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    title.setVisibility(View.GONE);
                     Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
                     mImageView.setImageBitmap(bitmap);
-                    //mImageView.setImageBitmap(BitmapFactory.decodeFile(photo.getAbsolutePath()));
-                    //uploadImage();
-
-
 
                     Pictures listpicture = new Pictures();
                     String name = getResources().getString(R.string.name_picture);
                     listpicture.setName(name + " " + (pictures.size() + 1));
 
-                    byte[]  imageRv=new byte[0];
+                    imageRv = new byte[0];
                     imageRv = conver_byte_array(mImageView);
+                    //uploadImage(imageRv);
 
                     listpicture.setPhotoPath(imageRv);
-
-                    //imageRv = getImageUri(mImageView);
                     pictures.add(listpicture);
                     adapter.notifyDataSetChanged();
-
-
-                    //uri.setImageBitmap(BitmapFactory.decodeFile(photo.getAbsolutePath()));
-                    //Pictures picture = new Pictures(photo.getAbsolutePath());
-//                    try {
-//                        FileOutputStream fos = getContext().openFileOutput("pictures", Context.MODE_PRIVATE);
-//                        ObjectOutputStream oos = new ObjectOutputStream(fos);
-//                        oos.writeObject(pictures);
-//                        oos.close();
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                   // picture.setPhoto(uri.getPath());
-//
-//                    pictures.add();
-//                    adapter.updateList(pictures);
-//                    adapter.notifyDataSetChanged();
-////                    Bundle bundle = result.getData().getExtras();
-////                    Bitmap bm = (Bitmap) bundle.get("data");
-////                    uriPath.setImageBitmap(bm);
-////                    uriPath.setImageBitmap(BitmapFactory.decodeFile(photo.getAbsolutePath()));
-
-
-
 
                 }
             }
         });
 
+
+
+        // *Deleted picture file from the screen and storage*
         ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -171,13 +142,15 @@ public class FileFragment extends Fragment {
                 if(direction == ItemTouchHelper.RIGHT){
                     pictures.remove(viewHolder.getAdapterPosition());
                     adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                    //deletedImage(imageRv);
                 }
             }
         };
         ItemTouchHelper helper = new ItemTouchHelper(callback);
         helper.attachToRecyclerView(recyclerView);
 
-        //
+
+        // *Add picture file*
         addRowBtn = rootView.findViewById(R.id.add_button);
 
         addRowBtn.setOnClickListener(new View.OnClickListener() {
@@ -202,25 +175,7 @@ public class FileFragment extends Fragment {
                 }
 
             }
-//                pictures.add(new Pictures());
-//
-//                    try {
-//                        FileOutputStream fos = getContext().openFileOutput("pictures", Context.MODE_PRIVATE);
-//                        ObjectOutputStream oos = new ObjectOutputStream(fos);
-//                        oos.writeObject(pictures);
-//                        oos.close();
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                //mImageView.setImageBitmap(null);
-//                //adapter.notifyDataSetChanged();
-//                adapter.notifyItemInserted(pictures.size()-1);
-//                recyclerView.scrollToPosition(pictures.size()-1);
-//            }
         });
-
 
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
@@ -232,43 +187,67 @@ public class FileFragment extends Fragment {
         return rootView;
     }
 
-    public String getImageUri(Context context, Bitmap bitmap){
+//    public String getImageUri(Context context, Bitmap bitmap){
+//
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+//        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(),bitmap,"title", null);
+//        return path;
+//    }
 
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
-        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(),bitmap,"title", null);
-        return path;
-    }
-
+    // *convert to bytes*
     public byte[] conver_byte_array(ImageView img)
     {
         Bitmap image = ((BitmapDrawable)img.getDrawable()).getBitmap();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+        image.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
         byte[] bytearr = byteArrayOutputStream.toByteArray();
         return bytearr;
     }
 
 
-
-    private void uploadImage(){
-        if(imageUri != null)
+    // *Upload the image to storage*
+    private void uploadImage(byte[] bb){
+        if(bb != null)
         {
-            StorageReference ref = storageReference.child(photo.getAbsolutePath());
-            ref.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            StorageReference ref = storageReference.child("my_images/picture" + (pictures.size() + 1) + ".JPEG");
+            ref.putBytes(bb).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
                             databaseReference.push().setValue(uri.toString());
+                            Toast.makeText(getContext(),"Successfully Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getContext(),"Image uploaded faild", Toast.LENGTH_SHORT);
+                    Toast.makeText(getContext(),"Image uploaded faild", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    //*Deleted the image from storage*
+    private void deletedImage(byte[] bb)
+    {
+        if(bb!= null)
+        {
+            StorageReference ref = storageReference.child("my_images/picture" + (pictures.size() + 1) + ".JPEG");
+            ref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    // File deleted successfully
+                    Toast.makeText(getContext(),"Successfully deleted image", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Uh-oh, an error occurred!
+                    Toast.makeText(getContext(),"Failed to deleted image", Toast.LENGTH_SHORT).show();
                 }
             });
         }

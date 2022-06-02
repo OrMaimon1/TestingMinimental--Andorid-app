@@ -96,7 +96,9 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
         holder.name.setText(listpicture.getName());
         Bitmap myimg = BitmapFactory.decodeByteArray(listpicture.getPhotoPath(),0, listpicture.getPhotoPath().length);
         holder.imageViewTaken.setImageBitmap(myimg);
-
+//        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+//        Bitmap myimg = BitmapFactory.decodeFile(listpicture.getPhotoPath(),bmOptions);
+        holder.imageViewTaken.setImageBitmap(myimg);
 
 
     }
