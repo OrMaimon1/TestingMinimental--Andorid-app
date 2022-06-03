@@ -76,6 +76,16 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
             name = (TextView) itemView.findViewById(R.id.textView_picture);
             imageViewTaken = (ImageView) itemView.findViewById(R.id.photo_imageView);
             //takePhotoBtn =(Button) itemView.findViewById(R.id.take_photo_btn);
+            imageViewTaken.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener != null)
+                    {
+                        listener.onTakePhotoPress(getAdapterPosition(),v);
+                    }
+
+                }
+            });
 
         }
     }

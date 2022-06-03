@@ -85,7 +85,7 @@ public class FileFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.files_fragment,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
-        //recyclerView.setHasFixedSize(false);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
         recyclerView.setAdapter(adapter);
@@ -176,6 +176,20 @@ public class FileFragment extends Fragment {
 
             }
         });
+
+
+
+        // *Show full image* todo: need to fix that
+        adapter.setListener(new RecyclerViewAdapter.PictureAdapterListener() {
+            @Override
+            public void onTakePhotoPress(int position, View v) {
+                Intent intent = new Intent(rootView.getContext(), ImageActivity.class);
+                intent.putExtra("path", imageRv);
+                startActivity(intent);
+            }
+        });
+
+
 
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
