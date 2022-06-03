@@ -118,7 +118,7 @@ public class FileFragment extends Fragment {
 
                     imageRv = new byte[0];
                     imageRv = conver_byte_array(mImageView);
-                    //uploadImage(imageRv);
+                    uploadImage(imageRv);
 
                     listpicture.setPhotoPath(imageRv);
                     pictures.add(listpicture);
@@ -142,7 +142,7 @@ public class FileFragment extends Fragment {
                 if(direction == ItemTouchHelper.RIGHT){
                     pictures.remove(viewHolder.getAdapterPosition());
                     adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                    //deletedImage(imageRv);
+                    deletedImage(imageRv);
                 }
             }
         };
