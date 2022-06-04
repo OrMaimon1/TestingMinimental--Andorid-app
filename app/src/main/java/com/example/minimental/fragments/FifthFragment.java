@@ -27,6 +27,7 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.FifthQuestion;
 import com.example.minimental.R;
+import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 
@@ -120,6 +121,7 @@ public class FifthFragment extends Fragment {
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton recordBtnForImageOne = rootView.findViewById(R.id.pict1_mic_image_view);
         ImageButton recordButtonForImageTwo = rootView.findViewById(R.id.pict2_mic_image_view);
+        ImageButton speakerButton = rootView.findViewById(R.id.describe_instructions_speaker);
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +146,13 @@ public class FifthFragment extends Fragment {
                 startSpeechRecognition();
             }
         });
+
+        speakerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startMediaService();
+            }
+        });
         return rootView;
     }
     private void startSpeechRecognition()
@@ -151,6 +160,13 @@ public class FifthFragment extends Fragment {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
+    }
+
+    private void startMediaService()
+    {
+        Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0925%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%A9%D7%99%D7%95%D7%9D.mp3?alt=media&token=b9d3dd38-a837-4708-b00b-2125faad4548");
+        getContext().startService(intent);
     }
 
 }

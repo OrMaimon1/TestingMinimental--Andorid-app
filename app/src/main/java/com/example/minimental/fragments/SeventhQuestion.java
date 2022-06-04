@@ -1,5 +1,6 @@
 package com.example.minimental.fragments;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.CustomView.MilkDragView;
 import com.example.minimental.R;
+import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.SevnthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
@@ -41,7 +43,7 @@ public class SeventhQuestion extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.seventh_question,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        Button listenBtn = rootView.findViewById(R.id.listen_btn_speaker_seventh);
+        Button listenBtn = rootView.findViewById(R.id.seventh_question_instruction_speaker);
         milkDragView = rootView.findViewById(R.id.milk_drag_view);
         milkPicture = milkDragView.getMilkDrawable();
         borderRect = milkDragView.getMilkBorderRect();
@@ -65,6 +67,7 @@ public class SeventhQuestion extends Fragment {
             @Override
             public void onClick(View v) {
                 listenBtn.clearAnimation();
+                startMediaService();
             }
         });
 
@@ -102,6 +105,13 @@ public class SeventhQuestion extends Fragment {
             }
                 return true;
         }
+    }
+
+    private void startMediaService()
+    {
+        Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1313%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=3c76d7dc-b264-4bdb-83fe-4ce16eaa5e44");
+        getContext().startService(intent);
     }
 
 

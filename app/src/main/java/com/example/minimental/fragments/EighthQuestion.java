@@ -1,6 +1,7 @@
 package com.example.minimental.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ import androidx.navigation.Navigation;
 import com.example.minimental.CustomView.BallsDragView;
 import com.example.minimental.EightQuestion;
 import com.example.minimental.R;
+import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 public class EighthQuestion extends Fragment {
@@ -55,6 +58,7 @@ public class EighthQuestion extends Fragment {
         View rootView = inflater.inflate(R.layout.eighth_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
+        ImageButton speakerButton = rootView.findViewById(R.id.eight_question_speaker);
         ballsDragView = rootView.findViewById(R.id.ball_drag_view);
         yellowBall = ballsDragView.getYellowBall();
         blackBall = ballsDragView.getBlackBall();
@@ -86,6 +90,12 @@ public class EighthQuestion extends Fragment {
         ballsDragView.setOnTouchListener(new ballsDragTouchListner());
 
 
+        speakerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startMediaService();
+            }
+        });
 
 
        nxtBtn.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +112,13 @@ public class EighthQuestion extends Fragment {
 
         return rootView ;
 
+    }
+
+    private void startMediaService()
+    {
+        Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0526_1315%D7%A7%D7%A8%D7%99%D7%90%D7%94%20%D7%95%D7%91%D7%99%D7%A6%D7%95%D7%A2.mp3?alt=media&token=db7c7b3d-ddce-4c88-a56e-afc5347d7203");
+        getContext().startService(intent);
     }
 
     private class ballsDragTouchListner implements View.OnTouchListener

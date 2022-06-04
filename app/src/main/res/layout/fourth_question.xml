@@ -59,7 +59,7 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/listen_of_speaker"
+                    android:id="@+id/repeat_words_instruction_speaker"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_margin="25dp"

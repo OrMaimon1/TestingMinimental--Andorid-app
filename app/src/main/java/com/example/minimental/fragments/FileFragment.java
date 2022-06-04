@@ -87,8 +87,8 @@ public class FileFragment extends Fragment {
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
         //recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
-        recyclerView.setAdapter(adapter);
+        /*RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
+        recyclerView.setAdapter(adapter);*/
 
 
         mImageView = rootView.findViewById(R.id.test_ImageView);
@@ -122,7 +122,7 @@ public class FileFragment extends Fragment {
 
                     listpicture.setPhotoPath(imageRv);
                     pictures.add(listpicture);
-                    adapter.notifyDataSetChanged();
+                    //adapter.notifyDataSetChanged();
 
                 }
             }
@@ -141,7 +141,7 @@ public class FileFragment extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 if(direction == ItemTouchHelper.RIGHT){
                     pictures.remove(viewHolder.getAdapterPosition());
-                    adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                    //adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
                     //deletedImage(imageRv);
                 }
             }

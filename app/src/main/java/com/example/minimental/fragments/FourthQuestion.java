@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
+import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.secoundQuestion;
 
@@ -89,7 +90,7 @@ public class FourthQuestion extends Fragment {
         //secoundQuestion.setObject2(sharedViewModel.objectLoad().getValue().getObject2());
         //secoundQuestion.setObject3(sharedViewModel.objectLoad().getValue().getObject3());
         Button recordButton = rootView.findViewById(R.id.fourth_question_mic);
-        Button listenBtn = rootView.findViewById(R.id.listen_of_speaker);
+        Button listenBtn = rootView.findViewById(R.id.repeat_words_instruction_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         listenBtn.startAnimation(animation);
         recordButton.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +122,7 @@ public class FourthQuestion extends Fragment {
                 listenBtn.clearAnimation();
                 Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
                 recordButton.startAnimation(animation);
+                startMediaService();
             }
         });
 
@@ -154,6 +156,12 @@ public class FourthQuestion extends Fragment {
         speechRecognizerLauncher.launch(speechIntent);
     }
 
+    private void startMediaService()
+    {
+        Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0920%D7%96%D7%99%D7%9B%D7%A8%D7%95%D7%9F%20%D7%90%D7%A8%D7%95%D7%9A.mp3?alt=media&token=4ddd5c80-77fd-49b4-a71a-17a26c52d025");
+        getContext().startService(intent);
+    }
 
     private void updateAnswer(String answer)
     {

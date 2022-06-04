@@ -57,6 +57,16 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
+                <ImageButton
+                    android:id="@+id/spelling_instructions_speaker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_speaker"
+                    />
 
                 <Button
                     android:id="@+id/image_of_microphone"

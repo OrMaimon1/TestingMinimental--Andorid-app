@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
+import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ThirdQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
@@ -73,6 +74,7 @@ public class SpellingVersion extends Fragment {
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
+        ImageButton speakerButton = rootView.findViewById(R.id.spelling_instructions_speaker);
         TextView spellTv = rootView.findViewById(R.id.spelling_version_textview);
         spell = sharedViewModel.getSpelledWord().getValue();
         spellTv.setText(spell.getObjectforspelling());
@@ -103,6 +105,13 @@ public class SpellingVersion extends Fragment {
                 startSpeechRecognition();
             }
         });
+
+        speakerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startMediaService();
+            }
+        });
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,6 +126,13 @@ public class SpellingVersion extends Fragment {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
+    }
+
+    private void startMediaService()
+    {
+        Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0918%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%90%D7%99%D7%95%D7%AA.mp3?alt=media&token=2e34cbbf-8131-4cc2-8e37-d71cc03296ce");
+        getContext().startService(intent);
     }
 
     private void updateAnswer(String answer)

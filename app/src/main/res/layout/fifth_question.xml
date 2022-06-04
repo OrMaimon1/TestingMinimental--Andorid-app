@@ -42,6 +42,16 @@
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
+                <ImageButton
+                    android:id="@+id/describe_instructions_speaker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_speaker"
+                    />
 
                 <TextView
                     android:id="@+id/fifth_question_question_textview"
@@ -51,7 +61,7 @@
                     android:gravity="center"
                     android:text="@string/textView_fifth_question"
                     android:textColor="@color/black"
-                    android:drawableStart="@drawable/ic_speaker"
+
                     android:textColorHint="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />

@@ -58,6 +58,17 @@
                 android:orientation="horizontal">
 
 
+                <ImageButton
+                    android:id="@+id/math_istructions_speaker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@null"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_speaker"
+                    />
+
                 <TextView
                     android:id="@+id/math_version_question_textview"
                     android:layout_width="match_parent"
@@ -65,7 +76,6 @@
                     android:layout_margin="20dp"
                     android:gravity="center"
                     android:text="@string/textView_math_version"
-                    android:drawableEnd="@drawable/ic_speaker"
                     android:textColorHint="@color/white"
                     android:textSize="40sp"
                     android:textStyle="bold" />

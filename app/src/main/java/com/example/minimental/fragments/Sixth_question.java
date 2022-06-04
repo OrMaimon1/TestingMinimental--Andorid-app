@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
+import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
@@ -75,6 +76,7 @@ public class Sixth_question extends Fragment {
         sentenceTv.setText(sentence.getSentence());
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        ImageButton speakerButton = rootView.findViewById(R.id.repeat_sentence_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speechBtn.startAnimation(animation);
         speechBtn.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +84,13 @@ public class Sixth_question extends Fragment {
             public void onClick(View view) {
                 speechBtn.clearAnimation();
                 startSpeechRecognition();
+            }
+        });
+
+        speakerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startMediaService();
             }
         });
         nxtBtn.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +109,12 @@ public class Sixth_question extends Fragment {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
+    }
+    private void startMediaService()
+    {
+        Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Repeating%20Sentence%20Versions%2FMyRec_0525_0926%D7%97%D7%96%D7%A8%D7%94%20%D7%A2%D7%9C%20%D7%9E%D7%A9%D7%A4%D7%98.mp3?alt=media&token=5d65dbb1-9927-4035-85b0-c2cf90b2c594");
+        getContext().startService(intent);
     }
     private void updateAnswer(String answer)
     {
