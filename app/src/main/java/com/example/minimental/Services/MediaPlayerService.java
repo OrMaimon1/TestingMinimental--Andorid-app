@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class MediaPlayerService extends Service implements MediaPlayer.OnCompletionListener , MediaPlayer.OnPreparedListener {
     MediaPlayer mediaPlayer = new MediaPlayer();
+    private static boolean isPlaying = false;
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -28,13 +29,13 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnComplet
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String link = intent.getStringExtra("Link");
-        try
-        {
-            mediaPlayer.setDataSource(link);
-            mediaPlayer.prepareAsync();
-        }catch (IOException e)
-        {
-            e.printStackTrace();
+        if(!mediaPlayer.isPlaying()) {
+            try {
+                mediaPlayer.setDataSource(link);
+                mediaPlayer.prepareAsync();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return super.onStartCommand(intent, flags, startId);
     }
