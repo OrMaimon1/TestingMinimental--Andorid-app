@@ -7,15 +7,17 @@ public class MissingDetail {
     private String address;
     private String floor;
     private String area;
+    private boolean has_permission;
 
     public MissingDetail() {}
 
-    public MissingDetail(String country, String city, String address, String floor, String area) {
+    public MissingDetail(String country, String city, String address, String floor, String area,Boolean has_permission) {
         this.country = country;
         this.city = city;
         this.address = address;
         this.floor = floor;
         this.area = area;
+        this.has_permission = has_permission;
     }
 
     public String getCountry() {
@@ -56,5 +58,13 @@ public class MissingDetail {
 
     public void setArea(String area) {
         this.area = area;
+    }
+
+    public boolean isHas_permission() {
+        return has_permission;
+    }
+
+    public void setHas_permission(boolean has_permission) {
+        this.has_permission = has_permission;
     }
 }

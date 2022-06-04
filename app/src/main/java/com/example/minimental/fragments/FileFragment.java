@@ -40,6 +40,7 @@ import com.example.minimental.R;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -78,7 +79,6 @@ public class FileFragment extends Fragment {
     Uri imageUri;
     byte[] imageRv;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -101,7 +101,8 @@ public class FileFragment extends Fragment {
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         databaseReference = database.getReference().child("user_images");
         storageReference = firebaseStorage.getReference();
-
+        //FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -225,6 +226,7 @@ public class FileFragment extends Fragment {
         if(bb != null)
         {
             StorageReference ref = storageReference.child("my_images/picture" + (pictures.size() + 1) + ".JPEG");
+            //.child("TenthQuestion Pic").child(userId.getValue()).child("test")
             ref.putBytes(bb).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -251,6 +253,7 @@ public class FileFragment extends Fragment {
         if(bb!= null)
         {
             StorageReference ref = storageReference.child("my_images/picture" + (pictures.size() + 1) + ".JPEG");
+            //.child("TenthQuestion Pic").child(userId.getValue()).child("test")
             ref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

@@ -115,16 +115,15 @@ public class Login_fragment extends Fragment {
                 missingDetail.setAddress(value.getAddress());
                 missingDetail.setFloor(value.getFloor());
                 missingDetail.setArea(value.getArea());
+                missingDetail.setHas_permission(value.isHas_permission());
                 Log.d("firebase value", String.valueOf(value.getCity()));
                 Log.d("firebase missing", String.valueOf(missingDetail.getCity()));
                 Log.d("firebase class miss", String.valueOf(missingDetail));
-/*
-                if (missingDetail.getCountry().equals("") || missingDetail.getCity().equals("") || missingDetail.getAddress().equals("") ||
-                        missingDetail.getFloor().equals("") *//*||missingDetail.getArea().equals("")*//*){
+               /* if (missingDetail.isHas_permission()) {
                     Navigation.findNavController(getView()).navigate(R.id.action_login_fragment_to_collectMissingDetails);
                 }
                 else{
-                    Navigation.findNavController(getView()).navigate(R.id.action_login_fragment_to_informationFragment);
+                    Toast.makeText(getContext(), "Doesn't have permission please talk to your doctor to start a test", Toast.LENGTH_SHORT).show();
                 }*/
                 Navigation.findNavController(getView()).navigate(R.id.action_login_fragment_to_collectMissingDetails);
 
