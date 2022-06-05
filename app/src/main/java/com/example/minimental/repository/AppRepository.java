@@ -64,6 +64,7 @@ public class AppRepository {
     private MutableLiveData<ThirdQuestion> LoadThirdQuestion = new MutableLiveData<>();
     private MutableLiveData<FifthQuestion> LoadFifthQuestion = new MutableLiveData<>();
     private String id;
+    private String test = "test";
 
 
 
@@ -79,7 +80,7 @@ public class AppRepository {
     }
     public void setUserId(MutableLiveData<String> userId1) {
         userId.setValue(userId1.getValue());
-        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("userId");
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue());
         database.setValue(userId);
         databasePatients = databasePatients.child("Patients").child(userId.getValue());
         databaseTest = databaseTest.child("Test").child(userId.getValue());
@@ -102,7 +103,7 @@ public class AppRepository {
     }
     public void setDataTimeLast(MutableLiveData<String> time) {
         dateTimeLast.setValue(time.getValue());
-        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("userId");
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("userId");
         database.child("id").setValue(id);
         database.child("Start").setValue(dateTimeFirst);
         database.child("End").setValue(dateTimeLast);
@@ -119,7 +120,7 @@ public class AppRepository {
 
     public void setinfo(MutableLiveData<informationQuestion> info) {
         infoLiveData.setValue(info.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("FirstQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("FirstQuestion");
         databaseTest.setValue(infoLiveData);
     }
 
@@ -190,6 +191,10 @@ public class AppRepository {
                   Log.e("firebase LoadId", "Error getting data", task.getException());
               }
               version.setValue(version_int1);
+              if (version_int1 ==null){
+                  version_int1 =1;
+              }
+              test = test + version_int1;
             }
         });
     }
@@ -267,13 +272,13 @@ public class AppRepository {
 
     public void setObject(MutableLiveData<secoundQuestion> info) {
         objectLiveData.setValue(info.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SecondQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SecondQuestion");
         databaseTest.setValue(objectLiveData);
     }
 
     private void loadObjectData() {
 
-        databaseTest.child("Test").child(userId.getValue()).child("SecondQuestion");
+        databaseTest.child("Test").child(userId.getValue()).child(test).child("SecondQuestion");
         databaseTest.setValue(objectLiveData);
     }
 
@@ -288,7 +293,7 @@ public class AppRepository {
 
     public void setSpellAnswer(MutableLiveData<ArrayList<String>> Spell) {
         spellWordLiveData.setValue(Spell.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SpellQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SpellQuestion");
         databaseTest.setValue(spellWordLiveData);
     }
 
@@ -303,7 +308,7 @@ public class AppRepository {
 
     public void setMathAnswer(MutableLiveData<ArrayList<String>> Math) {
         mathWordLiveData.setValue(Math.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("MathQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("MathQuestion");
         databaseTest.setValue(mathWordLiveData);
     }
 
@@ -318,7 +323,7 @@ public class AppRepository {
 
     public void setObjectForthLiveData(MutableLiveData<secoundQuestion> info) {
         objectForthLiveData.setValue(info.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("ForthQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("ForthQuestion");
         databaseTest.setValue(objectForthLiveData);
     }
 
@@ -331,7 +336,7 @@ public class AppRepository {
 
     public void setPicDescription(MutableLiveData<FifthQuestion> info) {
         FifthLiveData.setValue(info.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("FifthQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("FifthQuestion");
         databaseTest.setValue(FifthLiveData);
     }
 
@@ -345,7 +350,7 @@ public class AppRepository {
 
     public void setSentence(MutableLiveData<SixthQuestion> info) {
         sentenceLiveData.setValue(info.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SixthQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SixthQuestion");
         databaseTest.setValue(sentenceLiveData);
     }
 
@@ -358,7 +363,7 @@ public class AppRepository {
 
     public void setCurrectPicOrder(MutableLiveData<Boolean> currectPicOrder) {
         currectOrderSeventh.setValue(currectPicOrder.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("SeventhQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SeventhQuestion");
         databaseTest.setValue(currectOrderSeventh);
     }
 
@@ -372,7 +377,7 @@ public class AppRepository {
 
     public void setCurrectPicOrderEighth(MutableLiveData<Boolean> currectPicOrder) {
         currectOrderEight.setValue(currectPicOrder.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("EigthQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("EigthQuestion");
         databaseTest.setValue(currectOrderEight);
     }
 
@@ -389,7 +394,7 @@ public class AppRepository {
 
     public void setSentenceForNinth(MutableLiveData<SixthQuestion> sentence) {
         ninthQuestionMutableLiveData.setValue(sentence.getValue());
-        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("NineQuestion");
+        databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("NineQuestion");
         databaseTest.setValue(ninthQuestionMutableLiveData);
     }
 

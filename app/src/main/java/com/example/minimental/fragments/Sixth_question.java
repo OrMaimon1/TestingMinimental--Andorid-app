@@ -3,6 +3,7 @@ package com.example.minimental.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,7 @@ public class Sixth_question extends Fragment {
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         sentence = sharedViewModel.getRepeatedSentence().getValue();
         TextView sentenceTv = rootView.findViewById(R.id.six_question_textview1);
+        Log.d("firebase", sentence.getSentence());
         sentenceTv.setText(sentence.getSentence());
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
