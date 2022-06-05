@@ -114,7 +114,7 @@ public class Sixth_question extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sharedViewModel.setRepeatedSentence(sixthQuestion);
+                sharedViewModel.setRepeatedSentence(sixthQuestion);
                 Navigation.findNavController(view).navigate(R.id.action_sixth_question_to_SeventhQuestion);
             }
         });
