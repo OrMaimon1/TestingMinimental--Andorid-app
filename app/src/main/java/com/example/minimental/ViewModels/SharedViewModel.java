@@ -25,6 +25,7 @@ public class SharedViewModel extends ViewModel {
     private MutableLiveData<String> username = new MutableLiveData<>();
     private MutableLiveData<String> userId = new MutableLiveData<>();
     private MutableLiveData<String> dateTimeLiveData = new MutableLiveData<>();
+    private MutableLiveData<Boolean> permission = new MutableLiveData<>();
 
 
     public SharedViewModel() {
@@ -35,6 +36,12 @@ public class SharedViewModel extends ViewModel {
 
         userId.setValue(userId1);
         repository.setUserId(userId);
+    }
+
+    public void setPermission(Boolean permission1){
+
+        permission.setValue(permission1);
+        repository.setPermission(permission);
     }
 
     public  void setDateFirst(String dateTime){

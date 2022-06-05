@@ -40,6 +40,7 @@ import com.example.minimental.R;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -78,17 +79,16 @@ public class FileFragment extends Fragment {
     Uri imageUri;
     byte[] imageRv;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.files_fragment,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
-        //recyclerView.setHasFixedSize(false);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-        /*RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
-        recyclerView.setAdapter(adapter);*/
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
+        recyclerView.setAdapter(adapter);
 
 
         mImageView = rootView.findViewById(R.id.test_ImageView);
@@ -101,7 +101,8 @@ public class FileFragment extends Fragment {
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         databaseReference = database.getReference().child("user_images");
         storageReference = firebaseStorage.getReference();
-
+        //FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -118,11 +119,11 @@ public class FileFragment extends Fragment {
 
                     imageRv = new byte[0];
                     imageRv = conver_byte_array(mImageView);
-                    //uploadImage(imageRv);
+                    uploadImage(imageRv);
 
                     listpicture.setPhotoPath(imageRv);
                     pictures.add(listpicture);
-                    //adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
 
                 }
             }
@@ -141,8 +142,8 @@ public class FileFragment extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 if(direction == ItemTouchHelper.RIGHT){
                     pictures.remove(viewHolder.getAdapterPosition());
-                    //adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                    //deletedImage(imageRv);
+                    adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                    deletedImage(imageRv);
                 }
             }
         };
@@ -178,6 +179,20 @@ public class FileFragment extends Fragment {
         });
 
 
+
+        // *Show full image* todo: need to fix that
+        adapter.setListener(new RecyclerViewAdapter.PictureAdapterListener() {
+            @Override
+            public void onTakePhotoPress(int position, View v) {
+                Intent intent = new Intent(rootView.getContext(), ImageActivity.class);
+                intent.putExtra("path", imageRv);
+                startActivity(intent);
+            }
+        });
+
+
+
+
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -211,6 +226,7 @@ public class FileFragment extends Fragment {
         if(bb != null)
         {
             StorageReference ref = storageReference.child("my_images/picture" + (pictures.size() + 1) + ".JPEG");
+            //.child("TenthQuestion Pic").child(userId.getValue()).child("test")
             ref.putBytes(bb).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -237,6 +253,7 @@ public class FileFragment extends Fragment {
         if(bb!= null)
         {
             StorageReference ref = storageReference.child("my_images/picture" + (pictures.size() + 1) + ".JPEG");
+            //.child("TenthQuestion Pic").child(userId.getValue()).child("test")
             ref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -254,6 +271,3 @@ public class FileFragment extends Fragment {
     }
 
 }
-
-
-

@@ -54,6 +54,7 @@ public class AppRepository {
     private MutableLiveData<SixthQuestion> ninthQuestionMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<TenthQuestion> tenthQuestionMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<String> username = new MutableLiveData<>();
+    private MutableLiveData<Boolean> permission = new MutableLiveData<>();
     private MutableLiveData<String> version = new MutableLiveData<>();
     private MutableLiveData<String> userId = new MutableLiveData<>();
     private MutableLiveData<String> dateTimeFirst = new MutableLiveData<>();
@@ -75,15 +76,18 @@ public class AppRepository {
     public void setUserName(MutableLiveData<String> userName) {
         username.setValue(userName.getValue());
     }
-
     public void setUserId(MutableLiveData<String> userId1) {
         userId.setValue(userId1.getValue());
         database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("userId");
         database.setValue(userId);
         databasePatients = databasePatients.child("Patients").child(userId.getValue());
         databaseTest = databaseTest.child("Test").child(userId.getValue());
+    }
 
-
+    public void setPermission(MutableLiveData<Boolean> permission1) {
+        permission.setValue(permission1.getValue());
+        database = FirebaseDatabase.getInstance().getReference().child("Patients").child(userId.getValue()).child("patient details").child("has permission");
+        database.setValue(permission.getValue());
     }
     public void getVersion(MutableLiveData<String> userName) {
         username.setValue(userName.getValue());
@@ -114,6 +118,7 @@ public class AppRepository {
         databaseTest.setValue(infoLiveData);
     }
 
+    //MissingDetails get and set
     public MutableLiveData<MissingDetail> getMissingDetail() {
         MutableLiveData<MissingDetail> data = new MutableLiveData<>();
         data.setValue(missingDetailLiveData.getValue());
@@ -140,7 +145,6 @@ public class AppRepository {
                     fifthQuestion.setFirstpic(task.getResult().child("fifthQuestion").child("pic1").getValue(String.class));
                     fifthQuestion.setSecoundpic(task.getResult().child("fifthQuestion").child("pic2").getValue(String.class));
                     sentence.setSentence(task.getResult().child("sixthQuestion").child("sentence").getValue(String.class));
-                    Log.d("firebase", String.valueOf(task.getResult().child("country").getValue()));
                 }
                 else {
 
@@ -171,9 +175,17 @@ public class AppRepository {
                     missingDetail.setAddress(task.getResult().child("street").getValue(String.class));
                     missingDetail.setFloor(task.getResult().child("floor").getValue(String.class));
                     missingDetail.setArea(task.getResult().child("area").getValue(String.class));
-                   // missingDetail.setHas_permission(task.getResult().child("has permission").getValue(Boolean.class));
+                    try {
+                        missingDetail.setHas_permission(task.getResult().child("has permission").getValue(Boolean.class));
+                    }
+                    catch (NullPointerException e)
+                    {
+                        e.printStackTrace();
+                    }
                     //missingDetail = task.getResult().getValue(MissingDetail.class);
                     Log.d("firebase", String.valueOf(task.getResult().child("country").getValue()));
+                    Log.d("firebase", String.valueOf(task.getResult().child("has permission").getValue()));
+
                 }
                 else {
 
