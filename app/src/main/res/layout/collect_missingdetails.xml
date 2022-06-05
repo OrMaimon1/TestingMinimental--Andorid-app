@@ -123,24 +123,26 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/area_missing_missing_quetion"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    app:helperText="click on the row for choices"
                     android:gravity="center"
                     android:hint="@string/enter_currentArea"
                     android:textSize="20sp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_area_missing_ET"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLength="21"
-                        android:maxLines="1"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp" />
+
+                        <AutoCompleteTextView
+                            android:id="@+id/input_areamissingET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:inputType="none"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageButton

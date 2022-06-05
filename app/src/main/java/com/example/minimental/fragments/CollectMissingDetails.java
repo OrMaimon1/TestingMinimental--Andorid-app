@@ -6,9 +6,13 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -31,6 +35,7 @@ public class CollectMissingDetails extends Fragment {
 
     private SharedViewModel sharedViewModel;
     private MissingDetail missingDetail = new MissingDetail();
+    AutoCompleteTextView autoCompleteTextView;
     ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private ImageView currentQuestionAnswered;
     private EditText country;
@@ -69,7 +74,7 @@ public class CollectMissingDetails extends Fragment {
         city = rootView.findViewById(R.id.input_city_missing_ET);
         address = rootView.findViewById(R.id.input_address_missing_ET);
         floor = rootView.findViewById(R.id.input_floor_misssingET);
-        area = rootView.findViewById(R.id.input_area_missing_ET);
+        area = rootView.findViewById(R.id.input_areamissingET);
         ImageView countryMicImageView = rootView.findViewById(R.id.country_missing_mic_ImageView);
         ImageView cityMicImageView = rootView.findViewById(R.id.city_missing_mic_image_view);
         ImageView streetMicImageView = rootView.findViewById(R.id.address_missing_mic_image_view);
@@ -86,6 +91,29 @@ public class CollectMissingDetails extends Fragment {
         address.setText(missingDetail.getAddress());
         floor.setText(missingDetail.getFloor());
         area.setText(missingDetail.getArea());
+
+        //number 1 -dropdown
+        autoCompleteTextView = rootView.findViewById(R.id.input_areamissingET);
+        ArrayList<String> Areas = new ArrayList<String>();
+        Areas.add(getString(R.string.center));
+        Areas.add(getString(R.string.north));
+        Areas.add(getString(R.string.south));
+        Areas.add(getString(R.string.west));
+        ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), R.layout.location_item, Areas);
+        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+        autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
+        autoCompleteTextView.setAdapter(arrayAdapter);
+        autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String area = adapterView.getItemAtPosition(position).toString();
+                Toast.makeText(getContext(), " " + area, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
 
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);

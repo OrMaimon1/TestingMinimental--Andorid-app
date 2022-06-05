@@ -58,7 +58,7 @@ public class EighthQuestion extends Fragment {
         View rootView = inflater.inflate(R.layout.eighth_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        ImageButton speakerButton = rootView.findViewById(R.id.eight_question_speaker);
+        //ImageButton speakerButton = rootView.findViewById(R.id.eight_question_speaker);
         ballsDragView = rootView.findViewById(R.id.ball_drag_view);
         yellowBall = ballsDragView.getYellowBall();
         blackBall = ballsDragView.getBlackBall();
@@ -90,12 +90,12 @@ public class EighthQuestion extends Fragment {
         ballsDragView.setOnTouchListener(new ballsDragTouchListner());
 
 
-        speakerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startMediaService();
-            }
-        });
+//        speakerButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startMediaService();
+//            }
+//        });
 
 
        nxtBtn.setOnClickListener(new View.OnClickListener() {
