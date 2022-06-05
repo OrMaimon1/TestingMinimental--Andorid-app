@@ -54,6 +54,12 @@ public class SeventhQuestion extends Fragment {
         listenBtn.startAnimation(animation);
         //milk = rootView.findViewById(R.id.seventh_question_ImageView_milk);
         //milk.setOnTouchListener(new MyTouchListener());
+        Integer Version = sharedViewModel.getVersion().getValue(); // this is the test version
+        if (Version == null) //only for now some users dosnt have version alredy asked to add
+        {
+            Version = 1;
+        }
+
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override

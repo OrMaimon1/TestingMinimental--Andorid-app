@@ -126,7 +126,7 @@ public class CollectMissingDetails extends Fragment {
                 missingDetail.setFloor(floor.getText().toString());
                 missingDetail.setArea(area.getText().toString());
 
-                //sharedViewModel.setMissingDetailMutableLiveData(missingDetail);
+                sharedViewModel.setMissingDetailMutableLiveData(missingDetail);
                 Navigation.findNavController(view).navigate(R.id.action_collectMissingDetails_to_informationFragment);
 
             }

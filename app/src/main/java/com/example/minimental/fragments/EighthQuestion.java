@@ -68,7 +68,11 @@ public class EighthQuestion extends Fragment {
         redRect = ballsDragView.getRedRect();
         //dragLayout = rootView.findViewById(R.id.eight_drag_layout);
         viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
-
+        Integer Version = sharedViewModel.getVersion().getValue(); // this is the test version
+        if (Version == null) //only for now some users dosnt have version alredy asked to add
+        {
+            Version = 1;
+        }
 
         /*blackCircle = (View) rootView.findViewById(R.id.viewblackcircle);
         yellowCircle = (View) rootView.findViewById(R.id.viewYellowCircle);

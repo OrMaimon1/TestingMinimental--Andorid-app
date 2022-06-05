@@ -39,6 +39,7 @@ public class Sixth_question extends Fragment {
     private SixthQuestion sixthQuestion = new SixthQuestion();
     private SixthQuestion sentence = new SixthQuestion();
     private Observer<String> getAnswerObserver;
+    private String link;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +80,23 @@ public class Sixth_question extends Fragment {
         ImageButton speakerButton = rootView.findViewById(R.id.repeat_sentence_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speechBtn.startAnimation(animation);
+        Integer Version = sharedViewModel.getVersion().getValue();
+        if (Version == null) //only for now some users dosnt have version alredy asked to add
+        {
+            Version = 1;
+        }
+        if (Version == 1){ // for pic
+            link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Repeating%20Sentence%20Versions%2FMyRec_0525_0926%D7%97%D7%96%D7%A8%D7%94%20%D7%A2%D7%9C%20%D7%9E%D7%A9%D7%A4%D7%98.mp3?alt=media&token=5d65dbb1-9927-4035-85b0-c2cf90b2c594";
+        }
+        if (Version == 2){
+            link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Repeating%20Sentence%20Versions%2FMyRec_0526_1325%D7%92%D7%A8%D7%A1%D7%94%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%AA%20%D7%97%D7%96%D7%A8%D7%94%20%D7%A2%D7%9C%20%D7%9E%D7%A9%D7%A4%D7%98.mp3?alt=media&token=de0a9d59-c0ca-4d09-9db0-faf20a94c3a3";
+        }
+        if (Version == 3){
+            link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Repeating%20Sentence%20Versions%2FMyRec_0526_1325%D7%92%D7%A8%D7%A1%D7%94%20%D7%A9%D7%A0%D7%99%D7%94%20%D7%97%D7%96%D7%A8%D7%94%20%D7%A2%D7%9C%20%D7%9E%D7%A9%D7%A4%D7%98.mp3?alt=media&token=d1319bd4-974a-4f09-b905-50b917ecf244";
+        }
+        if (Version == 4){
+            link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Repeating%20Sentence%20Versions%2FMyRec_0526_1326%D7%92%D7%A8%D7%A1%D7%94%20%D7%A8%D7%91%D7%99%D7%A2%D7%99%D7%AA%20%D7%97%D7%96%D7%A8%D7%94%20%D7%A2%D7%9C%20%D7%9E%D7%A9%D7%A4%D7%98.mp3?alt=media&token=5164aefd-2db1-4e53-8c7d-5731a1c39e02";
+        }
         speechBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

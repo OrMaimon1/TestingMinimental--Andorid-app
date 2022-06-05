@@ -8,16 +8,18 @@ public class MissingDetail {
     private String floor;
     private String area;
     private boolean has_permission;
+    private boolean is_in_hospital;
 
     public MissingDetail() {}
 
-    public MissingDetail(String country, String city, String address, String floor, String area,Boolean has_permission) {
+    public MissingDetail(String country, String city, String address, String floor, String area, Boolean has_permission, Boolean is_in_hospital) {
         this.country = country;
         this.city = city;
         this.address = address;
         this.floor = floor;
         this.area = area;
         this.has_permission = has_permission;
+        this.is_in_hospital = is_in_hospital;
     }
 
     public String getCountry() {
@@ -66,5 +68,13 @@ public class MissingDetail {
 
     public void setHas_permission(boolean has_permission) {
         this.has_permission = has_permission;
+    }
+
+    public boolean isIs_in_hospital() {
+        return is_in_hospital;
+    }
+
+    public void setIs_in_hospital(boolean is_in_hospital) {
+        this.is_in_hospital = is_in_hospital;
     }
 }

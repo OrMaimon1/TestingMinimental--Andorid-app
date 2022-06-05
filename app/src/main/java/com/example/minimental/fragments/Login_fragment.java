@@ -71,7 +71,7 @@ public class Login_fragment extends Fragment {
                                 viewModel.setUserId(userId);
                                 MissingDetailCallback();
                                 viewModel.loadData();
-
+                                viewModel.loadId();
                             }
                             else{
                                 Toast.makeText(getContext(), "Wrong username or password try again", Toast.LENGTH_SHORT).show();
@@ -116,6 +116,7 @@ public class Login_fragment extends Fragment {
                 missingDetail.setFloor(value.getFloor());
                 missingDetail.setArea(value.getArea());
                 missingDetail.setHas_permission(value.isHas_permission());
+                missingDetail.setIs_in_hospital(value.isIs_in_hospital());
                 Log.d("firebase value", String.valueOf(value.getCity()));
                 Log.d("firebase missing", String.valueOf(missingDetail.getCity()));
                 Log.d("firebase class miss", String.valueOf(missingDetail));

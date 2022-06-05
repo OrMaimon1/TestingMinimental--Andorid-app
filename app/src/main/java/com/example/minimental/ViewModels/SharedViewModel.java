@@ -38,6 +38,14 @@ public class SharedViewModel extends ViewModel {
         repository.setUserId(userId);
     }
 
+    private MutableLiveData<Integer> version = new MutableLiveData<>();
+
+    public LiveData<Integer> getVersion(){
+
+        version = repository.getVersion();
+        return version;
+    }
+
     public void setPermission(Boolean permission1){
 
         permission.setValue(permission1);
@@ -64,6 +72,13 @@ public class SharedViewModel extends ViewModel {
     {
         repository.load();
     }
+
+    public void loadId()
+    {
+        repository.loadId();
+    }
+
+
 
     //missing details
     private MutableLiveData<MissingDetail> missingDetailMutableLiveData = new MutableLiveData<>();
@@ -159,8 +174,6 @@ public class SharedViewModel extends ViewModel {
         fourthQuestionLiveData.setValue(secoundQuestion);
         repository.setObjectForthLiveData(fourthQuestionLiveData);
     }
-
-
 
 
 

@@ -55,7 +55,7 @@ public class AppRepository {
     private MutableLiveData<TenthQuestion> tenthQuestionMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<String> username = new MutableLiveData<>();
     private MutableLiveData<Boolean> permission = new MutableLiveData<>();
-    private MutableLiveData<String> version = new MutableLiveData<>();
+    private MutableLiveData<Integer> version = new MutableLiveData<>();
     private MutableLiveData<String> userId = new MutableLiveData<>();
     private MutableLiveData<String> dateTimeFirst = new MutableLiveData<>();
     private MutableLiveData<String> dateTimeLast = new MutableLiveData<>();
@@ -63,6 +63,7 @@ public class AppRepository {
     private MutableLiveData<SixthQuestion> LoadSentence = new MutableLiveData<>();
     private MutableLiveData<ThirdQuestion> LoadThirdQuestion = new MutableLiveData<>();
     private MutableLiveData<FifthQuestion> LoadFifthQuestion = new MutableLiveData<>();
+    private String id;
 
 
 
@@ -84,21 +85,25 @@ public class AppRepository {
         databaseTest = databaseTest.child("Test").child(userId.getValue());
     }
 
-    public void setPermission(MutableLiveData<Boolean> permission1) {
+    public void setPermission(MutableLiveData<Boolean> permission1) { // need to check
         permission.setValue(permission1.getValue());
         database = FirebaseDatabase.getInstance().getReference().child("Patients").child(userId.getValue()).child("patient details").child("has permission");
         database.setValue(permission.getValue());
     }
-    public void getVersion(MutableLiveData<String> userName) {
-        username.setValue(userName.getValue());
+    public MutableLiveData<Integer> getVersion() {
+        MutableLiveData<Integer> data = new MutableLiveData<>();
+        data.setValue(version.getValue());
+        return data;
     }
+
 
     public void setDataTimeFirst(MutableLiveData<String> time) {
         dateTimeFirst.setValue(time.getValue());
     }
     public void setDataTimeLast(MutableLiveData<String> time) {
         dateTimeLast.setValue(time.getValue());
-        database.child("Test").child(userId.getValue()).child("Start_End_Time");
+        database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child("userId");
+        database.child("id").setValue(id);
         database.child("Start").setValue(dateTimeFirst);
         database.child("End").setValue(dateTimeLast);
     }
@@ -135,7 +140,6 @@ public class AppRepository {
                 FifthQuestion fifthQuestion = new FifthQuestion();
                 SixthQuestion sentence = new SixthQuestion();
                 if (task.isSuccessful()) {
-
                     threeObject.setObject1(task.getResult().child("secondQuestion").child("object1").getValue(String.class));
                     threeObject.setObject2(task.getResult().child("secondQuestion").child("object2").getValue(String.class));
                     threeObject.setObject3(task.getResult().child("secondQuestion").child("object3").getValue(String.class));
@@ -147,8 +151,6 @@ public class AppRepository {
                     sentence.setSentence(task.getResult().child("sixthQuestion").child("sentence").getValue(String.class));
                 }
                 else {
-
-
                     Log.e("firebase", "Error getting data", task.getException());
 
                 }
@@ -161,7 +163,35 @@ public class AppRepository {
 
         });
 
-
+    }
+    public void loadId(){
+        database = FirebaseDatabase.getInstance().getReference().child("Patients").child(userId.getValue());
+        database.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                String id1= null;
+                if (task.isComplete()){
+                    id1 = task.getResult().child("id").getValue(String.class);
+                }
+                else {
+                    Log.e("firebase LoadId", "Error getting data", task.getException());
+                }
+                id = id1;
+            }
+        });
+        database.child("patient details").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                Integer version_int1 = 1;
+                if (task.isComplete()){
+                  version_int1 = task.getResult().child("test_number").getValue(Integer.class);
+              }
+              else{
+                  Log.e("firebase LoadId", "Error getting data", task.getException());
+              }
+              version.setValue(version_int1);
+            }
+        });
     }
 
     public void loadMissingDetail(FireBaseCallBack callBack) {
@@ -182,10 +212,15 @@ public class AppRepository {
                     {
                         e.printStackTrace();
                     }
-                    //missingDetail = task.getResult().getValue(MissingDetail.class);
+                    try {
+                        missingDetail.setHas_permission(task.getResult().child("is_in_hospital").getValue(Boolean.class));
+                    }
+                    catch (NullPointerException e)
+                    {
+                        e.printStackTrace();
+                    }
                     Log.d("firebase", String.valueOf(task.getResult().child("country").getValue()));
                     Log.d("firebase", String.valueOf(task.getResult().child("has permission").getValue()));
-
                 }
                 else {
 
@@ -207,7 +242,12 @@ public class AppRepository {
         missingDetailLiveData.setValue(info.getValue());
 
         databasePatients.child("patient details").child("country").setValue(missingDetailLiveData.getValue().getCountry());
-        ///database.setValue(missingDetailLiveData);
+        databasePatients.child("patient details").child("city").setValue(missingDetailLiveData.getValue().getCity());
+        databasePatients.child("patient details").child("street").setValue(missingDetailLiveData.getValue().getAddress());
+        databasePatients.child("patient details").child("floor").setValue(missingDetailLiveData.getValue().getFloor());
+        databasePatients.child("patient details").child("area").setValue(missingDetailLiveData.getValue().getArea());
+        databasePatients.child("patient details").child("has permission").setValue(missingDetailLiveData.getValue().isHas_permission());
+        //databasePatients.child("patient details").child("has permission").setValue(missingDetailLiveData.getValue().isHas_permission());
     }
 
 

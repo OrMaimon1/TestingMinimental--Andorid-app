@@ -47,6 +47,8 @@ public class FifthFragment extends Fragment {
     private FifthQuestion fifthQuestion = new FifthQuestion();
     private Thread imageProcessThread;
     private EditText currentPictureDescribedEditText;
+    private String pic1;
+    private String pic2;
 
 
     @Override
@@ -108,6 +110,27 @@ public class FifthFragment extends Fragment {
         firstImage.setImageBitmap(firstImageBitmap);
         text = rootView.findViewById(R.id.input_FirstPicET);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        Integer Version = sharedViewModel.getVersion().getValue();
+        if (Version == null) //only for now some users dosnt have version alredy asked to add
+        {
+            Version = 1;
+        }
+        if (Version == 1){ // for pic
+            pic1 = "";
+            pic2 = "";
+        }
+        if (Version == 2){
+            pic1 = "";
+            pic2 = "";
+        }
+        if (Version == 3){
+            pic1 = "";
+            pic2 = "";
+        }
+        if (Version == 4){
+            pic1 = "";
+            pic2 = "";
+        }
 
 /*        getFirstItemDescription = new Observer<String>() {
             @Override
