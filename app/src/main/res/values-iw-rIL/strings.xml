@@ -29,7 +29,7 @@
     <string name="choose_first_question_title">זמן ומקום</string>
     <string name="choose_information_question_title">מידע של המשתמש</string>
     <string name="seventh_question_title_string">שאלה שביעית</string>
-    <string name="eighth_question_instructions">שים את העיגול השחור בתוך הריבוע האדום</string>
+    <string name="eighth_question_instructions">גרור את העיגול השחור לתוך הריבוע</string>
     <string name="eighth_question_title">גרור ושחרר</string>
     <string name="six_question_textview2_name">חזור על המשפט</string>
     <string name="sixth_question_textview_name">דוגמא למשפט שצריך להופיע כאן</string>
@@ -64,4 +64,7 @@
     <string name="title_question_fileFragment_textView">הוסף תמונות</string>
     <string name="take_photo">צלם תמונה</string>
     <string name="name_picture">תמונה</string>
+    <string name="eighth_question_instructions2">גרור את העיגול צהוב לתוך הריבוע</string>
+    <string name="eighth_question_instructions3">גרור את העיגול כחול לתוך הריבוע</string>
+    <string name="eighth_question_instructions4">גרור את העיגול ירוק לתוך הריבוע</string>
 </resources>

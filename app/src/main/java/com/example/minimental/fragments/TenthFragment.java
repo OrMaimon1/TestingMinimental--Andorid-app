@@ -64,6 +64,8 @@ public class TenthFragment extends Fragment {
                 String datetime = dateformat.format(c.getTime());
                 sharedViewModel.setDatelast(datetime);
                 Navigation.findNavController(view).navigate(R.id.action_tenthQuestion_to_fileFragment);
+                Boolean permission = Boolean.FALSE;
+                //sharedViewModel.setPermission(permission);
             }
         });
 

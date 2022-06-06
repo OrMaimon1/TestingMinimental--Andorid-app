@@ -81,19 +81,18 @@ public class EighthQuestion extends Fragment {
             Version = 1;
         }
         if(Version == 1){
-
             //blackBall
         }
         if(Version == 2){
-
+            eight_instTx.setText(R.string.eighth_question_instructions2);
             //YellowBall
         }
         if(Version == 3){
-
+            eight_instTx.setText(R.string.eighth_question_instructions3);
             //blueBall
         }
         if(Version == 4){
-
+            eight_instTx.setText(R.string.eighth_question_instructions4);
             //greenBall
         }
 

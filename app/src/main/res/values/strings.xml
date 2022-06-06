@@ -62,5 +62,8 @@
     <string name="file_textview_name">Click on the pluse button for add picture</string>
     <string name="title_question_fileFragment_textView">Add Pictures</string>
     <string name="take_photo">Take photo</string>/>
-    <string name="name_picture">Picture</string>/>
+    <string name="name_picture">Picture</string>
+    <string name="eighth_question_instructions2">Put the yellow circle in the red square</string>
+    <string name="eighth_question_instructions3">put the blue circle in the red square</string>
+    <string name="eighth_question_instructions4">put the green circle in the red square</string>/>
 </resources>
