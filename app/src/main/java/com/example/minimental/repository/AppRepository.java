@@ -82,6 +82,8 @@ public class AppRepository {
         userId.setValue(userId1.getValue());
         database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue());
         database.setValue(userId);
+        databasePatients = FirebaseDatabase.getInstance().getReference();
+        databaseTest = FirebaseDatabase.getInstance().getReference();
         databasePatients = databasePatients.child("Patients").child(userId.getValue());
         databaseTest = databaseTest.child("Test").child(userId.getValue());
     }
@@ -132,7 +134,7 @@ public class AppRepository {
     }
 
     public void load() {
-
+        databasePatients = FirebaseDatabase.getInstance().getReference().child("Patients").child(userId.getValue());
         databasePatients.child("next test").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -200,6 +202,7 @@ public class AppRepository {
     }
 
     public void loadMissingDetail(FireBaseCallBack callBack) {
+        databasePatients = FirebaseDatabase.getInstance().getReference().child("Patients").child(userId.getValue());
         databasePatients.child("patient details").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -246,6 +249,7 @@ public class AppRepository {
     public void setMissingDetail(MutableLiveData<MissingDetail> info) {
         missingDetailLiveData.setValue(info.getValue());
 
+        databasePatients = FirebaseDatabase.getInstance().getReference().child("Patients").child(userId.getValue());
         databasePatients.child("patient details").child("country").setValue(missingDetailLiveData.getValue().getCountry());
         databasePatients.child("patient details").child("city").setValue(missingDetailLiveData.getValue().getCity());
         databasePatients.child("patient details").child("street").setValue(missingDetailLiveData.getValue().getAddress());
@@ -408,7 +412,7 @@ public class AppRepository {
 
     public void setpicForTenth(MutableLiveData<TenthQuestion> pic) {
         tenthQuestionMutableLiveData.setValue(pic.getValue());
-        StorageReference TenthRef = storage.getReference().child("TenthQuestion Pic").child(userId.getValue()).child("test").child("drawImage.jpg");
+        StorageReference TenthRef = storage.getReference().child("TenthQuestion Pic").child(userId.getValue()).child(test).child("drawImage.jpg");
         // Get the data from an ImageView as bytes
         Bitmap bitmap = pic.getValue().getPicToCopy();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
