@@ -29,7 +29,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class AppRepository {
@@ -81,7 +83,10 @@ public class AppRepository {
     public void setUserId(MutableLiveData<String> userId1) {
         userId.setValue(userId1.getValue());
         database = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue());
-        database.setValue(userId);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",userId.getValue());
+        database.updateChildren(updates);
+        //database.setValue(userId);
         databasePatients = FirebaseDatabase.getInstance().getReference();
         databaseTest = FirebaseDatabase.getInstance().getReference();
         databasePatients = databasePatients.child("Patients").child(userId.getValue());
@@ -123,7 +128,9 @@ public class AppRepository {
     public void setinfo(MutableLiveData<informationQuestion> info) {
         infoLiveData.setValue(info.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("FirstQuestion");
-        databaseTest.setValue(infoLiveData);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",infoLiveData.getValue());
+        databaseTest.updateChildren(updates);
     }
 
     //MissingDetails get and set
@@ -185,6 +192,7 @@ public class AppRepository {
         database.child("patient details").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
+                String test1 = "test";
                 Integer version_int1 = 1;
                 if (task.isComplete()){
                   version_int1 = task.getResult().child("test_number").getValue(Integer.class);
@@ -196,7 +204,7 @@ public class AppRepository {
               if (version_int1 ==null){
                   version_int1 =1;
               }
-              test = test + version_int1;
+              test = test1  + version_int1;
             }
         });
     }
@@ -221,7 +229,7 @@ public class AppRepository {
                         e.printStackTrace();
                     }
                     try {
-                        missingDetail.setHas_permission(task.getResult().child("is_in_hospital").getValue(Boolean.class));
+                        missingDetail.setIs_in_hospital(task.getResult().child("is_in_hospital").getValue(Boolean.class));
                     }
                     catch (NullPointerException e)
                     {
@@ -277,7 +285,9 @@ public class AppRepository {
     public void setObject(MutableLiveData<secoundQuestion> info) {
         objectLiveData.setValue(info.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SecondQuestion");
-        databaseTest.setValue(objectLiveData);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",objectLiveData.getValue());
+        databaseTest.updateChildren(updates);
     }
 
     private void loadObjectData() {
@@ -298,7 +308,9 @@ public class AppRepository {
     public void setSpellAnswer(MutableLiveData<ArrayList<String>> Spell) {
         spellWordLiveData.setValue(Spell.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SpellQuestion");
-        databaseTest.setValue(spellWordLiveData);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",spellWordLiveData.getValue());
+        databaseTest.updateChildren(updates);
     }
 
 
@@ -313,7 +325,9 @@ public class AppRepository {
     public void setMathAnswer(MutableLiveData<ArrayList<String>> Math) {
         mathWordLiveData.setValue(Math.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("MathQuestion");
-        databaseTest.setValue(mathWordLiveData);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",mathWordLiveData.getValue());
+        databaseTest.updateChildren(updates);
     }
 
 
@@ -328,7 +342,9 @@ public class AppRepository {
     public void setObjectForthLiveData(MutableLiveData<secoundQuestion> info) {
         objectForthLiveData.setValue(info.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("ForthQuestion");
-        databaseTest.setValue(objectForthLiveData);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",objectForthLiveData.getValue());
+        databaseTest.updateChildren(updates);
     }
 
     public MutableLiveData<FifthQuestion> getPicDescription() {
@@ -341,7 +357,9 @@ public class AppRepository {
     public void setPicDescription(MutableLiveData<FifthQuestion> info) {
         FifthLiveData.setValue(info.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("FifthQuestion");
-        databaseTest.setValue(FifthLiveData);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",FifthLiveData.getValue());
+        databaseTest.updateChildren(updates);
     }
 
     public MutableLiveData<SixthQuestion> getSentence() {
@@ -355,7 +373,9 @@ public class AppRepository {
     public void setSentence(MutableLiveData<SixthQuestion> info) {
         sentenceLiveData.setValue(info.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SixthQuestion");
-        databaseTest.setValue(sentenceLiveData);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",sentenceLiveData.getValue());
+        databaseTest.updateChildren(updates);
     }
 
     public MutableLiveData<SevnthQuestion> getPicForSeventhQuestion() {
@@ -368,7 +388,9 @@ public class AppRepository {
     public void setCurrectPicOrder(MutableLiveData<Boolean> currectPicOrder) {
         currectOrderSeventh.setValue(currectPicOrder.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SeventhQuestion");
-        databaseTest.setValue(currectOrderSeventh);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",currectOrderSeventh.getValue());
+        databaseTest.updateChildren(updates);
     }
 
     public MutableLiveData<EightQuestion> getPicForEighthQuestion() {
@@ -382,7 +404,9 @@ public class AppRepository {
     public void setCurrectPicOrderEighth(MutableLiveData<Boolean> currectPicOrder) {
         currectOrderEight.setValue(currectPicOrder.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("EigthQuestion");
-        databaseTest.setValue(currectOrderEight);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",currectOrderEight.getValue());
+        databaseTest.updateChildren(updates);
     }
 
     public MutableLiveData<SixthQuestion> getSentenceForNinth() {
@@ -399,7 +423,9 @@ public class AppRepository {
     public void setSentenceForNinth(MutableLiveData<SixthQuestion> sentence) {
         ninthQuestionMutableLiveData.setValue(sentence.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("NineQuestion");
-        databaseTest.setValue(ninthQuestionMutableLiveData);
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("value",ninthQuestionMutableLiveData.getValue());
+        databaseTest.updateChildren(updates);
     }
 
     public MutableLiveData<TenthQuestion> getpicForTenth() {
@@ -419,7 +445,6 @@ public class AppRepository {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
         UploadTask uploadTask = TenthRef.putBytes(data);
-
     }
 
 }
