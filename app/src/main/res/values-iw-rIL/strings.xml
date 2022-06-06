@@ -22,7 +22,7 @@
     <string name="enter_currentSeason">באיזו עונה אנחנו נמצאים?</string>
     <string name="enter_currentCountry">באיזו מדינה אתה גר?</string>
     <string name="enter_currentYear">באיזו שנה אנחנו נמצאים?</string>
-    <string name="enter_currentDate">איזה יום בחודש אנחנו נמצאים?</string>
+    <string name="enter_currentDate">מה התאריך היום?</string>
     <string name="enter_currentMonth">באיזה חודש אנחנו נמצאים?</string>
     <string name="enter_answer">הכנס תשובה</string>
     <string name="enter_currentDay">איזה יום היום?</string>

@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,6 +51,7 @@ public class EighthQuestion extends Fragment {
     private float redSquareCenterX;
     private float redSquareCenterY;
     private boolean ball1 = false ,ball2 = false;
+    private TextView eight_instTx;
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -60,6 +62,7 @@ public class EighthQuestion extends Fragment {
         View rootView = inflater.inflate(R.layout.eighth_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
+        eight_instTx = rootView.findViewById(R.id.eighthQuestion_instructions);
         //ImageButton speakerButton = rootView.findViewById(R.id.eight_question_speaker);
         ballsDragView = rootView.findViewById(R.id.ball_drag_view);
         yellowBall = ballsDragView.getYellowBall();
@@ -74,6 +77,18 @@ public class EighthQuestion extends Fragment {
         if (Version == null) //only for now some users dosnt have version alredy asked to add
         {
             Version = 1;
+        }
+        if(Version == 1){
+
+        }
+        if(Version == 2){
+
+        }
+        if(Version == 3){
+
+        }
+        if(Version == 4){
+
         }
 
         /*blackCircle = (View) rootView.findViewById(R.id.viewblackcircle);

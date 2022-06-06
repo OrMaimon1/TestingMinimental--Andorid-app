@@ -37,6 +37,7 @@ public class SeventhQuestion extends Fragment {
     private MilkDragView milkDragView;
     private Rect borderRect;
     private Drawable clickOnFridge;
+    private String link;
 
     @Nullable
     @Override
@@ -58,6 +59,18 @@ public class SeventhQuestion extends Fragment {
         if (Version == null) //only for now some users dosnt have version alredy asked to add
         {
             Version = 1;
+        }
+        if(Version == 1){
+            link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1313%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=3c76d7dc-b264-4bdb-83fe-4ce16eaa5e44";
+        }
+        if(Version == 2){
+            link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1328%D7%92%D7%A8%D7%A1%D7%94%20%D7%A9%D7%A0%D7%99%D7%94%20%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=24ba10bd-e6e6-415b-9397-0317c4c0cc3e";
+        }
+        if(Version == 3){
+            link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1330%D7%92%D7%A8%D7%A1%D7%94%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%AA%20%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=d5204567-d417-41b1-80f5-8739ef2e0cf8";
+        }
+        if(Version == 4){
+            link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1331%D7%92%D7%A8%D7%A1%D7%94%20%D7%A8%D7%91%D7%99%D7%A2%D7%99%D7%AA%20%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=e706eeb4-647c-4910-8a24-6b1dc3eba139";
         }
 
 

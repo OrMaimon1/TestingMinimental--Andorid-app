@@ -44,6 +44,7 @@
             android:gravity="center"
             android:text="@string/eighth_question_instructions"
             android:textSize="25sp"
+            android:id="@+id/eighthQuestion_instructions"
             app:layout_constraintBottom_toTopOf="@+id/viewblackcircle" />
 
 

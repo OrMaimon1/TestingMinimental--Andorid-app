@@ -40,7 +40,6 @@ import java.util.ArrayList;
 public class FifthFragment extends Fragment {
     public SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
-    private Observer<String> getFirstItemDescription;
     private TextView text;
     private EditText firstPicET;
     private EditText secondPicET;
@@ -82,17 +81,10 @@ public class FifthFragment extends Fragment {
                     }
                     String result = speechResult.toString();
                     currentPictureDescribedEditText.setText(result);
-                    //sharedViewModel.setFirstItemDescription(result);
                 }
             }
         });
-        /*getAnswerObserver = new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                resultText.setText(s);
-            }
-        };
-        sharedViewModel.getMathAnswerGiven().observe(this , getAnswerObserver);*/
+
     }
 
     @Nullable
@@ -118,29 +110,21 @@ public class FifthFragment extends Fragment {
             Version = 1;
         }
         if (Version == 1){ // for pic
-            pic1 = "";
-            pic2 = "";
+            pic1 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%941%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.jpg?alt=media&token=1d064c87-9abf-4d45-926c-45a7829cd201";
+            pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%942%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.png?alt=media&token=fe5b166e-ecf2-48b1-9d28-869975cafd53";
         }
         if (Version == 2){
-            pic1 = "";
-            pic2 = "";
+            pic1 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%941%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%A0%D7%99%D7%94.jpg?alt=media&token=7be08784-b28e-43f2-baf4-4afde2ce963c";
+            pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%942%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%A0%D7%99%D7%94.jpg?alt=media&token=d539e212-8d85-4d86-8f9d-b943291dea50";
         }
         if (Version == 3){
-            pic1 = "";
-            pic2 = "";
+            pic1 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%941%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%AA.png?alt=media&token=10979082-663b-4739-a549-188a372c9128";
+            pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%942%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%AA.jpg?alt=media&token=6d60dd4f-b49b-44e3-84b6-644dd2c6fee7";
         }
         if (Version == 4){
-            pic1 = "";
-            pic2 = "";
+            pic1 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%942%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%AA.jpg?alt=media&token=6d60dd4f-b49b-44e3-84b6-644dd2c6fee7";
+            pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%941%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.jpg?alt=media&token=1d064c87-9abf-4d45-926c-45a7829cd201";
         }
-
-/*        getFirstItemDescription = new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                text.setText(s);
-            }
-        };
-        sharedViewModel.getFirstItemDescription().observe(getViewLifecycleOwner(),getFirstItemDescription);*/
 
 
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
