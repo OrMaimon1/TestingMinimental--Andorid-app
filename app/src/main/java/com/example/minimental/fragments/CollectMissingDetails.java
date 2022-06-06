@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -120,6 +122,8 @@ public class CollectMissingDetails extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 missingDetail.setCountry(country.getText().toString());
                 missingDetail.setCity(city.getText().toString());
                 missingDetail.setAddress(address.getText().toString());

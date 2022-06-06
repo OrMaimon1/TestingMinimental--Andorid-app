@@ -8,6 +8,8 @@ import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -230,6 +232,8 @@ public class  InformationFragment extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 informationQuestion.setDay(currentDayAnswerET.getText().toString());
                 informationQuestion.setMonth(currentMonthAnswerET.getText().toString());
                 informationQuestion.setDate(currentDateAnswerET.getText().toString());

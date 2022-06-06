@@ -64,6 +64,8 @@ public class SeventhQuestion extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 sharedViewModel.setCurrectOrderSeventh(sevnthCurrectOrder);
                 Navigation.findNavController(view).navigate(R.id.action_SeventhQuestion_to_eighthQuestion);
             }

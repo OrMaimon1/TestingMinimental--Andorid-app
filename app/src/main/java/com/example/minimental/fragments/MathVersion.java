@@ -76,15 +76,17 @@ public class MathVersion extends Fragment  {
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.mic_image_btn);
-        ImageButton speakerButton = rootView.findViewById(R.id.math_istructions_speaker);
+        Button speakerButton = rootView.findViewById(R.id.math_istructions_speaker);
         nxtBtn.setEnabled(false);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
-        speechBtn.startAnimation(animation);
+        speakerButton.startAnimation(animation);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
         math = sharedViewModel.getMathAnswerGiven().getValue();
         confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation1= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                confirmAnswerbutton.startAnimation(animation1);
                 numberOfAnswersGiven++;
                 if(numberOfAnswersGiven == 5)
                 {
@@ -114,6 +116,9 @@ public class MathVersion extends Fragment  {
         speakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speakerButton.clearAnimation();
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+                speechBtn.startAnimation(animation);
                 startMediaService();
             }
         });
@@ -121,6 +126,8 @@ public class MathVersion extends Fragment  {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 sharedViewModel.setMathAnswerGiven(FinalResult);
                 Navigation.findNavController(view).navigate(R.id.action_mathVersion_to_fourthQuestion);
             }

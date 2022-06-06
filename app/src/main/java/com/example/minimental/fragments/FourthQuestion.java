@@ -105,6 +105,8 @@ public class FourthQuestion extends Fragment {
         confirmWordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                confirmWordButton.startAnimation(animation);
                 checkIfWordIsCorrect();
                 Log.d("firebase", String.valueOf(secoundquestion.getObject1()));
             }
@@ -113,6 +115,8 @@ public class FourthQuestion extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 Navigation.findNavController(view).navigate(R.id.action_fourthQuestion_to_fifthQuestion);
             }
         });

@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -52,6 +54,8 @@ public class Login_fragment extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 String username = textInputUsername.getEditText().getText().toString();
                 String password = textInputPassword.getEditText().getText().toString();
                 if (username.length() > 0 && password.length() > 0) {

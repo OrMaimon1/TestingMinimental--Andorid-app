@@ -74,16 +74,18 @@ public class SpellingVersion extends Fragment {
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
-        ImageButton speakerButton = rootView.findViewById(R.id.spelling_instructions_speaker);
+        Button speakerButton = rootView.findViewById(R.id.spelling_instructions_speaker);
         TextView spellTv = rootView.findViewById(R.id.spelling_version_textview);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speakerButton.startAnimation(animation);
         spell = sharedViewModel.getSpelledWord().getValue();
         spellTv.setText(spell.getObjectforspelling());
         nxtBtn.setEnabled(false);
-        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
-        speechBtn.startAnimation(animation);
         confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation1= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                confirmAnswerbutton.startAnimation(animation1);
                 numberOfAnswersGiven++;
                 if(numberOfAnswersGiven == 5)
                 {
@@ -109,12 +111,17 @@ public class SpellingVersion extends Fragment {
         speakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speakerButton.clearAnimation();
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+                speechBtn.startAnimation(animation);
                 startMediaService();
             }
         });
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 sharedViewModel.setSpelledWord(FinalResult);
                 Navigation.findNavController(view).navigate(R.id.action_spellingVersion_to_fourthQuestion);
             }

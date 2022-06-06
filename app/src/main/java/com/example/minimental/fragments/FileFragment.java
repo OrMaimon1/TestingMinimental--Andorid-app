@@ -17,6 +17,8 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -157,6 +159,8 @@ public class FileFragment extends Fragment {
         addRowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                addRowBtn.startAnimation(animation);
                 photo = new File(Environment.getExternalStorageDirectory(), "picture" + (pictures != null ? pictures.size() : 0)+".png");
                 imageUri = getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider",photo);
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -196,6 +200,8 @@ public class FileFragment extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 Navigation.findNavController(view).navigate(R.id.action_fileFragment_to_login_fragment);
             }
         });

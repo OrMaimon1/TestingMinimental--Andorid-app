@@ -79,9 +79,9 @@ public class Sixth_question extends Fragment {
         sentenceTv.setText(sentence.getSentence());
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
-        ImageButton speakerButton = rootView.findViewById(R.id.repeat_sentence_speaker);
+        Button speakerButton = rootView.findViewById(R.id.repeat_sentence_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
-        speechBtn.startAnimation(animation);
+        speakerButton.startAnimation(animation);
         Integer Version = sharedViewModel.getVersion().getValue();
         if (Version == null) //only for now some users dosnt have version alredy asked to add
         {
@@ -110,12 +110,17 @@ public class Sixth_question extends Fragment {
         speakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speakerButton.clearAnimation();
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+                speechBtn.startAnimation(animation);
                 startMediaService();
             }
         });
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 sharedViewModel.setRepeatedSentence(sixthQuestion);
                 Navigation.findNavController(view).navigate(R.id.action_sixth_question_to_SeventhQuestion);
             }

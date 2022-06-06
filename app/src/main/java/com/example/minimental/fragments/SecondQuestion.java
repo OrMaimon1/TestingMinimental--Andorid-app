@@ -117,6 +117,8 @@ public class SecondQuestion extends Fragment {
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 Navigation.findNavController(view).navigate(R.id.action_secondQuestion_to_chooseThirdQuestion);
             }
         });

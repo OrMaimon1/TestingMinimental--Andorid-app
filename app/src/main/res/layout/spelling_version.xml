@@ -48,6 +48,28 @@
 
             </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:baselineAligned="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/spelling_instructions_speaker"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="25dp"
+                    android:drawableEnd="@drawable/ic_speaker"
+                    android:gravity="center"
+                    android:text="@string/listen"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -57,16 +79,6 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:id="@+id/spelling_instructions_speaker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@null"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_speaker"
-                    />
 
                 <Button
                     android:id="@+id/image_of_microphone"

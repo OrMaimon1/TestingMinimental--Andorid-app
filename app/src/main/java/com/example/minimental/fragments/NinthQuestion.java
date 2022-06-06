@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -31,11 +33,15 @@ public class NinthQuestion extends Fragment {
         View rootView = inflater.inflate(R.layout.ninth_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        ImageButton speakerButton = rootView.findViewById(R.id.ninth_question_speaker);
+        Button speakerButton = rootView.findViewById(R.id.ninth_question_speaker);
         currentSentence = rootView.findViewById(R.id.input_SentenceET);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speakerButton.startAnimation(animation);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 nineQuestion.setSentence(currentSentence.getText().toString());
                 sharedViewModel.setSentenceNinthQuestion(nineQuestion);
                 Navigation.findNavController(view).navigate(R.id.action_ninthQuestion_to_tenthQuestion);
@@ -45,6 +51,7 @@ public class NinthQuestion extends Fragment {
         speakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speakerButton.clearAnimation();
                 startMediaService();
             }
         });

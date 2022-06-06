@@ -7,6 +7,8 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -45,9 +47,13 @@ public class TenthFragment extends Fragment {
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         painter.init(metrics);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speakerButton.startAnimation(animation);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+                nxtBtn.startAnimation(animation);
                 painter.setDrawingCacheEnabled(true);
                 Bitmap img = painter.getDrawingCache();
                 tenthQuestion.setPicToCopy(img);
@@ -64,6 +70,7 @@ public class TenthFragment extends Fragment {
         speakerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                speakerButton.clearAnimation();
                 startMediaService();
             }
         });

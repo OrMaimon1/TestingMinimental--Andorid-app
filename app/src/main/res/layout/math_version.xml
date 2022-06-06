@@ -54,27 +54,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:gravity="center"
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
 
-                <ImageButton
+                <Button
                     android:id="@+id/math_istructions_speaker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@null"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_speaker"
-                    />
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="25dp"
+                    android:drawableEnd="@drawable/ic_speaker"
+                    android:gravity="center"
+                    android:text="@string/listen"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/math_version_question_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:gravity="center"
+                    android:visibility="gone"
                     android:text="@string/textView_math_version"
                     android:textColorHint="@color/white"
                     android:textSize="40sp"
