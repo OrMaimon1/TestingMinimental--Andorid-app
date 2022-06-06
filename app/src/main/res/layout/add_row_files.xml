@@ -35,7 +35,6 @@
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:text="@string/name_picture"
-                    android:textColor="@color/black"
                     android:textColorHint="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold" />

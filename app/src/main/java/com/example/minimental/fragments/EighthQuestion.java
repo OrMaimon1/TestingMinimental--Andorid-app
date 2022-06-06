@@ -132,6 +132,7 @@ public class EighthQuestion extends Fragment {
                 if (ball1 == true)
                 {
                     eigthCurrectOrder = true;
+
                 }
                 sharedViewModel.setCurrectPicOrderEighth(eigthCurrectOrder);
                 Navigation.findNavController(view).navigate(R.id.action_eighthQuestion_to_ninthQuestion);

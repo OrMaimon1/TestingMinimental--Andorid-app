@@ -133,18 +133,23 @@ public class SeventhQuestion extends Fragment {
                     if(milkDragView.milkIsInPosition() && Version == 1)
                     {
                         milkDragView.changeBorderColor();
+                        sevnthCurrectOrder = true;
                     }
                     else if(milkDragView.redBottleIsInPosition() && Version == 2)
                     {
                         milkDragView.changeBorderColor();
+                        sevnthCurrectOrder = true;
                     }
                     else if(milkDragView.greenBottleIsInPosition() && Version == 3)
                     {
                         milkDragView.changeBorderColor();
+                        sevnthCurrectOrder = true;
+
                     }
                     else if(milkDragView.canIsInPosition() && Version == 4)
                     {
                         milkDragView.changeBorderColor();
+                        sevnthCurrectOrder = true;
                     }
                     break;
                 case MotionEvent.ACTION_DOWN:
