@@ -17,6 +17,9 @@ public class MilkDragView extends View {
 
     private Paint yellow = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint green = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint red = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint blue = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint yellowFill = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint transperent = new Paint(Paint.ANTI_ALIAS_FLAG);
     Rect r = new Rect(10 , 100 , 40 , 200);
 
@@ -38,9 +41,9 @@ public class MilkDragView extends View {
     private Rect greenBottleBorderRect;
     private Rect canBorderRect;
     private Rect redNapkin;
-    private Rect yellowNapkin;
     private Rect blueNapkin;
     private Rect greenNapkin;
+    private Rect yellowNapkin;
     private Rect positionBorderRect;
     private boolean fridgeIsOpen= false;
 
@@ -52,6 +55,12 @@ public class MilkDragView extends View {
         yellow.setStrokeWidth(5f);
         green.setColor(Color.GREEN);
         green.setStyle(Paint.Style.FILL);
+        blue.setColor(Color.BLUE);
+        blue.setStyle(Paint.Style.FILL);
+        red.setColor(Color.RED);
+        red.setStyle(Paint.Style.FILL);
+        yellowFill.setColor(Color.YELLOW);
+        yellowFill.setStyle(Paint.Style.FILL);
         transperent.setColor(Color.TRANSPARENT);
         milkDrawable = getResources().getDrawable(R.drawable.ic_blue_milk);
         greenBottle = getResources().getDrawable(R.drawable.ic_chicken);
@@ -107,6 +116,9 @@ public class MilkDragView extends View {
         }
         tableDrawable.draw(canvas);
         canvas.drawRect(greenNapkin , green);
+        canvas.drawRect(redNapkin , red);
+        canvas.drawRect(blueNapkin , blue);
+        canvas.drawRect(yellowNapkin , yellowFill);
     }
 
     public Drawable getFridgeDrawble()
@@ -203,13 +215,20 @@ public class MilkDragView extends View {
     private void initializeCanvasObjects()
     {
         fridgeDrawable.setBounds(0 , canvasHeight/3 , canvasWidth/2 , canvasHeight);
-        tableDrawable.setBounds(canvasWidth*2/3 , canvasHeight/2 , canvasWidth , canvasHeight);
+        tableDrawable.setBounds(canvasWidth*1/2 , canvasHeight/2 , canvasWidth , canvasHeight);
         positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top + (40*scale),
                 tableDrawable.getBounds().right , tableDrawable.getBounds().top+(150*scale));
-        int top = tableDrawable.getBounds().top + (30*scale);
+        int top = tableDrawable.getBounds().top + (110*scale);
         int bottom = top + (10*scale);
         greenNapkin = new Rect(tableDrawable.getBounds().left ,top  ,
                 tableDrawable.getBounds().left + (50*scale) , bottom);
+        redNapkin = new Rect(greenNapkin.right + (3*scale) , top ,
+                 greenNapkin.right+ (53*scale) , bottom);
+        yellowNapkin = new Rect(redNapkin.right + (3 * scale), top,
+                redNapkin.right + (53 * scale), bottom);
+        blueNapkin = new Rect(yellowNapkin.right + (3*scale) , top ,
+                yellowNapkin.right + (53*scale) , bottom);
+
     }
     public DrawableProxy getMilkDrawable()
     {
@@ -231,7 +250,9 @@ public class MilkDragView extends View {
         {
             if(milkDrawable.getBounds().top >= positionBorderRect.top && milkDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
-                inPosition = true;
+                if(milkDrawable.getBounds().left >= redNapkin.left && milkDrawable.getBounds().right <= redNapkin.right) {
+                    inPosition = true;
+                }
             }
         }
         return  inPosition;
@@ -244,7 +265,9 @@ public class MilkDragView extends View {
         {
             if(redBottle.getBounds().top >= positionBorderRect.top && redBottle.getBounds().bottom <= positionBorderRect.bottom)
             {
-                inPosition = true;
+                if(redBottle.getBounds().left >= blueNapkin.left && redBottle.getBounds().right <= blueNapkin.right) {
+                    inPosition = true;
+                }
             }
         }
         return  inPosition;
@@ -257,7 +280,9 @@ public class MilkDragView extends View {
         {
             if(greenBottle.getBounds().top >= positionBorderRect.top && greenBottle.getBounds().bottom <= positionBorderRect.bottom)
             {
-                inPosition = true;
+                if(greenBottle.getBounds().left>= greenNapkin.left && greenBottle.getBounds().right <= greenNapkin.right) {
+                    inPosition = true;
+                }
             }
         }
         return  inPosition;
@@ -270,7 +295,9 @@ public class MilkDragView extends View {
         {
             if(canDrawable.getBounds().top >= positionBorderRect.top && canDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
-                inPosition = true;
+                if(canDrawable.getBounds().left >= yellowNapkin.left && canDrawable.getBounds().right <= yellowNapkin.right) {
+                    inPosition = true;
+                }
             }
         }
         return  inPosition;
