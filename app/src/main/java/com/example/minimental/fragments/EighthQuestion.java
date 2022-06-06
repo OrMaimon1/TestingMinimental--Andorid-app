@@ -129,7 +129,7 @@ public class EighthQuestion extends Fragment {
             public void onClick(View view) {
                 Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
                 nxtBtn.startAnimation(animation);
-                if (ball1 == true && ball2 == true)
+                if (ball1 == true)
                 {
                     eigthCurrectOrder = true;
                 }
@@ -188,15 +188,18 @@ public class EighthQuestion extends Fragment {
                         else if(ballsDragView.SquareSuroundsCircle(redRect , yellowBall) && Version == 2)
                         {
                             yellowBall.changeColor();
+                            ball1 = true;
 
                         }
                         else if(ballsDragView.SquareSuroundsCircle(redRect , blueBall) && Version == 3)
                         {
                             blueBall.changeColor();
+                            ball1 = true;
                         }
                         else if(ballsDragView.SquareSuroundsCircle(redRect , greenBall) && Version == 4)
                         {
                             greenBall.changeColor();
+                            ball1 = true;
                         }
                         else {
                             ball1 = false;
