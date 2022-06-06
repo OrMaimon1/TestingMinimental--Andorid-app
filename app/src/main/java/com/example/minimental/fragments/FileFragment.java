@@ -32,6 +32,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -39,6 +40,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minimental.BuildConfig;
 import com.example.minimental.R;
+import com.example.minimental.ViewModels.SharedViewModel;
 import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -75,11 +77,15 @@ public class FileFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     ImageButton addRowBtn;
     ActivityResultLauncher<Intent> activityResultLauncher;
+    SharedViewModel sharedViewModel;
     TextView title;
     ImageView mImageView;
     File photo;
     Uri imageUri;
     byte[] imageRv;
+    private Integer Version;
+    private String test;
+    private String userId;
 
     @Nullable
     @Override
@@ -91,6 +97,10 @@ public class FileFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
         recyclerView.setAdapter(adapter);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        Version = sharedViewModel.getVersion().getValue(); // this is the test version
+        test = "test"+Version;
+
 
 
         mImageView = rootView.findViewById(R.id.test_ImageView);
@@ -104,7 +114,7 @@ public class FileFragment extends Fragment {
         databaseReference = database.getReference().child("user_images");
         storageReference = firebaseStorage.getReference();
         //FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -231,7 +241,7 @@ public class FileFragment extends Fragment {
     private void uploadImage(byte[] bb){
         if(bb != null)
         {
-            StorageReference ref = storageReference.child("my_images/picture" + (pictures.size() + 1) + ".JPEG");
+            StorageReference ref = storageReference.child("TenthQuestion Pic").child(userId).child(test).child("file"+(pictures.size() + 1) + ".JPEG");
             //.child("TenthQuestion Pic").child(userId.getValue()).child("test")
             ref.putBytes(bb).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -258,8 +268,8 @@ public class FileFragment extends Fragment {
     {
         if(bb!= null)
         {
-            StorageReference ref = storageReference.child("my_images/picture" + (pictures.size() + 1) + ".JPEG");
-            //.child("TenthQuestion Pic").child(userId.getValue()).child("test")
+            StorageReference ref = storageReference.child("TenthQuestion Pic").child(userId).child(test).child("file"+(pictures.size() + 1) + ".JPEG");
+            //storage.getReference().child("TenthQuestion Pic").child(userId.getValue()).child(test)
             ref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
