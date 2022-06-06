@@ -25,8 +25,6 @@ import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.SevnthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
-import java.util.Calendar;
-
 public class SeventhQuestion extends Fragment {
 
     ImageView milk;
@@ -35,9 +33,12 @@ public class SeventhQuestion extends Fragment {
     private Boolean sevnthCurrectOrder = false;
     private MilkDragView.DrawableProxy milkPicture;
     private MilkDragView milkDragView;
-    private Rect borderRect;
+    private Rect milkBorderRect;
+    private Rect redBottleBorderRect;
+    private Rect greenBottleBorderRect;
     private Drawable clickOnFridge;
     private String link;
+    private Integer Version;
 
     @Nullable
     @Override
@@ -47,7 +48,9 @@ public class SeventhQuestion extends Fragment {
         Button listenBtn = rootView.findViewById(R.id.seventh_question_instruction_speaker);
         milkDragView = rootView.findViewById(R.id.milk_drag_view);
         milkPicture = milkDragView.getMilkDrawable();
-        borderRect = milkDragView.getMilkBorderRect();
+        milkBorderRect = milkDragView.getMilkBorderRect();
+        redBottleBorderRect = milkDragView.getRedBottleBorderRect();
+        greenBottleBorderRect = milkDragView.getGreenBottleBorderRect();
         clickOnFridge = milkDragView.getFridgeDrawble();
         milkDragView.setOnTouchListener(new milkDragTouchListener());
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
@@ -55,8 +58,8 @@ public class SeventhQuestion extends Fragment {
         listenBtn.startAnimation(animation);
         //milk = rootView.findViewById(R.id.seventh_question_ImageView_milk);
         //milk.setOnTouchListener(new MyTouchListener());
-        Integer Version = sharedViewModel.getVersion().getValue(); // this is the test version
-        if (Version == null) //only for now some users dosnt have version alredy asked to add
+        Version = sharedViewModel.getVersion().getValue(); // this is the test version
+        if (Version == null || Version == 0) //only for now some users dosnt have version alredy asked to add
         {
             Version = 1;
         }
@@ -104,18 +107,34 @@ public class SeventhQuestion extends Fragment {
             float y = motionEvent.getY();
             switch (motionEvent.getActionMasked()) {
                 case MotionEvent.ACTION_MOVE:
-                    if(borderRect.contains((int)x , (int)y)) {
-                        milkDragView.moveBorderRect((int) x, (int) y);
+                    if(milkBorderRect.contains((int)x , (int)y)) {
+                        milkDragView.moveMilkBorderRect((int) x, (int) y);
+                    }
+                    else if(redBottleBorderRect.contains((int)x , (int)y))
+                    {
+                        milkDragView.moveRedBottleBorderRect((int)x , (int)y);
+                    }
+                    else if(greenBottleBorderRect.contains((int)x , (int)y))
+                    {
+                        milkDragView.moveGreenBottleBorderRect((int)x , (int)y);
                     }
                     break;
                 case MotionEvent.ACTION_UP:
-                    if(milkDragView.isInPosition())
+                    if(milkDragView.milkIsInPosition() && Version == 1)
+                    {
+                        milkDragView.changeBorderColor();
+                    }
+                    else if(milkDragView.redBottleIsInPosition() && Version == 2)
+                    {
+                        milkDragView.changeBorderColor();
+                    }
+                    else if(milkDragView.greenBottleIsInPosition() && Version == 3)
                     {
                         milkDragView.changeBorderColor();
                     }
                     break;
                 case MotionEvent.ACTION_DOWN:
-                    if(!(borderRect.contains((int)x , (int)y)))
+                    if((!milkBorderRect.contains((int)x , (int)y)) && (!redBottleBorderRect.contains((int)x , (int)y)) && (!greenBottleBorderRect.contains((int)x , (int)y)) )
                     {
                         if(milkDragView.isClickOnFridge((int) x, (int) y))
                         {
@@ -131,7 +150,7 @@ public class SeventhQuestion extends Fragment {
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
-        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1313%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=3c76d7dc-b264-4bdb-83fe-4ce16eaa5e44");
+        intent.putExtra("Link" , link);
         getContext().startService(intent);
     }
 

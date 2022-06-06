@@ -83,7 +83,7 @@ public class Sixth_question extends Fragment {
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speakerButton.startAnimation(animation);
         Integer Version = sharedViewModel.getVersion().getValue();
-        if (Version == null) //only for now some users dosnt have version alredy asked to add
+        if (Version == null || Version == 0) //only for now some users dosnt have version alredy asked to add
         {
             Version = 1;
         }
@@ -138,7 +138,7 @@ public class Sixth_question extends Fragment {
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
-        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Repeating%20Sentence%20Versions%2FMyRec_0525_0926%D7%97%D7%96%D7%A8%D7%94%20%D7%A2%D7%9C%20%D7%9E%D7%A9%D7%A4%D7%98.mp3?alt=media&token=5d65dbb1-9927-4035-85b0-c2cf90b2c594");
+        intent.putExtra("Link" , link);
         getContext().startService(intent);
     }
     private void updateAnswer(String answer)

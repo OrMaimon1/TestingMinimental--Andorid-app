@@ -83,7 +83,7 @@ public class SecondQuestion extends Fragment {
         Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
         resultText = rootView.findViewById(R.id.check_txt);
         Integer Version = sharedViewModel.getVersion().getValue();
-        if (Version == null) //only for now some users dosnt have version alredy asked to add
+        if (Version == null || Version == 0) //only for now some users dosnt have version alredy asked to add
         {
             Version = 1;
         }
@@ -142,7 +142,7 @@ public class SecondQuestion extends Fragment {
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
-        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0913%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%96%D7%99%D7%9B%D7%A8%D7%95%D7%9F.mp3?alt=media&token=f6bc06fc-114d-4a62-9ffb-0592c25b5d31");
+        intent.putExtra("Link" , link);
         getContext().startService(intent);
 
     }

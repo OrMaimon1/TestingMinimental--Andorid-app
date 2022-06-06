@@ -21,12 +21,18 @@ public class MilkDragView extends View {
 
     private Drawable tableDrawable;
     private Drawable milkDrawable;
+    private Drawable greenBottle;
+    private Drawable redBottle;
     private Drawable fridgeDrawable;
     private DrawableProxy milkDrawableProxy;
+    private DrawableProxy redBottleDrawableProxy;
+    private DrawableProxy greenBottleDrawableProxy;
     int scale = (int)getResources().getDisplayMetrics().density;
     int canvasWidth;
     int canvasHeight;
     private Rect milkBorderRect;
+    private Rect redBottleBorderRect;
+    private Rect greenBottleBorderRect;
     private Rect positionBorderRect;
     private boolean fridgeIsOpen= false;
 
@@ -38,10 +44,20 @@ public class MilkDragView extends View {
         yellow.setStrokeWidth(5f);
         transperent.setColor(Color.TRANSPARENT);
         milkDrawable = getResources().getDrawable(R.drawable.ic_blue_milk);
+        greenBottle = getResources().getDrawable(R.drawable.ic_bottle_green);
+        redBottle = getResources().getDrawable(R.drawable.ic_bottle_red);
         fridgeDrawable = getResources().getDrawable(R.drawable.ic_closefridge);
-        tableDrawable = getResources().getDrawable(R.drawable.ic_dresser);
-        milkDrawableProxy = new DrawableProxy(milkDrawable , 60*scale , 350*scale , 40*scale , 70*scale);
-        milkBorderRect = new Rect(50 * scale , 345*scale , 101 * scale , 416 * scale);
+        tableDrawable = getResources().getDrawable(R.drawable.ic_table);
+        milkDrawableProxy = new DrawableProxy(milkDrawable , 70*scale , 350*scale , 40*scale , 70*scale);
+        milkBorderRect = new Rect(65 * scale , 345*scale , 111 * scale , 416 * scale);
+
+        redBottleDrawableProxy = new DrawableProxy(redBottle , 135*scale , 250*scale ,40*scale , 70*scale );
+        redBottleBorderRect = new Rect(130*scale , 245*scale , 176*scale , 321*scale);
+
+        greenBottleDrawableProxy = new DrawableProxy(greenBottle , 90*scale , 250*scale ,40*scale , 70*scale );
+        greenBottleBorderRect = new Rect(85*scale , 245*scale , 131*scale , 321*scale);
+
+
 
     }
 
@@ -53,11 +69,15 @@ public class MilkDragView extends View {
         canvasHeight = this.getHeight();
         initializeCanvasObjects();
         canvas.drawRect(milkBorderRect, transperent);
+        canvas.drawRect(redBottleBorderRect, transperent);
+        canvas.drawRect(greenBottleBorderRect, transperent);
         canvas.drawRect(positionBorderRect , yellow);
         fridgeDrawable.draw(canvas);
         if(!fridgeIsOpen)
         {
             milkDrawableProxy.getDrawableItem().draw(canvas);
+            redBottleDrawableProxy.getDrawableItem().draw(canvas);
+            greenBottleDrawableProxy.getDrawableItem().draw(canvas);
             fridgeDrawable.draw(canvas);
         }
         if(fridgeIsOpen)
@@ -65,6 +85,8 @@ public class MilkDragView extends View {
 //            fridgeDrawable = getResources().getDrawable(R.drawable.ic_fridge_open);
             fridgeDrawable.draw(canvas);
             milkDrawableProxy.getDrawableItem().draw(canvas);
+            redBottleDrawableProxy.getDrawableItem().draw(canvas);
+            greenBottleDrawableProxy.getDrawableItem().draw(canvas);
         }
         tableDrawable.draw(canvas);
     }
@@ -107,13 +129,36 @@ public class MilkDragView extends View {
     {
         return milkBorderRect;
     }
-    public void moveBorderRect(int x , int y)
+    public Rect getGreenBottleBorderRect()
+    {
+        return greenBottleBorderRect;
+    }
+    public Rect getRedBottleBorderRect()
+    {
+        return redBottleBorderRect;
+    }
+    public void moveMilkBorderRect(int x , int y)
     {
         milkBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
         milkDrawableProxy.moveItem(milkBorderRect.left + (10*scale) , milkBorderRect.top + (10*scale));
         invalidate();
     }
-    public boolean pointInsideRect(int x , int y)
+
+    public void moveGreenBottleBorderRect(int x , int y)
+    {
+        greenBottleBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
+        greenBottleDrawableProxy.moveItem(greenBottleBorderRect.left + (10*scale) , greenBottleBorderRect.top + (10*scale));
+        invalidate();
+    }
+
+    public void moveRedBottleBorderRect(int x , int y)
+    {
+        redBottleBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
+        redBottleDrawableProxy.moveItem(redBottleBorderRect.left + (10*scale) , redBottleBorderRect.top + (10*scale));
+        invalidate();
+    }
+
+    public boolean pointInsideMilkRect(int x , int y)
     {
         boolean inside = false;
         if(milkBorderRect.left <= x && milkBorderRect.right >= x)
@@ -125,19 +170,28 @@ public class MilkDragView extends View {
         }
         return inside;
     }
+
     private void initializeCanvasObjects()
     {
         fridgeDrawable.setBounds(0 , canvasHeight/3 , canvasWidth/2 , canvasHeight);
         tableDrawable.setBounds(canvasWidth*2/3 , canvasHeight/2 , canvasWidth , canvasHeight);
-        positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top - (29*scale),
-                tableDrawable.getBounds().right , tableDrawable.getBounds().top+(60*scale));
+        positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top + (40*scale),
+                tableDrawable.getBounds().right , tableDrawable.getBounds().top+(150*scale));
     }
     public DrawableProxy getMilkDrawable()
     {
       return milkDrawableProxy;
     }
+    public DrawableProxy getRedBottleDrawable()
+    {
+        return redBottleDrawableProxy;
+    }
+    public DrawableProxy getGreenBottleDrawable()
+    {
+        return greenBottleDrawableProxy;
+    }
 
-    public boolean isInPosition()
+    public boolean milkIsInPosition()
     {
         boolean inPosition = false;
         if(milkDrawable.getBounds().left >= positionBorderRect.left && milkDrawable.getBounds().right <= positionBorderRect.right)
@@ -149,6 +203,36 @@ public class MilkDragView extends View {
         }
         return  inPosition;
     }
+
+    public boolean redBottleIsInPosition()
+    {
+        boolean inPosition = false;
+        if(redBottle.getBounds().left >= positionBorderRect.left && redBottle.getBounds().right <= positionBorderRect.right)
+        {
+            if(redBottle.getBounds().top >= positionBorderRect.top && redBottle.getBounds().bottom <= positionBorderRect.bottom)
+            {
+                inPosition = true;
+            }
+        }
+        return  inPosition;
+    }
+
+    public boolean greenBottleIsInPosition()
+    {
+        boolean inPosition = false;
+        if(greenBottle.getBounds().left >= positionBorderRect.left && greenBottle.getBounds().right <= positionBorderRect.right)
+        {
+            if(greenBottle.getBounds().top >= positionBorderRect.top && greenBottle.getBounds().bottom <= positionBorderRect.bottom)
+            {
+                inPosition = true;
+            }
+        }
+        return  inPosition;
+    }
+
+
+
+
 
     public void changeBorderColor()
     {
@@ -173,6 +257,7 @@ public class MilkDragView extends View {
         final int itemHeight;
         private int leftSide;
         private int topSide;
+        private Rect borderRect;
         public DrawableProxy(Drawable drawable , int left, int top, int width, int height)
         {
             drawableItem = drawable;
@@ -183,6 +268,14 @@ public class MilkDragView extends View {
             drawableItem.setBounds(left , top , left + width , top + height);
         }
 
+        public void setBorderRect(Rect r)
+        {
+            borderRect = r;
+        }
+        public Rect getBorderRect()
+        {
+            return borderRect;
+        }
         public Drawable getDrawableItem()
         {
             return drawableItem;

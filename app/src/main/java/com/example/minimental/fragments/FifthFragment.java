@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -45,8 +45,10 @@ public class FifthFragment extends Fragment {
     private EditText secondPicET;
     private ImageView firstImage;
     private Bitmap firstImageBitmap;
+    private Bitmap secondImageBitmap;
     private FifthQuestion fifthQuestion = new FifthQuestion();
-    private Thread imageProcessThread;
+    private Thread imageOneProcessThread;
+    private Thread imageTwoProcessThread;
     private EditText currentPictureDescribedEditText;
     private String pic1;
     private String pic2;
@@ -55,19 +57,7 @@ public class FifthFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        imageProcessThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL("https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Minimental%20test%20image%201.jpg?alt=media&token=df0aa36e-4b89-4914-ac9e-e236dcd9a91a");
-                    firstImageBitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                }catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        });
-        imageProcessThread.start();
+
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         speechRecognizerLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -96,16 +86,13 @@ public class FifthFragment extends Fragment {
         firstPicET = rootView.findViewById(R.id.input_FirstPicET);
         secondPicET = rootView.findViewById(R.id.input_SecondPicET);
         firstImage = rootView.findViewById(R.id.first_Image);
-        try {
-            imageProcessThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        firstImage.setImageBitmap(firstImageBitmap);
+        ImageView secondImage = rootView.findViewById(R.id.fifth_question_second_image);
+
+
         text = rootView.findViewById(R.id.input_FirstPicET);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Integer Version = sharedViewModel.getVersion().getValue();
-        if (Version == null) //only for now some users dosnt have version alredy asked to add
+        if (Version == null || Version == 0) //only for now some users dosnt have version alredy asked to add
         {
             Version = 1;
         }
@@ -125,6 +112,46 @@ public class FifthFragment extends Fragment {
             pic1 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%942%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%AA.jpg?alt=media&token=6d60dd4f-b49b-44e3-84b6-644dd2c6fee7";
             pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%941%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.jpg?alt=media&token=1d064c87-9abf-4d45-926c-45a7829cd201";
         }
+
+        Log.d("pic1.1" , String.valueOf(pic1));
+
+        imageOneProcessThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Log.d("pic1" , String.valueOf(pic1));
+                    URL url = new URL(pic1);
+                    firstImageBitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                }catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+        imageOneProcessThread.start();
+
+        imageTwoProcessThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(pic2);
+                    secondImageBitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                }catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+        imageTwoProcessThread.start();
+
+        try {
+            imageOneProcessThread.join();
+            imageTwoProcessThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        firstImage.setImageBitmap(firstImageBitmap);
+        secondImage.setImageBitmap(secondImageBitmap);
 
 
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
