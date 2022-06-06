@@ -36,6 +36,7 @@ public class SeventhQuestion extends Fragment {
     private Rect milkBorderRect;
     private Rect redBottleBorderRect;
     private Rect greenBottleBorderRect;
+    private Rect canBorderRect;
     private Drawable clickOnFridge;
     private String link;
     private Integer Version;
@@ -51,6 +52,7 @@ public class SeventhQuestion extends Fragment {
         milkBorderRect = milkDragView.getMilkBorderRect();
         redBottleBorderRect = milkDragView.getRedBottleBorderRect();
         greenBottleBorderRect = milkDragView.getGreenBottleBorderRect();
+        canBorderRect = milkDragView.getCanBorderRect();
         clickOnFridge = milkDragView.getFridgeDrawble();
         milkDragView.setOnTouchListener(new milkDragTouchListener());
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
@@ -64,15 +66,19 @@ public class SeventhQuestion extends Fragment {
             Version = 1;
         }
         if(Version == 1){
+            //move milk
             link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1313%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=3c76d7dc-b264-4bdb-83fe-4ce16eaa5e44";
         }
         if(Version == 2){
+            //move grapes
             link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1328%D7%92%D7%A8%D7%A1%D7%94%20%D7%A9%D7%A0%D7%99%D7%94%20%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=24ba10bd-e6e6-415b-9397-0317c4c0cc3e";
         }
         if(Version == 3){
+            //move chicken
             link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1330%D7%92%D7%A8%D7%A1%D7%94%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%AA%20%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=d5204567-d417-41b1-80f5-8739ef2e0cf8";
         }
         if(Version == 4){
+            //move can
             link = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FMyRec_0526_1331%D7%92%D7%A8%D7%A1%D7%94%20%D7%A8%D7%91%D7%99%D7%A2%D7%99%D7%AA%20%D7%94%D7%95%D7%A8%D7%90%D7%94%20%D7%AA%D7%9C%D7%AA%20%D7%A9%D7%9C%D7%91%D7%99%D7%AA.mp3?alt=media&token=e706eeb4-647c-4910-8a24-6b1dc3eba139";
         }
 
@@ -118,6 +124,10 @@ public class SeventhQuestion extends Fragment {
                     {
                         milkDragView.moveGreenBottleBorderRect((int)x , (int)y);
                     }
+                    else if(canBorderRect.contains((int)x , (int)y))
+                    {
+                        milkDragView.moveCanBorederRect((int)x , (int)y);
+                    }
                     break;
                 case MotionEvent.ACTION_UP:
                     if(milkDragView.milkIsInPosition() && Version == 1)
@@ -132,9 +142,13 @@ public class SeventhQuestion extends Fragment {
                     {
                         milkDragView.changeBorderColor();
                     }
+                    else if(milkDragView.canIsInPosition() && Version == 4)
+                    {
+                        milkDragView.changeBorderColor();
+                    }
                     break;
                 case MotionEvent.ACTION_DOWN:
-                    if((!milkBorderRect.contains((int)x , (int)y)) && (!redBottleBorderRect.contains((int)x , (int)y)) && (!greenBottleBorderRect.contains((int)x , (int)y)) )
+                    if((!milkBorderRect.contains((int)x , (int)y)) && (!redBottleBorderRect.contains((int)x , (int)y)) && (!greenBottleBorderRect.contains((int)x , (int)y)) && (!canBorderRect.contains((int)x , (int)y)) )
                     {
                         if(milkDragView.isClickOnFridge((int) x, (int) y))
                         {

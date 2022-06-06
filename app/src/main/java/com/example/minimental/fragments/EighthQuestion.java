@@ -82,15 +82,19 @@ public class EighthQuestion extends Fragment {
         }
         if(Version == 1){
 
+            //blackBall
         }
         if(Version == 2){
 
+            //YellowBall
         }
         if(Version == 3){
 
+            //blueBall
         }
         if(Version == 4){
 
+            //greenBall
         }
 
         /*blackCircle = (View) rootView.findViewById(R.id.viewblackcircle);

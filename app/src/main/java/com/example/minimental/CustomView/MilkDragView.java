@@ -16,6 +16,7 @@ import com.example.minimental.R;
 public class MilkDragView extends View {
 
     private Paint yellow = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint green = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint transperent = new Paint(Paint.ANTI_ALIAS_FLAG);
     Rect r = new Rect(10 , 100 , 40 , 200);
 
@@ -23,16 +24,23 @@ public class MilkDragView extends View {
     private Drawable milkDrawable;
     private Drawable greenBottle;
     private Drawable redBottle;
+    private Drawable canDrawable;
     private Drawable fridgeDrawable;
     private DrawableProxy milkDrawableProxy;
     private DrawableProxy redBottleDrawableProxy;
     private DrawableProxy greenBottleDrawableProxy;
+    private DrawableProxy canDrawableProxy;
     int scale = (int)getResources().getDisplayMetrics().density;
     int canvasWidth;
     int canvasHeight;
     private Rect milkBorderRect;
     private Rect redBottleBorderRect;
     private Rect greenBottleBorderRect;
+    private Rect canBorderRect;
+    private Rect redNapkin;
+    private Rect yellowNapkin;
+    private Rect blueNapkin;
+    private Rect greenNapkin;
     private Rect positionBorderRect;
     private boolean fridgeIsOpen= false;
 
@@ -42,12 +50,15 @@ public class MilkDragView extends View {
         yellow.setColor(Color.YELLOW);
         yellow.setStyle(Paint.Style.STROKE);
         yellow.setStrokeWidth(5f);
+        green.setColor(Color.GREEN);
+        green.setStyle(Paint.Style.FILL);
         transperent.setColor(Color.TRANSPARENT);
         milkDrawable = getResources().getDrawable(R.drawable.ic_blue_milk);
-        greenBottle = getResources().getDrawable(R.drawable.ic_bottle_green);
-        redBottle = getResources().getDrawable(R.drawable.ic_bottle_red);
+        greenBottle = getResources().getDrawable(R.drawable.ic_chicken);
+        redBottle = getResources().getDrawable(R.drawable.ic_grapes);
+        canDrawable = getResources().getDrawable(R.drawable.ic_can);
         fridgeDrawable = getResources().getDrawable(R.drawable.ic_closefridge);
-        tableDrawable = getResources().getDrawable(R.drawable.ic_table);
+        tableDrawable = getResources().getDrawable(R.drawable.ic_table2);
         milkDrawableProxy = new DrawableProxy(milkDrawable , 70*scale , 350*scale , 40*scale , 70*scale);
         milkBorderRect = new Rect(65 * scale , 345*scale , 111 * scale , 416 * scale);
 
@@ -56,6 +67,9 @@ public class MilkDragView extends View {
 
         greenBottleDrawableProxy = new DrawableProxy(greenBottle , 90*scale , 250*scale ,40*scale , 70*scale );
         greenBottleBorderRect = new Rect(85*scale , 245*scale , 131*scale , 321*scale);
+
+        canDrawableProxy = new DrawableProxy(canDrawable , 135*scale , 345*scale , 40 * scale , 50  *scale);
+        canBorderRect = new Rect(130*scale  , 340*scale , 171*scale , 395*scale);
 
 
 
@@ -71,6 +85,7 @@ public class MilkDragView extends View {
         canvas.drawRect(milkBorderRect, transperent);
         canvas.drawRect(redBottleBorderRect, transperent);
         canvas.drawRect(greenBottleBorderRect, transperent);
+        canvas.drawRect(canBorderRect, transperent);
         canvas.drawRect(positionBorderRect , yellow);
         fridgeDrawable.draw(canvas);
         if(!fridgeIsOpen)
@@ -78,6 +93,7 @@ public class MilkDragView extends View {
             milkDrawableProxy.getDrawableItem().draw(canvas);
             redBottleDrawableProxy.getDrawableItem().draw(canvas);
             greenBottleDrawableProxy.getDrawableItem().draw(canvas);
+            canDrawableProxy.getDrawableItem().draw(canvas);
             fridgeDrawable.draw(canvas);
         }
         if(fridgeIsOpen)
@@ -87,8 +103,10 @@ public class MilkDragView extends View {
             milkDrawableProxy.getDrawableItem().draw(canvas);
             redBottleDrawableProxy.getDrawableItem().draw(canvas);
             greenBottleDrawableProxy.getDrawableItem().draw(canvas);
+            canDrawableProxy.getDrawableItem().draw(canvas);
         }
         tableDrawable.draw(canvas);
+        canvas.drawRect(greenNapkin , green);
     }
 
     public Drawable getFridgeDrawble()
@@ -137,6 +155,10 @@ public class MilkDragView extends View {
     {
         return redBottleBorderRect;
     }
+    public Rect getCanBorderRect()
+    {
+        return canBorderRect;
+    }
     public void moveMilkBorderRect(int x , int y)
     {
         milkBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
@@ -155,6 +177,13 @@ public class MilkDragView extends View {
     {
         redBottleBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
         redBottleDrawableProxy.moveItem(redBottleBorderRect.left + (10*scale) , redBottleBorderRect.top + (10*scale));
+        invalidate();
+    }
+
+    public void moveCanBorederRect(int x , int y)
+    {
+        canBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
+        canDrawableProxy.moveItem(canBorderRect.left + (10*scale) , canBorderRect.top + (10*scale));
         invalidate();
     }
 
@@ -177,6 +206,10 @@ public class MilkDragView extends View {
         tableDrawable.setBounds(canvasWidth*2/3 , canvasHeight/2 , canvasWidth , canvasHeight);
         positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top + (40*scale),
                 tableDrawable.getBounds().right , tableDrawable.getBounds().top+(150*scale));
+        int top = tableDrawable.getBounds().top + (30*scale);
+        int bottom = top + (10*scale);
+        greenNapkin = new Rect(tableDrawable.getBounds().left ,top  ,
+                tableDrawable.getBounds().left + (50*scale) , bottom);
     }
     public DrawableProxy getMilkDrawable()
     {
@@ -223,6 +256,19 @@ public class MilkDragView extends View {
         if(greenBottle.getBounds().left >= positionBorderRect.left && greenBottle.getBounds().right <= positionBorderRect.right)
         {
             if(greenBottle.getBounds().top >= positionBorderRect.top && greenBottle.getBounds().bottom <= positionBorderRect.bottom)
+            {
+                inPosition = true;
+            }
+        }
+        return  inPosition;
+    }
+
+    public boolean canIsInPosition()
+    {
+        boolean inPosition = false;
+        if(canDrawable.getBounds().left >= positionBorderRect.left && canDrawable.getBounds().right <= positionBorderRect.right)
+        {
+            if(canDrawable.getBounds().top >= positionBorderRect.top && canDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
                 inPosition = true;
             }
