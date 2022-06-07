@@ -1,8 +1,10 @@
 package com.example.minimental.fragments;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
@@ -38,7 +40,11 @@ import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.informationQuestion;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.google.type.DateTime;
+
+
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -82,9 +88,6 @@ public class  InformationFragment extends Fragment {
     ImageView streetSpeakerImageView;
     ImageView floorSpeakerImageView;
     ImageView areaSpeakerImageView;
-
-
-
 
 
 
@@ -226,6 +229,62 @@ public class  InformationFragment extends Fragment {
                 //textInputUsername.getEditText().setText(s);
             }
         });
+
+
+        new TapTargetSequence((Activity) rootView.getContext())
+                .targets(
+                        TapTarget.forView(daySpeakerImageView,getContext().getString(R.string.speaker_button_title), getContext().getString(R.string.speaker_button_desc))
+                                .outerCircleColor(R.color.teal_200)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.white)
+                                .titleTextSize(20)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(15)
+                                .descriptionTextColor(R.color.black)
+                                .textColor(R.color.black)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .targetRadius(60),
+                        TapTarget.forView(dayMicImageView, getContext().getString(R.string.mic_button_title), getContext().getString(R.string.mic_button_desc))
+                                .outerCircleColor(R.color.teal_200)
+                                .outerCircleAlpha(0.96f)
+                                .targetCircleColor(R.color.white)
+                                .titleTextSize(20)
+                                .titleTextColor(R.color.white)
+                                .descriptionTextSize(15)
+                                .descriptionTextColor(R.color.black)
+                                .textColor(R.color.black)
+                                .textTypeface(Typeface.SANS_SERIF)
+                                .dimColor(R.color.black)
+                                .drawShadow(true)
+                                .cancelable(false)
+                                .tintTarget(true)
+                                .transparentTarget(true)
+                                .targetRadius(60)).listener(new TapTargetSequence.Listener() {
+            @Override
+            public void onSequenceFinish() {
+                Toast.makeText(getContext(),"Sequence Finished",Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                Toast.makeText(getContext(),"GREAT!",Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onSequenceCanceled(TapTarget lastTarget) {
+
+            }
+        }).start();
+
+
+
 
 
 

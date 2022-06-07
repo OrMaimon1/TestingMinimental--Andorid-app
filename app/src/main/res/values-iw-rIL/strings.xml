@@ -68,4 +68,8 @@
     <string name="eighth_question_instructions3">גרור את העיגול כחול לתוך הריבוע</string>
     <string name="eighth_question_instructions4">גרור את העיגול ירוק לתוך הריבוע</string>
     <string name="textView_tenth">בבקשה העתק את הצורה</string>
+    <string name="speaker_button_title">כפתור שמע</string>
+    <string name="mic_button_title">כפתור דיבור</string>
+    <string name="speaker_button_desc">לחץ כאן כדי לשמוע</string>
+    <string name="mic_button_desc">לחץ כאן כדי לדבר</string>
 </resources>

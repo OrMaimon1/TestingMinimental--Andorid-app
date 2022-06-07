@@ -67,4 +67,9 @@
     <string name="eighth_question_instructions3">put the blue circle in the red square</string>
     <string name="eighth_question_instructions4">put the green circle in the red square</string>
     <string name="textView_tenth">please copy the picture</string>/>
+    <string name="speaker_button_title">Speaker Button</string>/>
+    <string name="mic_button_title">Microphone Button</string>/>
+    <string name="speaker_button_desc">Click here for listen</string>/>
+    <string name="mic_button_desc">Click here for speak</string>/>
+
 </resources>
