@@ -79,12 +79,14 @@ public class Login_fragment extends Fragment {
                             }
                             else{
                                 Toast.makeText(getContext(), "Wrong username or password try again", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });
                 }
                 else   {
                     Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
 
             }
