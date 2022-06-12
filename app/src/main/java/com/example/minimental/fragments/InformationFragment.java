@@ -42,6 +42,7 @@ import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.informationQuestion;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
+
 import com.google.type.DateTime;
 
 
@@ -229,6 +230,7 @@ public class  InformationFragment extends Fragment {
                 //textInputUsername.getEditText().setText(s);
             }
         });
+
 
 
         new TapTargetSequence((Activity) rootView.getContext())
