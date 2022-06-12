@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:gravity="center"
-            android:text="tenth question"
+            android:text="@string/tenth_question"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="35sp" />
@@ -52,8 +52,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerHorizontal="false"
-                    android:layout_marginEnd="30dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginEnd="30dp"
                     android:text="@string/textView_tenth"
                     android:textSize="25sp" />
 
