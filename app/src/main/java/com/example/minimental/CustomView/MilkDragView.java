@@ -25,8 +25,8 @@ public class MilkDragView extends View {
 
     private Drawable tableDrawable;
     private Drawable milkDrawable;
-    private Drawable greenBottle;
-    private Drawable redBottle;
+    private Drawable chickenDrawable; //GreenBottle
+    private Drawable grapeDrawable;   // RedBottle
     private Drawable canDrawable;
     private Drawable fridgeDrawable;
     private DrawableProxy milkDrawableProxy;
@@ -37,8 +37,8 @@ public class MilkDragView extends View {
     int canvasWidth;
     int canvasHeight;
     private Rect milkBorderRect;
-    private Rect redBottleBorderRect;
-    private Rect greenBottleBorderRect;
+    private Rect grapeBorderRect;
+    private Rect chickenBorderRect;
     private Rect canBorderRect;
     private Rect redNapkin;
     private Rect blueNapkin;
@@ -63,19 +63,19 @@ public class MilkDragView extends View {
         yellowFill.setStyle(Paint.Style.FILL);
         transperent.setColor(Color.TRANSPARENT);
         milkDrawable = getResources().getDrawable(R.drawable.ic_blue_milk);
-        greenBottle = getResources().getDrawable(R.drawable.ic_chicken);
-        redBottle = getResources().getDrawable(R.drawable.ic_grapes);
+        chickenDrawable = getResources().getDrawable(R.drawable.ic_chicken);
+        grapeDrawable = getResources().getDrawable(R.drawable.ic_grapes);
         canDrawable = getResources().getDrawable(R.drawable.ic_can);
         fridgeDrawable = getResources().getDrawable(R.drawable.ic_closefridge);
         tableDrawable = getResources().getDrawable(R.drawable.ic_table2);
         milkDrawableProxy = new DrawableProxy(milkDrawable , 70*scale , 350*scale , 40*scale , 70*scale);
         milkBorderRect = new Rect(65 * scale , 345*scale , 111 * scale , 416 * scale);
 
-        redBottleDrawableProxy = new DrawableProxy(redBottle , 135*scale , 250*scale ,40*scale , 70*scale );
-        redBottleBorderRect = new Rect(130*scale , 245*scale , 176*scale , 321*scale);
+        redBottleDrawableProxy = new DrawableProxy(grapeDrawable, 135*scale , 250*scale ,40*scale , 70*scale );
+        grapeBorderRect = new Rect(130*scale , 245*scale , 176*scale , 321*scale);
 
-        greenBottleDrawableProxy = new DrawableProxy(greenBottle , 90*scale , 250*scale ,40*scale , 70*scale );
-        greenBottleBorderRect = new Rect(85*scale , 245*scale , 131*scale , 321*scale);
+        greenBottleDrawableProxy = new DrawableProxy(chickenDrawable, 90*scale , 250*scale ,40*scale , 70*scale );
+        chickenBorderRect = new Rect(85*scale , 245*scale , 131*scale , 321*scale);
 
         canDrawableProxy = new DrawableProxy(canDrawable , 135*scale , 345*scale , 40 * scale , 50  *scale);
         canBorderRect = new Rect(130*scale  , 340*scale , 171*scale , 395*scale);
@@ -92,8 +92,8 @@ public class MilkDragView extends View {
         canvasHeight = this.getHeight();
         initializeCanvasObjects();
         canvas.drawRect(milkBorderRect, transperent);
-        canvas.drawRect(redBottleBorderRect, transperent);
-        canvas.drawRect(greenBottleBorderRect, transperent);
+        canvas.drawRect(grapeBorderRect, transperent);
+        canvas.drawRect(chickenBorderRect, transperent);
         canvas.drawRect(canBorderRect, transperent);
         canvas.drawRect(positionBorderRect , yellow);
         fridgeDrawable.draw(canvas);
@@ -159,13 +159,13 @@ public class MilkDragView extends View {
     {
         return milkBorderRect;
     }
-    public Rect getGreenBottleBorderRect()
+    public Rect getChickenBorderRect()
     {
-        return greenBottleBorderRect;
+        return chickenBorderRect;
     }
-    public Rect getRedBottleBorderRect()
+    public Rect getGrapeBorderRect()
     {
-        return redBottleBorderRect;
+        return grapeBorderRect;
     }
     public Rect getCanBorderRect()
     {
@@ -180,15 +180,15 @@ public class MilkDragView extends View {
 
     public void moveGreenBottleBorderRect(int x , int y)
     {
-        greenBottleBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
-        greenBottleDrawableProxy.moveItem(greenBottleBorderRect.left + (10*scale) , greenBottleBorderRect.top + (10*scale));
+        chickenBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
+        greenBottleDrawableProxy.moveItem(chickenBorderRect.left + (10*scale) , chickenBorderRect.top + (10*scale));
         invalidate();
     }
 
     public void moveRedBottleBorderRect(int x , int y)
     {
-        redBottleBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
-        redBottleDrawableProxy.moveItem(redBottleBorderRect.left + (10*scale) , redBottleBorderRect.top + (10*scale));
+        grapeBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
+        redBottleDrawableProxy.moveItem(grapeBorderRect.left + (10*scale) , grapeBorderRect.top + (10*scale));
         invalidate();
     }
 
@@ -261,11 +261,11 @@ public class MilkDragView extends View {
     public boolean redBottleIsInPosition()
     {
         boolean inPosition = false;
-        if(redBottle.getBounds().left >= positionBorderRect.left && redBottle.getBounds().right <= positionBorderRect.right)
+        if(grapeDrawable.getBounds().left >= positionBorderRect.left && grapeDrawable.getBounds().right <= positionBorderRect.right)
         {
-            if(redBottle.getBounds().top >= positionBorderRect.top && redBottle.getBounds().bottom <= positionBorderRect.bottom)
+            if(grapeDrawable.getBounds().top >= positionBorderRect.top && grapeDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
-                if(redBottle.getBounds().left >= blueNapkin.left && redBottle.getBounds().right <= blueNapkin.right) {
+                if(grapeDrawable.getBounds().left >= blueNapkin.left && grapeDrawable.getBounds().right <= blueNapkin.right) {
                     inPosition = true;
                 }
             }
@@ -276,11 +276,11 @@ public class MilkDragView extends View {
     public boolean greenBottleIsInPosition()
     {
         boolean inPosition = false;
-        if(greenBottle.getBounds().left >= positionBorderRect.left && greenBottle.getBounds().right <= positionBorderRect.right)
+        if(chickenDrawable.getBounds().left >= positionBorderRect.left && chickenDrawable.getBounds().right <= positionBorderRect.right)
         {
-            if(greenBottle.getBounds().top >= positionBorderRect.top && greenBottle.getBounds().bottom <= positionBorderRect.bottom)
+            if(chickenDrawable.getBounds().top >= positionBorderRect.top && chickenDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
-                if(greenBottle.getBounds().left>= greenNapkin.left && greenBottle.getBounds().right <= greenNapkin.right) {
+                if(chickenDrawable.getBounds().left>= greenNapkin.left && chickenDrawable.getBounds().right <= greenNapkin.right) {
                     inPosition = true;
                 }
             }

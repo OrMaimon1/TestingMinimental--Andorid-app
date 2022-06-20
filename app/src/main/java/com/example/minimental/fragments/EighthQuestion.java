@@ -43,14 +43,14 @@ public class EighthQuestion extends Fragment {
     private BallsDragView.Circle greenBall;
     private BallsDragView.Circle currentBallTouched;
     //private BallsDragView.Circle currentBallInvolvedInQuestion;
-    private RectF blueRect;
+    //private RectF blueRect;
     private RectF redRect;
     private float x = 0, y = 0;
     private SharedViewModel viewModel;
-    private float blueCircleCenterX;
+    /*private float blueCircleCenterX;
     private float blueCircleCenterY;
     private float redSquareCenterX;
-    private float redSquareCenterY;
+    private float redSquareCenterY;*/
     private boolean ball1 = false ,ball2 = false;
     private TextView eight_instTx;
     private Integer Version;
@@ -183,23 +183,19 @@ public class EighthQuestion extends Fragment {
                     case MotionEvent.ACTION_UP:
                         if(ballsDragView.SquareSuroundsCircle(redRect , blackBall) && Version == 1)
                         {
-                            blackBall.changeColor();
                             ball1 = true;
                         }
                         else if(ballsDragView.SquareSuroundsCircle(redRect , yellowBall) && Version == 2)
                         {
-                            yellowBall.changeColor();
                             ball1 = true;
 
                         }
                         else if(ballsDragView.SquareSuroundsCircle(redRect , blueBall) && Version == 3)
                         {
-                            blueBall.changeColor();
                             ball1 = true;
                         }
                         else if(ballsDragView.SquareSuroundsCircle(redRect , greenBall) && Version == 4)
                         {
-                            greenBall.changeColor();
                             ball1 = true;
                         }
                         else {

@@ -33,10 +33,10 @@ public class BallsDragView extends View {
     final int rightBorderID = 1;
     final int bottomBorderID = 2;
     final int topBorderID = 3;
-    private Canvas thisCanvas;
+    //private Canvas thisCanvas;
     float scale = getResources().getDisplayMetrics().density;
-    private float width = this.getWidth();
-    private float height = this.getHeight();
+    private float width;
+    private float height;
 
     public BallsDragView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -137,8 +137,8 @@ public class BallsDragView extends View {
     {
         private float centerX;
         private float centerY;
-        final private float initialCenterX;
-        final private float initialCenterY;
+        //final private float initialCenterX;
+        //final private float initialCenterY;
         private float radius;
 
         public Circle(float x , float y , float r)
@@ -146,8 +146,8 @@ public class BallsDragView extends View {
             centerX = x;
             centerY = y;
             radius = r;
-            initialCenterX = x;
-            initialCenterY = y;
+            //initialCenterX = x;
+            //initialCenterY = y;
         }
         public void setCenterX(float centerX) {
             this.centerX = centerX;
@@ -217,11 +217,11 @@ public class BallsDragView extends View {
             invalidate();
             return touches;
         }
-        public void resetPosition()
+       /* public void resetPosition()
         {
             setCenterX(initialCenterX);
             setCenterY(initialCenterY);
-        }
+        }*/
         public void moveInside()
         {
             float moveBackGap = 6f * scale;

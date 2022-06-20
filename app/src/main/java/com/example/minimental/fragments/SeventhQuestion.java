@@ -50,8 +50,8 @@ public class SeventhQuestion extends Fragment {
         milkDragView = rootView.findViewById(R.id.milk_drag_view);
         milkPicture = milkDragView.getMilkDrawable();
         milkBorderRect = milkDragView.getMilkBorderRect();
-        redBottleBorderRect = milkDragView.getRedBottleBorderRect();
-        greenBottleBorderRect = milkDragView.getGreenBottleBorderRect();
+        redBottleBorderRect = milkDragView.getGrapeBorderRect();
+        greenBottleBorderRect = milkDragView.getChickenBorderRect();
         canBorderRect = milkDragView.getCanBorderRect();
         clickOnFridge = milkDragView.getFridgeDrawble();
         milkDragView.setOnTouchListener(new milkDragTouchListener());
