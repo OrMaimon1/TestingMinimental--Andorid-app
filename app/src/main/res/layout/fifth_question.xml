@@ -214,6 +214,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:visibility="gone"
                     android:layout_margin="10dp"
                     android:background="@drawable/round_border"
                     android:gravity="center"

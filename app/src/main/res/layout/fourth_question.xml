@@ -106,6 +106,7 @@
                     android:id="@+id/word_spoken_ET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:maxLength="21"
                     android:maxLines="1"
                     android:paddingStart="16dp"
