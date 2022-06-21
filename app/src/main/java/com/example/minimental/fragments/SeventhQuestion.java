@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,15 +26,15 @@ import com.example.minimental.ViewModels.SharedViewModel;
 
 public class SeventhQuestion extends Fragment {
 
-    ImageView milk;
+    //ImageView milk;
     private SharedViewModel sharedViewModel;
     private SevnthQuestion sevnthQuestion = new SevnthQuestion();
     private Boolean sevnthCurrectOrder = false;
     private MilkDragView.DrawableProxy milkPicture;
     private MilkDragView milkDragView;
     private Rect milkBorderRect;
-    private Rect redBottleBorderRect;
-    private Rect greenBottleBorderRect;
+    private Rect grapeBorderRect;
+    private Rect chickenBorderRect;
     private Rect canBorderRect;
     private Drawable clickOnFridge;
     private String link;
@@ -50,8 +49,8 @@ public class SeventhQuestion extends Fragment {
         milkDragView = rootView.findViewById(R.id.milk_drag_view);
         milkPicture = milkDragView.getMilkDrawable();
         milkBorderRect = milkDragView.getMilkBorderRect();
-        redBottleBorderRect = milkDragView.getGrapeBorderRect();
-        greenBottleBorderRect = milkDragView.getChickenBorderRect();
+        grapeBorderRect = milkDragView.getGrapeBorderRect();
+        chickenBorderRect = milkDragView.getChickenBorderRect();
         canBorderRect = milkDragView.getCanBorderRect();
         clickOnFridge = milkDragView.getFridgeDrawble();
         milkDragView.setOnTouchListener(new milkDragTouchListener());
@@ -105,8 +104,6 @@ public class SeventhQuestion extends Fragment {
     }
 
     private class milkDragTouchListener implements View.OnTouchListener {
-        private static final int MAX_CLICK_DURATION = 200;
-        private long startClickTime;
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
             float x = motionEvent.getX();
@@ -116,13 +113,13 @@ public class SeventhQuestion extends Fragment {
                     if(milkBorderRect.contains((int)x , (int)y)) {
                         milkDragView.moveMilkBorderRect((int) x, (int) y);
                     }
-                    else if(redBottleBorderRect.contains((int)x , (int)y))
+                    else if(grapeBorderRect.contains((int)x , (int)y))
                     {
-                        milkDragView.moveRedBottleBorderRect((int)x , (int)y);
+                        milkDragView.moveGrapeBorderRect((int)x , (int)y);
                     }
-                    else if(greenBottleBorderRect.contains((int)x , (int)y))
+                    else if(chickenBorderRect.contains((int)x , (int)y))
                     {
-                        milkDragView.moveGreenBottleBorderRect((int)x , (int)y);
+                        milkDragView.moveChickenBorderRect((int)x , (int)y);
                     }
                     else if(canBorderRect.contains((int)x , (int)y))
                     {
@@ -132,28 +129,24 @@ public class SeventhQuestion extends Fragment {
                 case MotionEvent.ACTION_UP:
                     if(milkDragView.milkIsInPosition() && Version == 1)
                     {
-                        milkDragView.changeBorderColor();
                         sevnthCurrectOrder = true;
                     }
-                    else if(milkDragView.redBottleIsInPosition() && Version == 2)
+                    else if(milkDragView.grapeIsInPosition() && Version == 2)
                     {
-                        milkDragView.changeBorderColor();
                         sevnthCurrectOrder = true;
                     }
-                    else if(milkDragView.greenBottleIsInPosition() && Version == 3)
+                    else if(milkDragView.chickenIsInPosition() && Version == 3)
                     {
-                        milkDragView.changeBorderColor();
                         sevnthCurrectOrder = true;
 
                     }
                     else if(milkDragView.canIsInPosition() && Version == 4)
                     {
-                        milkDragView.changeBorderColor();
                         sevnthCurrectOrder = true;
                     }
                     break;
                 case MotionEvent.ACTION_DOWN:
-                    if((!milkBorderRect.contains((int)x , (int)y)) && (!redBottleBorderRect.contains((int)x , (int)y)) && (!greenBottleBorderRect.contains((int)x , (int)y)) && (!canBorderRect.contains((int)x , (int)y)) )
+                    if((!milkBorderRect.contains((int)x , (int)y)) && (!grapeBorderRect.contains((int)x , (int)y)) && (!chickenBorderRect.contains((int)x , (int)y)) && (!canBorderRect.contains((int)x , (int)y)) )
                     {
                         if(milkDragView.isClickOnFridge((int) x, (int) y))
                         {

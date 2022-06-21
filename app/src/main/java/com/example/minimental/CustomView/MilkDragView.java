@@ -79,9 +79,6 @@ public class MilkDragView extends View {
 
         canDrawableProxy = new DrawableProxy(canDrawable , 135*scale , 345*scale , 40 * scale , 50  *scale);
         canBorderRect = new Rect(130*scale  , 340*scale , 171*scale , 395*scale);
-
-
-
     }
 
     @Override
@@ -178,14 +175,14 @@ public class MilkDragView extends View {
         invalidate();
     }
 
-    public void moveGreenBottleBorderRect(int x , int y)
+    public void moveChickenBorderRect(int x , int y)
     {
         chickenBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
         greenBottleDrawableProxy.moveItem(chickenBorderRect.left + (10*scale) , chickenBorderRect.top + (10*scale));
         invalidate();
     }
 
-    public void moveRedBottleBorderRect(int x , int y)
+    public void moveGrapeBorderRect(int x , int y)
     {
         grapeBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
         redBottleDrawableProxy.moveItem(grapeBorderRect.left + (10*scale) , grapeBorderRect.top + (10*scale));
@@ -258,7 +255,7 @@ public class MilkDragView extends View {
         return  inPosition;
     }
 
-    public boolean redBottleIsInPosition()
+    public boolean grapeIsInPosition()
     {
         boolean inPosition = false;
         if(grapeDrawable.getBounds().left >= positionBorderRect.left && grapeDrawable.getBounds().right <= positionBorderRect.right)
@@ -273,7 +270,7 @@ public class MilkDragView extends View {
         return  inPosition;
     }
 
-    public boolean greenBottleIsInPosition()
+    public boolean chickenIsInPosition()
     {
         boolean inPosition = false;
         if(chickenDrawable.getBounds().left >= positionBorderRect.left && chickenDrawable.getBounds().right <= positionBorderRect.right)
@@ -341,14 +338,6 @@ public class MilkDragView extends View {
             drawableItem.setBounds(left , top , left + width , top + height);
         }
 
-        public void setBorderRect(Rect r)
-        {
-            borderRect = r;
-        }
-        public Rect getBorderRect()
-        {
-            return borderRect;
-        }
         public Drawable getDrawableItem()
         {
             return drawableItem;
@@ -359,18 +348,6 @@ public class MilkDragView extends View {
             topSide = y;
             getDrawableItem().setBounds(leftSide,topSide, leftSide+ itemWidth , topSide+ itemHeight);
             invalidate();
-        }
-        public boolean containsPoint(float x, float y)
-        {
-            boolean contains = false;
-            if(leftSide < x && leftSide+itemWidth > x)
-            {
-                if(topSide < y && topSide + itemHeight > y)
-                {
-                    contains = true;
-                }
-            }
-            return contains;
         }
     }
 }
