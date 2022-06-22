@@ -39,6 +39,7 @@ public class MathVersion extends Fragment  {
     private TextView resultText;
     private ArrayList<String> FinalResult = new ArrayList<>();
     private ThirdQuestion math = new ThirdQuestion();
+    private String result;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,10 +54,9 @@ public class MathVersion extends Fragment  {
                     for (String r : results) {
                         speechResult.append(r);
                     }
-                    String result = speechResult.toString();
+                    result = speechResult.toString();
                     resultText.setText(result);
-                    FinalResult.add(result);
-
+                    //FinalResult.add(result); //check if working
                 }
             }
         });
@@ -88,6 +88,7 @@ public class MathVersion extends Fragment  {
                 Animation animation1= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
                 confirmAnswerbutton.startAnimation(animation1);
                 numberOfAnswersGiven++;
+                FinalResult.add(result); //check if working
                 if(numberOfAnswersGiven == 5)
                 {
                     nxtBtn.setEnabled(true);

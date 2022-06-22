@@ -272,13 +272,8 @@ public class AppRepository {
     public MutableLiveData<secoundQuestion> get3ObjectData() {
 
         MutableLiveData<secoundQuestion> data = new MutableLiveData<>();
-        return objectLiveDataLoad ;
-    }
-
-    public MutableLiveData<secoundQuestion> getObjectLoad(){
-        MutableLiveData<secoundQuestion> data = new MutableLiveData<>();
         data.setValue(objectLiveDataLoad.getValue());
-        return data;
+        return data ;
     }
 
 
@@ -290,11 +285,6 @@ public class AppRepository {
         databaseTest.updateChildren(updates);
     }
 
-    private void loadObjectData() {
-
-        databaseTest.child("Test").child(userId.getValue()).child(test).child("SecondQuestion");
-        databaseTest.setValue(objectLiveData);
-    }
 
     public MutableLiveData<ThirdQuestion> getSpellAnswer() {
 
@@ -328,14 +318,6 @@ public class AppRepository {
         Map<String, Object> updates = new HashMap<>();
         updates.put("value",mathWordLiveData.getValue());
         databaseTest.updateChildren(updates);
-    }
-
-
-    public MutableLiveData<secoundQuestion> getObjectForthLiveData() {
-
-        //loadInformationData();
-        MutableLiveData<secoundQuestion> data = new MutableLiveData<>();
-        return data;
     }
 
 
@@ -409,16 +391,6 @@ public class AppRepository {
         databaseTest.updateChildren(updates);
     }
 
-    public MutableLiveData<SixthQuestion> getSentenceForNinth() {
-
-        //loadInformationData();
-        SixthQuestion buffer = new SixthQuestion();
-        MutableLiveData<SixthQuestion> data = new MutableLiveData<>();
-        buffer.setSentence(FirebaseDatabase.getInstance().getReference().child("Patients").child(userId.getValue()).child("next test").child("sixthQuestion").getKey());
-        data.setValue(buffer);
-
-        return data;
-    }
 
     public void setSentenceForNinth(MutableLiveData<SixthQuestion> sentence) {
         ninthQuestionMutableLiveData.setValue(sentence.getValue());

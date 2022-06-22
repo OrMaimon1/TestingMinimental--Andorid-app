@@ -43,6 +43,7 @@ import com.example.minimental.informationQuestion;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.type.DateTime;
 
 
@@ -78,6 +79,8 @@ public class  InformationFragment extends Fragment {
     private DateTime dateTime;
     private boolean mediaIsPlaying = false;
     Context mainActivity;
+    private TextInputLayout address_hint;
+    private TextInputLayout floor_hint;
 
     ImageView daySpeakerImageView;
     ImageView monthSpeakerImageView;
@@ -145,6 +148,9 @@ public class  InformationFragment extends Fragment {
         currentCityAnswerET = rootView.findViewById(R.id.input_cityET);
         currentFloorAnswerET = rootView.findViewById(R.id.input_floorET);
         currentAreaAnswerET = rootView.findViewById(R.id.input_areaET);
+        address_hint = rootView.findViewById(R.id.street_quetion);
+        floor_hint = rootView.findViewById(R.id.floor_quetion);
+
 
         ImageView dayMicImageView = rootView.findViewById(R.id.day_mic_ImageView);
         ImageView monthMicImageView = rootView.findViewById(R.id.month_mic_image_view);
@@ -169,6 +175,10 @@ public class  InformationFragment extends Fragment {
         areaSpeakerImageView = rootView.findViewById(R.id.area_speaker);
         initializeSpekerLink();
 
+        if (sharedViewModel.getMissingDetailMutableLiveData().getValue().isIs_in_hospital()){
+            address_hint.setHint(R.string.hospital_address);
+            floor_hint.setHint(R.string.hospital_floor);
+        }
         dayMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         monthMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
         dateMicImageView.setOnClickListener(new informationAnswerSpeechClickListner());
@@ -368,6 +378,10 @@ public class  InformationFragment extends Fragment {
         speakerAndLinkMap.put(streetSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0922%D7%A8%D7%97%D7%95%D7%91.mp3?alt=media&token=707123e4-7049-47b9-9a8f-4ecafa2d1334");
         speakerAndLinkMap.put(floorSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0923%D7%A7%D7%95%D7%9E%D7%94.mp3?alt=media&token=625420a0-643a-4fae-8e31-d51abfd7d946");
         speakerAndLinkMap.put(areaSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0924%D7%90%D7%99%D7%96%D7%95%D7%A8.mp3?alt=media&token=20d9505e-cf0d-4a55-8876-d7932c2641aa");
+        if (sharedViewModel.getMissingDetailMutableLiveData().getValue().isIs_in_hospital()){
+            speakerAndLinkMap.put(streetSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FLocation%20Hospital%20Version%2FMyRec_0522_0935%D7%9E%D7%A7%D7%95%D7%9D%20%D7%91%D7%99%D7%97.mp3?alt=media&token=1707f782-40d1-4c18-a79f-1ef0d58568e9");
+            speakerAndLinkMap.put(floorSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Three%20Phase%20Instruction%20Versions%2FLocation%20Hospital%20Version%2FMyRec_0522_0937%D7%A7%D7%95%D7%9E%D7%94%20%D7%91%D7%99%D7%97.mp3?alt=media&token=bc46f104-bc76-4d16-9142-7ff9b4707b87");
+        }
     }
 
     private void updateAnswer(String result)

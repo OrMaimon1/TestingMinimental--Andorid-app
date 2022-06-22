@@ -121,9 +121,7 @@ public class SharedViewModel extends ViewModel {
         secondQuestionLiveData = repository.get3ObjectData();
         return secondQuestionLiveData;
     }
-    public MutableLiveData<secoundQuestion> objectLoad(){
-        return repository.getObjectLoad();
-    }
+
     public void setObjectData(secoundQuestion secoundQuestion){
 
         secondQuestionLiveData.setValue(secoundQuestion);
@@ -164,11 +162,6 @@ public class SharedViewModel extends ViewModel {
     //region Fourth Question Data Members
     private MutableLiveData<secoundQuestion> fourthQuestionLiveData = new MutableLiveData<>();
 
-    public MutableLiveData<secoundQuestion> getFourthQuestionLiveData(){
-
-        fourthQuestionLiveData = repository.getObjectForthLiveData();
-        return fourthQuestionLiveData;
-    }
     public void setFourthQuestionLiveData(secoundQuestion secoundQuestion){
 
         fourthQuestionLiveData.setValue(secoundQuestion);
@@ -241,11 +234,7 @@ public class SharedViewModel extends ViewModel {
     //region Ninth Question Data Member
     private MutableLiveData<SixthQuestion> sentenceForNinth = new MutableLiveData<>();
 
-    public MutableLiveData<SixthQuestion> getSentenceNinthQuestion(){
 
-        sentenceForNinth = repository.getSentenceForNinth();
-        return sentenceForNinth;
-    }
 
     public void setSentenceNinthQuestion(SixthQuestion sentenceNinthQuestion)
     {

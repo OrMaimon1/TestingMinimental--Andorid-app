@@ -30,6 +30,8 @@ import androidx.navigation.Navigation;
 import com.example.minimental.MissingDetail;
 import com.example.minimental.R;
 import com.example.minimental.ViewModels.SharedViewModel;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 
@@ -45,6 +47,8 @@ public class CollectMissingDetails extends Fragment {
     private EditText address;
     private EditText floor;
     private EditText area ;
+    private TextInputLayout address_hint;
+    private TextInputLayout floor_hint;
 
 
     @Override
@@ -77,6 +81,8 @@ public class CollectMissingDetails extends Fragment {
         address = rootView.findViewById(R.id.input_address_missing_ET);
         floor = rootView.findViewById(R.id.input_floor_misssingET);
         area = rootView.findViewById(R.id.input_areamissingET);
+        address_hint = rootView.findViewById(R.id.area_missing_missing_quetion);
+        floor_hint = rootView.findViewById(R.id.floor_missing_quetion);
         ImageView countryMicImageView = rootView.findViewById(R.id.country_missing_mic_ImageView);
         ImageView cityMicImageView = rootView.findViewById(R.id.city_missing_mic_image_view);
         ImageView streetMicImageView = rootView.findViewById(R.id.address_missing_mic_image_view);
@@ -88,6 +94,10 @@ public class CollectMissingDetails extends Fragment {
         floormicImageView.setOnClickListener(new CollectMissingDetails.MissingDetailSpeechClickListner());
         areaMicImageView.setOnClickListener(new CollectMissingDetails.MissingDetailSpeechClickListner());
         missingDetail = sharedViewModel.getMissingDetailMutableLiveData().getValue();
+        if (missingDetail.isIs_in_hospital()){
+            address_hint.setHint(R.string.hospital_address);
+            floor_hint.setHint(R.string.hospital_floor);
+        }
         country.setText(missingDetail.getCountry());
         city.setText(missingDetail.getCity());
         address.setText(missingDetail.getAddress());

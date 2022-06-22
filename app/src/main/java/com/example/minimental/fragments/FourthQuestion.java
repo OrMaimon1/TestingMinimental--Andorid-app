@@ -78,17 +78,6 @@ public class FourthQuestion extends Fragment {
         resultText = rootView.findViewById(R.id.word_spoken_ET);
         feedBack = rootView.findViewById(R.id.feedback_text);
         secoundquestion = sharedViewModel.getObjectdata().getValue();
-       /* sharedViewModel.getObjectdata().observe(getViewLifecycleOwner(), new Observer<secoundQuestion>() {
-            @Override
-            public void onChanged(secoundQuestion secoundQuestion) {
-                secoundquestion.setObject1(secoundQuestion.getObject1());
-                secoundquestion.setObject2(secoundQuestion.getObject1());
-                secoundquestion.setObject3(secoundQuestion.getObject1());
-            }
-        });*/
-        //secoundQuestion.setObject1(sharedViewModel.objectLoad().getValue().getObject1());
-        //secoundQuestion.setObject2(sharedViewModel.objectLoad().getValue().getObject2());
-        //secoundQuestion.setObject3(sharedViewModel.objectLoad().getValue().getObject3());
         Button recordButton = rootView.findViewById(R.id.fourth_question_mic);
         Button listenBtn = rootView.findViewById(R.id.repeat_words_instruction_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
@@ -109,6 +98,7 @@ public class FourthQuestion extends Fragment {
                 confirmWordButton.startAnimation(animation);
                 checkIfWordIsCorrect();
                 Log.d("firebase", String.valueOf(secoundquestion.getObject1()));
+                Log.d("firebase word", String.valueOf(word1));
             }
         });
 
@@ -141,7 +131,7 @@ public class FourthQuestion extends Fragment {
 
         }
         else {
-            if (secoundquestion.getObject1() == word1) {
+            if (secoundquestion.getObject1().equals(word1)) {
                 currentwordIndex++;
                 feedBack.setText("Correct");
             } else {

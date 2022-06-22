@@ -73,4 +73,6 @@
     <string name="speaker_button_desc">לחץ כאן כדי לשמוע</string>
     <string name="mic_button_desc">לחץ כאן כדי לדבר</string>
     <string name="tenth_question">צייר צורה</string>
+    <string name="hospital_address">איך קוראים למקום שאתה נמצא?</string>
+    <string name="hospital_floor">באיזה קומה נמצע החדר שלך?</string>
 </resources>
