@@ -104,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="35sp"
                     android:text="check"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:id="@+id/check_txt"/>
 

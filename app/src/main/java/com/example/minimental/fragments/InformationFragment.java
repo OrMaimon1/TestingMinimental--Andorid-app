@@ -226,14 +226,6 @@ public class  InformationFragment extends Fragment {
             }
         });*/
 
-        sharedViewModel.getInfoLiveData().observe(getViewLifecycleOwner(), new Observer<informationQuestion>() {
-            @Override
-            public void onChanged(informationQuestion informationQuestion) {
-                //currentDayAnswerET.getText(informationQuestion.getDay().toString());
-                //textInputUsername.getEditText().setText(s);
-            }
-        });
-
 
 
         new TapTargetSequence((Activity) rootView.getContext())
