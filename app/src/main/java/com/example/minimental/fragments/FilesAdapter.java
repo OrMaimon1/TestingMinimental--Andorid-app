@@ -50,10 +50,10 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
         this.context = context;
     }
 
-    public void updateList(List<Pictures> pictures){
-        this.pictures = pictures;
-        notifyDataSetChanged();
-    }
+//    public void updateList(List<Pictures> pictures){
+//        this.pictures = pictures;
+//        notifyDataSetChanged();
+//    }
 
     public interface PictureAdapterListener{
         public void onTakePhotoPress(int position, View v);
@@ -106,11 +106,7 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
         holder.name.setText(listpicture.getName());
         Bitmap myimg = BitmapFactory.decodeByteArray(listpicture.getPhotoPath(),0, listpicture.getPhotoPath().length);
         holder.imageViewTaken.setImageBitmap(myimg);
-//        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-//        Bitmap myimg = BitmapFactory.decodeFile(listpicture.getPhotoPath(),bmOptions);
         holder.imageViewTaken.setImageBitmap(myimg);
-
-
     }
     @Override
     public int getItemCount() {

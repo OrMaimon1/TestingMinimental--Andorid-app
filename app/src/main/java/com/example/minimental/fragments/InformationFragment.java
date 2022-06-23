@@ -17,7 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,14 +27,10 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.minimental.MainActivity;
-import com.example.minimental.Question;
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
@@ -51,8 +46,6 @@ import com.google.type.DateTime;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Dictionary;
-import java.util.HashMap;
 import java.util.Hashtable;
 
 
@@ -173,7 +166,7 @@ public class  InformationFragment extends Fragment {
         streetSpeakerImageView = rootView.findViewById(R.id.street_speaker);
         floorSpeakerImageView = rootView.findViewById(R.id.floor_speaker);
         areaSpeakerImageView = rootView.findViewById(R.id.area_speaker);
-        initializeSpekerLink();
+        initializeSpeakerLink();
 
         if (sharedViewModel.getMissingDetailMutableLiveData().getValue().isIs_in_hospital()){
             address_hint.setHint(R.string.hospital_address);
@@ -366,7 +359,7 @@ public class  InformationFragment extends Fragment {
         getContext().startService(speakerServiceIntent);
     }
 
-    private void initializeSpekerLink()
+    private void initializeSpeakerLink()
     {
         speakerAndLinkMap.put( daySpeakerImageView, "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0914%D7%99%D7%95%D7%9D.mp3?alt=media&token=f45afd45-4013-4d3f-889f-8d0fb006ac3e");
         speakerAndLinkMap.put(monthSpeakerImageView , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/MiniMental%20Location%20Home%20Version%2FMyRec_0522_0915%D7%97%D7%95%D7%93%D7%A9.mp3?alt=media&token=062b1fcf-e165-4cbe-93b8-ec7b0860edc5");

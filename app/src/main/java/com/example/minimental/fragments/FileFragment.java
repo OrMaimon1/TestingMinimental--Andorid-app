@@ -194,7 +194,7 @@ public class FileFragment extends Fragment {
 
 
 
-        // *Show full image* todo: need to fix that
+        // *Show full image*
         adapter.setListener(new RecyclerViewAdapter.PictureAdapterListener() {
             @Override
             public void onTakePhotoPress(int position, View v) {
@@ -217,14 +217,6 @@ public class FileFragment extends Fragment {
         });
         return rootView;
     }
-
-//    public String getImageUri(Context context, Bitmap bitmap){
-//
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
-//        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(),bitmap,"title", null);
-//        return path;
-//    }
 
     // *convert to bytes*
     public byte[] conver_byte_array(ImageView img)

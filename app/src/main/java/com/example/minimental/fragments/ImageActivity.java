@@ -18,14 +18,6 @@ public class ImageActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_layout);
 
-//        byte [] byteArrayExtra = getIntent().getByteArrayExtra("path");
-//
-//        ImageView imageView = findViewById(R.id.full_picture_screen);
-//
-//        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArrayExtra, 0, byteArrayExtra.length);
-//
-//        imageView.setImageDrawable(Drawable.createFromPath());
-
         Bundle extras = getIntent().getExtras();
         byte[] b = extras.getByteArray("path");
 
