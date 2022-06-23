@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:gravity="center"
-                android:text="Ninth Question"
+                android:text="@string/ninth_question"
                 android:textColor="@color/black"
                 android:textColorHint="@color/white"
                 android:textSize="40sp"

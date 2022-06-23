@@ -73,6 +73,7 @@
     <string name="mic_button_desc">Click here for speak</string>
     <string name="tenth_question">tenth question</string>
     <string name="hospital_address">What is the name for your current place</string>
-    <string name="hospital_floor">in what floor your room is?</string>/>
+    <string name="hospital_floor">in what floor your room is?</string>
+    <string name="ninth_question">Ninth Question</string>/>
 
 </resources>
