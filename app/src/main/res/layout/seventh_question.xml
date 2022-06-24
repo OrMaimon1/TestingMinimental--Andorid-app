@@ -21,7 +21,6 @@
             android:gravity="center"
             android:text="@string/seventh_question_title_string"
             android:textStyle="bold"
-            android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="35sp"/>
     </LinearLayout>

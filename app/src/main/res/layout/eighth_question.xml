@@ -15,7 +15,6 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:text="@string/eighth_question_title"
-        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:textColorHint="@color/white"

@@ -15,12 +15,12 @@
     <string name="south">South</string>
     <string name="west">West</string>
     <string name="north">North</string>
-    <string name="title_question_title_name">Short term memory</string>
+    <string name="title_question_title_name">Short Term Memory</string>
     <string name="second_question_textview_name">Click the button when you are ready, try to remember the 3 objects</string>
     <string name="second_question_textview2_name">Click on the microphone and repeat the object you heard in the text</string>
-    <string name="choose_third_question_title">Choose third question</string>
+    <string name="choose_third_question_title">Choose Third Question</string>
     <string name="choose_third_question_textview_name">Now a simple and complete thinking exercise is done and you can do arithmetic You can also do a spelling exercise, please click on your choose</string>
-    <string name="math_version_name">Math version</string>
+    <string name="math_version_name">Math Version</string>
     <string name="answer_math_voice">click on the microphone for answer</string>
     <string name="Button_finish_answer_text">Click here when finished answer</string>
     <string name="textView_math_version">100</string>
@@ -71,7 +71,7 @@
     <string name="mic_button_title">Microphone Button</string>/>
     <string name="speaker_button_desc">Click here for listen</string>/>
     <string name="mic_button_desc">Click here for speak</string>
-    <string name="tenth_question">tenth question</string>
+    <string name="tenth_question">Tenth Question</string>
     <string name="hospital_address">What is the name for your current place</string>
     <string name="hospital_floor">in what floor your room is?</string>
     <string name="ninth_question">Ninth Question</string>

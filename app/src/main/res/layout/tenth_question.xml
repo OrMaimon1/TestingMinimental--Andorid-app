@@ -20,9 +20,9 @@
             android:layout_margin="20dp"
             android:gravity="center"
             android:text="@string/tenth_question"
-            android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -38,8 +38,8 @@
                     android:id="@+id/tenth_question_speaker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="false"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="false"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="0dp"
