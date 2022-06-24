@@ -110,18 +110,18 @@ public class SeventhQuestion extends Fragment {
             float y = motionEvent.getY();
             switch (motionEvent.getActionMasked()) {
                 case MotionEvent.ACTION_MOVE:
-                    if(milkBorderRect.contains((int)x , (int)y)) {
+                    if(milkBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen()) {
                         milkDragView.moveMilkBorderRect((int) x, (int) y);
                     }
-                    else if(grapeBorderRect.contains((int)x , (int)y))
+                    else if(grapeBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen())
                     {
                         milkDragView.moveGrapeBorderRect((int)x , (int)y);
                     }
-                    else if(chickenBorderRect.contains((int)x , (int)y))
+                    else if(chickenBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen())
                     {
                         milkDragView.moveChickenBorderRect((int)x , (int)y);
                     }
-                    else if(canBorderRect.contains((int)x , (int)y))
+                    else if(canBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen())
                     {
                         milkDragView.moveCanBorederRect((int)x , (int)y);
                     }
@@ -143,6 +143,7 @@ public class SeventhQuestion extends Fragment {
                     else if(milkDragView.canIsInPosition() && Version == 4)
                     {
                         sevnthCurrectOrder = true;
+                        milkDragView.changeBorderColor();
                     }
                     break;
                 case MotionEvent.ACTION_DOWN:

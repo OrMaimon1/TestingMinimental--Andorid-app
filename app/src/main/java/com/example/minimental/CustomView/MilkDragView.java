@@ -30,8 +30,8 @@ public class MilkDragView extends View {
     private Drawable canDrawable;
     private Drawable fridgeDrawable;
     private DrawableProxy milkDrawableProxy;
-    private DrawableProxy redBottleDrawableProxy;
-    private DrawableProxy greenBottleDrawableProxy;
+    private DrawableProxy grapeDrawableProxy;
+    private DrawableProxy chickenDrawableProxy;
     private DrawableProxy canDrawableProxy;
     int scale = (int)getResources().getDisplayMetrics().density;
     int canvasWidth;
@@ -67,18 +67,22 @@ public class MilkDragView extends View {
         grapeDrawable = getResources().getDrawable(R.drawable.ic_grapes);
         canDrawable = getResources().getDrawable(R.drawable.ic_can);
         fridgeDrawable = getResources().getDrawable(R.drawable.ic_closefridge);
-        tableDrawable = getResources().getDrawable(R.drawable.ic_table2);
+        tableDrawable = getResources().getDrawable(R.drawable.ic_table_3);
         milkDrawableProxy = new DrawableProxy(milkDrawable , 70*scale , 350*scale , 40*scale , 70*scale);
         milkBorderRect = new Rect(65 * scale , 345*scale , 111 * scale , 416 * scale);
+        milkDrawableProxy.setInitialBorderRectPosition(milkBorderRect);
 
-        redBottleDrawableProxy = new DrawableProxy(grapeDrawable, 135*scale , 250*scale ,40*scale , 70*scale );
+        grapeDrawableProxy = new DrawableProxy(grapeDrawable, 135*scale , 250*scale ,40*scale , 70*scale );
         grapeBorderRect = new Rect(130*scale , 245*scale , 176*scale , 321*scale);
+        grapeDrawableProxy.setInitialBorderRectPosition(grapeBorderRect);
 
-        greenBottleDrawableProxy = new DrawableProxy(chickenDrawable, 90*scale , 250*scale ,40*scale , 70*scale );
+        chickenDrawableProxy = new DrawableProxy(chickenDrawable, 90*scale , 250*scale ,40*scale , 70*scale );
         chickenBorderRect = new Rect(85*scale , 245*scale , 131*scale , 321*scale);
+        chickenDrawableProxy.setInitialBorderRectPosition(chickenBorderRect);
 
         canDrawableProxy = new DrawableProxy(canDrawable , 135*scale , 345*scale , 40 * scale , 50  *scale);
         canBorderRect = new Rect(130*scale  , 340*scale , 171*scale , 395*scale);
+        canDrawableProxy.setInitialBorderRectPosition(canBorderRect);
     }
 
     @Override
@@ -97,8 +101,8 @@ public class MilkDragView extends View {
         if(!fridgeIsOpen)
         {
             milkDrawableProxy.getDrawableItem().draw(canvas);
-            redBottleDrawableProxy.getDrawableItem().draw(canvas);
-            greenBottleDrawableProxy.getDrawableItem().draw(canvas);
+            grapeDrawableProxy.getDrawableItem().draw(canvas);
+            chickenDrawableProxy.getDrawableItem().draw(canvas);
             canDrawableProxy.getDrawableItem().draw(canvas);
             fridgeDrawable.draw(canvas);
         }
@@ -107,8 +111,8 @@ public class MilkDragView extends View {
 //            fridgeDrawable = getResources().getDrawable(R.drawable.ic_fridge_open);
             fridgeDrawable.draw(canvas);
             milkDrawableProxy.getDrawableItem().draw(canvas);
-            redBottleDrawableProxy.getDrawableItem().draw(canvas);
-            greenBottleDrawableProxy.getDrawableItem().draw(canvas);
+            grapeDrawableProxy.getDrawableItem().draw(canvas);
+            chickenDrawableProxy.getDrawableItem().draw(canvas);
             canDrawableProxy.getDrawableItem().draw(canvas);
         }
         tableDrawable.draw(canvas);
@@ -133,8 +137,14 @@ public class MilkDragView extends View {
         else
         {
             fridgeDrawable = getResources().getDrawable(R.drawable.ic_closefridge);
+            //returnToFridgeIfNotOnTable();
         }
         invalidate();
+    }
+
+    public boolean isFrdigeOpen()
+    {
+        return fridgeIsOpen;
     }
 
     public boolean isClickOnFridge(int x, int y)
@@ -178,14 +188,14 @@ public class MilkDragView extends View {
     public void moveChickenBorderRect(int x , int y)
     {
         chickenBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
-        greenBottleDrawableProxy.moveItem(chickenBorderRect.left + (10*scale) , chickenBorderRect.top + (10*scale));
+        chickenDrawableProxy.moveItem(chickenBorderRect.left + (10*scale) , chickenBorderRect.top + (10*scale));
         invalidate();
     }
 
     public void moveGrapeBorderRect(int x , int y)
     {
         grapeBorderRect.set(x - (25*scale) , y - (40 * scale) , x + (25 * scale) , y+(40*scale));
-        redBottleDrawableProxy.moveItem(grapeBorderRect.left + (10*scale) , grapeBorderRect.top + (10*scale));
+        grapeDrawableProxy.moveItem(grapeBorderRect.left + (10*scale) , grapeBorderRect.top + (10*scale));
         invalidate();
     }
 
@@ -213,12 +223,12 @@ public class MilkDragView extends View {
     {
         fridgeDrawable.setBounds(0 , canvasHeight/3 , canvasWidth/2 , canvasHeight);
         tableDrawable.setBounds(canvasWidth*1/2 , canvasHeight/2 , canvasWidth , canvasHeight);
-        positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top + (40*scale),
-                tableDrawable.getBounds().right , tableDrawable.getBounds().top+(150*scale));
-        int top = tableDrawable.getBounds().top + (110*scale);
+        positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top + (20*scale),
+                tableDrawable.getBounds().right , tableDrawable.getBounds().top+(130*scale));
+        int top = tableDrawable.getBounds().top + (90*scale);
         int bottom = top + (10*scale);
-        greenNapkin = new Rect(tableDrawable.getBounds().left ,top  ,
-                tableDrawable.getBounds().left + (50*scale) , bottom);
+        greenNapkin = new Rect(tableDrawable.getBounds().left + (20*scale) ,top  ,
+                tableDrawable.getBounds().left + (70*scale) , bottom);
         redNapkin = new Rect(greenNapkin.right + (3*scale) , top ,
                  greenNapkin.right+ (53*scale) , bottom);
         yellowNapkin = new Rect(redNapkin.right + (3 * scale), top,
@@ -233,11 +243,11 @@ public class MilkDragView extends View {
     }
     public DrawableProxy getRedBottleDrawable()
     {
-        return redBottleDrawableProxy;
+        return grapeDrawableProxy;
     }
     public DrawableProxy getGreenBottleDrawable()
     {
-        return greenBottleDrawableProxy;
+        return chickenDrawableProxy;
     }
 
     public boolean milkIsInPosition()
@@ -300,6 +310,29 @@ public class MilkDragView extends View {
         return  inPosition;
     }
 
+    /*public void returnToFridgeIfNotOnTable()
+    {
+        Rect[] objectsBorderRects = new Rect[]{milkBorderRect , grapeBorderRect , chickenBorderRect , canBorderRect};
+        DrawableProxy[] drawableProxys = new DrawableProxy[]{milkDrawableProxy , grapeDrawableProxy , chickenDrawableProxy , canDrawableProxy};
+        for(int i = 0; i< 3; i++) {
+            boolean onTable = false;
+            if (objectsBorderRects[i].left >= positionBorderRect.left && objectsBorderRects[i].right <= positionBorderRect.right) {
+                if (objectsBorderRects[i].top >= positionBorderRect.top && objectsBorderRects[i].bottom <= positionBorderRect.bottom) {
+                    onTable = true;
+                }
+            }
+            if(!onTable)
+            {
+                Rect rectNewPosition = drawableProxys[i].getInitialBorderRectPosition();
+                objectsBorderRects[i] = new Rect(rectNewPosition.left , rectNewPosition.top , rectNewPosition.right , rectNewPosition.bottom);
+                int x = ((objectsBorderRects[i].right - objectsBorderRects[i].left) / 2);
+                int y = ((objectsBorderRects[i].bottom - objectsBorderRects[i].top) / 2);
+                drawableProxys[i].moveItem(objectsBorderRects[i].left  +x , objectsBorderRects[i].top + y );
+                //invalidate();
+            }
+        }
+    }*/
+
 
 
 
@@ -327,7 +360,7 @@ public class MilkDragView extends View {
         final int itemHeight;
         private int leftSide;
         private int topSide;
-        private Rect borderRect;
+        private Rect initialBorderRectPosition;
         public DrawableProxy(Drawable drawable , int left, int top, int width, int height)
         {
             drawableItem = drawable;
@@ -341,6 +374,15 @@ public class MilkDragView extends View {
         public Drawable getDrawableItem()
         {
             return drawableItem;
+        }
+        public Rect getInitialBorderRectPosition()
+        {
+            return initialBorderRectPosition;
+        }
+
+        public void setInitialBorderRectPosition(Rect borderRect)
+        {
+            initialBorderRectPosition = new Rect(borderRect.left , borderRect.top , borderRect.right , borderRect.bottom);
         }
         public void moveItem(int x , int y)
         {
