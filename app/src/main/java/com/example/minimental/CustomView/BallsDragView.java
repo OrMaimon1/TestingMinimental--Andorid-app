@@ -83,7 +83,7 @@ public class BallsDragView extends View {
         width = this.getWidth();
         height = this.getHeight();
         initializeBorders();
-        canvas.drawRect(0 , height -(2f*scale) , width , height,blackPaint);
+        //canvas.drawRect(0 , height -(2f*scale) , width , height,blackPaint);
 
         canvas.drawCircle(yellowBall.getCenterX() , yellowBall.getCenterY() , yellowBall.getRadius() , yellowPaint);
         canvas.drawCircle(blackBall.getCenterX() , blackBall.getCenterY() , blackBall.getRadius() , blackPaint);

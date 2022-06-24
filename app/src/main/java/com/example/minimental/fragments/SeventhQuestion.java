@@ -143,7 +143,7 @@ public class SeventhQuestion extends Fragment {
                     else if(milkDragView.canIsInPosition() && Version == 4)
                     {
                         sevnthCurrectOrder = true;
-                        milkDragView.changeBorderColor();
+                        //milkDragView.changeBorderColor();
                     }
                     break;
                 case MotionEvent.ACTION_DOWN:
