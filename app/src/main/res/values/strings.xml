@@ -75,6 +75,8 @@
     <string name="hospital_address">What is the name for your current place</string>
     <string name="hospital_floor">in what floor your room is?</string>
     <string name="ninth_question">Ninth Question</string>
-    <string name="confirm_word">Confirm Word</string>/>
+    <string name="confirm_word">Confirm Word</string>
+    <string name="feedback_here">Feedback Here</string>
+    <string name="click_on_the_microphone_for_answer">Click on the microphone for answer</string>/>
 
 </resources>

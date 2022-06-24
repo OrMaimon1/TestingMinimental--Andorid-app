@@ -24,9 +24,9 @@
                 android:gravity="center"
                 android:text="@string/spelling_version_name"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textColorHint="@color/black"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:textSize="40sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,7 +111,6 @@
                     android:layout_margin="10dp"
                     android:gravity="center"
                     android:text="@string/textView_spellig_version_textView2"
-                    android:textColor="@color/black"
                     android:textColorHint="@color/black"
                     android:textSize="25sp"
                     android:textStyle="bold" />

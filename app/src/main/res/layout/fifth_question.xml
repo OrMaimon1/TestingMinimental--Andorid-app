@@ -29,9 +29,9 @@
                     android:gravity="center"
                     android:text="@string/fifth_question_name"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:textColorHint="@color/white"
-                    android:textSize="40sp"
-                    android:textStyle="bold" />
+                    android:textSize="40sp" />
             </LinearLayout>
 
         <LinearLayout
@@ -72,8 +72,6 @@
                     android:layout_margin="20dp"
                     android:gravity="center"
                     android:text="@string/textView_fifth_question"
-                    android:textColor="@color/black"
-
                     android:textColorHint="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -107,7 +105,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_name"
+                    android:id="@+id/input_name1"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -167,7 +165,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_name"
+                    android:id="@+id/input_name2"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

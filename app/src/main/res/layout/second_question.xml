@@ -22,9 +22,9 @@
                 android:layout_margin="20dp"
                 android:gravity="center"
                 android:text="@string/title_question_title_name"
-                android:textColorHint="@color/black"
-                android:textSize="40sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="40sp" />
 
 
             <LinearLayout

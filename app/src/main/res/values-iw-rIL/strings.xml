@@ -77,4 +77,6 @@
     <string name="hospital_floor">באיזה קומה נמצע החדר שלך?</string>
     <string name="ninth_question">שאלה תשיעית</string>
     <string name="confirm_word">בדוק מילה</string>
+    <string name="feedback_here">משוב</string>
+    <string name="click_on_the_microphone_for_answer">לחץ על המיקרופון בשביל לענות</string>
 </resources>

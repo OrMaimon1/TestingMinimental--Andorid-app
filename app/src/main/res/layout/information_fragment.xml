@@ -28,9 +28,11 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:text="@string/choose_first_question_title"
                     android:textSize="40sp"
-                    android:textStyle="bold" />
+                     />
 
             </LinearLayout>
 
