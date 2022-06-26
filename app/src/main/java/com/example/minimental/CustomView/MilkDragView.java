@@ -101,7 +101,7 @@ public class MilkDragView extends View {
         canvas.drawRect(grapeBorderRect, transperent);
         canvas.drawRect(chickenBorderRect, transperent);
         canvas.drawRect(canBorderRect, transperent);
-        canvas.drawRect(positionBorderRect , yellow);
+        canvas.drawRect(positionBorderRect , transperent);
         //fridgeDrawable.draw(canvas);
         tableDrawable.draw(canvas);
         if(!fridgeIsOpen)
