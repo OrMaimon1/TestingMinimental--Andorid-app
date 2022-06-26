@@ -112,23 +112,24 @@ public class SeventhQuestion extends Fragment implements MediaPlayerServiceBinde
             float y = motionEvent.getY();
             switch (motionEvent.getActionMasked()) {
                 case MotionEvent.ACTION_MOVE:
-                    if(milkBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen()) {
+                    if( (milkBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen()) || (milkDragView.itemOnTable(milkBorderRect) && !milkDragView.isClickOnFridge((int)x , (int)y)) ) {
                         milkDragView.moveMilkBorderRect((int) x, (int) y);
                     }
-                    else if(grapeBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen())
+                    else if( (grapeBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen()) || (milkDragView.itemOnTable(grapeBorderRect) && !milkDragView.isClickOnFridge((int)x , (int)y)))
                     {
                         milkDragView.moveGrapeBorderRect((int)x , (int)y);
                     }
-                    else if(chickenBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen())
+                    else if( (chickenBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen()) || (milkDragView.itemOnTable(chickenBorderRect) && !milkDragView.isClickOnFridge((int)x , (int)y)))
                     {
                         milkDragView.moveChickenBorderRect((int)x , (int)y);
                     }
-                    else if(canBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen())
+                    else if( (canBorderRect.contains((int)x , (int)y) && milkDragView.isFrdigeOpen()) || (milkDragView.itemOnTable(canBorderRect) && !milkDragView.isClickOnFridge((int)x , (int)y)))
                     {
                         milkDragView.moveCanBorederRect((int)x , (int)y);
                     }
                     break;
                 case MotionEvent.ACTION_UP:
+                    milkDragView.returnToPlaceIfItemIsOutOfBounds();
                     if(milkDragView.milkIsInPosition() && Version == 1)
                     {
                         sevnthCurrectOrder = true;
@@ -145,7 +146,7 @@ public class SeventhQuestion extends Fragment implements MediaPlayerServiceBinde
                     else if(milkDragView.canIsInPosition() && Version == 4)
                     {
                         sevnthCurrectOrder = true;
-                        //milkDragView.changeBorderColor();
+                        milkDragView.changeBorderColor();
                     }
                     break;
                 case MotionEvent.ACTION_DOWN:
@@ -202,5 +203,19 @@ public class SeventhQuestion extends Fragment implements MediaPlayerServiceBinde
 
             return true;
         }
+    }*/
+
+
+
+
+    /*public boolean itemOnTable(Rect itemBorderRect)
+    {
+        boolean onTable = false;
+        if (itemBorderRect.left >= positionBorderRect.left - (50*scale) && itemBorderRect.right  <= positionBorderRect.right + (50*scale)) {
+            if (itemBorderRect.top >= positionBorderRect.top - (50*scale) && itemBorderRect.bottom  <= positionBorderRect.bottom + (50*scale)) {
+                onTable = true;
+            }
+        }
+        return onTable;
     }*/
 }

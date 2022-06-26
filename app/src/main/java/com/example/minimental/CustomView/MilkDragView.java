@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -40,6 +41,10 @@ public class MilkDragView extends View {
     private Rect grapeBorderRect;
     private Rect chickenBorderRect;
     private Rect canBorderRect;
+    private Rect leftBorder;
+    private Rect rightBorder;
+    private Rect topBorder;
+    private Rect bottomBorder;
     private Rect redNapkin;
     private Rect blueNapkin;
     private Rect greenNapkin;
@@ -96,7 +101,7 @@ public class MilkDragView extends View {
         canvas.drawRect(grapeBorderRect, transperent);
         canvas.drawRect(chickenBorderRect, transperent);
         canvas.drawRect(canBorderRect, transperent);
-        canvas.drawRect(positionBorderRect , transperent);
+        canvas.drawRect(positionBorderRect , yellow);
         //fridgeDrawable.draw(canvas);
         tableDrawable.draw(canvas);
         if(!fridgeIsOpen)
@@ -222,6 +227,10 @@ public class MilkDragView extends View {
 
     private void initializeCanvasObjects()
     {
+        bottomBorder = new Rect(0 , canvasHeight-(10*scale) , canvasWidth , canvasHeight);
+        topBorder = new Rect(0 , 0 , canvasWidth , 10*scale);
+        leftBorder = new Rect(0 , 0 , 10*scale , canvasHeight);
+        rightBorder = new Rect(canvasWidth-(10*scale) , 0 , canvasWidth , canvasHeight);
         fridgeDrawable.setBounds(0 , canvasHeight/3 , canvasWidth/2 , canvasHeight);
         tableDrawable.setBounds(canvasWidth*1/2 , canvasHeight/2 , canvasWidth , canvasHeight);
         positionBorderRect = new Rect(tableDrawable.getBounds().left , tableDrawable.getBounds().top + (20*scale),
@@ -303,7 +312,7 @@ public class MilkDragView extends View {
         {
             if(canDrawable.getBounds().top >= positionBorderRect.top && canDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
-                if(canDrawable.getBounds().left >= yellowNapkin.left && canDrawable.getBounds().right <= yellowNapkin.right) {
+                if(canDrawableProxy.getObjectsCenterPointX() >= yellowNapkin.left && canDrawableProxy.getObjectsCenterPointX() <= yellowNapkin.right) {
                     inPosition = true;
                 }
             }
@@ -315,24 +324,52 @@ public class MilkDragView extends View {
     {
         Rect[] objectsBorderRects = new Rect[]{milkBorderRect , grapeBorderRect , chickenBorderRect , canBorderRect};
         DrawableProxy[] drawableProxys = new DrawableProxy[]{milkDrawableProxy , grapeDrawableProxy , chickenDrawableProxy , canDrawableProxy};
-        for(int i = 0; i< 3; i++) {
-            boolean onTable = false;
-            if (objectsBorderRects[i].left >= positionBorderRect.left && objectsBorderRects[i].right <= positionBorderRect.right) {
-                if (objectsBorderRects[i].top >= positionBorderRect.top && objectsBorderRects[i].bottom <= positionBorderRect.bottom) {
+        for(int i = 0; i< objectsBorderRects.length; i++) {
+            /*boolean onTable = false;
+            if (objectsBorderRects[i].left >= positionBorderRect.left - (20*scale) && objectsBorderRects[i].right  <= positionBorderRect.right + (20*scale)) {
+                if (objectsBorderRects[i].top >= positionBorderRect.top - (20*scale) && objectsBorderRects[i].bottom  <= positionBorderRect.bottom + (20*scale)) {
                     onTable = true;
                 }
-            }
-            if(!onTable)
+            }*/
+            if(!itemOnTable(objectsBorderRects[i]))
             {
                 Rect rectNewPosition = drawableProxys[i].getInitialBorderRectPosition();
-                objectsBorderRects[i] = new Rect(rectNewPosition.left , rectNewPosition.top , rectNewPosition.right , rectNewPosition.bottom);
+                objectsBorderRects[i].set(rectNewPosition.left , rectNewPosition.top , rectNewPosition.right , rectNewPosition.bottom);
                 int x = ((objectsBorderRects[i].right - objectsBorderRects[i].left) / 2);
                 int y = ((objectsBorderRects[i].bottom - objectsBorderRects[i].top) / 2);
                 drawableProxys[i].moveItem(objectsBorderRects[i].left  , objectsBorderRects[i].top  );
-                //invalidate();
             }
         }
     }
+
+    public boolean itemOnTable(Rect itemBorderRect)
+    {
+        boolean onTable = false;
+        if (itemBorderRect.left >= positionBorderRect.left - (50*scale) && itemBorderRect.right  <= positionBorderRect.right + (50*scale)) {
+            if (itemBorderRect.top >= positionBorderRect.top - (50*scale) && itemBorderRect.bottom  <= positionBorderRect.bottom + (50*scale)) {
+                onTable = true;
+            }
+        }
+        return onTable;
+    }
+
+    public void returnToPlaceIfItemIsOutOfBounds()
+    {
+        Rect[] objectsBorderRects = new Rect[]{milkBorderRect , grapeBorderRect , chickenBorderRect , canBorderRect};
+        DrawableProxy[] drawableProxys = new DrawableProxy[]{milkDrawableProxy , grapeDrawableProxy , chickenDrawableProxy , canDrawableProxy};
+
+        for(int i = 0; i<objectsBorderRects.length ; i++)
+        {
+            if(objectsBorderRects[i].left < leftBorder.right || objectsBorderRects[i].right > rightBorder.left
+            || objectsBorderRects[i].top < topBorder.bottom || objectsBorderRects[i].bottom > bottomBorder.top)
+            {
+                Rect rectNewPosition = drawableProxys[i].getInitialBorderRectPosition();
+                objectsBorderRects[i].set(rectNewPosition.left , rectNewPosition.top , rectNewPosition.right , rectNewPosition.bottom);
+                drawableProxys[i].moveItem(objectsBorderRects[i].left  , objectsBorderRects[i].top  );
+            }
+        }
+    }
+
 
 
 
@@ -384,6 +421,11 @@ public class MilkDragView extends View {
         public void setInitialBorderRectPosition(Rect borderRect)
         {
             initialBorderRectPosition = new Rect(borderRect.left , borderRect.top , borderRect.right , borderRect.bottom);
+        }
+
+        public int getObjectsCenterPointX()
+        {
+            return getDrawableItem().getBounds().left + itemWidth/2;
         }
         public void moveItem(int x , int y)
         {
