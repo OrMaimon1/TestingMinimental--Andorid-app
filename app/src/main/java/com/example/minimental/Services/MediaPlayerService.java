@@ -11,12 +11,10 @@ import java.io.IOException;
 
 public class MediaPlayerService extends Service implements MediaPlayer.OnCompletionListener , MediaPlayer.OnPreparedListener {
     MediaPlayer mediaPlayer = new MediaPlayer();
+    public static MediaPlayerServiceBinder currentFragment;
     private static boolean isPlaying = false;
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+
+
 
     @Override
     public void onCreate() {
@@ -51,6 +49,15 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnComplet
             }
             mediaPlayer.release();
         }
+        if(currentFragment != null) {
+            currentFragment.startSpeechButtonAnimation();
+        }
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
     @Override

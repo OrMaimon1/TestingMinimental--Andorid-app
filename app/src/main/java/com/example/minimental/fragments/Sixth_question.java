@@ -27,12 +27,13 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 import java.util.ArrayList;
 
-public class Sixth_question extends Fragment {
+public class Sixth_question extends Fragment implements MediaPlayerServiceBinder {
 
 
     private SharedViewModel sharedViewModel;
@@ -41,6 +42,8 @@ public class Sixth_question extends Fragment {
     private SixthQuestion sentence = new SixthQuestion();
     private Observer<String> getAnswerObserver;
     private String link;
+    private Button speechBtn;
+    private Button speakerButton;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +81,8 @@ public class Sixth_question extends Fragment {
         Log.d("firebase", sentence.getSentence());
         sentenceTv.setText(sentence.getSentence());
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
-        Button speakerButton = rootView.findViewById(R.id.repeat_sentence_speaker);
+        speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        speakerButton = rootView.findViewById(R.id.repeat_sentence_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speakerButton.startAnimation(animation);
         Integer Version = sharedViewModel.getVersion().getValue();
@@ -111,8 +114,6 @@ public class Sixth_question extends Fragment {
             @Override
             public void onClick(View view) {
                 speakerButton.clearAnimation();
-                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
-                speechBtn.startAnimation(animation);
                 startMediaService();
             }
         });
@@ -138,9 +139,19 @@ public class Sixth_question extends Fragment {
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        speakerButton.setClickable(false);
+        MediaPlayerService.currentFragment = this;
         intent.putExtra("Link" , link);
         getContext().startService(intent);
     }
+
+    @Override
+    public void startSpeechButtonAnimation() {
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speechBtn.startAnimation(animation);
+        speakerButton.setClickable(true);
+    }
+
     private void updateAnswer(String answer)
     {
         sixthQuestion.setSentence(answer);

@@ -28,12 +28,13 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.secoundQuestion;
 
 import java.util.ArrayList;
 
-public class FourthQuestion extends Fragment {
+public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder {
 
     private SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
@@ -45,6 +46,8 @@ public class FourthQuestion extends Fragment {
     private secoundQuestion fourthQuestion = new secoundQuestion();
     private secoundQuestion secoundquestion = new secoundQuestion();
     private String word1;
+    private Button listenBtn;
+    private Button recordButton;
 
 
     @Override
@@ -78,8 +81,8 @@ public class FourthQuestion extends Fragment {
         resultText = rootView.findViewById(R.id.word_spoken_ET);
         feedBack = rootView.findViewById(R.id.feedback_text);
         secoundquestion = sharedViewModel.getObjectdata().getValue();
-        Button recordButton = rootView.findViewById(R.id.fourth_question_mic);
-        Button listenBtn = rootView.findViewById(R.id.repeat_words_instruction_speaker);
+        recordButton = rootView.findViewById(R.id.fourth_question_mic);
+        listenBtn = rootView.findViewById(R.id.repeat_words_instruction_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         listenBtn.startAnimation(animation);
         recordButton.setOnClickListener(new View.OnClickListener() {
@@ -114,8 +117,6 @@ public class FourthQuestion extends Fragment {
             @Override
             public void onClick(View v) {
                 listenBtn.clearAnimation();
-                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
-                recordButton.startAnimation(animation);
                 startMediaService();
             }
         });
@@ -153,8 +154,17 @@ public class FourthQuestion extends Fragment {
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        MediaPlayerService.currentFragment = this;
+        listenBtn.setClickable(false);
         intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0920%D7%96%D7%99%D7%9B%D7%A8%D7%95%D7%9F%20%D7%90%D7%A8%D7%95%D7%9A.mp3?alt=media&token=4ddd5c80-77fd-49b4-a71a-17a26c52d025");
         getContext().startService(intent);
+    }
+
+    @Override
+    public void startSpeechButtonAnimation() {
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        recordButton.startAnimation(animation);
+        listenBtn.setClickable(true);
     }
 
     private void updateAnswer(String answer)

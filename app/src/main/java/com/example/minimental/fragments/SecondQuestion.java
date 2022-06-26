@@ -1,6 +1,7 @@
 package com.example.minimental.fragments;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
@@ -9,7 +10,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,15 +24,15 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.minimental.LifeCycleObserver;
 import com.example.minimental.R;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.secoundQuestion;
 
 import java.util.ArrayList;
 
-public class SecondQuestion extends Fragment {
+public class SecondQuestion extends Fragment implements MediaPlayerServiceBinder {
     private SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     //private LifeCycleObserver speechRecognitionObserver;
@@ -40,6 +40,9 @@ public class SecondQuestion extends Fragment {
     private TextView resultText;
     private secoundQuestion secoundQuestion = new secoundQuestion();
     private String link;
+    private Button speechBtn;
+    private Animation animation;
+    private Button listenBtn;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,8 +82,8 @@ public class SecondQuestion extends Fragment {
         View rootView = inflater.inflate(R.layout.second_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        Button listenBtn = rootView.findViewById(R.id.memory_instruction_speaker);
-        Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        listenBtn = rootView.findViewById(R.id.memory_instruction_speaker);
+        speechBtn = rootView.findViewById(R.id.image_of_microphone);
         resultText = rootView.findViewById(R.id.check_txt);
         Integer Version = sharedViewModel.getVersion().getValue();
         if (Version == null || Version == 0) //only for now some users dosnt have version alredy asked to add
@@ -99,7 +102,7 @@ public class SecondQuestion extends Fragment {
         if (Version == 4){
             link ="https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Repeating%20Words%20Memory%20Versions%2FMyRec_0526_1324%D7%92%D7%A8%D7%A1%D7%94%20%D7%A8%D7%91%D7%99%D7%A2%D7%99%D7%AA%20%D7%96%D7%99%D7%9B%D7%A8%D7%95%D7%9F.mp3?alt=media&token=9c1fd0e3-380d-4b94-8a6a-e43dd4cab55c";
         }
-        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         listenBtn.startAnimation(animation);
 
         listenBtn.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +110,8 @@ public class SecondQuestion extends Fragment {
             public void onClick(View v) {
                 listenBtn.clearAnimation();
                 Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
-                speechBtn.startAnimation(animation);
                 startMediaService();
+                //speechBtn.startAnimation(animation);
             }
         });
 
@@ -139,9 +142,17 @@ public class SecondQuestion extends Fragment {
         speechRecognizerLauncher.launch(speechIntent);
     }
 
+    @Override
+    public void startSpeechButtonAnimation() {
+        speechBtn.startAnimation(animation);
+        listenBtn.setEnabled(true);
+    }
+
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        listenBtn.setEnabled(false);
+        MediaPlayerService.currentFragment = this;
         intent.putExtra("Link" , link);
         getContext().startService(intent);
 

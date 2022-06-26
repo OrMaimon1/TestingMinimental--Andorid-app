@@ -25,18 +25,25 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.ThirdQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 import java.util.ArrayList;
 
-public class SpellingVersion extends Fragment {
+public class SpellingVersion extends Fragment implements MediaPlayerServiceBinder {
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private Observer<String> getSpelledWordObserver;
     private SharedViewModel sharedViewModel;
     private int numberOfAnswersGiven = 0;
     private ArrayList<String> FinalResult = new ArrayList<>();
     private ThirdQuestion spell = new ThirdQuestion();
+    private Button speechBtn;
+    private Button[] speakerButtons;
+    private String instructionsLink = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0918%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%90%D7%99%D7%95%D7%AA.mp3?alt=media&token=2e34cbbf-8131-4cc2-8e37-d71cc03296ce";
+    private String continueCommandLink = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0918%D7%AA%D7%9E%D7%A9%D7%99%D7%9A.mp3?alt=media&token=24c994a7-8bb9-4238-88c5-dc621fad5763";
+    private String stopCommandLink = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0919%D7%A2%D7%A6%D7%95%D7%A8.mp3?alt=media&token=9fb58cb6-836a-4a50-930c-0cc5604e7584";
+
 
 
     @Override
@@ -72,13 +79,14 @@ public class SpellingVersion extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.spelling_version,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        Button speechBtn = rootView.findViewById(R.id.image_of_microphone);
+        speechBtn = rootView.findViewById(R.id.image_of_microphone);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
         Button speakerButton = rootView.findViewById(R.id.spelling_instructions_speaker);
         TextView spellTv = rootView.findViewById(R.id.spelling_version_textview);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speakerButton.startAnimation(animation);
         spell = sharedViewModel.getSpelledWord().getValue();
+        speakerButtons = new Button[]{confirmAnswerbutton , speakerButton};
         spellTv.setText(spell.getObjectforspelling());
         nxtBtn.setEnabled(false);
         confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
@@ -87,8 +95,13 @@ public class SpellingVersion extends Fragment {
                 Animation animation1= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
                 confirmAnswerbutton.startAnimation(animation1);
                 numberOfAnswersGiven++;
+                if(numberOfAnswersGiven < 5)
+                {
+                    startMediaService(continueCommandLink);
+                }
                 if(numberOfAnswersGiven == 5)
                 {
+                    startMediaService(stopCommandLink);
                     nxtBtn.setEnabled(true);
                     Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
                     nxtBtn.startAnimation(animation);
@@ -112,9 +125,7 @@ public class SpellingVersion extends Fragment {
             @Override
             public void onClick(View view) {
                 speakerButton.clearAnimation();
-                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
-                speechBtn.startAnimation(animation);
-                startMediaService();
+                startMediaService(instructionsLink);
             }
         });
         nxtBtn.setOnClickListener(new View.OnClickListener() {
@@ -135,11 +146,36 @@ public class SpellingVersion extends Fragment {
         speechRecognizerLauncher.launch(speechIntent);
     }
 
-    private void startMediaService()
+    private void startMediaService(String link)
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
-        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0918%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%90%D7%99%D7%95%D7%AA.mp3?alt=media&token=2e34cbbf-8131-4cc2-8e37-d71cc03296ce");
+        disableAllSpeakerButtons();
+        MediaPlayerService.currentFragment = this;
+        intent.putExtra("Link" , link);
         getContext().startService(intent);
+    }
+
+    @Override
+    public void startSpeechButtonAnimation() {
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speechBtn.startAnimation(animation);
+        enabaleAllSpeakerButtons();
+    }
+
+    private void disableAllSpeakerButtons()
+    {
+        for(Button button : speakerButtons)
+        {
+            button.setClickable(false);
+        }
+    }
+
+    private void enabaleAllSpeakerButtons()
+    {
+        for(Button button : speakerButtons)
+        {
+            button.setClickable(true);
+        }
     }
 
     private void updateAnswer(String answer)

@@ -21,10 +21,11 @@ import androidx.navigation.Navigation;
 import com.example.minimental.CustomView.MilkDragView;
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.SevnthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
-public class SeventhQuestion extends Fragment {
+public class SeventhQuestion extends Fragment implements MediaPlayerServiceBinder {
 
     //ImageView milk;
     private SharedViewModel sharedViewModel;
@@ -37,6 +38,7 @@ public class SeventhQuestion extends Fragment {
     private Rect chickenBorderRect;
     private Rect canBorderRect;
     private Drawable clickOnFridge;
+    private Button listenBtn;
     private String link;
     private Integer Version;
 
@@ -45,7 +47,7 @@ public class SeventhQuestion extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.seventh_question,container,false);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        Button listenBtn = rootView.findViewById(R.id.seventh_question_instruction_speaker);
+        listenBtn = rootView.findViewById(R.id.seventh_question_instruction_speaker);
         milkDragView = rootView.findViewById(R.id.milk_drag_view);
         milkPicture = milkDragView.getMilkDrawable();
         milkBorderRect = milkDragView.getMilkBorderRect();
@@ -163,13 +165,16 @@ public class SeventhQuestion extends Fragment {
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        MediaPlayerService.currentFragment = this;
+        listenBtn.setClickable(false);
         intent.putExtra("Link" , link);
         getContext().startService(intent);
     }
 
-
-
-
+    @Override
+    public void startSpeechButtonAnimation() {
+        listenBtn.setClickable(true);
+    }
 
     /*final class MyTouchListener implements View.OnTouchListener{
 

@@ -1,6 +1,7 @@
 package com.example.minimental.fragments;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.LayoutInflater;
@@ -25,12 +26,13 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.ThirdQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 import java.util.ArrayList;
 
-public class MathVersion extends Fragment  {
+public class MathVersion extends Fragment implements MediaPlayerServiceBinder {
     private SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private Observer<String> getAnswerObserver;
@@ -40,6 +42,11 @@ public class MathVersion extends Fragment  {
     private ArrayList<String> FinalResult = new ArrayList<>();
     private ThirdQuestion math = new ThirdQuestion();
     private String result;
+    private Button speechBtn;
+    private Button[] speakerButtons;
+    private String instructionsLink = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0917%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%97%D7%A9%D7%91%D7%95%D7%9F.mp3?alt=media&token=400739c2-46e8-4622-823f-02cd2baa83bb";
+    private String continueCommandLink = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0918%D7%AA%D7%9E%D7%A9%D7%99%D7%9A.mp3?alt=media&token=24c994a7-8bb9-4238-88c5-dc621fad5763";
+    private String stopCommandLink = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0919%D7%A2%D7%A6%D7%95%D7%A8.mp3?alt=media&token=9fb58cb6-836a-4a50-930c-0cc5604e7584";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,12 +82,13 @@ public class MathVersion extends Fragment  {
         View rootView = inflater.inflate(R.layout.math_version,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        Button speechBtn = rootView.findViewById(R.id.mic_image_btn);
+        speechBtn = rootView.findViewById(R.id.mic_image_btn);
         Button speakerButton = rootView.findViewById(R.id.math_istructions_speaker);
         nxtBtn.setEnabled(false);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speakerButton.startAnimation(animation);
         Button confirmAnswerbutton = rootView.findViewById(R.id.Button_finish_answer);
+        speakerButtons = new Button[]{speakerButton , confirmAnswerbutton};
         math = sharedViewModel.getMathAnswerGiven().getValue();
         confirmAnswerbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,9 +96,14 @@ public class MathVersion extends Fragment  {
                 Animation animation1= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
                 confirmAnswerbutton.startAnimation(animation1);
                 numberOfAnswersGiven++;
+                if(numberOfAnswersGiven<5)
+                {
+                    startMediaService(continueCommandLink);
+                }
                 FinalResult.add(result); //check if working
                 if(numberOfAnswersGiven == 5)
                 {
+                    startMediaService(stopCommandLink);
                     nxtBtn.setEnabled(true);
                     Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
                     nxtBtn.startAnimation(animation);
@@ -118,9 +131,7 @@ public class MathVersion extends Fragment  {
             @Override
             public void onClick(View view) {
                 speakerButton.clearAnimation();
-                Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
-                speechBtn.startAnimation(animation);
-                startMediaService();
+                startMediaService(instructionsLink);
             }
         });
 
@@ -138,17 +149,44 @@ public class MathVersion extends Fragment  {
     private void startSpeechRecognition()
     {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        disableAllSpeakerButtons();
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
     }
 
-    private void startMediaService()
+    private void disableAllSpeakerButtons()
+    {
+        for(Button button : speakerButtons)
+        {
+            button.setClickable(false);
+        }
+    }
+
+    private void enabaleAllSpeakerButtons()
+    {
+        for(Button button : speakerButtons)
+        {
+            button.setClickable(true);
+        }
+    }
+
+    private void startMediaService(String link)
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
-        intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0917%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%97%D7%A9%D7%91%D7%95%D7%9F.mp3?alt=media&token=400739c2-46e8-4622-823f-02cd2baa83bb");
+        disableAllSpeakerButtons();
+        MediaPlayerService.currentFragment = this;
+        intent.putExtra("Link" , link);
         getContext().startService(intent);
     }
-/*    private void updateAnswer(String answer)
+
+    @Override
+    public void startSpeechButtonAnimation() {
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        speechBtn.startAnimation(animation);
+        enabaleAllSpeakerButtons();
+    }
+
+    /*    private void updateAnswer(String answer)
     {
         resultText.setText(answer);
         String adder;

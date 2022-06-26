@@ -30,6 +30,7 @@ import androidx.navigation.Navigation;
 import com.example.minimental.FifthQuestion;
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 
@@ -37,7 +38,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class FifthFragment extends Fragment {
+public class FifthFragment extends Fragment implements MediaPlayerServiceBinder {
     public SharedViewModel sharedViewModel;
     private ActivityResultLauncher<Intent> speechRecognizerLauncher;
     private TextView text;
@@ -50,6 +51,7 @@ public class FifthFragment extends Fragment {
     private Thread imageOneProcessThread;
     private Thread imageTwoProcessThread;
     private EditText currentPictureDescribedEditText;
+    private Button speakerButton;
     private String pic1;
     private String pic2;
 
@@ -157,7 +159,7 @@ public class FifthFragment extends Fragment {
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         ImageButton recordBtnForImageOne = rootView.findViewById(R.id.pict1_mic_image_view);
         ImageButton recordButtonForImageTwo = rootView.findViewById(R.id.pict2_mic_image_view);
-        Button speakerButton = rootView.findViewById(R.id.describe_instructions_speaker);
+        speakerButton = rootView.findViewById(R.id.describe_instructions_speaker);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speakerButton.startAnimation(animation);
         nxtBtn.setOnClickListener(new View.OnClickListener() {
@@ -205,8 +207,14 @@ public class FifthFragment extends Fragment {
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        speakerButton.setClickable(false);
+        MediaPlayerService.currentFragment = this;
         intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0925%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%A9%D7%99%D7%95%D7%9D.mp3?alt=media&token=b9d3dd38-a837-4708-b00b-2125faad4548");
         getContext().startService(intent);
     }
 
+    @Override
+    public void startSpeechButtonAnimation() {
+        speakerButton.setClickable(true);
+    }
 }

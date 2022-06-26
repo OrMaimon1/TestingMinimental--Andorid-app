@@ -97,7 +97,8 @@ public class MilkDragView extends View {
         canvas.drawRect(chickenBorderRect, transperent);
         canvas.drawRect(canBorderRect, transperent);
         canvas.drawRect(positionBorderRect , transperent);
-        fridgeDrawable.draw(canvas);
+        //fridgeDrawable.draw(canvas);
+        tableDrawable.draw(canvas);
         if(!fridgeIsOpen)
         {
             milkDrawableProxy.getDrawableItem().draw(canvas);
@@ -115,7 +116,7 @@ public class MilkDragView extends View {
             chickenDrawableProxy.getDrawableItem().draw(canvas);
             canDrawableProxy.getDrawableItem().draw(canvas);
         }
-        tableDrawable.draw(canvas);
+
         canvas.drawRect(greenNapkin , green);
         canvas.drawRect(redNapkin , red);
         canvas.drawRect(blueNapkin , blue);
@@ -137,7 +138,7 @@ public class MilkDragView extends View {
         else
         {
             fridgeDrawable = getResources().getDrawable(R.drawable.ic_closefridge);
-            //returnToFridgeIfNotOnTable();
+            returnToFridgeIfNotOnTable();
         }
         invalidate();
     }
@@ -310,7 +311,7 @@ public class MilkDragView extends View {
         return  inPosition;
     }
 
-    /*public void returnToFridgeIfNotOnTable()
+    public void returnToFridgeIfNotOnTable()
     {
         Rect[] objectsBorderRects = new Rect[]{milkBorderRect , grapeBorderRect , chickenBorderRect , canBorderRect};
         DrawableProxy[] drawableProxys = new DrawableProxy[]{milkDrawableProxy , grapeDrawableProxy , chickenDrawableProxy , canDrawableProxy};
@@ -327,11 +328,11 @@ public class MilkDragView extends View {
                 objectsBorderRects[i] = new Rect(rectNewPosition.left , rectNewPosition.top , rectNewPosition.right , rectNewPosition.bottom);
                 int x = ((objectsBorderRects[i].right - objectsBorderRects[i].left) / 2);
                 int y = ((objectsBorderRects[i].bottom - objectsBorderRects[i].top) / 2);
-                drawableProxys[i].moveItem(objectsBorderRects[i].left  +x , objectsBorderRects[i].top + y );
+                drawableProxys[i].moveItem(objectsBorderRects[i].left  , objectsBorderRects[i].top  );
                 //invalidate();
             }
         }
-    }*/
+    }
 
 
 

@@ -33,6 +33,7 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.ViewModels.SharedViewModel;
 import com.example.minimental.informationQuestion;
 import com.getkeepsafe.taptargetview.TapTarget;
@@ -49,7 +50,7 @@ import java.util.Calendar;
 import java.util.Hashtable;
 
 
-public class  InformationFragment extends Fragment {
+public class  InformationFragment extends Fragment implements MediaPlayerServiceBinder {
 
     private SharedViewModel sharedViewModel;
     ActivityResultLauncher<Intent> speechRecognizerLauncher;
@@ -85,6 +86,7 @@ public class  InformationFragment extends Fragment {
     ImageView streetSpeakerImageView;
     ImageView floorSpeakerImageView;
     ImageView areaSpeakerImageView;
+    ImageView[] speakerButtons;
 
 
 
@@ -166,6 +168,8 @@ public class  InformationFragment extends Fragment {
         streetSpeakerImageView = rootView.findViewById(R.id.street_speaker);
         floorSpeakerImageView = rootView.findViewById(R.id.floor_speaker);
         areaSpeakerImageView = rootView.findViewById(R.id.area_speaker);
+        speakerButtons = new ImageView[]{daySpeakerImageView , monthSpeakerImageView , dateSpeakerImageView , yearSpeakerImageView , seasonSpeakerImageView,
+                countrySpeakerImageView , citySpeakerImageView , streetSpeakerImageView , floorSpeakerImageView , areaSpeakerImageView};
         initializeSpeakerLink();
 
         if (sharedViewModel.getMissingDetailMutableLiveData().getValue().isIs_in_hospital()){
@@ -329,12 +333,34 @@ public class  InformationFragment extends Fragment {
         @Override
         public void onClick(View view) {
             currentQuestionHeared = (ImageView) view;
+            disableAllButtons();
             if(!mediaIsPlaying) {
                 mediaIsPlaying = true;
                 startSpeakerService();
                 mediaIsPlaying =false;
             }
         }
+    }
+
+    private void disableAllButtons()
+    {
+        for(ImageView button : speakerButtons )
+        {
+            button.setEnabled(false);
+        }
+    }
+
+    private void enableAllButtons()
+    {
+        for(ImageView button : speakerButtons)
+        {
+            button.setEnabled(true);
+        }
+    }
+
+    @Override
+    public void startSpeechButtonAnimation() {
+        enableAllButtons();
     }
 
     private void startSpeechRecognition()
@@ -347,6 +373,7 @@ public class  InformationFragment extends Fragment {
     private void startSpeakerService()
     {
         Intent speakerServiceIntent = new Intent(getContext() , MediaPlayerService.class);
+        MediaPlayerService.currentFragment = this;
         speakerServiceIntent.putExtra("Link" , (String)speakerAndLinkMap.get(currentQuestionHeared));
         getContext().startService(speakerServiceIntent);
     }

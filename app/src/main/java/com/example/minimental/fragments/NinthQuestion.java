@@ -19,13 +19,15 @@ import androidx.navigation.Navigation;
 
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
+import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
-public class NinthQuestion extends Fragment {
+public class NinthQuestion extends Fragment implements MediaPlayerServiceBinder {
 
     private EditText currentSentence;
     private SharedViewModel sharedViewModel;
+    private Button speakerButton;
     private SixthQuestion nineQuestion = new SixthQuestion();
     @Nullable
     @Override
@@ -33,7 +35,7 @@ public class NinthQuestion extends Fragment {
         View rootView = inflater.inflate(R.layout.ninth_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
-        Button speakerButton = rootView.findViewById(R.id.ninth_question_speaker);
+        speakerButton = rootView.findViewById(R.id.ninth_question_speaker);
         currentSentence = rootView.findViewById(R.id.input_SentenceET);
         Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
         speakerButton.startAnimation(animation);
@@ -61,7 +63,14 @@ public class NinthQuestion extends Fragment {
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
+        MediaPlayerService.currentFragment = this;
+        speakerButton.setClickable(false);
         intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0526_1316%D7%9B%D7%AA%D7%99%D7%91%D7%AA%20%D7%9E%D7%A9%D7%A4%D7%98.mp3?alt=media&token=2a29ddb6-0020-4d5d-9aaf-d376e581fee8");
         getContext().startService(intent);
+    }
+
+    @Override
+    public void startSpeechButtonAnimation() {
+        speakerButton.setClickable(true);
     }
 }
