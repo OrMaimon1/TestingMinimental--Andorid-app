@@ -22,19 +22,17 @@ import androidx.navigation.Navigation;
 import com.example.minimental.Painter;
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
-import com.example.minimental.Services.MediaPlayerServiceBinder;
 import com.example.minimental.TenthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class TenthFragment extends Fragment implements MediaPlayerServiceBinder {
+public class TenthFragment extends Fragment {
 
 
     private SharedViewModel sharedViewModel;
     private TenthQuestion tenthQuestion = new TenthQuestion();
-    private ImageButton speakerButton;
     Painter painter;
 
     @Nullable
@@ -43,7 +41,7 @@ public class TenthFragment extends Fragment implements MediaPlayerServiceBinder 
         View rootView = inflater.inflate(R.layout.tenth_question,container,false);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         ImageView imageView = rootView.findViewById(R.id.tenth_question_ImageView);
-        speakerButton = rootView.findViewById(R.id.tenth_question_speaker);
+        ImageButton speakerButton = rootView.findViewById(R.id.tenth_question_speaker);
         Button nxtBtn = rootView.findViewById(R.id.next_Btn);
         painter = rootView.findViewById(R.id.painter_view);
         DisplayMetrics metrics = new DisplayMetrics();
@@ -66,8 +64,8 @@ public class TenthFragment extends Fragment implements MediaPlayerServiceBinder 
                 String datetime = dateformat.format(c.getTime());
                 sharedViewModel.setDatelast(datetime);
                 Navigation.findNavController(view).navigate(R.id.action_tenthQuestion_to_fileFragment);
-               // Boolean permission = Boolean.FALSE;
-                //sharedViewModel.setPermission(permission);
+                Boolean permission = Boolean.FALSE;
+                sharedViewModel.setPermission(permission);
             }
         });
 
@@ -85,14 +83,11 @@ public class TenthFragment extends Fragment implements MediaPlayerServiceBinder 
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
-        MediaPlayerService.currentFragment = this;
-        speakerButton.setClickable(false);
         intent.putExtra("Link" , "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0526_1317%D7%94%D7%A2%D7%AA%D7%A7%D7%AA%20%D7%A6%D7%95%D7%A8%D7%94.mp3?alt=media&token=3d8d3aa1-34e5-4b3b-b6ba-0fb734383502");
         getContext().startService(intent);
     }
 
-    @Override
-    public void startSpeechButtonAnimation() {
-        speakerButton.setClickable(true);
-    }
+
+
+
 }

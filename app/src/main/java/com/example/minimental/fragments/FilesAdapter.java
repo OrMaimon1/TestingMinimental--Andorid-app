@@ -15,11 +15,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
@@ -42,12 +44,13 @@ import com.google.firebase.database.core.Context;
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
     android.content.Context context;
     List<Pictures> pictures;
+    private PictureAdapterListener mPictureAdapterListener;
 
 
-
-    public RecyclerViewAdapter(List<Pictures> pictures, android.content.Context context) {
+    public RecyclerViewAdapter(List<Pictures> pictures, android.content.Context context, PictureAdapterListener pictureAdapterListener) {
         this.pictures = pictures;
         this.context = context;
+        this.mPictureAdapterListener = pictureAdapterListener;
     }
 
 //    public void updateList(List<Pictures> pictures){
@@ -56,37 +59,45 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
 //    }
 
     public interface PictureAdapterListener{
-        public void onTakePhotoPress(int position, View v);
+        public void onTakePhotoPress(int position);
     }
 
-    PictureAdapterListener listener;
+  //  PictureAdapterListener listener;
 
-    public void setListener(PictureAdapterListener listener){
-        this.listener = listener;
-    }
+//    public void setListener(PictureAdapterListener listener){
+//        this.listener = listener;
+//    }
 
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView name;
         ImageView imageViewTaken;
+        PictureAdapterListener pictureAdapterListener;
 
-        public RecyclerViewHolder(@NonNull View itemView) {
+        public RecyclerViewHolder(@NonNull View itemView, PictureAdapterListener pictureAdapterListener) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.textView_picture);
             imageViewTaken = (ImageView) itemView.findViewById(R.id.photo_imageView);
             //takePhotoBtn =(Button) itemView.findViewById(R.id.take_photo_btn);
-            imageViewTaken.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(listener != null)
-                    {
-                        listener.onTakePhotoPress(getAdapterPosition(),v);
-                    }
+            this.pictureAdapterListener = pictureAdapterListener;
+            itemView.setOnClickListener(this);
+//            imageViewTaken.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(listener != null)
+//                    {
+//                        listener.onTakePhotoPress(getAdapterPosition());
+//                    }
+//
+//                }
+//            });
 
-                }
-            });
+        }
 
+        @Override
+        public void onClick(View v) {
+            pictureAdapterListener.onTakePhotoPress(getAdapterPosition());
         }
     }
 
@@ -95,17 +106,15 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
     @Override
     public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.add_row_files,parent,false);
-        RecyclerViewHolder holder = new RecyclerViewHolder(view);
+        RecyclerViewHolder holder = new RecyclerViewHolder(view, mPictureAdapterListener);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewAdapter.RecyclerViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
         Pictures listpicture = pictures.get(position);
         holder.name.setText(listpicture.getName());
         Bitmap myimg = BitmapFactory.decodeByteArray(listpicture.getPhotoPath(),0, listpicture.getPhotoPath().length);
-        holder.imageViewTaken.setImageBitmap(myimg);
         holder.imageViewTaken.setImageBitmap(myimg);
     }
     @Override

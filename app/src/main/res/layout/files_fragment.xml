@@ -111,16 +111,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:gravity="center"
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
 
                 <ImageButton
                     android:id="@+id/add_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="20dp"
-                    android:gravity="center"
                     android:background="@null"
                     android:src="@drawable/ic_add_plus" />
             </LinearLayout>

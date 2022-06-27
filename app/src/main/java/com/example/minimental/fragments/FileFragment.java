@@ -67,7 +67,7 @@ import java.util.Base64;
 import java.util.List;
 
 
-public class FileFragment extends Fragment {
+public class FileFragment extends Fragment implements RecyclerViewAdapter.PictureAdapterListener{
 
     private StorageReference storageReference = null;
     private DatabaseReference databaseReference = null;
@@ -86,6 +86,7 @@ public class FileFragment extends Fragment {
     private Integer Version;
     private String test;
     private String userId;
+    Pictures listpicture;
 
     @Nullable
     @Override
@@ -95,7 +96,7 @@ public class FileFragment extends Fragment {
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext());
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pictures,rootView.getContext(),this);
         recyclerView.setAdapter(adapter);
         sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Version = sharedViewModel.getVersion().getValue(); // this is the test version
@@ -125,7 +126,7 @@ public class FileFragment extends Fragment {
                     Bitmap bitmap = (Bitmap) result.getData().getExtras().get("data");
                     mImageView.setImageBitmap(bitmap);
 
-                    Pictures listpicture = new Pictures();
+                    listpicture = new Pictures();
                     String name = getResources().getString(R.string.name_picture);
                     listpicture.setName(name + " " + (pictures.size() + 1));
 
@@ -193,18 +194,15 @@ public class FileFragment extends Fragment {
         });
 
 
-
         // *Show full image*
-        adapter.setListener(new RecyclerViewAdapter.PictureAdapterListener() {
-            @Override
-            public void onTakePhotoPress(int position, View v) {
-                Intent intent = new Intent(rootView.getContext(), ImageActivity.class);
-                intent.putExtra("path", imageRv);
-                startActivity(intent);
-            }
-        });
-
-
+//        adapter.setListener(new RecyclerViewAdapter.PictureAdapterListener() {
+//            @Override
+//            public void onTakePhotoPress(int position) {
+//                Intent intent = new Intent(rootView.getContext(), ImageActivity.class);
+//                intent.putExtra("path",listpicture);
+//                startActivity(intent);
+//            }
+//        });
 
 
         nxtBtn.setOnClickListener(new View.OnClickListener() {
@@ -278,4 +276,12 @@ public class FileFragment extends Fragment {
         }
     }
 
+    // *Show full image*
+    @Override
+    public void onTakePhotoPress(int position) {
+        //pictures.get(position);
+        Intent intent = new Intent(getContext(), ImageActivity.class);
+        intent.putExtra("path",pictures.get(position).getPhotoPath());
+        startActivity(intent);
+    }
 }
