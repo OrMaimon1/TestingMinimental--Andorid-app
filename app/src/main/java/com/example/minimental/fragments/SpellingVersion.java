@@ -36,9 +36,11 @@ public class SpellingVersion extends Fragment implements MediaPlayerServiceBinde
     private Observer<String> getSpelledWordObserver;
     private SharedViewModel sharedViewModel;
     private int numberOfAnswersGiven = 0;
+    private TextView resultText;
     private ArrayList<String> FinalResult = new ArrayList<>();
     private ThirdQuestion spell = new ThirdQuestion();
     private Button speechBtn;
+    private String result;
     private Button[] speakerButtons;
     private String instructionsLink = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0918%D7%94%D7%95%D7%A8%D7%90%D7%AA%20%D7%90%D7%99%D7%95%D7%AA.mp3?alt=media&token=2e34cbbf-8131-4cc2-8e37-d71cc03296ce";
     private String continueCommandLink = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/Questions%20Instructions%2FMyRec_0525_0918%D7%AA%D7%9E%D7%A9%D7%99%D7%9A.mp3?alt=media&token=24c994a7-8bb9-4238-88c5-dc621fad5763";
@@ -60,9 +62,11 @@ public class SpellingVersion extends Fragment implements MediaPlayerServiceBinde
                     for (String r : results) {
                         speechResult.append(r);
                     }
-                    String result = speechResult.toString();
+                    String resultstr = speechResult.toString();
+                    char c = resultstr.charAt(0);
+                    result = "" + c;
                     //updateAnswer(result);
-                    FinalResult.add(result);
+                    //resultText.setText(result);
                 }
             }
         });
@@ -99,6 +103,7 @@ public class SpellingVersion extends Fragment implements MediaPlayerServiceBinde
                 {
                     startMediaService(continueCommandLink);
                 }
+                FinalResult.add(result); //check if working
                 if(numberOfAnswersGiven == 5)
                 {
                     startMediaService(stopCommandLink);
@@ -135,6 +140,9 @@ public class SpellingVersion extends Fragment implements MediaPlayerServiceBinde
                 nxtBtn.startAnimation(animation);
                 sharedViewModel.setSpelledWord(FinalResult);
                 Navigation.findNavController(view).navigate(R.id.action_spellingVersion_to_fourthQuestion);
+                //numberOfAnswersGiven = 0;
+                //FinalResult.clear();
+
             }
         });
         return rootView;

@@ -63,13 +63,6 @@ public class Sixth_question extends Fragment implements MediaPlayerServiceBinder
                     }
             }
         });
-/*        getAnswerObserver = new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                resultText.setText(s);
-            }
-        };
-        sharedViewModel.getMathAnswerGiven().observe(this , getAnswerObserver);*/
     }
     @Nullable
     @Override

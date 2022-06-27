@@ -77,6 +77,10 @@
     <string name="ninth_question">Ninth Question</string>
     <string name="confirm_word">Confirm Word</string>
     <string name="feedback_here">Feedback Here</string>
-    <string name="click_on_the_microphone_for_answer">Click on the microphone for answer</string>/>
+    <string name="click_on_the_microphone_for_answer">Click on the microphone for answer</string>
+    <string name="Correct_fourthQuestion">Correct</string>
+    <string name="VeryClose_fourthQuestion">Very Close</string>
+    <string name="Close_fourthQuestion">Close</string>
+    <string name="InCorrect_fourthQuestion">TryAgain</string>/>
 
 </resources>

@@ -133,8 +133,6 @@ public class Login_fragment extends Fragment {
                 else{
                     Toast.makeText(getContext(), "Doesn't have permission please talk to your doctor to start a test", Toast.LENGTH_SHORT).show();
                 }
-                //Navigation.findNavController(getView()).navigate(R.id.action_login_fragment_to_collectMissingDetails);
-
 
             }
         });

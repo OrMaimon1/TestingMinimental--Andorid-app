@@ -48,6 +48,7 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
     private String word1;
     private Button listenBtn;
     private Button recordButton;
+    private ArrayList<String> listOfWords;
 
 
     @Override
@@ -132,11 +133,23 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
 
         }
         else {
-            if (secoundquestion.getObject1().equals(word1)) {
-                currentwordIndex++;
-                feedBack.setText("Correct");
+            if (secoundquestion.getObject1().equals(listOfWords.get(0))) {
+                if (secoundquestion.getObject2().equals(listOfWords.get(1))){
+
+                    if (secoundquestion.getObject3().equals(listOfWords.get(2))){
+                        feedBack.setText(R.string.Correct_fourthQuestion);
+
+                    }
+                    else {
+                        feedBack.setText(R.string.VeryClose_fourthQuestion);
+
+                    }
+                }
+                else{
+                    feedBack.setText(R.string.Close_fourthQuestion);
+                }
             } else {
-                feedBack.setText("InCorrect");
+                feedBack.setText(R.string.InCorrect_fourthQuestion);
             }
         }
     }
@@ -172,7 +185,7 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
         resultText.setText(answer);
         String adder;
         String[] spereatedWords = answer.split(" " , 3);
-        ArrayList<String> listOfWords = new ArrayList<>(3);
+        listOfWords = new ArrayList<>(3);
         if (spereatedWords.length < 3)
         {
             Toast.makeText(getContext(), "please enter 3 word!!", Toast.LENGTH_LONG).show();
@@ -183,7 +196,6 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
             listOfWords.add(0, spereatedWords[0]);
             listOfWords.add(1, spereatedWords[1]);
             listOfWords.add(2, spereatedWords[2]);
-            word1 = listOfWords.get(0);
             fourthQuestion.setObject1(listOfWords.get(0));
             fourthQuestion.setObject2(listOfWords.get(1));
             fourthQuestion.setObject3(listOfWords.get(2));

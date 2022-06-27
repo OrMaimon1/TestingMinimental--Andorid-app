@@ -59,7 +59,6 @@ public class TenthFragment extends Fragment implements MediaPlayerServiceBinder 
                 painter.setDrawingCacheEnabled(true);
                 Bitmap img = painter.getDrawingCache();
                 tenthQuestion.setPicToCopy(img);
-                //tenthQuestion.setPicToCopy(currentSentence.getText().toString());
                 sharedViewModel.setpicForTenthQuestion(tenthQuestion);
                 Calendar c = Calendar.getInstance();
                 SimpleDateFormat dateformat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:ss aa");
