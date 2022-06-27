@@ -151,7 +151,6 @@ public class MathVersion extends Fragment implements MediaPlayerServiceBinder {
     private void startSpeechRecognition()
     {
         Intent speechIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        disableAllSpeakerButtons();
         speechIntent.putExtra(RecognizerIntent.EXTRA_RESULTS , 1);
         speechRecognizerLauncher.launch(speechIntent);
     }
