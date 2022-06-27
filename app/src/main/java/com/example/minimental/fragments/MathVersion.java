@@ -122,8 +122,9 @@ public class MathVersion extends Fragment implements MediaPlayerServiceBinder {
             @Override
             public void onClick(View view) {
                 speechBtn.clearAnimation();
+                speakerButton.clearAnimation();
                 startSpeechRecognition();
-                explainText.setVisibility(View.GONE);
+                //explainText.setVisibility(View.GONE);
             }
         });
 
@@ -142,8 +143,8 @@ public class MathVersion extends Fragment implements MediaPlayerServiceBinder {
                 nxtBtn.startAnimation(animation);
                 sharedViewModel.setMathAnswerGiven(FinalResult);
                 Navigation.findNavController(view).navigate(R.id.action_mathVersion_to_fourthQuestion);
-                //numberOfAnswersGiven = 0;
-                //FinalResult.clear();
+                numberOfAnswersGiven = 0;
+                FinalResult.clear();
             }
         });
         return rootView;

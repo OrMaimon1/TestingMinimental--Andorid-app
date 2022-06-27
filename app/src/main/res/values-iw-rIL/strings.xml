@@ -77,10 +77,11 @@
     <string name="hospital_floor">באיזה קומה נמצע החדר שלך?</string>
     <string name="ninth_question">שאלה תשיעית</string>
     <string name="confirm_word">בדוק מילה</string>
-    <string name="feedback_here">משוב</string>
+    <string name="feedback_here">משוב לתשובה</string>
     <string name="click_on_the_microphone_for_answer">לחץ על המיקרופון בשביל לענות</string>
     <string name="Correct_fourthQuestion">נכון</string>
     <string name="VeryClose_fourthQuestion">"קרוב מאוד "</string>
     <string name="Close_fourthQuestion">קרוב</string>
     <string name="InCorrect_fourthQuestion">תנסה שוב</string>
+    <string name="Enter_ForthQuestion">הכנס תשובה</string>
 </resources>

@@ -81,6 +81,7 @@
     <string name="Correct_fourthQuestion">Correct</string>
     <string name="VeryClose_fourthQuestion">Very Close</string>
     <string name="Close_fourthQuestion">Close</string>
-    <string name="InCorrect_fourthQuestion">TryAgain</string>/>
+    <string name="InCorrect_fourthQuestion">TryAgain</string>
+    <string name="Enter_ForthQuestion">Enter a object</string>/>
 
 </resources>

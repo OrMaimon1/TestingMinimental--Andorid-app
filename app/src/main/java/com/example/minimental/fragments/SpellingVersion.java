@@ -140,8 +140,8 @@ public class SpellingVersion extends Fragment implements MediaPlayerServiceBinde
                 nxtBtn.startAnimation(animation);
                 sharedViewModel.setSpelledWord(FinalResult);
                 Navigation.findNavController(view).navigate(R.id.action_spellingVersion_to_fourthQuestion);
-                //numberOfAnswersGiven = 0;
-                //FinalResult.clear();
+                numberOfAnswersGiven = 0;
+                FinalResult.clear();
 
             }
         });

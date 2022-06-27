@@ -129,7 +129,7 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
     {
         if (secoundquestion.getObject1() == null)
         {
-            feedBack.setText("Enter a object");
+            feedBack.setText(R.string.Enter_ForthQuestion);
 
         }
         else {
