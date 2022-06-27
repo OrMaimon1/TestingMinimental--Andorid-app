@@ -84,4 +84,8 @@
     <string name="Close_fourthQuestion">קרוב</string>
     <string name="InCorrect_fourthQuestion">תנסה שוב</string>
     <string name="Enter_ForthQuestion">הכנס תשובה</string>
+    <string name="ThreeWord_secondQuestion">בבקשה הכנס 3 מילים!</string>
+    <string name="no_permission">אין לך הרשאה בבקשה תדברם עם הרופא שלך</string>
+    <string name="Wrong_username">טעות בשם משתמש או סיסמא תנסה שוב</string>
+    <string name="Enter_email">בבקשה תכניס אמייל וסיסמא</string>
 </resources>

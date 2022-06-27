@@ -78,14 +78,14 @@ public class Login_fragment extends Fragment {
                                 viewModel.loadId();
                             }
                             else{
-                                Toast.makeText(getContext(), "Wrong username or password try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), R.string.Wrong_username, Toast.LENGTH_SHORT).show();
                                 progressBar.setVisibility(View.INVISIBLE);
                             }
                         }
                     });
                 }
                 else   {
-                    Toast.makeText(getContext(), "Email Address and Password Must Be Entered", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.Enter_email, Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                 }
 
@@ -131,7 +131,7 @@ public class Login_fragment extends Fragment {
                     Navigation.findNavController(getView()).navigate(R.id.action_login_fragment_to_collectMissingDetails);
                 }
                 else{
-                    Toast.makeText(getContext(), "Doesn't have permission please talk to your doctor to start a test", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.no_permission, Toast.LENGTH_SHORT).show();
                 }
 
             }

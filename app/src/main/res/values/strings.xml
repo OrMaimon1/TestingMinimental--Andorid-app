@@ -82,6 +82,11 @@
     <string name="VeryClose_fourthQuestion">Very Close</string>
     <string name="Close_fourthQuestion">Close</string>
     <string name="InCorrect_fourthQuestion">TryAgain</string>
-    <string name="Enter_ForthQuestion">Enter a object</string>/>
+    <string name="Enter_ForthQuestion">Enter a object</string>
+    <string name="ThreeWord_secondQuestion">please enter 3 word!!</string>
+    <string name="no_permission">Doesn\'t have permission please talk to your doctor to start a test</string>
+    <string name="Wrong_username">Wrong username or password try again</string>
+    <string name="Enter_email">Email Address and Password Must Be Entered</string>
+    />
 
 </resources>

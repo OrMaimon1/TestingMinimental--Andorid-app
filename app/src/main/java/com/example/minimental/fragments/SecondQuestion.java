@@ -165,8 +165,7 @@ public class SecondQuestion extends Fragment implements MediaPlayerServiceBinder
         ArrayList<String> listOfWords = new ArrayList<>(3);
         if (spereatedWords.length < 3)
         {
-            Toast.makeText(getContext(), "please enter 3 word!!", Toast.LENGTH_LONG).show();
-
+            Toast.makeText(getContext(), R.string.ThreeWord_secondQuestion, Toast.LENGTH_LONG).show();
         }
         else{
             listOfWords.ensureCapacity(3);
