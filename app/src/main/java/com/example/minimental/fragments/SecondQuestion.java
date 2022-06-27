@@ -145,13 +145,13 @@ public class SecondQuestion extends Fragment implements MediaPlayerServiceBinder
     @Override
     public void startSpeechButtonAnimation() {
         speechBtn.startAnimation(animation);
-        listenBtn.setEnabled(true);
+        listenBtn.setClickable(true);
     }
 
     private void startMediaService()
     {
         Intent intent = new Intent(getContext() , MediaPlayerService.class);
-        listenBtn.setEnabled(false);
+        listenBtn.setClickable(false);
         MediaPlayerService.currentFragment = this;
         intent.putExtra("Link" , link);
         getContext().startService(intent);
