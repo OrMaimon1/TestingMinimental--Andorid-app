@@ -127,9 +127,13 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
     }
     private void checkIfWordIsCorrect()
     {
-        if (secoundquestion.getObject1() == null)
+        if (listOfWords == null) {
+            listOfWords = new ArrayList<>(3);
+        }
+        if (listOfWords.size() < 3)
         {
             feedBack.setText(R.string.Enter_ForthQuestion);
+            Toast.makeText(getContext(), R.string.ThreeWord_secondQuestion, Toast.LENGTH_LONG).show();
 
         }
         else {
@@ -152,6 +156,7 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
                 feedBack.setText(R.string.InCorrect_fourthQuestion);
             }
         }
+
     }
 
 
@@ -188,8 +193,7 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
         listOfWords = new ArrayList<>(3);
         if (spereatedWords.length < 3)
         {
-            Toast.makeText(getContext(), "please enter 3 word!!", Toast.LENGTH_LONG).show();
-
+            Toast.makeText(getContext(), R.string.ThreeWord_secondQuestion, Toast.LENGTH_LONG).show();
         }
         else {
             listOfWords.ensureCapacity(3);
