@@ -92,6 +92,7 @@ public class FourthQuestion extends Fragment implements MediaPlayerServiceBinder
                 if(currentwordIndex <=2) {
                     recordButton.clearAnimation();
                     startSpeechRecognition();
+
                 }
             }
         });
