@@ -268,13 +268,13 @@ public class  InformationFragment extends Fragment implements MediaPlayerService
                                 .targetRadius(60)).listener(new TapTargetSequence.Listener() {
             @Override
             public void onSequenceFinish() {
-                Toast.makeText(getContext(),"Sequence Finished",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),"Sequence Finished",Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
-                Toast.makeText(getContext(),"GREAT!",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),"GREAT!",Toast.LENGTH_SHORT).show();
 
             }
 
