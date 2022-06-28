@@ -67,7 +67,7 @@ public class MilkDragView extends View {
         yellowFill.setColor(Color.YELLOW);
         yellowFill.setStyle(Paint.Style.FILL);
         transperent.setColor(Color.TRANSPARENT);
-        milkDrawable = getResources().getDrawable(R.drawable.ic_blue_milk);
+        milkDrawable = getResources().getDrawable(R.drawable.ic_milk_svgrepo_com);
         chickenDrawable = getResources().getDrawable(R.drawable.ic_chicken);
         grapeDrawable = getResources().getDrawable(R.drawable.ic_grapes);
         canDrawable = getResources().getDrawable(R.drawable.ic_can);
