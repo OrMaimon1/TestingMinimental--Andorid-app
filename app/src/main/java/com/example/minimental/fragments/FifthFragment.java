@@ -100,11 +100,11 @@ public class FifthFragment extends Fragment implements MediaPlayerServiceBinder 
         }
         if (Version == 1){ // for pic
             pic1 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%941%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.jpg?alt=media&token=1d064c87-9abf-4d45-926c-45a7829cd201";
-            pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%942%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.png?alt=media&token=fe5b166e-ecf2-48b1-9d28-869975cafd53";
+            pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%94%202%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.webp?alt=media&token=d9c89de8-94ad-4164-a396-3ce766d6e4c5";
         }
         if (Version == 2){
             pic1 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%941%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%A0%D7%99%D7%94.jpg?alt=media&token=7be08784-b28e-43f2-baf4-4afde2ce963c";
-            pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%942%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%A0%D7%99%D7%94.jpg?alt=media&token=d539e212-8d85-4d86-8f9d-b943291dea50";
+            pic2 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%942%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%A0%D7%99%D7%94.jpg?alt=media&token=77bb33eb-899c-4264-8561-9fcda5dc4d9a";
         }
         if (Version == 3){
             pic1 = "https://firebasestorage.googleapis.com/v0/b/minimental-hit.appspot.com/o/FifthQuestion%20Pictures%2F%D7%AA%D7%9E%D7%95%D7%A0%D7%941%20%D7%92%D7%A8%D7%A1%D7%90%20%D7%A9%D7%9C%D7%99%D7%A9%D7%99%D7%AA.png?alt=media&token=10979082-663b-4739-a549-188a372c9128";
