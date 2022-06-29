@@ -11,8 +11,8 @@
         android:label="CollectMissingDetails"
         tools:layout="@layout/collect_missingdetails">
         <action
-            android:id="@+id/action_collectMissingDetails_to_informationFragment"
-            app:destination="@id/informationFragment" />
+            android:id="@+id/action_collectMissingDetails_to_startTest"
+            app:destination="@id/startTest" />
     </fragment>
     <fragment
         android:id="@+id/secondQuestion"
@@ -141,5 +141,13 @@
         <action
             android:id="@+id/action_fileFragment_to_login_fragment"
             app:destination="@id/login_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startTest"
+        android:name="com.example.minimental.fragments.StartTest"
+        android:label="StartTest" >
+        <action
+            android:id="@+id/action_startTest_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
 </navigation>

@@ -87,6 +87,7 @@
     <string name="no_permission">Doesn\'t have permission please talk to your doctor to start a test</string>
     <string name="Wrong_username">Wrong username or password try again</string>
     <string name="Enter_email">Email Address and Password Must Be Entered</string>
+    <string name="start_test_string">Start The Test</string>
     />
 
 </resources>
