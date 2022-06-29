@@ -78,14 +78,14 @@ public class Login_fragment extends Fragment {
                             }
                             else{
                                 Toast.makeText(getContext(), R.string.Wrong_username, Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.INVISIBLE);
+                                progressBar.setVisibility(View.GONE);
                             }
                         }
                     });
                 }
                 else   {
                     Toast.makeText(getContext(), R.string.Enter_email, Toast.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }

@@ -191,27 +191,33 @@
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
-            <ProgressBar
-                android:id="@+id/progressBar_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.ProgressBar"
-                android:visibility="gone"/>
+                <ProgressBar
+                    android:id="@+id/progressBar_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:visibility="gone"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:gravity="center"
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
-                <ProgressBar
-                    android:id="@+id/logos_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.ProgressBar"
-                    android:visibility="gone"/>
+                <ImageView
+                    android:id="@+id/beit_revka_logo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/revka"/>
+
+                <ImageView
+                    android:id="@+id/hit_logo"
+                    android:src="@drawable/hit"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" />
             </LinearLayout>
 
 
