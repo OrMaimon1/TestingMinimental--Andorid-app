@@ -217,11 +217,7 @@ public class BallsDragView extends View {
             invalidate();
             return touches;
         }
-       /* public void resetPosition()
-        {
-            setCenterX(initialCenterX);
-            setCenterY(initialCenterY);
-        }*/
+
         public void moveInside()
         {
             float moveBackGap = 6f * scale;
@@ -253,15 +249,5 @@ public class BallsDragView extends View {
             }
         }
     }
-    /*public class Square extends RectF
-    {
-        private float side;
-        private RectF rect;
 
-        private Square(float s , RectF r)
-        {
-            side = s;
-            r.left
-        }
-    }*/
 }

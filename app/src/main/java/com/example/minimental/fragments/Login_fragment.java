@@ -45,7 +45,6 @@ public class Login_fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.login_fragment,container,false);
-        //where to put the viewmodel of the fragment
         progressBar = rootView.findViewById(R.id.progressBar_login);
         textInputUsername = rootView.findViewById(R.id.input_name);
         textInputPassword = rootView.findViewById(R.id.input_password);

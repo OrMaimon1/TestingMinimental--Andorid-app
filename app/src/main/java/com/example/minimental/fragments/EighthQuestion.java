@@ -24,7 +24,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.minimental.CustomView.BallsDragView;
-import com.example.minimental.EightQuestion;
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.ViewModels.SharedViewModel;
@@ -33,7 +32,6 @@ public class EighthQuestion extends Fragment {
     
     //View blackCircle, yellowCircle, redSquare, blueCircle;
     private SharedViewModel sharedViewModel;
-    private EightQuestion eightQuestion = new EightQuestion();
     private Boolean eigthCurrectOrder = false;
     private RelativeLayout dragLayout;
     private BallsDragView ballsDragView;
@@ -46,11 +44,6 @@ public class EighthQuestion extends Fragment {
     //private RectF blueRect;
     private RectF redRect;
     private float x = 0, y = 0;
-    private SharedViewModel viewModel;
-    /*private float blueCircleCenterX;
-    private float blueCircleCenterY;
-    private float redSquareCenterX;
-    private float redSquareCenterY;*/
     private boolean ball1 = false ,ball2 = false;
     private TextView eight_instTx;
     private Integer Version;
@@ -74,7 +67,6 @@ public class EighthQuestion extends Fragment {
         //blueRect = ballsDragView.getBlueRect();
         redRect = ballsDragView.getRedRect();
         //dragLayout = rootView.findViewById(R.id.eight_drag_layout);
-        viewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Version = sharedViewModel.getVersion().getValue(); // this is the test version
         if (Version == null || Version == 0) //only for now some users dosnt have version alredy asked to add
         {
@@ -96,32 +88,9 @@ public class EighthQuestion extends Fragment {
             //greenBall
         }
 
-        /*blackCircle = (View) rootView.findViewById(R.id.viewblackcircle);
-        yellowCircle = (View) rootView.findViewById(R.id.viewYellowCircle);
-        redSquare = (View) rootView.findViewById(R.id.square_view);
-        blueCircle = (View) rootView.findViewById(R.id.circle_view);*/
-
-       /* redSquareCenterX = redSquare.getX();
-        redSquareCenterY = redSquare.getY();
-        blueCircleCenterX = blueCircle.getX();
-        blueCircleCenterY = blueCircle.getY();
-
-        blackCircle.setOnTouchListener(new MyTouchListener());
-        yellowCircle.setOnTouchListener(new MyTouchListener());*/
-
-       // redSquare.setOnDragListener(new MyDragListener());
-        //blueCircle.setOnDragListener(new MyDragListener());
-
 
         ballsDragView.setOnTouchListener(new ballsDragTouchListner());
 
-
-//        speakerButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startMediaService();
-//            }
-//        });
 
 
        nxtBtn.setOnClickListener(new View.OnClickListener() {
@@ -216,85 +185,4 @@ public class EighthQuestion extends Fragment {
         }
     }
 
-   /* final class MyTouchListener implements View.OnTouchListener{
-        @Override
-        public boolean onTouch(View view, MotionEvent event) {
-            switch (event.getActionMasked()){
-                case MotionEvent.ACTION_DOWN:
-                    x = event.getX();
-                    y = event.getY();
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    float movedX, movedY;
-                    movedX = event.getX();
-                    movedY = event.getY();
-
-                    float distanceX = movedX - x;
-                    float distanceY = movedY - y;
-
-                    view.setX(view.getX()+distanceX);
-                    view.setY(view.getY()+distanceY);
-
-                    break;
-            }
-            return true;
-        }
-    }*/
-
-    /*public boolean blackCirecleInPlace(float locationX , float locationY)
-    {
-        boolean inPlace = true;
-        int[] location = new int[2];
-        blueCircle.getLocationOnScreen(location);
-        int height = blueCircle.getBottom() - blueCircle.getTop();
-        int radius = height / 2;
-        int blueCircleX = location[0];
-        int blueCircleY = location[1];
-        if(!((blackCircle.getY() < blueCircleY + radius) && (blackCircle.getY() > blueCircleY - radius)) )
-        {
-            inPlace = false;
-        }
-        if(! ( (blackCircle.getX() > blueCircleX -radius) && (blackCircle.getX() < blueCircleX + radius) ))
-        {
-            inPlace = false;
-        }
-        return inPlace;
-    }*/
-
-    /*class MyDragListener implements View.OnDragListener {
-        //Drawable enterShape = getResources().getDrawable(R.drawable.square_shape);
-        //Drawable normalShape = getResources().getDrawable(R.drawable.square_shape);
-        @Override
-        public boolean onDrag(View v, DragEvent event) {
-            int action = event.getAction();
-            switch (event.getAction()) {
-                case DragEvent.ACTION_DRAG_STARTED:
-                    // do nothing
-                    break;
-                case DragEvent.ACTION_DRAG_ENTERED:
-                    v.invalidate();
-                    break;
-                case DragEvent.ACTION_DRAG_LOCATION:
-                    break;
-                case DragEvent.ACTION_DRAG_EXITED:
-                    v.invalidate();
-                    //v.setBackgroundDrawable(normalShape);
-                    break;
-                case DragEvent.ACTION_DROP:
-                    // Dropped, reassign View to ViewGroup
-                    View view = (View) event.getLocalState();
-                    View owner = (View) view.getParent();
-                    //owner.removeView(view);
-                    //ConstraintLayout container = (ConstraintLayout) view;
-                    //container.addView(view);
-                    view.setVisibility(View.VISIBLE);
-                    break;
-                case DragEvent.ACTION_DRAG_ENDED:
-                    v.invalidate();
-                default:
-                    break;
-            }
-            return true;
-        }
-    }*/
 }

@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.minimental.EightQuestion;
 import com.example.minimental.FifthQuestion;
 import com.example.minimental.MissingDetail;
-import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
 import com.example.minimental.ThirdQuestion;
@@ -201,13 +199,8 @@ public class SharedViewModel extends ViewModel {
     }
     //region Sevnth Question Data Member
     private MutableLiveData<Boolean> currectOrderSeventh = new MutableLiveData<>();
-    private MutableLiveData<SevnthQuestion> picForSeventhQuestion = new MutableLiveData<>();
 
-    public MutableLiveData<SevnthQuestion> getPicSeventhQuestion(){
 
-        picForSeventhQuestion = repository.getPicForSeventhQuestion();
-        return picForSeventhQuestion;
-    }
 
     public void setCurrectOrderSeventh(Boolean value)
     {
@@ -217,13 +210,7 @@ public class SharedViewModel extends ViewModel {
 
     //region Eight Question Data Member
     private MutableLiveData<Boolean> currectOrderEighth = new MutableLiveData<>();
-    private MutableLiveData<EightQuestion> picForEighthQuestion = new MutableLiveData<>();
 
-    public MutableLiveData<EightQuestion> getPicEighthQuestion(){
-
-        picForEighthQuestion = repository.getPicForEighthQuestion();
-        return picForEighthQuestion;
-    }
 
     public void setCurrectPicOrderEighth(Boolean value)
     {
@@ -256,82 +243,5 @@ public class SharedViewModel extends ViewModel {
         picForTenth.setValue(sentencepicForTenth);
         repository.setpicForTenth(picForTenth);
     }
-
-
-
-/*    //region Eight Question Data Member
-    private MutableLiveData<Float> blackBallLocationX = new MutableLiveData<>();
-    private MutableLiveData<Float> blackBallLocationY = new MutableLiveData<>();
-    private MutableLiveData<Float> yellowBallLocationX = new MutableLiveData<>();
-    private MutableLiveData<Float> yellowBallLocationY = new MutableLiveData<>();
-    //endregion
-
-
-
-
-    //region Eight Question Methods
-    public void setBlackBallLocationX(Float value)
-    {
-        blackBallLocationX.setValue(value);
-    }
-    public void setBlackBallLocationY(Float value)
-    {
-        blackBallLocationY.setValue(value);
-    }
-    public void setYellowBallLocationX(Float value)
-    {
-        yellowBallLocationX.setValue(value);
-    }
-    public void setYellowBallLocationY(Float value)
-    {
-        yellowBallLocationX.setValue(value);
-    }
-
-    public MutableLiveData<Float> getBlackBallLocationX() {
-        return blackBallLocationX;
-    }
-
-    public MutableLiveData<Float> getBlackBallLocationY() {
-        return blackBallLocationY;
-    }
-
-    public MutableLiveData<Float> getYellowBallLocationX() {
-        return yellowBallLocationX;
-    }
-
-    public MutableLiveData<Float> getYellowBallLocationY() {
-        return yellowBallLocationY;
-    }
-    //endregion*/
-
-/*
-    //firebase database
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference users = database.getReference("users");
-
-    //need to check with user.getIdToken()
-    private void fetchData(){
-        users.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    for (DataSnapshot datasnapshot : snapshot.getChildren()){
-                        secoundQuestion secoundquestion = datasnapshot.getValue(secoundQuestion.class);
-                        ThirdQuestion thirdquestion = datasnapshot.getValue(ThirdQuestion.class);
-                        FifthQuestion fifthQuestion = datasnapshot.getValue(FifthQuestion.class);
-                        SixthQuestion sixthQuestion = datasnapshot.getValue(SixthQuestion.class);
-                        SevnthQuestion sevnthQuestion = datasnapshot.getValue(SevnthQuestion.class);
-                        EightQuestion eightQuestion = datasnapshot.getValue(EightQuestion.class);
-                        TenthQuestion tenthQuestion = datasnapshot.getValue(TenthQuestion.class);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
 
 }

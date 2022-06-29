@@ -22,14 +22,12 @@ import com.example.minimental.CustomView.MilkDragView;
 import com.example.minimental.R;
 import com.example.minimental.Services.MediaPlayerService;
 import com.example.minimental.Services.MediaPlayerServiceBinder;
-import com.example.minimental.SevnthQuestion;
 import com.example.minimental.ViewModels.SharedViewModel;
 
 public class SeventhQuestion extends Fragment implements MediaPlayerServiceBinder {
 
     //ImageView milk;
     private SharedViewModel sharedViewModel;
-    private SevnthQuestion sevnthQuestion = new SevnthQuestion();
     private Boolean sevnthCurrectOrder = false;
     private MilkDragView.DrawableProxy milkPicture;
     private MilkDragView milkDragView;
@@ -61,8 +59,8 @@ public class SeventhQuestion extends Fragment implements MediaPlayerServiceBinde
         listenBtn.startAnimation(animation);
         //milk = rootView.findViewById(R.id.seventh_question_ImageView_milk);
         //milk.setOnTouchListener(new MyTouchListener());
-        Version = sharedViewModel.getVersion().getValue(); // this is the test version
-        if (Version == null || Version == 0) //only for now some users dosnt have version alredy asked to add
+        Version = sharedViewModel.getVersion().getValue();
+        if (Version == null || Version == 0)
         {
             Version = 1;
         }
@@ -177,45 +175,4 @@ public class SeventhQuestion extends Fragment implements MediaPlayerServiceBinde
         listenBtn.setClickable(true);
     }
 
-    /*final class MyTouchListener implements View.OnTouchListener{
-
-        @Override
-        public boolean onTouch(View view, MotionEvent event) {
-
-            switch (event.getActionMasked()){
-                case MotionEvent.ACTION_DOWN:
-                    x = event.getX();
-                    y = event.getY();
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    float movedX, movedY;
-                    movedX = event.getX();
-                    movedY = event.getY();
-
-                    float distanceX = movedX - x;
-                    float distanceY = movedY - y;
-
-                    view.setX(view.getX()+distanceX);
-                    view.setY(view.getY()+distanceY);
-
-                    break;
-                }
-
-            return true;
-        }
-    }*/
-
-
-
-
-    /*public boolean itemOnTable(Rect itemBorderRect)
-    {
-        boolean onTable = false;
-        if (itemBorderRect.left >= positionBorderRect.left - (50*scale) && itemBorderRect.right  <= positionBorderRect.right + (50*scale)) {
-            if (itemBorderRect.top >= positionBorderRect.top - (50*scale) && itemBorderRect.bottom  <= positionBorderRect.bottom + (50*scale)) {
-                onTable = true;
-            }
-        }
-        return onTable;
-    }*/
 }

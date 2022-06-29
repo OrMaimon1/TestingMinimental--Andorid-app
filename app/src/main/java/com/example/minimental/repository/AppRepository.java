@@ -2,17 +2,13 @@ package com.example.minimental.repository;
 
 
 import android.graphics.Bitmap;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.minimental.EightQuestion;
 import com.example.minimental.FifthQuestion;
 import com.example.minimental.MissingDetail;
-import com.example.minimental.SevnthQuestion;
 import com.example.minimental.SixthQuestion;
 import com.example.minimental.TenthQuestion;
 import com.example.minimental.ThirdQuestion;
@@ -30,7 +26,6 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -51,8 +46,6 @@ public class AppRepository {
     private MutableLiveData<SixthQuestion> sentenceLiveData = new MutableLiveData<>();
     private MutableLiveData<Boolean> currectOrderSeventh = new MutableLiveData<>();
     private MutableLiveData<Boolean> currectOrderEight = new MutableLiveData<>();
-    private MutableLiveData<SevnthQuestion> PicForSeventhQuestion = new MutableLiveData<>();
-    private MutableLiveData<EightQuestion> eightQuestionMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<SixthQuestion> ninthQuestionMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<TenthQuestion> tenthQuestionMutableLiveData = new MutableLiveData<>();
     private MutableLiveData<String> username = new MutableLiveData<>();
@@ -360,13 +353,6 @@ public class AppRepository {
         databaseTest.updateChildren(updates);
     }
 
-    public MutableLiveData<SevnthQuestion> getPicForSeventhQuestion() {
-
-        MutableLiveData<SevnthQuestion> data = new MutableLiveData<>();
-        return data;
-    }
-
-
     public void setCurrectPicOrder(MutableLiveData<Boolean> currectPicOrder) {
         currectOrderSeventh.setValue(currectPicOrder.getValue());
         databaseTest = FirebaseDatabase.getInstance().getReference().child("Test").child(userId.getValue()).child(test).child("SeventhQuestion");
@@ -375,12 +361,6 @@ public class AppRepository {
         databaseTest.updateChildren(updates);
     }
 
-    public MutableLiveData<EightQuestion> getPicForEighthQuestion() {
-
-        //loadInformationData();
-        MutableLiveData<EightQuestion> data = new MutableLiveData<>();
-        return data;
-    }
 
 
     public void setCurrectPicOrderEighth(MutableLiveData<Boolean> currectPicOrder) {
