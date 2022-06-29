@@ -53,20 +53,10 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
         this.mPictureAdapterListener = pictureAdapterListener;
     }
 
-//    public void updateList(List<Pictures> pictures){
-//        this.pictures = pictures;
-//        notifyDataSetChanged();
-//    }
 
     public interface PictureAdapterListener{
         public void onTakePhotoPress(int position);
     }
-
-  //  PictureAdapterListener listener;
-
-//    public void setListener(PictureAdapterListener listener){
-//        this.listener = listener;
-//    }
 
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -79,20 +69,8 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Recyc
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.textView_picture);
             imageViewTaken = (ImageView) itemView.findViewById(R.id.photo_imageView);
-            //takePhotoBtn =(Button) itemView.findViewById(R.id.take_photo_btn);
             this.pictureAdapterListener = pictureAdapterListener;
             itemView.setOnClickListener(this);
-//            imageViewTaken.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if(listener != null)
-//                    {
-//                        listener.onTakePhotoPress(getAdapterPosition());
-//                    }
-//
-//                }
-//            });
-
         }
 
         @Override

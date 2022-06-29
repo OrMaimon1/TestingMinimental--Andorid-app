@@ -433,17 +433,5 @@ public class  InformationFragment extends Fragment implements MediaPlayerService
         }
     }
 
-    /*enum Question
-    {
-        Day,
-        Month,
-        Date,
-        Year,
-        Season,
-        Country,
-        City,
-        Street
-    }*/
-
 }
 

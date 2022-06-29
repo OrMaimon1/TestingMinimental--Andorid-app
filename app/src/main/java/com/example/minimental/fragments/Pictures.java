@@ -12,7 +12,6 @@ public class Pictures implements Serializable {
      String name;
      byte[] photoPath;
 
-    
 
     public String getName() {
         return name;

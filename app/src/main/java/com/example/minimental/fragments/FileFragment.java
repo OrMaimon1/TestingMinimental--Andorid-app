@@ -194,17 +194,6 @@ public class FileFragment extends Fragment implements RecyclerViewAdapter.Pictur
         });
 
 
-        // *Show full image*
-//        adapter.setListener(new RecyclerViewAdapter.PictureAdapterListener() {
-//            @Override
-//            public void onTakePhotoPress(int position) {
-//                Intent intent = new Intent(rootView.getContext(), ImageActivity.class);
-//                intent.putExtra("path",listpicture);
-//                startActivity(intent);
-//            }
-//        });
-
-
         nxtBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,7 +268,6 @@ public class FileFragment extends Fragment implements RecyclerViewAdapter.Pictur
     // *Show full image*
     @Override
     public void onTakePhotoPress(int position) {
-        //pictures.get(position);
         Intent intent = new Intent(getContext(), ImageActivity.class);
         intent.putExtra("path",pictures.get(position).getPhotoPath());
         startActivity(intent);

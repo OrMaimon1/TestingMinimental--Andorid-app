@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Minimental</string>
     <string name="user_name">Enter Name</string>
-    <string name="title_name">Minimental Test</string>
+    <string name="title_name">Cognitive\nAssesment</string>
     <string name="button_next">Next</string>
     <string name="user_password">Enter password</string>
     <string name="required">Required</string>
