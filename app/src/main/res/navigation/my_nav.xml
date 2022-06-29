@@ -137,7 +137,8 @@
     <fragment
         android:id="@+id/fileFragment"
         android:name="com.example.minimental.fragments.FileFragment"
-        android:label="FileFragment" >
+        android:label="FileFragment"
+        tools:layout="@layout/files_fragment">
         <action
             android:id="@+id/action_fileFragment_to_login_fragment"
             app:destination="@id/login_fragment" />
@@ -145,7 +146,8 @@
     <fragment
         android:id="@+id/startTest"
         android:name="com.example.minimental.fragments.StartTest"
-        android:label="StartTest" >
+        android:label="StartTest"
+        tools:layout="@layout/start_test">
         <action
             android:id="@+id/action_startTest_to_informationFragment"
             app:destination="@id/informationFragment" />
