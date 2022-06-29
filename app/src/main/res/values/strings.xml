@@ -87,7 +87,8 @@
     <string name="no_permission">Doesn\'t have permission please talk to your doctor to start a test</string>
     <string name="Wrong_username">Wrong username or password try again</string>
     <string name="Enter_email">Email Address and Password Must Be Entered</string>
-    <string name="start_test_string">Start The Test</string>
+    <string name="missing_details_textView2">This page will be filled by a lender</string>
+    <string name="start_test_string">To start the test click here</string>
     />
 
 </resources>

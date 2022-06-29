@@ -88,5 +88,6 @@
     <string name="no_permission">אין לך הרשאה בבקשה תדברם עם הרופא שלך</string>
     <string name="Wrong_username">טעות בשם משתמש או סיסמא תנסה שוב</string>
     <string name="Enter_email">בבקשה תכניס אמייל וסיסמא</string>
+    <string name="missing_details_textView2">דף זה ימולא על ידי מלווה</string>
     <string name="start_test_string">לתחילת המבחן לחץ כאן</string>
 </resources>

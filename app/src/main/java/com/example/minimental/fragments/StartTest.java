@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -21,12 +23,15 @@ public class StartTest extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.start_test,container,false);
-        Button nxtBtn = rootView.findViewById(R.id.start_btn);
-        nxtBtn.setOnClickListener(new View.OnClickListener() {
+        Button startTestBtn = rootView.findViewById(R.id.start_btn);
+        Animation animation= AnimationUtils.loadAnimation(getContext(),R.anim.pulse);
+        startTestBtn.startAnimation(animation);
+
+        startTestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startTestBtn.clearAnimation();
                 Navigation.findNavController(view).navigate(R.id.action_startTest_to_informationFragment);
-
             }
         });
 
