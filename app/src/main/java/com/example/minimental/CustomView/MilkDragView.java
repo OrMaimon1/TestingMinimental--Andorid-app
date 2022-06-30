@@ -267,7 +267,7 @@ public class MilkDragView extends View {
         {
             if(milkDrawable.getBounds().top >= positionBorderRect.top && milkDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
-                if(milkDrawable.getBounds().left >= redNapkin.left && milkDrawable.getBounds().right <= redNapkin.right) {
+                if(milkDrawableProxy.getObjectsCenterPointX() >= redNapkin.left && milkDrawableProxy.getObjectsCenterPointX() <= redNapkin.right) {
                     inPosition = true;
                 }
             }
@@ -282,7 +282,7 @@ public class MilkDragView extends View {
         {
             if(grapeDrawable.getBounds().top >= positionBorderRect.top && grapeDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
-                if(grapeDrawable.getBounds().left >= blueNapkin.left && grapeDrawable.getBounds().right <= blueNapkin.right) {
+                if(grapeDrawableProxy.getObjectsCenterPointX() >= blueNapkin.left && grapeDrawableProxy.getObjectsCenterPointX() <= blueNapkin.right) {
                     inPosition = true;
                 }
             }
@@ -297,7 +297,7 @@ public class MilkDragView extends View {
         {
             if(chickenDrawable.getBounds().top >= positionBorderRect.top && chickenDrawable.getBounds().bottom <= positionBorderRect.bottom)
             {
-                if(chickenDrawable.getBounds().left>= greenNapkin.left && chickenDrawable.getBounds().right <= greenNapkin.right) {
+                if(chickenDrawableProxy.getObjectsCenterPointX() >= greenNapkin.left && chickenDrawableProxy.getObjectsCenterPointX()  <= greenNapkin.right) {
                     inPosition = true;
                 }
             }
@@ -325,12 +325,6 @@ public class MilkDragView extends View {
         Rect[] objectsBorderRects = new Rect[]{milkBorderRect , grapeBorderRect , chickenBorderRect , canBorderRect};
         DrawableProxy[] drawableProxys = new DrawableProxy[]{milkDrawableProxy , grapeDrawableProxy , chickenDrawableProxy , canDrawableProxy};
         for(int i = 0; i< objectsBorderRects.length; i++) {
-            /*boolean onTable = false;
-            if (objectsBorderRects[i].left >= positionBorderRect.left - (20*scale) && objectsBorderRects[i].right  <= positionBorderRect.right + (20*scale)) {
-                if (objectsBorderRects[i].top >= positionBorderRect.top - (20*scale) && objectsBorderRects[i].bottom  <= positionBorderRect.bottom + (20*scale)) {
-                    onTable = true;
-                }
-            }*/
             if(!itemOnTable(objectsBorderRects[i]))
             {
                 Rect rectNewPosition = drawableProxys[i].getInitialBorderRectPosition();
@@ -413,6 +407,7 @@ public class MilkDragView extends View {
         {
             return drawableItem;
         }
+
         public Rect getInitialBorderRectPosition()
         {
             return initialBorderRectPosition;
