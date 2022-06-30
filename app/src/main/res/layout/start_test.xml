@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:padding="10dp"
-        android:textColor="@color/black"
         android:gravity="center"
         android:text="@string/you_can_added_picture_of_draft_pages_the_end_of_the_test"
         android:layout_marginBottom="20dp"/>

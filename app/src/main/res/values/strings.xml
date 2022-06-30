@@ -90,7 +90,7 @@
     <string name="missing_details_textView2">This page will be filled by a helper</string>
     <string name="start_test_string">To start the test click here</string>
     <string name="you_can_added_picture_of_draft_pages_the_end_of_the_test">It is possible to use draft pages and add them as pictures at the end of the test</string>
-    <string name="notice">notice:</string>
+    <string name="notice">Notice:</string>
     />
 
 </resources>
