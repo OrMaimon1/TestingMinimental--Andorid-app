@@ -9,6 +9,27 @@
     tools:ignore="ExtraText">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:padding="10dp"
+        android:textColor="@color/Red"
+        android:gravity="center"
+        android:text="@string/notice"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:text="@string/you_can_added_picture_of_draft_pages_the_end_of_the_test"
+        android:layout_marginBottom="20dp"/>
+
+
+
     <Button
         android:id="@+id/start_btn"
         android:layout_width="match_parent"
